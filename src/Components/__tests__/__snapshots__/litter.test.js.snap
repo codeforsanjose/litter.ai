@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`First snapshot test 1`] = `
+<div>
+  <h1>
+    Welcome to Litter.ai
+  </h1>
+  <p>
+    With just a click, sort your garbage and save the world
+  </p>
+</div>
+`;
