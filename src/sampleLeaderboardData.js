@@ -1,8 +1,8 @@
-export const sampleUserPictureData = [
+export const userPictureData = [
   {
     _id: 1,
     userID: 1,
-    email: 'email@email.com',
+    username: 'Reese Ikler',
     pictureData: {
       paper: 1,
       cardboard: 34,
@@ -19,7 +19,7 @@ export const sampleUserPictureData = [
   {
     _id: 2,
     userID: 2,
-    email: 'email@email.com',
+    username: 'Deke M. Pose',
     pictureData: {
       paper: 12,
       cardboard: 4,
@@ -36,7 +36,7 @@ export const sampleUserPictureData = [
   {
     _id: 3,
     userID: 3,
-    email: 'email@email.com',
+    username: 'Al U. Minnum',
     pictureData: {
       paper: 2,
       cardboard: 3,
@@ -53,7 +53,7 @@ export const sampleUserPictureData = [
   {
     _id: 4,
     userID: 4,
-    email: 'email@email.com',
+    username: 'Polly Esther',
     pictureData: {
       paper: 21,
       cardboard: 33,
@@ -70,7 +70,7 @@ export const sampleUserPictureData = [
   {
     _id: 5,
     userID: 5,
-    email: 'email@email.com',
+    username: 'Lan D. Phil',
     pictureData: {
       paper: 1,
       cardboard: 2,
@@ -87,7 +87,7 @@ export const sampleUserPictureData = [
   {
     _id: 6,
     userID: 6,
-    email: 'email@email.com',
+    username: 'User 6',
     pictureData: {
       paper: 1,
       cardboard: 0,
@@ -104,7 +104,7 @@ export const sampleUserPictureData = [
   {
     _id: 7,
     userID: 7,
-    email: 'email@email.com',
+    username: 'User 7',
     pictureData: {
       paper: 0,
       cardboard: 3,
@@ -121,7 +121,7 @@ export const sampleUserPictureData = [
   {
     _id: 8,
     userID: 8,
-    email: 'email@email.com',
+    username: 'User 8',
     pictureData: {
       paper: 100,
       cardboard: 123,
@@ -138,7 +138,7 @@ export const sampleUserPictureData = [
   {
     _id: 9,
     userID: 9,
-    email: 'email@email.com',
+    username: 'User 9',
     pictureData: {
       paper: 13,
       cardboard: 22,
@@ -155,7 +155,7 @@ export const sampleUserPictureData = [
   {
     _id: 10,
     userID: 10,
-    email: 'email@email.com',
+    username: 'User 10',
     pictureData: {
       paper: 55,
       cardboard: 22,
@@ -172,7 +172,7 @@ export const sampleUserPictureData = [
   {
     _id: 11,
     userID: 11,
-    email: 'email@email.com',
+    username: 'User 11',
     pictureData: {
       paper: 4,
       cardboard: 9,
@@ -189,7 +189,7 @@ export const sampleUserPictureData = [
   {
     _id: 12,
     userID: 12,
-    email: 'email@email.com',
+    username: 'User 12',
     pictureData: {
       paper: 14,
       cardboard: 18,
