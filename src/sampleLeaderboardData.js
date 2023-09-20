@@ -1,4 +1,4 @@
-const sampleLeaderboardData = [
+export const sampleUserPictureData = [
   {
     _id: 1,
     userID: 1,
@@ -102,23 +102,6 @@ const sampleLeaderboardData = [
     totalUploads: 9
   },
   {
-    _id: 6,
-    userID: 6,
-    email: 'email@email.com',
-    pictureData: {
-      paper: 14,
-      cardboard: 18,
-      compost: 12,
-      metal: 13,
-      glass: 19,
-      plastic: 15,
-      trash: 16,
-      other: 10,
-      unknown: 12,
-    },
-    totalUploads: 129
-  },
-  {
     _id: 7,
     userID: 7,
     email: 'email@email.com',
@@ -202,5 +185,121 @@ const sampleLeaderboardData = [
       unknown: 3,
     },
     totalUploads: 71
+  },
+  {
+    _id: 12,
+    userID: 12,
+    email: 'email@email.com',
+    pictureData: {
+      paper: 14,
+      cardboard: 18,
+      compost: 12,
+      metal: 13,
+      glass: 19,
+      plastic: 15,
+      trash: 16,
+      other: 10,
+      unknown: 12,
+    },
+    totalUploads: 129
+  },
+]
+
+export const userData = [
+  {
+    _id: 1,
+    email: 'email@email.com',
+    password: 'password',
+    username: 'Reese Ikler',
+    firstName: 'Reese',
+    lastName: 'Ikler',
+  },
+  {
+    _id: 2,
+    email: 'email@email.com',
+    password: 'password',
+    username: 'Deke M. Pose',
+    firstName: 'Deke',
+    lastName: 'Pose',
+  },
+  {
+    _id: 3,
+    email: 'email@email.com',
+    password: 'password',
+    username: 'Al U. Minnum',
+    firstName: 'Al',
+    lastName: 'Minnum',
+  },
+  {
+    _id: 4,
+    email: 'email@email.com',
+    password: 'password',
+    username: 'Polly Esther',
+    firstName: 'Polly',
+    lastName: 'Esther',
+  },
+  {
+    _id: 5,
+    email: 'email@email.com',
+    password: 'password',
+    username: 'Lan D. Phil',
+    firstName: 'Lan',
+    lastName: 'Phil',
+  },
+  {
+    _id: 6,
+    email: 'email@email.com',
+    password: 'password',
+    username: 'User 6',
+    firstName: 'User',
+    lastName: '6',
+  },
+  {
+    _id: 7,
+    email: 'email@email.com',
+    password: 'password',
+    username: 'User 7',
+    firstName: 'User',
+    lastName: '7',
+  },
+  {
+    _id: 8,
+    email: 'email@email.com',
+    password: 'password',
+    username: 'User 8',
+    firstName: 'User',
+    lastName: '8',
+  },
+  {
+    _id: 9,
+    email: 'email@email.com',
+    password: 'password',
+    username: 'User 9',
+    firstName: 'User',
+    lastName: '9',
+  },
+  {
+    _id: 10,
+    email: 'email@email.com',
+    password: 'password',
+    username: 'User 10',
+    firstName: 'User',
+    lastName: '10',
+  },
+  {
+    _id: 11,
+    email: 'email@email.com',
+    password: 'password',
+    username: 'User 11',
+    firstName: 'User',
+    lastName: '11',
+  },
+  {
+    _id: 12,
+    email: 'email@email.com',
+    password: 'password',
+    username: 'User 12',
+    firstName: 'User',
+    lastName: '12',
   }
 ]
