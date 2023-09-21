@@ -87,7 +87,7 @@ export const userPictureData = [
   {
     _id: 6,
     userID: 6,
-    username: 'User 6',
+    username: 'Recy Claire',
     pictureData: {
       paper: 1,
       cardboard: 0,
@@ -104,7 +104,7 @@ export const userPictureData = [
   {
     _id: 7,
     userID: 7,
-    username: 'User 7',
+    username: 'Litter Lee',
     pictureData: {
       paper: 0,
       cardboard: 3,
@@ -121,7 +121,7 @@ export const userPictureData = [
   {
     _id: 8,
     userID: 8,
-    username: 'User 8',
+    username: 'Refuse Robinson',
     pictureData: {
       paper: 100,
       cardboard: 123,
@@ -138,7 +138,7 @@ export const userPictureData = [
   {
     _id: 9,
     userID: 9,
-    username: 'User 9',
+    username: 'Garbella Greenfield',
     pictureData: {
       paper: 13,
       cardboard: 22,
@@ -155,7 +155,7 @@ export const userPictureData = [
   {
     _id: 10,
     userID: 10,
-    username: 'User 10',
+    username: 'Binjamin Franklin',
     pictureData: {
       paper: 55,
       cardboard: 22,
@@ -172,7 +172,7 @@ export const userPictureData = [
   {
     _id: 11,
     userID: 11,
-    username: 'User 11',
+    username: 'Rubi Canfield',
     pictureData: {
       paper: 4,
       cardboard: 9,
@@ -189,7 +189,7 @@ export const userPictureData = [
   {
     _id: 12,
     userID: 12,
-    username: 'User 12',
+    username: 'Litterton Steele',
     pictureData: {
       paper: 14,
       cardboard: 18,
@@ -250,56 +250,56 @@ export const userData = [
     _id: 6,
     email: 'email@email.com',
     password: 'password',
-    username: 'User 6',
-    firstName: 'User',
-    lastName: '6',
+    username: 'Recy Claire',
+    firstName: 'Recy',
+    lastName: 'Claire',
   },
   {
     _id: 7,
     email: 'email@email.com',
     password: 'password',
-    username: 'User 7',
-    firstName: 'User',
-    lastName: '7',
+    username: 'Litter Lee',
+    firstName: 'Litter',
+    lastName: 'Lee',
   },
   {
     _id: 8,
     email: 'email@email.com',
     password: 'password',
-    username: 'User 8',
-    firstName: 'User',
-    lastName: '8',
+    username: 'Refuse Robinson',
+    firstName: 'Refuse',
+    lastName: 'Robinson',
   },
   {
     _id: 9,
     email: 'email@email.com',
     password: 'password',
-    username: 'User 9',
-    firstName: 'User',
-    lastName: '9',
+    username: 'Garbella Greenfield',
+    firstName: 'Garbella',
+    lastName: 'Greenfield',
   },
   {
     _id: 10,
     email: 'email@email.com',
     password: 'password',
-    username: 'User 10',
-    firstName: 'User',
-    lastName: '10',
+    username: 'Binjamin Franklin',
+    firstName: 'Binjamin',
+    lastName: 'Franklin',
   },
   {
     _id: 11,
     email: 'email@email.com',
     password: 'password',
-    username: 'User 11',
-    firstName: 'User',
-    lastName: '11',
+    username: 'Rubi Canfield',
+    firstName: 'Rubi',
+    lastName: 'Canfield',
   },
   {
     _id: 12,
     email: 'email@email.com',
     password: 'password',
-    username: 'User 12',
-    firstName: 'User',
-    lastName: '12',
+    username: 'Litterton Steele',
+    firstName: 'Litterton',
+    lastName: 'Steele',
   }
 ]
