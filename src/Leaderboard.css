@@ -16,7 +16,7 @@
 }
 
 .lb-user-stats {
-  width: 95vw;
+  width: 80%;
   height: 5vh;
   display: flex;
   align-items: center;
@@ -27,7 +27,7 @@
 }
 
 .lb-table {
-  width: 95vw;
+  width: 95%;
   height: 60vh;
   border: 0.15rem var(--main-green) solid;
   border-spacing: inherit;
