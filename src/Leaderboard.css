@@ -15,9 +15,34 @@
   justify-content: center;
 }
 
+.lb-user-stats {
+  width: 95vw;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 0.2rem var(--main-green) solid;
+  border-radius: 5rem;
+  margin-bottom: 2rem;
+}
+
 .lb-table {
   width: 95vw;
   height: 60vh;
+  border: 0.15rem var(--main-green) solid;
+  border-spacing: inherit;
+}
+
+.lb-table tr:nth-of-type(even) {
+  background: var(--lb-gray);
+}
+
+.lb-table th + th {
+  border-left: 0.1rem var(--white)solid;
+}
+
+.lb-table td + td {
+  border-left: 0.1rem var(--main-green)solid;
 }
 
 .lb-header {
@@ -29,17 +54,6 @@
   height: 2.5rem;
   text-align: left;
   padding-left: 1rem;
-}
-
-.lb-user-stats {
-  width: 95vw;
-  height: 5vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  border: 0.2rem var(--main-green) solid;
-  border-radius: 5rem;
-  margin-bottom: 2rem;
 }
 
 .lb-name {
