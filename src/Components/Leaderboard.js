@@ -8,7 +8,7 @@ export default function Leaderboard() {
   const [userRank, setUserRank] = useState(0);
 
   const renderTable = (user, index) => (
-    <tr>
+    <tr key={index}>
       <td>{index + 1}</td>
       <td className="lb-name">{user.username}</td>
       <td>{user.totalUploads}</td>
@@ -26,18 +26,21 @@ export default function Leaderboard() {
 
   return (
     <div className="lb-container">
+      <div className="lb-user-stats">
+        <h3>Your rank: {userRank}</h3>
+        <h3>Total: {currentUser.totalUploads}</h3>
+      </div>
       <table className="lb-table">
-      <tr className="lb-header">
-        <th scope="col">Rank</th>
-          <th scope="col" className="lb-header-name">Name</th>
-          <th scope="col">Total</th>
-        </tr>
-        <tr className="lb-user-stats">
-          <td>{userRank}</td>
-          <td className="lb-name">{currentUser.username}</td>
-          <td>{currentUser.totalUploads}</td>
-        </tr>
+        <thead>
+          <tr className="lb-header">
+            <th scope="col">Rank</th>
+              <th scope="col" className="lb-header-name">Name</th>
+              <th scope="col">Total</th>
+          </tr>
+        </thead>
+      <tbody>
         {leaderboardData.map((user, index) => (renderTable(user, index)))}
+      </tbody>
       </table>
     </div>
   )

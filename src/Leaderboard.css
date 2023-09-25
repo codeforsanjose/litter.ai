@@ -1,6 +1,8 @@
 :root {
   --main-green: #076B49;
+  --sec-green: #74CC67;
   --white: #FFF;
+  --lb-gray: #E0E9E6;
 }
 
 .lb-container {
@@ -13,13 +15,8 @@
   justify-content: center;
 }
 
-.lb-user-table {
-  width: 95vw;
-  height: 10vh;
-}
-
 .lb-table {
-  width: 100vw;
+  width: 95vw;
   height: 60vh;
 }
 
@@ -29,8 +26,20 @@
 }
 
 .lb-header-name {
+  height: 2.5rem;
   text-align: left;
   padding-left: 1rem;
+}
+
+.lb-user-stats {
+  width: 95vw;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 0.2rem var(--main-green) solid;
+  border-radius: 5rem;
+  margin-bottom: 2rem;
 }
 
 .lb-name {
