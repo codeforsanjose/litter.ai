@@ -1,0 +1,39 @@
+:root {
+  --main-green: #076B49;
+  --white: #FFF;
+}
+
+.lb-container {
+  height: 80vh;
+  width: 100vw;
+  max-width: 768px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lb-user-table {
+  width: 95vw;
+  height: 10vh;
+}
+
+.lb-table {
+  width: 100vw;
+  height: 60vh;
+}
+
+.lb-header {
+  background: var(--main-green);
+  color: var(--white);
+}
+
+.lb-header-name {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.lb-name {
+  text-align: left;
+  padding-left: 1rem;
+}
