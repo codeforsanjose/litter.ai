@@ -21,20 +21,18 @@ export default function Leaderboard() {
 
     const rank = pictureData.findIndex(user => user.username === currentUser.username) + 1;
     setUserRank(rank);
-  }, [leaderboardData, currentUser])
+  }, [currentUser])
 
 
   return (
     <div className="lb-container">
-      <table className="lb-user-table">
-      </table>
       <table className="lb-table">
       <tr className="lb-header">
-        <th scope="col" className="lb-header-rank">Rank</th>
+        <th scope="col">Rank</th>
           <th scope="col" className="lb-header-name">Name</th>
-          <th scope="col" className="lb-header-total">Total</th>
+          <th scope="col">Total</th>
         </tr>
-        <tr>
+        <tr className="lb-user-stats">
           <td>{userRank}</td>
           <td className="lb-name">{currentUser.username}</td>
           <td>{currentUser.totalUploads}</td>
