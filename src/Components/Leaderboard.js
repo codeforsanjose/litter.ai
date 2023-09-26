@@ -7,6 +7,7 @@ export default function Leaderboard() {
   const [currentUser] = useState(pictureData[8]);
   const [userRank, setUserRank] = useState(0);
 
+  // Creates a data row for each user with their rank, username, and total uploads
   const renderTable = (user, index) => (
     <tr key={index}>
       <td>{index + 1}</td>
@@ -15,10 +16,12 @@ export default function Leaderboard() {
     </tr>
   )
 
+  // Sorts users by total uploads
   useEffect(() => {
     pictureData.sort((a, b) => (b.totalUploads - a.totalUploads));
     setLeaderboardData(pictureData.slice(0, 10));
 
+  // Ses the current user's rank by finding the index of their username in the sorted data
     const rank = pictureData.findIndex(user => user.username === currentUser.username) + 1;
     setUserRank(rank);
   }, [currentUser])
