@@ -12,7 +12,7 @@ function CameraCapture () {
             />
             <img id="pictureFromCamera" />
 
-            <script src="script.js"></script>
+            <script src="ImageCapture.js"></script>
         </div>
     )
 }
