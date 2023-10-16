@@ -46,12 +46,12 @@
   border-left: 0.1rem var(--main-green)solid;
 }
 
-.lb-container .lb-header {
+.lb-container .lb-table .lb-header {
   background: var(--main-green);
   color: var(--white);
 }
 
-.lb-container .lb-header-name {
+.lb-container .lb-table .lb-header .lb-header-name {
   height: 2.5rem;
   text-align: left;
   padding-left: 1rem;
