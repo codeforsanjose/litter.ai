@@ -5,14 +5,15 @@ import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-rou
 
 import LandingPage from './Components/LandingPage';
 import CameraCapture from './Components/CameraCapture';
+import Leaderboard from './Components/Leaderboard';
 
 const App = () => {
   return (
-
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<LandingPage/>} />
-        <Route path='/capture' element={<CameraCapture/>} />
+        <Route path='/' element={<LandingPage />} />
+        <Route path='/capture' element={<CameraCapture />} />
+        <Route path='/leaderboard' element={<Leaderboard />} />
       </Routes>
     </BrowserRouter>
   )
