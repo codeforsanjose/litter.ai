@@ -1,0 +1,38 @@
+.landing-page-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .landing-page-image {
+    align-self: flex-start;
+    max-width: 100%;
+  }
+  
+  .landing-page-text {
+    flex-grow: 1;
+  }
+  
+  .landing-page-buttons {
+    align-self: flex-end;
+    width: 100%;
+    margin-bottom: 100px;
+    box-sizing: border-box;
+  }
+
+  .button {
+    flex: 1;
+    width: 100%;
+    max-width: 150px; 
+    padding: 8px; 
+    text-align: center;
+  }
+
+  .button:hover {
+    background-color: #076B49;
+    color: #FFF
+  }
+
