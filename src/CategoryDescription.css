@@ -1,0 +1,16 @@
+:root {
+  --main-green: #076B49;
+  --sec-green: #74CC67;
+  --white: #FFF;
+  --lb-gray: #E0E9E6;
+}
+
+.category-container {
+  height: 80vh;
+  width: 100vw;
+  max-width: 768px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
