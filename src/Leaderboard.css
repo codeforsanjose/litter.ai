@@ -32,6 +32,7 @@
   height: 60vh;
   border: 0.15rem var(--main-green) solid;
   border-spacing: inherit;
+  text-align: center;
 }
 
 .lb-container .lb-table tr:nth-of-type(even) {

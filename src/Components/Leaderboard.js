@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { userPictureData as pictureData } from '../sampleLeaderboardData.js'
+import { userPictureData as pictureData } from '../DummyData/sampleLeaderboardData.js'
 import '../Leaderboard.css';
 
 export default function Leaderboard() {
