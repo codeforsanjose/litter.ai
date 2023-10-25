@@ -7,12 +7,12 @@ export default function CategoryDescription ({ type }) {
 
   return (
     <div className="category-container">
-      <h4>Hooray!!!!</h4>
-      <h4>You made it</h4>
+      <h4>Thank you!</h4>
       {/* <img src={category.icon} alt={category.alt} /> */}
       <RecyclingIcon className="category-icon" />
-      <div>{type.description}</div>
-      <div>
+      <h1>{type.name}</h1>
+      <p>{type.description}</p>
+      <div className="category-buttons">
         <button>Learn More</button>
         <Link to="/capture"><button>Capture another photo</button></Link>
         <Link to="/"><button className="button-home">Home</button></Link>
