@@ -16,6 +16,8 @@ const App = () => {
         <Route path='/capture' element={<CameraCapture />} />
         <Route path='/leaderboard' element={<Leaderboard />} />
         <Route path='/recycle' element={<CategoryDescription type={categoryData.recycle}/>} />
+        <Route path='/trash' element={<CategoryDescription type={categoryData.trash}/>} />
+        <Route path='/compost' element={<CategoryDescription type={categoryData.compost}/>} />
       </Routes>
     </BrowserRouter>
   )
