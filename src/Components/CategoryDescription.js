@@ -17,7 +17,7 @@ export default function CategoryDescription ({ type }) {
       <h1>{type.name}</h1>
       <p>{type.description}</p>
       <div className="category-buttons">
-        <button>Learn More</button>
+      <Link to="/learn-more"><button>Learn More</button></Link>
         <Link to="/capture"><button>Capture another photo</button></Link>
         <Link to="/"><button className="button-home">Home</button></Link>
       </div>
