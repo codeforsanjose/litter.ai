@@ -6,17 +6,25 @@
   --shadow-color: hsl(0deg 0% 0% / 26%);
 }
 
-body {
-  display: flex;
-  justify-content: center;
+@media only screen and (max-width: 767px) {
+  .App {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .App {
+    grid-template-columns: 2fr 3fr 2fr;
+  }
 }
 
 .App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  justify-items: center;
 }
 
 .App-logo {
