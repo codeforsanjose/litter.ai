@@ -1,3 +1,16 @@
+@media only screen and (max-width: 767px) {
+  .category-container {
+    grid-column-start: 1;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .category-container {
+    grid-area: 3 / 2 / 8 / 2;
+    justify-content: center;
+  }
+}
+
 .category-container {
   height: 100vh;
   width: 100vw;

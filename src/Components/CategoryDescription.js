@@ -6,11 +6,11 @@ import EggIcon from '@mui/icons-material/Egg';
 import '../CategoryDescription.css'
 
 export default function CategoryDescription ({ type }) {
-  const [category] = useState(type.name);
+  const [category] = useState(type.category);
 
   return (
     <div className="category-container">
-      <h4>Thank you!</h4>
+      <h4>{type.category}</h4>
       {category === 'Recycle' && <RecyclingIcon className="category-icon" />}
       {category === 'Trash' && <DeleteIcon className="category-icon" />}
       {category === 'Compost' && <EggIcon className="category-icon" />}

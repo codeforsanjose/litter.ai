@@ -1,9 +1,15 @@
 export const categoryData = {
-  recycle: {
-    name: 'Recycle',
+  plastic: {
+    name: 'Plastic',
+    category: 'Recycle',
     icon: '',
     alt: 'recycle icon',
-    description: 'This is recycle. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat ac felis donec et odio pellentesque diam volutpat.This is recycle. Lorem ipsum dolor sit amet, consectetur adipiscing elit, '
+    description: `Not all plastic is recyclable, even if you see the chasing arrows sign!
+
+    If the Plastic sign has a number #1 or #2 inside of the chasing arrows, it is most likely recyclable.
+
+    To be recycled, plastics should be clean of food/residue.
+    `
   },
   compost: {
     name: 'Compost',
