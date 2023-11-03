@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { userPictureData as pictureData } from '../DummyData/sampleLeaderboardData.js'
 import '../Leaderboard.css';
 
@@ -18,12 +19,12 @@ export default function Leaderboard() {
 
   // Sorts users by total uploads
   useEffect(() => {
-    pictureData.sort((a, b) => (b.totalUploads - a.totalUploads));
-    setLeaderboardData(pictureData.slice(0, 10));
-
-  // Ses the current user's rank by finding the index of their username in the sorted data
-    const rank = pictureData.findIndex(user => user.username === currentUser.username) + 1;
-    setUserRank(rank);
+    axios.get('http://localhost:3001/leaderboard')
+      .then((response) => {
+        setLeaderboardData(response.data.leaderboard);
+        setUserRank(response.data.rank);
+      })
+      .catch((err) => console.log(err));
   }, [currentUser])
 
 
