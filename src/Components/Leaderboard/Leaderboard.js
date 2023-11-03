@@ -5,8 +5,7 @@ import '../../Leaderboard.css';
 
 export default function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = useState([]);
-  const [categoryOpen, setCategoryOpen] = useState(false);
-  const [dropdownSelection, setDropdownSelection] = useState('total');
+  const [dropdownSelection, setDropdownSelection] = useState('');
   const [userRank, setUserRank] = useState(0);
 
   // Creates a data row for each user with their rank, username, and total uploads
@@ -14,29 +13,25 @@ export default function Leaderboard() {
     <tr key={index}>
       <td>{index + 1}</td>
       <td className="lb-name">{user.username}</td>
-      <td>{user.totalUploads}</td>
+      <td>{dropdownSelection ? user.itemCount : user.totalUploads}</td>
     </tr>
   )
 
-  const handleCategoryDropdown = (e) => {
-    e.preventDefault();
-    setCategoryOpen(!categoryOpen)
-  }
-
   // Sorts users by total uploads
   useEffect(() => {
-    axios.get('http://localhost:3001/leaderboard')
+    const link = dropdownSelection ? `http://localhost:3001/leaderboard/${dropdownSelection}` : 'http://localhost:3001/leaderboard';
+    axios.get(link)
       .then((response) => {
         setLeaderboardData(response.data.leaderboard);
         setUserRank(response.data.rank);
       })
       .catch((err) => console.log(err));
-  }, [])
+  }, [dropdownSelection])
 
 
   return (
     <div className="lb-container">
-      <Dropdown setCategory={setDropdownSelection} cat={dropdownSelection} />
+      <Dropdown setCategory={setDropdownSelection} />
       <div className="lb-user-stats">
         <h3>Your rank: 9999</h3>
         <h3>Total: 99999999</h3>
@@ -46,11 +41,7 @@ export default function Leaderboard() {
           <tr className="lb-header">
             <th scope="col">Rank</th>
             <th scope="col" className="lb-header-name">Name</th>
-            <th scope="col">Total
-              {!categoryOpen && (
-                <button onClick={handleCategoryDropdown}>^</button>
-              )}
-            </th>
+            <th scope="col">Total</th>
           </tr>
         </thead>
       <tbody>
