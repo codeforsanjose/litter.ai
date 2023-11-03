@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { userPictureData as pictureData } from '../DummyData/sampleLeaderboardData.js'
-import '../Leaderboard.css';
+import Dropdown from './Dropdown';
+import '../../Leaderboard.css';
 
 export default function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = useState([]);
-  const [currentUser] = useState(pictureData[8]);
+  const [categoryOpen, setCategoryOpen] = useState(false);
+  const [dropdownSelection, setDropdownSelection] = useState('total');
   const [userRank, setUserRank] = useState(0);
 
   // Creates a data row for each user with their rank, username, and total uploads
@@ -17,6 +18,11 @@ export default function Leaderboard() {
     </tr>
   )
 
+  const handleCategoryDropdown = (e) => {
+    e.preventDefault();
+    setCategoryOpen(!categoryOpen)
+  }
+
   // Sorts users by total uploads
   useEffect(() => {
     axios.get('http://localhost:3001/leaderboard')
@@ -25,21 +31,26 @@ export default function Leaderboard() {
         setUserRank(response.data.rank);
       })
       .catch((err) => console.log(err));
-  }, [currentUser])
+  }, [])
 
 
   return (
     <div className="lb-container">
+      <Dropdown setCategory={setDropdownSelection} cat={dropdownSelection} />
       <div className="lb-user-stats">
-        <h3>Your rank: {userRank}</h3>
-        <h3>Total: {currentUser.totalUploads}</h3>
+        <h3>Your rank: 9999</h3>
+        <h3>Total: 99999999</h3>
       </div>
       <table className="lb-table">
         <thead>
           <tr className="lb-header">
             <th scope="col">Rank</th>
-              <th scope="col" className="lb-header-name">Name</th>
-              <th scope="col">Total</th>
+            <th scope="col" className="lb-header-name">Name</th>
+            <th scope="col">Total
+              {!categoryOpen && (
+                <button onClick={handleCategoryDropdown}>^</button>
+              )}
+            </th>
           </tr>
         </thead>
       <tbody>

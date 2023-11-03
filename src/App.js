@@ -5,7 +5,7 @@ import { categoryData } from '../src/DummyData/sampleCategoryData.js'
 
 import LandingPage from './Components/LandingPage';
 import CameraCapture from './Components/CameraCapture';
-import Leaderboard from './Components/Leaderboard';
+import Leaderboard from './Components/Leaderboard/Leaderboard';
 import CategoryDescription from './Components/CategoryDescription';
 import LearnMore from './Components/LearnMore';
 
