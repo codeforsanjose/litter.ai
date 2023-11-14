@@ -1,10 +1,8 @@
 import React from 'react';
 import Select from 'react-select';
 
-
-// Total's value is a blank string because it is a different endpoint on API
 const options = [
-  { value: '', label: 'Total' },
+  { value: 'total', label: 'Total' },
   { value: 'paper', label: 'Paper' },
   { value: 'metal', label: 'Metal' },
   { value: 'cardboard', label: 'Cardboard' },
@@ -26,6 +24,19 @@ export default function Dropdown({ setCategory }) {
       options={options}
       defaultValue={options[0]}
       onChange={handleChange}
-      />
+      styles={
+        {singleValue: (baseStyles) => ({
+          ...baseStyles,
+          backgroundColor: '#076B49',
+          color: 'white',
+        }),
+        control: (baseStyles) => ({
+          ...baseStyles,
+          backgroundColor: '#076B49',
+          border: 'none',
+        })
+        }
+      }
+    />
   )
 }
