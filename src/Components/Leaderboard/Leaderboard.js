@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Dropdown from './Dropdown';
 import '../../css/Leaderboard.css';
 
@@ -20,12 +19,18 @@ export default function Leaderboard() {
   // Sorts users by total uploads
   useEffect(() => {
     const link = dropdownSelection === 'total' ? 'http://localhost:3001/leaderboard' : `http://localhost:3001/leaderboard/${dropdownSelection}`;
-    axios.get(link)
-      .then((response) => {
-        setLeaderboardData(response.data.leaderboard);
-        setUserRank(response.data.rank);
-      })
-      .catch((err) => console.log(err));
+    const fetchData = async () => {
+      try {
+        const res = await fetch(link);
+        const response = await res.json();
+        setLeaderboardData(response.leaderboard);
+        setUserRank(response.rank);
+      }
+      catch(err) {
+        console.error(err);
+      }
+    }
+    fetchData();
   }, [dropdownSelection])
 
 
