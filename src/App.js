@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './css/App.css';
 import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
 import { categoryData } from '../src/DummyData/sampleCategoryData.js'
 

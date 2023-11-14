@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Dropdown from './Dropdown';
-import '../../Leaderboard.css';
+import '../../css/Leaderboard.css';
 
 export default function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = useState([]);

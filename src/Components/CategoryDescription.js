@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import RecyclingIcon from '@mui/icons-material/Recycling';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EggIcon from '@mui/icons-material/Egg';
-import '../CategoryDescription.css'
+import '../css/CategoryDescription.css'
 
 export default function CategoryDescription ({ type }) {
   const [category] = useState(type.category);
