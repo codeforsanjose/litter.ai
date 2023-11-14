@@ -57,10 +57,19 @@
   color: var(--white);
 }
 
-.lb-container .lb-table .lb-header .lb-header-name {
+.lb-container .lb-table .lb-header th:nth-child(1) {
+  width: 10%;
+}
+
+.lb-container .lb-table .lb-header th:nth-child(2) {
   height: 2.5rem;
+  width: 20rem;
   text-align: left;
   padding-left: 1rem;
+}
+
+.lb-container .lb-table .lb-header th:nth-child(3) {
+  width: 25%;
 }
 
 .lb-container .lb-name {

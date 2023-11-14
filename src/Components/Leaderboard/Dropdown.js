@@ -24,19 +24,27 @@ export default function Dropdown({ setCategory }) {
       options={options}
       defaultValue={options[0]}
       onChange={handleChange}
-      styles={
-        {singleValue: (baseStyles) => ({
+      isSearchable={false}
+      styles={{
+        // Text label
+        singleValue: (baseStyles) => ({
           ...baseStyles,
           backgroundColor: '#076B49',
           color: 'white',
         }),
+        // Text border and background
         control: (baseStyles) => ({
           ...baseStyles,
           backgroundColor: '#076B49',
           border: 'none',
-        })
-        }
-      }
+          width: '100%',
+        }),
+        // Down arrow
+        dropdownIndicator: (baseStyles) => ({
+          ...baseStyles,
+          color: '#FFF',
+        }),
+      }}
     />
   )
 }

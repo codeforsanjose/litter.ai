@@ -39,8 +39,8 @@ export default function Leaderboard() {
         <thead>
           <tr className="lb-header">
             <th scope="col">Rank</th>
-            <th scope="col" className="lb-header-name">Name</th>
-            <th scope="col"><Dropdown setCategory={setDropdownSelection} /></th>
+            <th scope="col">Name</th>
+            <th scope="col"><Dropdown setCategory={setDropdownSelection}/></th>
           </tr>
         </thead>
       <tbody>
