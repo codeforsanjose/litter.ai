@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EggIcon from '@mui/icons-material/Egg';
 import '../css/CategoryDescription.css'
 
-export default function CategoryDescription ({ type }) {
+export default function SuccessfulSubmission ({ type }) {
   const [category] = useState(type.category);
 
   return (

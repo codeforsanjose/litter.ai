@@ -6,12 +6,12 @@ import renderer from 'react-test-renderer';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
-// describe('Home page', () => {
-//     test('Landing page matches the current snapshot', () => {
-//         const tree = renderer.create(<LandingPage />).JSON();
-//         expect(tree).toMatchSnapshot();
-//     })
-// });
+describe('Home page', () => {
+    test('Landing page matches the current snapshot', () => {
+        const tree = renderer.create(<LandingPage />).JSON();
+        expect(tree).toMatchSnapshot();
+    })
+});
 
 describe('Leaderboard component', () => {
     // Function to simulate an API call
