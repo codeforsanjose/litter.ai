@@ -14,17 +14,17 @@ import { act } from 'react-dom/test-utils';
 // });
 
 describe('Leaderboard component', () => {
+    // Function to simulate an API call
     const mockCall = (data) => {
         jest.spyOn(global, 'fetch').mockResolvedValue({
             json: jest.fn().mockResolvedValue(data)
         });
     }
-    beforeEach(() => {
-        mockCall(mockTotalUploads);
-    });
-    afterEach(() => {
-        jest.restoreAllMocks();
-    })
+
+    // Start each test with total top 10 API call; reset mock after each test
+    beforeEach(() => { mockCall(mockTotalUploads) });
+    afterEach(() => { jest.restoreAllMocks() })
+
     // Creates a snapshot
     test('Leaderboard matches the current snapshot', () => {
         const tree = renderer.create(<Leaderboard />).toJSON();
@@ -52,19 +52,16 @@ describe('Leaderboard component', () => {
     });
     test('New data is rendered when a dropdown category is changed', async () => {
         render(<Leaderboard />);
+        // Change category and data to metal; act() is used to track change in state
         mockCall(mockMetalUploads);
         fireEvent.mouseDown(screen.getByText('Total'));
-        act(() => {
-            fireEvent.click(screen.getByText('Metal'));
-        })
-        await waitFor(() => {
-            expect(screen.getByText('lucious_senger10')).toBeInTheDocument();
-        });
+        act(() => { fireEvent.click(screen.getByText('Metal')) })
+        await waitFor(() => { expect(screen.getByText('lucious_senger10')).toBeInTheDocument() });
+
+        // Change category and data to plastic
         fireEvent.mouseDown(screen.getByText('Metal'));
         mockCall(mockPlasticUploads);
-        act(() => {
-            fireEvent.click(screen.getByText('Plastic'));
-        });
+        act(() => { fireEvent.click(screen.getByText('Plastic')) });
         await waitFor(() => {
             // expect(screen.getByText('lucious_senger10')).toBeNull();
             expect(screen.getByText('alejandra31')).toBeInTheDocument();
