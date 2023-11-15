@@ -25,9 +25,8 @@ export default function Leaderboard() {
       try {
         const res = await fetch(link);
         const response = await res.json();
-        console.log('Response: ', response)
         setLeaderboardData(response.leaderboard);
-        setUserRank(response.rank);
+        // setUserRank(response.rank);
       }
       catch(err) {
         console.error(err);
