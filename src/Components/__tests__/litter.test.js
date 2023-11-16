@@ -69,9 +69,7 @@ describe('Leaderboard component', () => {
     fireEvent.mouseDown(screen.getByText('Total'));
     fireEvent.click(screen.getByText('Metal'))
     // Checks if a specific user is in the document
-    await waitFor(() => {
-      expect(screen.getByText('lucious_senger10')).toBeInTheDocument()
-    });
+    await waitFor(() => { expect(screen.getByText('lucious_senger10')).toBeInTheDocument() });
     // Change category and data to plastic
     fireEvent.mouseDown(screen.getByText('Metal'));
     mockCall(mockPlasticUploads);
@@ -116,7 +114,7 @@ describe('Successful submission page', () => {
         </Routes>
       </MemoryRouter>
     )
-    // Initial endpoint is /
+    // Initial endpoint is /success
     await waitFor(() => { expect(history.location.pathname).toBe('/success') });
     // Clicks button to navigate to new end point, then pushes endpoint into the history
     fireEvent.click(screen.getByRole('button', { name: 'Home' }));
