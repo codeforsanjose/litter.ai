@@ -15,12 +15,12 @@ import { act } from 'react-dom/test-utils';
 import { createMemoryHistory } from 'history';
 import { MemoryRouter, Router, Routes, Route, Switch } from 'react-router-dom';
 
-// describe('Home page', () => {
-// 	test('Landing page matches the current snapshot', () => {
-// 		const tree = renderer.create(<LandingPage />).JSON();
-// 		expect(tree).toMatchSnapshot();
-// 	})
-// });
+describe('Home page', () => {
+	test('Landing page matches the current snapshot', () => {
+		const tree = renderer.create(<LandingPage />).JSON();
+		expect(tree).toMatchSnapshot();
+	})
+});
 
 describe('Leaderboard component', () => {
 	// Function to simulate an API call
