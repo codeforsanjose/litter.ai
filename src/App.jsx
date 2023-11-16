@@ -6,7 +6,7 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import { categoryData } from './MockData/mockCategoryData';
+import categoryData from './MockData/mockCategoryData';
 
 import LandingPage from './Components/LandingPage';
 import CameraCapture from './Components/CameraCapture';

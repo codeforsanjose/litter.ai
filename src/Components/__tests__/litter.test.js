@@ -12,7 +12,7 @@ import LandingPage from '../LandingPage';
 import Leaderboard from '../Leaderboard/Leaderboard';
 import CameraCapture from '../CameraCapture';
 import SuccessfulSubmission from '../SuccessfulSubmission';
-import { categoryData } from '../../MockData/mockCategoryData';
+import categoryData from '../../MockData/mockCategoryData';
 import {
   mockTotalUploads,
   mockPlasticUploads,
