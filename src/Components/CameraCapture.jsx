@@ -9,10 +9,10 @@ function CameraCapture() {
         id="cameraFileInput"
         capture="environment"
       />
-        <img id="pictureFromCamera" />
-      <script src="ImageCapture.js"></script>
+      <img id="pictureFromCamera" alt="" />
+      <script src="ImageCapture.js" />
     </div>
-  )
+  );
 }
 
 export default CameraCapture;

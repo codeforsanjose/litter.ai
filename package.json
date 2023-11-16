@@ -28,7 +28,11 @@
       "react-app/jest",
       "airbnb",
       "airbnb/hooks"
-    ]
+    ],
+    "rules": {
+      "react/prop-types": "off",
+      "no-nested-ternary": "off"
+    }
   },
   "browserslist": {
     "production": [

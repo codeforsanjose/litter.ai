@@ -1,11 +1,10 @@
 import React from 'react';
 import './css/App.css';
 import {
-  BrowserRouter
-  as Router,
+  BrowserRouter as
+  Router,
   Routes,
   Route,
-  BrowserRouter,
 } from 'react-router-dom';
 import { categoryData } from './MockData/mockCategoryData';
 
@@ -18,15 +17,15 @@ import LearnMore from './Components/LearnMore';
 export default function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/capture" element={<CameraCapture />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/success" element={<SuccessfulSubmission type={categoryData.plastic}/>} />
+          <Route path="/success" element={<SuccessfulSubmission type={categoryData.plastic} />} />
           <Route path="/learn-more" element={<LearnMore />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }

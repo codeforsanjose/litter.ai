@@ -1,14 +1,14 @@
 import React from 'react';
 import LandingPage from '../LandingPage';
-import Leaderboard from '../Leaderboard/Leaderboard.js';
+import Leaderboard from '../Leaderboard/Leaderboard';
 import CameraCapture from '../CameraCapture';
 import SuccessfulSubmission from '../SuccessfulSubmission';
-import { categoryData } from '../../MockData/mockCategoryData.js';
+import { categoryData } from '../../MockData/mockCategoryData';
 import {
   mockTotalUploads,
   mockPlasticUploads,
-  mockMetalUploads
-} from '../../MockData/mockLeaderboardData.js';
+  mockMetalUploads,
+} from '../../MockData/mockLeaderboardData';
 import renderer from 'react-test-renderer';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { createMemoryHistory } from 'history';

@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import RecyclingIcon from '@mui/icons-material/Recycling';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EggIcon from '@mui/icons-material/Egg';
-import '../css/CategoryDescription.css'
+import '../css/CategoryDescription.css';
 
-export default function SuccessfulSubmission ({ type }) {
+export default function SuccessfulSubmission({ type }) {
   const [category] = useState(type.category);
   return (
     <div className="category-container">
@@ -16,10 +16,10 @@ export default function SuccessfulSubmission ({ type }) {
       <h1>{type.name}</h1>
       <p>{type.description}</p>
       <div className="category-buttons">
-        <Link to="/learn-more"><button>Learn More</button></Link>
-        <Link to="/capture"><button>Capture another photo</button></Link>
-        <Link to="/"><button className="button-home">Home</button></Link>
+        <Link to="/learn-more"><button type="button">Learn More</button></Link>
+        <Link to="/capture"><button type="button">Capture another photo</button></Link>
+        <Link to="/"><button className="button-home" type="button">Home</button></Link>
       </div>
     </div>
   );
-};
+}
