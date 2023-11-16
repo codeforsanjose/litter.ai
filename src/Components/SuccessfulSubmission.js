@@ -16,7 +16,7 @@ export default function SuccessfulSubmission ({ type }) {
       <h1>{type.name}</h1>
       <p>{type.description}</p>
       <div className="category-buttons">
-      <Link to="/learn-more"><button>Learn More</button></Link>
+        <Link to="/learn-more"><button>Learn More</button></Link>
         <Link to="/capture"><button>Capture another photo</button></Link>
         <Link to="/"><button className="button-home">Home</button></Link>
       </div>

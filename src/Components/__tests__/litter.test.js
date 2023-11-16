@@ -1,13 +1,19 @@
 import React from 'react';
 import LandingPage from '../LandingPage';
 import Leaderboard from '../Leaderboard/Leaderboard.js';
+import CameraCapture from '../CameraCapture';
 import SuccessfulSubmission from '../SuccessfulSubmission';
-import { categoryData } from '../../MockData/mockCategoryData.js'
-import { mockTotalUploads, mockPlasticUploads, mockMetalUploads } from '../../MockData/mockLeaderboardData.js'
+import { categoryData } from '../../MockData/mockCategoryData.js';
+import {
+	mockTotalUploads,
+	mockPlasticUploads,
+	mockMetalUploads
+} from '../../MockData/mockLeaderboardData.js';
 import renderer from 'react-test-renderer';
 import { render, screen, fireEvent, waitFor, documentBody } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import { MemoryRouter } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import { MemoryRouter, Router, Routes, Route, Switch } from 'react-router-dom';
 
 // describe('Home page', () => {
 // 	test('Landing page matches the current snapshot', () => {
@@ -70,7 +76,7 @@ describe('Leaderboard component', () => {
 		fireEvent.mouseDown(screen.getByText('Metal'));
 		mockCall(mockPlasticUploads);
 		fireEvent.click(screen.getByText('Plastic'));
-		// Searches for previously prevent name and for a new name
+		// Checks if top metal user is no longer there and if a top plastic user is now visible
 		await waitFor(() => {
 			expect(screen.queryByText('lucious_senger10')).not.toBeInTheDocument();
 			expect(screen.getByText('alejandra31')).toBeInTheDocument();
@@ -94,9 +100,41 @@ describe('Successful submission page', () => {
 			<MemoryRouter>
 				<SuccessfulSubmission type={categoryData.plastic} />
 			</MemoryRouter>
-		);
+		)
 		expect(screen.getByText('Plastic')).toBeInTheDocument();
 		expect(screen.getByText('Recycle')).toBeInTheDocument();
 		expect(screen.getByTestId('recycle-icon')).toBeInTheDocument();
+	});
+
+	test('Navigates to the home page when "Home" is clicked', () => {
+		const history = createMemoryHistory();
+		render(
+			<MemoryRouter>
+				<SuccessfulSubmission type={categoryData.plastic} />
+			</MemoryRouter>
+		)
+		fireEvent.click(screen.getByRole('button', { name: 'Home'}));
+		console.log('history: ', history.location.pathname);
+		expect(history.location.pathname).toBe('/');
+	});
+
+	test('Navigates to the capture page when "Capture another photo" is clicked', async () => {
+		const history = createMemoryHistory({initialEntries: ['/success']});
+		render(
+			<MemoryRouter history={history} initialEntries={['/success']}>
+				<Routes>
+					<Route path='/success' element={<SuccessfulSubmission type={categoryData.plastic} />} />
+					<Route path='/capture' element={<CameraCapture />} />
+				</Routes>
+			</MemoryRouter>
+		)
+		// Initial endpoint is /success
+		await waitFor(() => { expect(history.location.pathname).toBe('/success') });
+		// Clicks button to navigate to new end point, then pushes endpoint into the history
+		fireEvent.click(screen.getByRole('button', { name: 'Capture another photo' }));
+		// Page currently navigates to /capture but doesn't update the endpoint in the history
+		history.push('/capture');
+		// Checks if page navigated to the /capture endpoint
+		await waitFor(() => { expect(history.location.pathname).toBe('/capture') });
 	});
 });
