@@ -10,10 +10,9 @@ import {
   mockMetalUploads
 } from '../../MockData/mockLeaderboardData.js';
 import renderer from 'react-test-renderer';
-import { render, screen, fireEvent, waitFor, documentBody } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-import { MemoryRouter, Router, Routes, Route, Switch } from 'react-router-dom';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
 
 describe('Home page', () => {
   test('Landing page matches the current snapshot', () => {
