@@ -62,6 +62,7 @@ describe('Leaderboard component', () => {
 		mockCall(mockMetalUploads);
 		fireEvent.mouseDown(screen.getByText('Total'));
 		fireEvent.click(screen.getByText('Metal'))
+		// Checks if a specific user is in the document
 		await waitFor(() => {
 			expect(screen.getByText('lucious_senger10')).toBeInTheDocument()
 		});
@@ -87,12 +88,15 @@ describe('Successful submission page', () => {
 		)
 		expect(tree).toMatchSnapshot();
 	});
+
 	test('Shows the description information for plastic', () => {
 		render(
 			<MemoryRouter>
 				<SuccessfulSubmission type={categoryData.plastic} />
-			</MemoryRouter>);
+			</MemoryRouter>
+		);
 		expect(screen.getByText('Plastic')).toBeInTheDocument();
 		expect(screen.getByText('Recycle')).toBeInTheDocument();
+		expect(screen.getByTestId('recycle-icon')).toBeInTheDocument();
 	});
 });
