@@ -58,17 +58,20 @@ describe('Leaderboard component', () => {
 
 	test('New data is rendered when a dropdown category is changed', async () => {
 		render(<Leaderboard />);
-		// Change category and data to metal; act() is used to track change in state
+		// Change category and data to metal
 		mockCall(mockMetalUploads);
 		fireEvent.mouseDown(screen.getByText('Total'));
-		act(() => { fireEvent.click(screen.getByText('Metal')) })
-		await waitFor(() => { expect(screen.getByText('lucious_senger10')).toBeInTheDocument() });
+		fireEvent.click(screen.getByText('Metal'))
+		await waitFor(() => {
+			expect(screen.getByText('lucious_senger10')).toBeInTheDocument()
+		});
 		// Change category and data to plastic
 		fireEvent.mouseDown(screen.getByText('Metal'));
 		mockCall(mockPlasticUploads);
-		act(() => { fireEvent.click(screen.getByText('Plastic')) });
+		fireEvent.click(screen.getByText('Plastic'));
+		// Searches for previously prevent name and for a new name
 		await waitFor(() => {
-			// expect(screen.getByText('lucious_senger10')).toBeNull();
+			expect(screen.queryByText('lucious_senger10')).not.toBeInTheDocument();
 			expect(screen.getByText('alejandra31')).toBeInTheDocument();
 		});
 	});
@@ -76,6 +79,7 @@ describe('Leaderboard component', () => {
 
 describe('Successful submission page', () => {
 	test('Successful submission page matches the current snapshot', () => {
+		// Memory router is used to allow Link component to work properly
 		const tree = renderer.create(
 			<MemoryRouter>
 				<SuccessfulSubmission type={categoryData.plastic} />
@@ -92,4 +96,3 @@ describe('Successful submission page', () => {
 		expect(screen.getByText('Recycle')).toBeInTheDocument();
 	});
 });
-

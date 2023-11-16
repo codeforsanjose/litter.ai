@@ -55,8 +55,10 @@ describe('Leaderboard component', () => {
         render(<Leaderboard />);
         // Change category and data to metal; act() is used to track change in state
         mockCall(mockMetalUploads);
-        fireEvent.mouseDown(screen.getByText('Total'));
-        act(() => { fireEvent.click(screen.getByText('Metal')) });
+        act(() => {
+					fireEvent.mouseDown(screen.getByText('Total'));
+					fireEvent.click(screen.getByText('Metal'))
+				});
         await waitFor(() => { expect(screen.getByText('lucious_senger10')).toBeInTheDocument() });
 
         // Change category and data to plastic
