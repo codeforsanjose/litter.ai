@@ -1,16 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`First snapshot test 1`] = `
-<div>
-  <h1>
-    Welcome to Litter.ai
-  </h1>
-  <p>
-    With just a click, sort your garbage and save the world
-  </p>
-</div>
-`;
-
 exports[`Leaderboard component Leaderboard matches the current snapshot 1`] = `
 <div
   className="lb-container"
@@ -58,6 +47,7 @@ exports[`Leaderboard component Leaderboard matches the current snapshot 1`] = `
               aria-live="polite"
               aria-relevant="additions text"
               className="css-1f43avz-a11yText-A11yText"
+              role="log"
             />
             <div
               className=" css-jc6pza-control"
@@ -73,6 +63,7 @@ exports[`Leaderboard component Leaderboard matches the current snapshot 1`] = `
                   Total
                 </div>
                 <input
+                  aria-activedescendant=""
                   aria-autocomplete="list"
                   aria-expanded={false}
                   aria-haspopup={true}
@@ -161,7 +152,9 @@ exports[`Successful submission page Successful submission page matches the curre
       href="/learn-more"
       onClick={[Function]}
     >
-      <button>
+      <button
+        type="button"
+      >
         Learn More
       </button>
     </a>
@@ -169,7 +162,9 @@ exports[`Successful submission page Successful submission page matches the curre
       href="/capture"
       onClick={[Function]}
     >
-      <button>
+      <button
+        type="button"
+      >
         Capture another photo
       </button>
     </a>
@@ -179,6 +174,7 @@ exports[`Successful submission page Successful submission page matches the curre
     >
       <button
         className="button-home"
+        type="button"
       >
         Home
       </button>
