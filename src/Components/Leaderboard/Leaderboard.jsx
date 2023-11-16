@@ -5,7 +5,7 @@ import '../../css/Leaderboard.css';
 export default function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [dropdownSelection, setDropdownSelection] = useState('total');
-  const [userRank, setUserRank] = useState(0);
+  // const [userRank, setUserRank] = useState(0);
 
   // Creates a data row for each user with their rank, username, and total uploads
   const renderTable = (user, index) => (
@@ -45,7 +45,9 @@ export default function Leaderboard() {
           <tr className="lb-header">
             <th scope="col">Rank</th>
             <th scope="col">Name</th>
-            <th scope="col"><Dropdown setCategory={setDropdownSelection} /></th>
+            <th scope="col">
+              <Dropdown setCategory={setDropdownSelection} aria-label="Dropdown" />
+            </th>
           </tr>
         </thead>
         <tbody>
