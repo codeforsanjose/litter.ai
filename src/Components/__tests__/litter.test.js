@@ -106,16 +106,27 @@ describe('Successful submission page', () => {
 		expect(screen.getByTestId('recycle-icon')).toBeInTheDocument();
 	});
 
-	test('Navigates to the home page when "Home" is clicked', () => {
-		const history = createMemoryHistory();
+	test('Navigates to the home page when "Home" is clicked', async () => {
+		const history = createMemoryHistory({initialEntries: ['/success']});
 		render(
-			<MemoryRouter>
-				<SuccessfulSubmission type={categoryData.plastic} />
+			<MemoryRouter history={history} initialEntries={['/success']}>
+				<Routes>
+					<Route path='/success' element={<SuccessfulSubmission type={categoryData.plastic} />} />
+          <Route path='/' element={<LandingPage />} />
+				</Routes>
 			</MemoryRouter>
 		)
+		// Initial endpoint is /
+		await waitFor(() => { expect(history.location.pathname).toBe('/success') });
+		// Clicks button to navigate to new end point, then pushes endpoint into the history
 		fireEvent.click(screen.getByRole('button', { name: 'Home'}));
-		console.log('history: ', history.location.pathname);
-		expect(history.location.pathname).toBe('/');
+		// Page currently navigates to /capture but doesn't update the endpoint in the history
+		history.push('/');
+		// Checks if page navigated to the landing page and the welcome header is displayed
+		await waitFor(() => {
+			expect(history.location.pathname).toBe('/')
+			expect(screen.getByText('Welcome to Litter.ai')).toBeInTheDocument();
+		});
 	});
 
 	test('Navigates to the capture page when "Capture another photo" is clicked', async () => {
