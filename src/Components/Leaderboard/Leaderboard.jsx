@@ -14,7 +14,7 @@ export default function Leaderboard() {
       <td className="lb-name">{user.username}</td>
       <td>{dropdownSelection === 'total' ? user.totalUploads : user.itemCount}</td>
     </tr>
-  )
+  );
 
   // Sorts users by total uploads
   useEffect(() => {
@@ -27,14 +27,12 @@ export default function Leaderboard() {
         const response = await res.json();
         setLeaderboardData(response.leaderboard);
         // setUserRank(response.rank);
-      }
-      catch(err) {
+      } catch (err) {
         console.error(err);
       }
-    }
+    };
     fetchData();
-  }, [dropdownSelection])
-
+  }, [dropdownSelection]);
 
   return (
     <div className="lb-container">
@@ -50,10 +48,10 @@ export default function Leaderboard() {
             <th scope="col"><Dropdown setCategory={setDropdownSelection}/></th>
           </tr>
         </thead>
-      <tbody>
-        {leaderboardData.map((user, index) => (renderTable(user, index)))}
-      </tbody>
+        <tbody>
+          {leaderboardData.map((user, index) => (renderTable(user, index)))}
+        </tbody>
       </table>
     </div>
-  )
+  );
 }
