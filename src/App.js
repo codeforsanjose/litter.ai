@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/App.css';
 import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
-import { categoryData } from '../src/MockData/mockCategoryData.js'
+import { categoryData } from '../src/MockData/mockCategoryData.js';
 
 import LandingPage from './Components/LandingPage';
 import CameraCapture from './Components/CameraCapture';

@@ -7,13 +7,12 @@ import '../css/CategoryDescription.css'
 
 export default function SuccessfulSubmission ({ type }) {
   const [category] = useState(type.category);
-
   return (
     <div className="category-container">
       <h4>{type.category}</h4>
-      {category === 'Recycle' && <RecyclingIcon className="category-icon" />}
-      {category === 'Trash' && <DeleteIcon className="category-icon" />}
-      {category === 'Compost' && <EggIcon className="category-icon" />}
+      {category === 'Recycle' && <RecyclingIcon data-testid="recycle-icon" className="category-icon" />}
+      {category === 'Trash' && <DeleteIcon data-testid="trash-icon" className="category-icon" />}
+      {category === 'Compost' && <EggIcon data-testid="compost-icon" className="category-icon" />}
       <h1>{type.name}</h1>
       <p>{type.description}</p>
       <div className="category-buttons">
