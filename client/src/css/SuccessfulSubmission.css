@@ -31,10 +31,15 @@
   color: var(--main-green);
 }
 
-.category-container p {
+.category-container .category-short-desc {
   width: 85%;
+}
+
+
+.category-container .category-short-desc p {
   font-size: 1.2rem;
-  text-align: center;
+  text-align: left;
+  margin: 0.7rem 0;
 }
 
 .category-container .category-buttons {
@@ -66,4 +71,11 @@
 
 .category-container .category-buttons .button-home {
   background-color: var(--white);
+}
+
+/******** Modal ********/
+
+.modal-container .modal-text {
+  white-space: pre-line;
+  text-align: left;
 }

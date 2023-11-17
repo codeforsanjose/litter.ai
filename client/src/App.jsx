@@ -7,7 +7,6 @@ import {
   Route,
 } from 'react-router-dom';
 import categoryData from './MockData/mockCategoryData';
-import Modal from './Components/SuccessfulSubmission/SubmissionModal';
 import LandingPage from './Components/LandingPage';
 import CameraCapture from './Components/CameraCapture';
 import Leaderboard from './Components/Leaderboard/Leaderboard';
@@ -21,7 +20,6 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/capture" element={<CameraCapture />} />
-          <Route path="/modal" element={<Modal />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/success" element={<SuccessfulSubmission type={categoryData.plastic} />} />
           <Route path="/learn-more" element={<LearnMore />} />

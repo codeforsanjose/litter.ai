@@ -4,9 +4,7 @@ const categoryData = {
     category: 'Recycle',
     icon: '',
     alt: 'recycle icon',
-    description: `Not all plastic is recyclable, even if you see the chasing arrows sign!
-
-    If the plastic sign has a number #1 or #2 inside of the chasing arrows, it is most likely recyclable.`,
+    description: 'Not all plastic is recyclable, even if you see the chasing arrows sign!\nIf the plastic sign has a number #1 or #2 inside of the chasing arrows, it is most likely recyclable.',
     desc_long: `Not all plastic is recyclable, even if you see the chasing arrows sign!
 
     If the Plastic sign has a number #1 or #2 inside of the chasing arrows, it is most likely recyclable.

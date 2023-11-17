@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 import RecyclingIcon from '@mui/icons-material/Recycling';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EggIcon from '@mui/icons-material/Egg';
 import Modal from './SubmissionModal';
-import '../../css/CategoryDescription.css';
+import '../../css/SuccessfulSubmission.css';
 
 export default function SuccessfulSubmission({ type }) {
   const [category] = useState(type.category);
   const [modalOpen, setModalOpen] = useState(false);
+
+  const separateString = (text) => (
+    text.split('\n').map((line) => (
+      <p key={nanoid()}>{line}</p>
+    ))
+  );
   return (
     <div className="category-container">
       <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />
@@ -17,7 +24,7 @@ export default function SuccessfulSubmission({ type }) {
       {category === 'Trash' && <DeleteIcon data-testid="trash-icon" className="category-icon" />}
       {category === 'Compost' && <EggIcon data-testid="compost-icon" className="category-icon" />}
       <h1>{type.name}</h1>
-      <p>{type.description}</p>
+      <div className="category-short-desc">{separateString(type.description)}</div>
       <div className="category-buttons">
         <button
           type="button"
