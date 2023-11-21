@@ -1,12 +1,184 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`First snapshot test 1`] = `
-<div>
+exports[`Leaderboard component Leaderboard matches the current snapshot 1`] = `
+<div
+  className="lb-container"
+>
+  <div
+    className="lb-user-stats"
+  >
+    <h3>
+      Your rank: 9999
+    </h3>
+    <h3>
+      Total: 99999999
+    </h3>
+  </div>
+  <table
+    className="lb-table"
+  >
+    <thead>
+      <tr
+        className="lb-header"
+      >
+        <th
+          scope="col"
+        >
+          Rank
+        </th>
+        <th
+          scope="col"
+        >
+          Name
+        </th>
+        <th
+          scope="col"
+        >
+          <div
+            className=" css-b62m3t-container"
+            onKeyDown={[Function]}
+          >
+            <span
+              className="css-1f43avz-a11yText-A11yText"
+              id="react-select-2-live-region"
+            />
+            <span
+              aria-atomic="false"
+              aria-live="polite"
+              aria-relevant="additions text"
+              className="css-1f43avz-a11yText-A11yText"
+              role="log"
+            />
+            <div
+              className=" css-jc6pza-control"
+              onMouseDown={[Function]}
+              onTouchEnd={[Function]}
+            >
+              <div
+                className=" css-1fdsijx-ValueContainer"
+              >
+                <div
+                  className=" css-ayhps2-singleValue"
+                >
+                  Total
+                </div>
+                <input
+                  aria-activedescendant=""
+                  aria-autocomplete="list"
+                  aria-expanded={false}
+                  aria-haspopup={true}
+                  aria-readonly={true}
+                  className="css-mohuvp-dummyInput-DummyInput"
+                  disabled={false}
+                  id="react-select-2-input"
+                  inputMode="none"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  role="combobox"
+                  tabIndex={0}
+                  value=""
+                />
+              </div>
+              <div
+                className=" css-1hb7zxy-IndicatorsContainer"
+              >
+                <span
+                  className=" css-1u9des2-indicatorSeparator"
+                />
+                <div
+                  aria-hidden="true"
+                  className=" css-1s7cnte-indicatorContainer"
+                  onMouseDown={[Function]}
+                  onTouchEnd={[Function]}
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="css-tj5bde-Svg"
+                    focusable="false"
+                    height={20}
+                    viewBox="0 0 20 20"
+                    width={20}
+                  >
+                    <path
+                      d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody />
+  </table>
+</div>
+`;
+
+exports[`Successful submission page Successful submission page matches the current snapshot 1`] = `
+<div
+  className="category-container"
+>
+  <h4>
+    Recycle
+  </h4>
+  <svg
+    aria-hidden={true}
+    className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium category-icon css-i4bv87-MuiSvgIcon-root"
+    data-testid="recycle-icon"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M5.77 7.15 7.2 4.78l1.03-1.71c.39-.65 1.33-.65 1.72 0l1.48 2.46-1.23 2.06-1 1.62-3.43-2.06zm15.95 5.82-1.6-2.66-3.46 2L18.87 16H20c.76 0 1.45-.43 1.79-1.11.14-.28.21-.58.21-.89 0-.36-.1-.71-.28-1.03zM16 21h1.5c.76 0 1.45-.43 1.79-1.11L20.74 17H16v-2l-4 4 4 4v-2zm-6-4H5.7l-.84 1.41c-.3.5-.32 1.12-.06 1.65.28.57.87.94 1.52.94H10v-4zm-3.88-2.65 1.73 1.04L6.48 9.9 1 11.27l1.7 1.02-.41.69c-.35.59-.38 1.31-.07 1.92l1.63 3.26 2.27-3.81zm10.9-9.21-1.3-2.17C15.35 2.37 14.7 2 14 2h-3.53l3.12 5.2-1.72 1.03 5.49 1.37 1.37-5.49-1.71 1.03z"
+    />
+  </svg>
   <h1>
-    Welcome to Litter.ai
+    Plastic
   </h1>
   <p>
-    With just a click, sort your garbage and save the world
+    Not all plastic is recyclable, even if you see the chasing arrows sign!
+
+    If the Plastic sign has a number #1 or #2 inside of the chasing arrows, it is most likely recyclable.
+
+    To be recycled, plastics should be clean of food/residue.
+    
   </p>
+  <div
+    className="category-buttons"
+  >
+    <a
+      href="/learn-more"
+      onClick={[Function]}
+    >
+      <button
+        type="button"
+      >
+        Learn More
+      </button>
+    </a>
+    <a
+      href="/capture"
+      onClick={[Function]}
+    >
+      <button
+        type="button"
+      >
+        Capture another photo
+      </button>
+    </a>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        className="button-home"
+        type="button"
+      >
+        Home
+      </button>
+    </a>
+  </div>
 </div>
 `;
