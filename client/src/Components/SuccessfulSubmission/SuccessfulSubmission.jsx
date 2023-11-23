@@ -18,7 +18,13 @@ export default function SuccessfulSubmission({ type }) {
   );
   return (
     <div className="category-container">
-      <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      {modalOpen && (
+        <Modal
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+          separateString={separateString}
+        />
+      )}
       <h4>{type.category}</h4>
       {category === 'Recycle' && <RecyclingIcon data-testid="recycle-icon" className="category-icon" />}
       {category === 'Trash' && <DeleteIcon data-testid="trash-icon" className="category-icon" />}
