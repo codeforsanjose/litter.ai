@@ -9,6 +9,7 @@ export default function SubmissionModal({ modalOpen, setModalOpen, separateStrin
       <h2>{mockName}</h2>
       <button
         type="button"
+        className="modal-x-button"
         onClick={() => { setModalOpen(!modalOpen); }}
       >
         X

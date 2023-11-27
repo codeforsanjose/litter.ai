@@ -6,12 +6,14 @@
 
 @media only screen and (min-width: 768px) {
   .category-container {
-    grid-area: 3 / 2 / 8 / 2;
+    grid-area: 1 / 2 / span 10 / span 1;
     justify-content: center;
   }
 }
 
 .category-container {
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,9 +81,8 @@
 }
 
 .category-modal {
-  width: 30vw;
+  width: 35vw;
   max-width: 100%;
-  height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,13 +94,23 @@
 
 .modal-container {
   background-color: yellow;
-  height: 90%;
+  min-height: 70%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 1.5rem;
   z-index: 2;
+}
+
+.modal-container .modal-x-button {
+  position: absolute;
+  top: 4%;
+  right: 3%;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .modal-container .modal-got-it-button {
