@@ -6,14 +6,16 @@ export default function SubmissionModal({ modalOpen, setModalOpen, separateStrin
   const mockName = mockCategoryData.plastic.name;
   return (
     <div className="modal-container">
-      <h2>{mockName}</h2>
-      <button
-        type="button"
-        className="modal-x-button"
-        onClick={() => { setModalOpen(!modalOpen); }}
-      >
-        X
-      </button>
+      <div className="modal-container-top">
+        <h2>{mockName}</h2>
+        <button
+          type="button"
+          className="modal-x-button"
+          onClick={() => { setModalOpen(!modalOpen); }}
+        >
+          X
+        </button>
+      </div>
       <p className="modal-text">{separateString(mockDescription)}</p>
       <button
         type="button"

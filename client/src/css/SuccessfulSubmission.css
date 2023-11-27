@@ -104,10 +104,18 @@
   z-index: 2;
 }
 
+.modal-container .modal-container-top {
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.modal-container .modal-container-top h2 {
+  margin: 2rem 0 0 0;
+}
+
 .modal-container .modal-x-button {
-  position: absolute;
-  top: 4%;
-  right: 3%;
   border: none;
   background: none;
   font-size: 1rem;
@@ -123,6 +131,7 @@
   background-color: var(--main-green-half);
   font-weight: bold;
   font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 .modal-container p {
