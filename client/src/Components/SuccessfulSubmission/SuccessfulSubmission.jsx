@@ -37,13 +37,21 @@ export default function SuccessfulSubmission({ type }) {
         </div>
       </div>
       {modalOpen && (
-        <div className="category-modal">
-          <Modal
-            modalOpen={modalOpen}
-            setModalOpen={setModalOpen}
-            separateString={separateString}
+        <>
+          <div className="category-modal">
+            <Modal
+              modalOpen={modalOpen}
+              setModalOpen={setModalOpen}
+              separateString={separateString}
+            />
+          </div>
+          <div
+            className="modal-background"
+            role="presentation"
+            onClick={() => { setModalOpen(!modalOpen); }}
+            onKeyDown={() => { setModalOpen(!modalOpen); }}
           />
-        </div>
+        </>
       )}
     </div>
   );
