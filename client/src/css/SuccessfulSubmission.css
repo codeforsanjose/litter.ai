@@ -122,6 +122,30 @@
   font-weight: bold;
 }
 
+.modal-container hr {
+  border: none;
+  height: 1px;
+  background-color: #000;
+  margin-top: 1rem;
+  width: 90%;
+}
+
+.modal-container .modal-text {
+  width: 90%;
+  max-width: 90%;
+  margin-top: 0;
+  overflow-y: auto;
+}
+
+.modal-container .modal-text::-webkit-scrollbar-thumb,
+.modal-container .modal-text::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.modal-container p {
+  margin-top: 0.5rem;
+}
+
 .modal-container .modal-got-it-button {
   width: 95%;
   height: 5vh;
@@ -132,8 +156,4 @@
   font-weight: bold;
   font-size: 1rem;
   margin-bottom: 1rem;
-}
-
-.modal-container p {
-  padding: 0 0.5rem;
 }

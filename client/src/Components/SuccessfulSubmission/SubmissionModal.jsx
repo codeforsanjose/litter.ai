@@ -16,6 +16,7 @@ export default function SubmissionModal({ modalOpen, setModalOpen, separateStrin
           X
         </button>
       </div>
+      <hr />
       <p className="modal-text">{separateString(mockDescription)}</p>
       <button
         type="button"
