@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {
@@ -21,7 +22,11 @@ import {
 
 describe('Home page', () => {
   test('Landing page matches the current snapshot', () => {
-    const tree = renderer.create(<LandingPage />).JSON();
+    const tree = renderer.create(
+      <MemoryRouter>
+        <LandingPage />
+      </MemoryRouter>,
+    );
     expect(tree).toMatchSnapshot();
   });
 });

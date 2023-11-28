@@ -27,7 +27,7 @@ export default function SuccessfulSubmission({ type }) {
         <div className="category-buttons">
           <button
             type="button"
-            data-testId="modal-learn-more"
+            data-testid="modal-learn-more"
             onClick={() => { setModalOpen(!modalOpen); }}
           >
             Learn More

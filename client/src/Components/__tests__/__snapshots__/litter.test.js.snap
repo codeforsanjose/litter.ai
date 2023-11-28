@@ -1,5 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Home page Landing page matches the current snapshot 1`] = `
+<div>
+  <h1>
+    Welcome to Litter.ai
+  </h1>
+  <p>
+    With just a click, sort your garbage and save the world
+  </p>
+  <div
+    style={
+      Object {
+        "bottom": "20px",
+        "left": "50%",
+        "position": "fixed",
+        "transform": "translateX(-50%)",
+        "width": "200px",
+      }
+    }
+  >
+    <button
+      type="button"
+    >
+      Learn More
+    </button>
+    <a
+      href="/capture"
+      onClick={[Function]}
+    >
+      <button
+        type="button"
+      >
+        Capture Image
+      </button>
+    </a>
+  </div>
+</div>
+`;
+
 exports[`Leaderboard component Leaderboard matches the current snapshot 1`] = `
 <div
   className="lb-container"
@@ -154,7 +192,7 @@ exports[`Successful submission page Successful submission page matches the curre
       className="category-buttons"
     >
       <button
-        data-testId="modal-learn-more"
+        data-testid="modal-learn-more"
         onClick={[Function]}
         type="button"
       >
