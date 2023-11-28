@@ -5,7 +5,7 @@ export default function SubmissionModal({ modalOpen, setModalOpen, separateStrin
   const mockDescription = mockCategoryData.plastic.desc_long;
   const mockName = mockCategoryData.plastic.name;
   return (
-    <div className="modal-container">
+    <div className="modal-container" data-testId="modal">
       <div className="modal-container-top">
         <h2>{mockName}</h2>
         <button
@@ -21,6 +21,7 @@ export default function SubmissionModal({ modalOpen, setModalOpen, separateStrin
       <button
         type="button"
         className="modal-got-it-button"
+        data-testid="modal-got-it-button"
         onClick={() => { setModalOpen(!modalOpen); }}
       >
         Got it

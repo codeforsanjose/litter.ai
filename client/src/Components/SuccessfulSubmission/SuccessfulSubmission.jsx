@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { nanoid } from 'nanoid';
 import RecyclingIcon from '@mui/icons-material/Recycling';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EggIcon from '@mui/icons-material/Egg';
@@ -11,9 +10,9 @@ export default function SuccessfulSubmission({ type }) {
   const [category] = useState(type.category);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const separateString = (text) => (
+  const separateString = (text, index) => (
     text.split('\n').map((line) => (
-      <p key={nanoid()}>{line}</p>
+      <p key={index}>{line}</p>
     ))
   );
   return (
@@ -28,6 +27,7 @@ export default function SuccessfulSubmission({ type }) {
         <div className="category-buttons">
           <button
             type="button"
+            data-testId="modal-learn-more"
             onClick={() => { setModalOpen(!modalOpen); }}
           >
             Learn More
