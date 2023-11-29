@@ -217,7 +217,7 @@
   }
 
   .category-container .category-wrapper h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin: 0;
   }
 
@@ -226,7 +226,7 @@
   }
 
   .category-container .category-wrapper .category-short-desc p {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .category-container .category-wrapper .category-icon {
@@ -263,6 +263,5 @@
 @media only screen and (min-width: 993px) {
   .category-container {
     grid-area: 1 / 2 / span 10 / span 1;
-    justify-content: center;
   }
 }
