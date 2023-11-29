@@ -1,22 +1,10 @@
-@media only screen and (max-width: 767px) {
-  .category-container {
-    grid-column-start: 1;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .category-container {
-    grid-area: 1 / 2 / span 10 / span 1;
-    justify-content: center;
-  }
-}
-
 .category-container {
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .category-container .category-wrapper {
@@ -31,7 +19,8 @@
 
 .category-container .category-wrapper h4 {
   font-size: 1.5rem;
-  padding-top: 5rem;
+  padding-top: 4rem;
+  margin-bottom: 0;
 }
 
 .category-container .category-wrapper .category-icon {
@@ -80,7 +69,7 @@
   background-color: var(--white);
 }
 
-.category-modal {
+.category-container .category-modal {
   width: 35vw;
   max-width: 100%;
   max-height: 45vh;
@@ -140,6 +129,7 @@
   max-width: 90%;
   margin: 0;
   overflow-y: auto;
+  padding: 0 0.6rem;
 }
 
 .modal-container .modal-text::-webkit-scrollbar-thumb,
@@ -160,7 +150,7 @@
   background-color: var(--main-green);
   font-weight: bold;
   font-size: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 }
 
 .modal-container .modal-got-it-button:hover {
@@ -175,4 +165,87 @@
   background-color: #000;
   background-color: #000000a3;
   position: absolute;
+}
+
+
+/* Phones */
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0;
+  }
+
+  h4 {
+    font-size: 1.3rem;
+  }
+
+  .category-container {
+    grid-column-start: 1;
+  }
+
+  .category-container .category-modal {
+    width: 80vw;
+    max-height: 50vh;
+  }
+
+  .category-container .category-wrapper .category-short-desc p {
+    font-size: 1rem;
+  }
+
+  .category-container .category-wrapper .category-icon {
+    font-size: 8rem;
+  }
+
+  .modal-container {
+    height: 50vh;
+  }
+
+  .modal-container .modal-got-it-button{
+    height: 8vh;
+  }
+}
+
+/* Portrait tablets and large phones */
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+  h1 {
+    font-size: 4rem;
+    margin-bottom: 0;
+  }
+
+  h4 {
+    font-size: 2.5rem;
+  }
+
+  .category-container {
+    grid-column-start: 2;
+  }
+
+  .category-container .category-modal {
+    width: 80vw;
+    max-height: 50vh;
+  }
+
+  .category-container .category-wrapper .category-short-desc p {
+    font-size: 1rem;
+  }
+
+  .category-container .category-wrapper .category-icon {
+    font-size: 8rem;
+  }
+
+  .modal-container {
+    height: 50vh;
+  }
+
+  .modal-container .modal-got-it-button{
+    height: 8vh;
+  }
+}
+
+/* Small laptops and desktops */
+@media only screen and (min-width: 993px) {
+  .category-container {
+    grid-area: 1 / 2 / span 10 / span 1;
+    justify-content: center;
+  }
 }
