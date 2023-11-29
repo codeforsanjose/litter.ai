@@ -170,15 +170,6 @@
 
 /* Phones */
 @media only screen and (max-width: 600px) {
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 0;
-  }
-
-  h4 {
-    font-size: 1.3rem;
-  }
-
   .category-container {
     grid-column-start: 1;
   }
@@ -186,6 +177,15 @@
   .category-container .category-modal {
     width: 80vw;
     max-height: 50vh;
+  }
+
+  .category-container .category-wrapper h1 {
+    font-size: 2rem;
+    margin-bottom: 0;
+  }
+
+  .category-container .category-wrapper h4 {
+    font-size: 1.3rem;
   }
 
   .category-container .category-wrapper .category-short-desc p {
@@ -207,15 +207,6 @@
 
 /* Portrait tablets and large phones */
 @media only screen and (min-width: 601px) and (max-width: 992px) {
-  h1 {
-    font-size: 4rem;
-    margin-bottom: 0;
-  }
-
-  h4 {
-    font-size: 2.5rem;
-  }
-
   .category-container {
     grid-column-start: 2;
   }
@@ -225,20 +216,46 @@
     max-height: 50vh;
   }
 
+  .category-container .category-wrapper h1 {
+    font-size: 4rem;
+    margin: 0;
+  }
+
+  .category-container .category-wrapper h4 {
+    font-size: 2.5rem;
+  }
+
   .category-container .category-wrapper .category-short-desc p {
-    font-size: 1rem;
+    font-size: 2rem;
   }
 
   .category-container .category-wrapper .category-icon {
-    font-size: 8rem;
+    font-size: 14rem;
   }
 
   .modal-container {
     height: 50vh;
   }
 
+  .modal-container p {
+    font-size: 1.5rem;
+  }
+
+  .modal-container .modal-container-top h2 {
+    font-size: 2rem;
+  }
+
+  .modal-container .modal-x-button {
+    font-size: 1.5rem;
+  }
+
   .modal-container .modal-got-it-button{
-    height: 8vh;
+    height: 7vh;
+    font-size: 1.5rem;
+  }
+
+  .category-container .category-wrapper .category-buttons button {
+    font-size: 1.7rem;
   }
 }
 
