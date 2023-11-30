@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 import RecyclingIcon from '@mui/icons-material/Recycling';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EggIcon from '@mui/icons-material/Egg';
@@ -10,9 +11,9 @@ export default function SuccessfulSubmission({ type }) {
   const [category] = useState(type.category);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const separateString = (text, index) => (
+  const separateString = (text) => (
     text.split('\n').map((line) => (
-      <p key={index}>{line}</p>
+      <p key={uuid()}>{line}</p>
     ))
   );
   return (
