@@ -16,7 +16,7 @@ export default function Profile() {
       </div>
       <div className="profile-statistics">
         <h2>My Waste Statistics</h2>
-        <ProfileStatistics user={userPictureData} />
+        <ProfileStatistics user={userPictureData[0].pictureData} />
       </div>
       <div className="profile-buttons">
         <Link to="/capture"><button type="button">Capture Picture</button></Link>
