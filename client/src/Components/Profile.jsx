@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { userData, userPictureData } from '../MockData/mockUserData';
+import '../css/Profile.css';
 import ProfileStatistics from './ProfileStatistics';
 
 export default function Profile() {

@@ -20,9 +20,9 @@ export default function SuccessfulSubmission({ type }) {
     <div className="category-container">
       <div className="category-wrapper">
         <h4>{type.category}</h4>
-        {category === 'Recycle' && <RecyclingIcon data-testid="recycle-icon" className="category-icon" />}
-        {category === 'Trash' && <DeleteIcon data-testid="trash-icon" className="category-icon" />}
-        {category === 'Compost' && <EggIcon data-testid="compost-icon" className="category-icon" />}
+        {category === 'Recycle' && <RecyclingIcon className="category-icon" />}
+        {category === 'Trash' && <DeleteIcon className="category-icon" />}
+        {category === 'Compost' && <EggIcon className="category-icon" />}
         <h1>{type.name}</h1>
         <div className="category-short-desc">{separateString(type.description)}</div>
         <div className="category-buttons">

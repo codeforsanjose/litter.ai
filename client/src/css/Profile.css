@@ -1,0 +1,20 @@
+.profile-stats-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-stats-row .profile-stats-left {
+  display: flex;
+  align-items: center;
+}
+
+.profile-stats-row .profile-stats-icon-bg {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-green-half);
+  border-radius: 100rem;
+}
