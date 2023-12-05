@@ -1,3 +1,10 @@
+.profile-container {
+  height: 100vh;
+  width: 100%;
+}
+
+/* Profile Statistics */
+
 .profile-stats-row {
   display: flex;
   justify-content: space-between;
@@ -9,7 +16,7 @@
   align-items: center;
 }
 
-.profile-stats-row .profile-stats-icon-bg {
+.profile-stats-row .profile-stats-left .profile-stats-icon-bg {
   width: 2rem;
   height: 2rem;
   display: flex;
@@ -17,4 +24,34 @@
   justify-content: center;
   background-color: var(--main-green-half);
   border-radius: 100rem;
+}
+
+.profile-stats-row .profile-stats-left .profile-stats-icon-bg .profile-stats-icon {
+  font-size: 1rem;
+}
+
+.profile-stats-row .profile-stats-left h4 {
+  margin-left: 0.5rem;
+}
+
+
+/* Phones */
+@media only screen and (max-width: 600px) {
+  .profile-container {
+    grid-column-start: 1;
+  }
+}
+
+/* Portrait tablets and large phones */
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+  .profile-container {
+    grid-column-start: 1;
+  }
+}
+
+/* Small laptops and desktops */
+@media only screen and (min-width: 993px) {
+  .profile-container {
+    grid-area: 1 / 2 / span 10 / span 1;
+  }
 }

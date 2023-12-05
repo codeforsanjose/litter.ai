@@ -9,9 +9,9 @@ export default function ProfileStatistics({ user }) {
       <div className="profile-stats-row">
         <div className="profile-stats-left">
           <div className="profile-stats-icon-bg">
-            <RecyclingIcon />
+            <RecyclingIcon className="profile-stats-icon" />
           </div>
-          <h4 className="profile-stats-category">{category[0]}</h4>
+          <h4>{category[0]}</h4>
         </div>
         <p className="profile-stats-number">{category[1]}</p>
       </div>
