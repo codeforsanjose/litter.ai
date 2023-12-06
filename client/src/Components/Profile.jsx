@@ -10,6 +10,7 @@ export default function Profile() {
       <div className="profile-header">
         <h1>{userData[0].username}</h1>
         <h3>{userData[0].email}</h3>
+        <div className="profile-background" />
       </div>
       <div className="profile-password">
         <h2>Password</h2>
