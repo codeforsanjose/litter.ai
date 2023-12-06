@@ -11,6 +11,19 @@
   background-color: var(--main-green);
 }
 
+.profile-container .profile-header h1 {
+  margin: 5rem 0 0 2rem;
+  color: var(--white);
+  font-size: 1.7rem;
+}
+
+.profile-container .profile-header h3 {
+  margin: 0 0 2rem 2rem;
+  color: var(--gray);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
 .profile-container .profile-buttons {
   max-width: 100%;
   display: flex;
