@@ -12,7 +12,7 @@ export default function Leaderboard() {
     <tr key={index}>
       <td>{index + 1}</td>
       <td className="lb-name">{user.username}</td>
-      <td>{dropdownSelection === 'total' ? user.totalUploads : user.itemCount}</td>
+      <td>{user.itemCount}</td>
     </tr>
   );
 

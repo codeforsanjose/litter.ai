@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { v4 as uuid } from 'uuid';
 import { TbBottle } from 'react-icons/tb';
 import { IoMdPaper } from 'react-icons/io';
 import { BsBoxSeam } from 'react-icons/bs';
@@ -12,7 +13,7 @@ export default function ProfileStatistics({ user }) {
   const [userStatistics, setUserStatistics] = useState([]);
 
   const handleUserData = (category) => (
-    <>
+    <div key={uuid()}>
       <div className="profile-stats-row">
         <div className="profile-stats-left">
           <div className="profile-stats-icon-bg">
@@ -31,7 +32,7 @@ export default function ProfileStatistics({ user }) {
         <p className="profile-stats-number">{category[1]}</p>
       </div>
       <hr />
-    </>
+    </div>
   );
 
   // Capitalizes the first letter and sorts the list in descending order

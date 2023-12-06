@@ -10,7 +10,7 @@ import categoryData from './MockData/mockCategoryData';
 import LandingPage from './Components/LandingPage';
 import CameraCapture from './Components/CameraCapture';
 import Leaderboard from './Components/Leaderboard/Leaderboard';
-import Profile from './Components/Profile';
+import Profile from './Components/Profile/Profile';
 import SuccessfulSubmission from './Components/SuccessfulSubmission/SuccessfulSubmission';
 
 export default function App() {
