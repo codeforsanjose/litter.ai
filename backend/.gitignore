@@ -1,0 +1,5 @@
+.env
+node_modules
+coverage
+Errors/logs/*.json
+.DS_Store
