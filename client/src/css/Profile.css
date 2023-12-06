@@ -11,6 +11,7 @@
 .profile-container .profile-header {
   width: 100%;
   background-color: var(--main-green);
+  border-radius: 0 0 1.5rem 1.5rem;
 }
 
 .profile-container .profile-header h1 {
