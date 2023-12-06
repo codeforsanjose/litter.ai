@@ -41,6 +41,10 @@
   font-size: 0.8rem;
 }
 
+.profile-container .profile-statistics h2 {
+  font-size: 0.9rem;
+}
+
 .profile-container .profile-password button {
   height: 40%;
   width: 20%;
@@ -89,7 +93,14 @@
 .profile-statistics {
   height: 40%;
   width: 80%;
-  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+}
+
+.profile-statistics::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
 }
 
 .profile-stats-row {
@@ -119,6 +130,13 @@
 
 .profile-stats-row .profile-stats-left h4 {
   margin-left: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.profile-stats-row p {
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
 
