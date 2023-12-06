@@ -1,9 +1,54 @@
 .profile-container {
   height: 100vh;
+  max-height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+.profile-container .profile-header {
+  background-color: var(--main-green);
+}
+
+.profile-container .profile-buttons {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.profile-container .profile-buttons .button-home {
+  background-color: var(--white);
+}
+
+.profile-container .profile-buttons button {
+  width: 85vw;
+  max-width: 653px;
+  height: 6vh;
+  margin: 0.3rem 0;
+  border: none;
+  border-radius: 10rem;
+  font-size: 1.2rem;
+}
+
+.profile-container .profile-buttons button:hover {
+  cursor: pointer;
+  background-color: var(--main-green);
+  color: var(--white);
+	box-shadow: 0.25em 0.25em .75em -.5em var(--shadow-color);
+  font-weight: bold;
+}
+
+
 /* Profile Statistics */
+
+.profile-statistics {
+  height: 40%;
+  overflow-y: auto;
+}
 
 .profile-stats-row {
   display: flex;

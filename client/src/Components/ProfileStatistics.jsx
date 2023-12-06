@@ -28,8 +28,8 @@ export default function ProfileStatistics({ user }) {
   }, [user]);
 
   return (
-    <div className="profile-container">
+    <>
       { userStatistics.map((category) => handleUserData(category)) }
-    </div>
+    </>
   );
 }
