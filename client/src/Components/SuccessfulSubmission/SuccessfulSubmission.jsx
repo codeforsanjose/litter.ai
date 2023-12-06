@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
-import RecyclingIcon from '@mui/icons-material/Recycling';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EggIcon from '@mui/icons-material/Egg';
+import { PiPlantBold } from 'react-icons/pi';
+import { FaRecycle, FaRegTrashAlt } from 'react-icons/fa';
 import Modal from './SubmissionModal';
 import '../../css/SuccessfulSubmission.css';
 
@@ -20,9 +19,9 @@ export default function SuccessfulSubmission({ type }) {
     <div className="category-container">
       <div className="category-wrapper">
         <h4>{type.category}</h4>
-        {category === 'Recycle' && <RecyclingIcon className="category-icon" />}
-        {category === 'Trash' && <DeleteIcon className="category-icon" />}
-        {category === 'Compost' && <EggIcon className="category-icon" />}
+        {category === 'Recycle' && <FaRecycle className="category-icon" />}
+        {category === 'Trash' && <FaRegTrashAlt className="category-icon" />}
+        {category === 'Compost' && <PiPlantBold className="category-icon" />}
         <h1>{type.name}</h1>
         <div className="category-short-desc">{separateString(type.description)}</div>
         <div className="category-buttons">

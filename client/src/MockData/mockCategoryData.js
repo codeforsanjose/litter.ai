@@ -9,12 +9,14 @@ const categoryData = {
   },
   compost: {
     name: 'Compost',
+    category: 'Compost',
     icon: '',
     alt: 'compost icon',
     description: 'This is compost. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat ac felis donec et odio pellentesque diam volutpat.',
   },
   trash: {
     name: 'Trash',
+    category: 'Trash',
     icon: '',
     alt: 'trash icon',
     description: 'This is trash. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat ac felis donec et odio pellentesque diam volutpat.',
