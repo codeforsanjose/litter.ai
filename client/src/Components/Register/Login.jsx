@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import fetchUserData from '../../utils/fetchUserData';
+import { fetchUserData } from '../../utils/fetchUserData';
 
 export default function Login({ setUser }) {
   const [loginData, setLoginData] = useState({

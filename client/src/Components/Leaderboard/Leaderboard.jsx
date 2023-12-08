@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Dropdown from './Dropdown';
 import URLpath from '../../utils/URLpath';
+import { fetchLeaderboardData } from '../../utils/fetchUserData';
 import '../../css/Leaderboard.css';
 
 export default function Leaderboard() {
@@ -24,15 +25,10 @@ export default function Leaderboard() {
     const path = dropdownSelection === 'total' ? link : `${link}/${dropdownSelection}`;
 
     const fetchData = async () => {
-      try {
-        const res = await fetch(path);
-        const response = await res.json();
-        setLeaderboardData(response.leaderboard);
-        // setUserRank(response.rank);
-      } catch (err) {
-        console.error(err);
-      }
+      const response = await fetchLeaderboardData(path);
+      setLeaderboardData(response.leaderboard);
     };
+
     fetchData();
   }, [dropdownSelection]);
 
