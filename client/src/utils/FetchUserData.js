@@ -1,9 +1,9 @@
 /* eslint-disable consistent-return */
-export default async function fetchUserData(body, path) {
-  const link = `http://localhost:3001/${path}`;
+import URLpath from './URLpath';
 
+export default async function fetchUserData(body, path) {
   try {
-    const res = await fetch(link, {
+    const res = await fetch(URLpath(path), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),

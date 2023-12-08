@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Dropdown from './Dropdown';
+import URLpath from '../../utils/URLpath';
 import '../../css/Leaderboard.css';
 
 export default function Leaderboard() {
@@ -19,7 +20,7 @@ export default function Leaderboard() {
   // Sorts users by total uploads
   useEffect(() => {
     // Data for the total uploads is a different link than the categories
-    const link = 'http://localhost:3001/leaderboard';
+    const link = URLpath('leaderboard');
     const path = dropdownSelection === 'total' ? link : `${link}/${dropdownSelection}`;
 
     const fetchData = async () => {
