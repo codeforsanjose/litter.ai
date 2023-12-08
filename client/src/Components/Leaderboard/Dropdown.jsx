@@ -10,7 +10,7 @@ const options = [
   { value: 'glass', label: 'Glass' },
   { value: 'plastic', label: 'Plastic' },
   { value: 'compost', label: 'Compost' },
-  { value: 'others', label: 'Others' },
+  { value: 'other', label: 'Other' },
   { value: 'unknown', label: 'Unknown' },
 ];
 

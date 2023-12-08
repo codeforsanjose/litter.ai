@@ -12,6 +12,7 @@ import CameraCapture from './Components/CameraCapture';
 import Leaderboard from './Components/Leaderboard/Leaderboard';
 import Profile from './Components/Profile/Profile';
 import SuccessfulSubmission from './Components/SuccessfulSubmission/SuccessfulSubmission';
+import Register from './Components/Register/Register';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/capture" element={<CameraCapture />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/success" element={<SuccessfulSubmission type={categoryData.plastic} />} />
         </Routes>
       </Router>

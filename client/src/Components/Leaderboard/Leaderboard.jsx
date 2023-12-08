@@ -19,11 +19,12 @@ export default function Leaderboard() {
   // Sorts users by total uploads
   useEffect(() => {
     // Data for the total uploads is a different link than the categories
-    const link = dropdownSelection === 'total' ? 'http://localhost:3001/leaderboard' : `http://localhost:3001/leaderboard/${dropdownSelection}`;
+    const link = 'http://localhost:3001/leaderboard';
+    const path = dropdownSelection === 'total' ? link : `${link}/${dropdownSelection}`;
 
     const fetchData = async () => {
       try {
-        const res = await fetch(link);
+        const res = await fetch(path);
         const response = await res.json();
         setLeaderboardData(response.leaderboard);
         // setUserRank(response.rank);
