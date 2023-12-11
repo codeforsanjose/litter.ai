@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchUserData } from '../../utils/fetchUserData';
 
-export default function Login({ setUser }) {
+export default function Login({ setUser, user }) {
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
   });
 
   const handleLogin = async () => {
-    setUser(await fetchUserData(loginData, 'login'));
+    try {
+      const userData = await fetchUserData('login', loginData);
+      await setUser(userData);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleChange = (e) => {
     e.preventDefault();
     setLoginData({ ...loginData, [e.target.id]: e.target.value });
+  };
+
+  const handleCheck = (e) => {
+    e.preventDefault();
+    console.log('user: ', user);
   };
 
   return (
@@ -38,6 +49,8 @@ export default function Login({ setUser }) {
           />
         </label>
         <button type="button" onClick={handleLogin}>Login</button>
+        <button type="button" onClick={handleCheck}>Test Login Data</button>
+        <Link to="/leaderboard"><button type="button">Leaderboard</button></Link>
       </form>
     </div>
   );

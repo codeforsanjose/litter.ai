@@ -25,9 +25,9 @@ export default function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/capture" element={<CameraCapture />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile user={userData.user} />} />
           <Route path="/register" element={<Register setUser={setUserData} />} />
-          <Route path="/login" element={<Login setUser={setUserData} />} />
+          <Route path="/login" element={<Login setUser={setUserData} user={userData} />} />
           <Route path="/success" element={<SuccessfulSubmission type={categoryData.plastic} />} />
         </Routes>
       </Router>

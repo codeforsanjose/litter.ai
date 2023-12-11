@@ -1,20 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { userData, userPictureData } from '../../MockData/mockUserData';
+import { userPictureData } from '../../MockData/mockUserData';
 import '../../css/Profile.css';
 import ProfileStatistics from './ProfileStatistics';
 
-export default function Profile() {
+export default function Profile({ user }) {
+  console.log('user data: ', user);
   return (
     <div className="profile-container">
       <div className="profile-header">
-        <h1>{userData[0].username}</h1>
-        <h3>{userData[0].email}</h3>
+        <h1>{user.username}</h1>
+        <h3>{user.email}</h3>
         <div className="profile-background" />
       </div>
       <div className="profile-password">
-        <h2>Password</h2>
-        <button type="button">Change</button>
+        <h2>User Status</h2>
+        <button type="button">Log out</button>
       </div>
       <div className="profile-statistics">
         <h2>My Waste Statistics</h2>

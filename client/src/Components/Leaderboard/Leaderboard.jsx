@@ -7,7 +7,7 @@ import '../../css/Leaderboard.css';
 export default function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [dropdownSelection, setDropdownSelection] = useState('total');
-  // const [userRank, setUserRank] = useState(0);
+  const [userRank, setUserRank] = useState(null);
 
   // Creates a data row for each user with their rank, username, and total uploads
   const renderTable = (user, index) => (
@@ -26,7 +26,9 @@ export default function Leaderboard() {
 
     const fetchData = async () => {
       const response = await fetchLeaderboardData(path);
+      console.log('leaderboard: ', response);
       setLeaderboardData(response.leaderboard);
+      setUserRank(response.userRank);
     };
 
     fetchData();
@@ -35,7 +37,10 @@ export default function Leaderboard() {
   return (
     <div className="lb-container">
       <div className="lb-user-stats">
-        <h3>Your rank: 9999</h3>
+        <h3>
+          Your rank:&nbsp;
+          {userRank}
+        </h3>
         <h3>Total: 99999999</h3>
       </div>
       <table className="lb-table">
