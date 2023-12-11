@@ -26,7 +26,6 @@ export default function Leaderboard() {
 
     const fetchData = async () => {
       const response = await fetchLeaderboardData(path);
-      console.log('leaderboard: ', response);
       setLeaderboardData(response.leaderboard);
       setUserRank(response.userRank);
     };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchUserData } from '../../utils/fetchUserData';
+import { fetchLogin, fetchLogOut } from '../../utils/fetchUserData';
 
 export default function Login({ setUser, user }) {
   const [loginData, setLoginData] = useState({
@@ -10,7 +10,16 @@ export default function Login({ setUser, user }) {
 
   const handleLogin = async () => {
     try {
-      const userData = await fetchUserData('login', loginData);
+      const userData = await fetchLogin('login', loginData);
+      await setUser(userData);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleLogOut = async () => {
+    try {
+      const userData = await fetchLogOut('logout');
       await setUser(userData);
     } catch (err) {
       console.error(err);
@@ -50,6 +59,7 @@ export default function Login({ setUser, user }) {
         </label>
         <button type="button" onClick={handleLogin}>Login</button>
         <button type="button" onClick={handleCheck}>Test Login Data</button>
+        <button type="button" onClick={handleLogOut}>Log out</button>
         <Link to="/leaderboard"><button type="button">Leaderboard</button></Link>
       </form>
     </div>

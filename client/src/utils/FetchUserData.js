@@ -1,8 +1,9 @@
 /* eslint-disable consistent-return */
 import Cookies from 'js-cookie';
+import loginAuth from './cookies';
 import URLpath from './URLpath';
 
-export async function fetchUserData(path, body) {
+export async function fetchLogin(path, body) {
   try {
     const res = await fetch(URLpath(path), {
       method: 'POST',
@@ -10,8 +11,21 @@ export async function fetchUserData(path, body) {
       body: JSON.stringify(body),
     });
     const response = await res.json();
-    Cookies.set('authToken', response.token, { expires: 7 });
+    loginAuth(response.token);
     return response;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function fetchLogOut() {
+  try {
+    const token = loginAuth();
+    await fetch(URLpath('logout'), {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    Cookies.remove('authToken');
   } catch (err) {
     console.error(err);
   }
@@ -19,7 +33,7 @@ export async function fetchUserData(path, body) {
 
 export async function fetchLeaderboardData(path) {
   try {
-    const token = Cookies.get('authToken');
+    const token = loginAuth();
     const res = await fetch(path, {
       headers: { Authorization: `Bearer ${token}` },
     });

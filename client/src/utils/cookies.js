@@ -1,15 +1,8 @@
 import Cookies from 'js-cookie';
 
-export function setCookies(loginToken) {
+export default function loginAuth(loginToken) {
+  const token = Cookies.get('authToken');
+  if (token) return token;
   Cookies.set('authToken', loginToken, { expires: 7 });
+  return token;
 }
-
-export function getCookies() {
-  Cookies.get('authToken');
-}
-
-// export default function loginAuth(loginToken) {
-//   if (setCookies(loginToken)) {
-
-//   }
-// }
