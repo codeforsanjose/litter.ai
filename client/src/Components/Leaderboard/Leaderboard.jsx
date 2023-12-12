@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 import Dropdown from './Dropdown';
 import URLpath from '../../utils/URLpath';
 import { fetchLeaderboardData } from '../../utils/fetchUserData';
@@ -25,7 +26,8 @@ export default function Leaderboard() {
     const path = dropdownSelection === 'total' ? link : `${link}/${dropdownSelection}`;
 
     const fetchData = async () => {
-      const response = await fetchLeaderboardData(path);
+      const authToken = Cookies.get('authToken');
+      const response = await fetchLeaderboardData(path, authToken);
       setLeaderboardData(response.leaderboard);
       setUserRank(response.userRank);
     };
