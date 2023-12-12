@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'url';
 import { ObjectId } from 'mongodb';
-import { getCatCountCollection } from '../DB/collections.js';
+import { getCatCountCollection, getUserCollection } from '../DB/collections.js';
 import errorHelpers from './helpers/errorHelpers.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -10,10 +10,13 @@ const __filename = fileURLToPath(import.meta.url);
 let catCountCollection =
     process.env.NODE_ENV !== 'test' && getCatCountCollection;
 
-const CategoryCount = {
+let userCollection = process.env.NODE_ENV !== 'test' && getUserCollection;
+
+const categoryCount = {
     injectDB: (db) => {
         if (process.env.NODE_ENV === 'test') {
             catCountCollection = db.collection('categoryCounts');
+            userCollection = db.collection('users');
         }
     },
 
@@ -146,38 +149,43 @@ const CategoryCount = {
 
             let responseData = {
                 category,
+                totalEntries: result.leaderboard.length,
             };
+
+            const leaderboardResponseArray = result.leaderboard.slice(
+                startIndex,
+                perPage + startIndex,
+            );
+
             if (result.loggedInUser) {
                 responseData = {
-                    ...responseData,
+                    category,
+                    username: result.loggedInUser.username,
                     userRank: result.loggedInUser.rank,
-                    totalEntries: result.leaderboard.length,
-                    leaderboard: result.leaderboard.slice(
-                        startIndex,
-                        perPage + startIndex,
-                    ),
+                    userItemCount: result.loggedInUser.itemCount,
+                    leaderboard: leaderboardResponseArray,
                 };
                 // if there isnt a loggedInUser property, the user has no photos for that category
             } else if (userId) {
+                const userInfo = await userCollection.findOne({
+                    _id: userObjectId,
+                });
+
                 responseData = {
                     ...responseData,
+                    username: userInfo.displayUsername,
                     userRank: -1,
-                    totalEntries: result.leaderboard.length,
-                    leaderboard: result.leaderboard.slice(
-                        startIndex,
-                        perPage + startIndex,
-                    ),
+                    userItemCount: 0,
+                    leaderboard: leaderboardResponseArray,
                 };
                 // request was made by a user who is not logged in
             } else {
                 responseData = {
                     ...responseData,
+                    username: null,
                     userRank: null,
-                    totalEntries: result.leaderboard.length,
-                    leaderboard: result.leaderboard.slice(
-                        startIndex,
-                        perPage + startIndex,
-                    ),
+                    userItemCount: null,
+                    leaderboard: leaderboardResponseArray,
                 };
             }
             return responseData;
@@ -202,7 +210,6 @@ const CategoryCount = {
         }
         const startIndex = (page - 1) * perPage;
 
-        console.log(includeLoggedInUserPipeline);
         const sharedPipelineStages = [
             { $match: { totalUploads: { $gt: 0 } } },
             { $sort: { totalUploads: -1 } },
@@ -274,35 +281,44 @@ const CategoryCount = {
                 .aggregate(pipeline)
                 .toArray();
 
-            let responseData;
+            let responseData = {
+                totalEntries: result.leaderboard.length,
+            };
+
+            const leaderboardResponseArray = result.leaderboard.slice(
+                startIndex,
+                perPage + startIndex,
+            );
+
             if (result.loggedInUser) {
                 responseData = {
+                    ...responseData,
+                    username: result.loggedInUser.username,
                     userRank: result.loggedInUser.rank,
+                    userItemCount: result.loggedInUser.itemCount,
                     totalEntries: result.leaderboard.length,
-                    leaderboard: result.leaderboard.slice(
-                        startIndex,
-                        perPage + startIndex,
-                    ),
+                    leaderboard: leaderboardResponseArray,
                 };
                 // if there isnt a loggedInUser property, the user has no photos for that category
             } else if (userId) {
+                const userInfo = await userCollection.findOne({
+                    _id: userObjectId,
+                });
                 responseData = {
+                    ...responseData,
+                    username: userInfo.displayUsername,
                     userRank: -1,
-                    totalEntries: result.leaderboard.length,
-                    leaderboard: result.leaderboard.slice(
-                        startIndex,
-                        perPage + startIndex,
-                    ),
+                    userItemCount: 0,
+                    leaderboard: leaderboardResponseArray,
                 };
                 // request was made by a user who is not logged in
             } else {
                 responseData = {
+                    ...responseData,
+                    username: null,
                     userRank: null,
-                    totalEntries: result.leaderboard.length,
-                    leaderboard: result.leaderboard.slice(
-                        startIndex,
-                        perPage + startIndex,
-                    ),
+                    userItemCount: null,
+                    leaderboard: leaderboardResponseArray,
                 };
             }
             return responseData;
@@ -339,6 +355,30 @@ const CategoryCount = {
                 error,
                 __filename,
                 'CategoryCount.findByUserId',
+            );
+        }
+    },
+
+    findByUsername: async (username) => {
+        try {
+            const categoryCountDocument = await catCountCollection.findOne(
+                { username },
+                {
+                    projection: {
+                        userId: 1,
+                        displayUsername: 1,
+                        username: 1,
+                        pictureData: 1,
+                        totalUploads: 1,
+                    },
+                },
+            );
+            return categoryCountDocument;
+        } catch (error) {
+            throw await errorHelpers.transformDatabaseError(
+                error,
+                __filename,
+                'CategoryCount.findByUsername',
             );
         }
     },
@@ -390,4 +430,4 @@ const CategoryCount = {
     },
 };
 
-export default CategoryCount;
+export default categoryCount;

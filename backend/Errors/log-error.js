@@ -15,6 +15,9 @@ const getCurrentDateFormatted = () => {
 };
 
 const logError = async (errorObject, filePath, functionName, context) => {
+    if (process.env.NODE_ENV === 'test') {
+        return;
+    }
     const date = getCurrentDateFormatted();
     const errorLogPath = path.join(__dirname, 'logs', `${date}.json`);
     const newErrorInfo = {

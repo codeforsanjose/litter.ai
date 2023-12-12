@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url';
 import { ObjectId } from 'mongodb';
 import { getUploadInfoCollection } from '../DB/collections.js';
-import CategoryCount from './CategoryCount.js';
+import categoryCount from './CategoryCount.js';
 import errorHelpers from './helpers/errorHelpers.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
  */
 let photoInfoCollection = getUploadInfoCollection;
 
-const PhotoInfo = {
+const photoInfo = {
     injectDB: (db) => {
         if (process.env.NODE_ENV === 'test') {
             photoInfoCollection = db.collection('uploadsinfo');
@@ -51,7 +51,7 @@ const PhotoInfo = {
         }
         // Update user's category count collection
 
-        const categoryDocument = await CategoryCount.incrementCategoryByUserId(
+        const categoryDocument = await categoryCount.incrementCategoryByUserId(
             categoryString,
             user._id,
             1,
@@ -73,15 +73,10 @@ const PhotoInfo = {
         };
     },
 
-    getAllUsersPhotoInfo: async (userId) => {
-        let userObjectId;
+    getAllUsersPhotoInfo: async (username) => {
         try {
-            if (typeof userId === 'string') {
-                userObjectId = new ObjectId(userId);
-            }
-
             const results = await photoInfoCollection
-                .find({ userId: userObjectId || userId })
+                .find({ username })
                 .toArray();
             return results || [];
         } catch (error) {
@@ -107,4 +102,4 @@ const PhotoInfo = {
     },
 };
 
-export default PhotoInfo;
+export default photoInfo;

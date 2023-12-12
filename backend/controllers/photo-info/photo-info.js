@@ -4,18 +4,20 @@ import {
     getUserPhotoCountParamSchema,
     postPhotoBodySchema,
 } from './photo-info-req-schemas.js';
-import CategoryCount from '../../models/CategoryCount.js';
-import PhotoInfo from '../../models/PhotoInfo.js';
+import categoryCount from '../../models/CategoryCount.js';
+import photoInfo from '../../models/PhotoInfo.js';
 import logError from '../../Errors/log-error.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
 const photoInfoController = {
     getUserPhotoCount: async (req, res, next) => {
-        const { userId } = req.params;
+        const { username } = req.params;
 
         try {
-            const { error } = getUserPhotoCountParamSchema.validate({ userId });
+            const { error } = getUserPhotoCountParamSchema.validate({
+                username,
+            });
             if (error) {
                 return res.status(422).send({
                     message: 'Validation Error',
@@ -24,7 +26,7 @@ const photoInfoController = {
             }
 
             const userCategoryCountDoc =
-                await CategoryCount.findByUserId(userId);
+                await categoryCount.findByUsername(username);
 
             if (!userCategoryCountDoc) {
                 return res.status(404).send({ message: 'User not found.' });
@@ -53,7 +55,7 @@ const photoInfoController = {
                 return res.status(401).send({ message: 'Invalid email.' });
             }
 
-            const result = await PhotoInfo.insertOne(category, req.user);
+            const result = await photoInfo.insertOne(category, req.user);
 
             return res.status(201).send(result);
         } catch (error) {

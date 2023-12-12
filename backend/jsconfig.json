@@ -1,8 +1,8 @@
 {
-  "compilerOptions": {
-    "module": "ESNext",
-    "target": "ESNext"
-  },
-  "include": ["**/*.js", "**/*.mjs"],
-  "exclude": ["node_modules"]
+    "compilerOptions": {
+        "module": "ESNext",
+        "target": "ESNext"
+    },
+    "include": ["**/*.js", "**/*.mjs"],
+    "exclude": ["node_modules"]
 }

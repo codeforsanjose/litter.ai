@@ -7,6 +7,6 @@ const photoRoutes = express.Router();
 
 photoRoutes.post('/', isAuth, controllers.photoInfo.postPhoto);
 
-photoRoutes.get('/:userId', isAuth, controllers.photoInfo.getUserPhotoCount);
+photoRoutes.get('/:username', isAuth, controllers.photoInfo.getUserPhotoCount);
 
 export default photoRoutes;

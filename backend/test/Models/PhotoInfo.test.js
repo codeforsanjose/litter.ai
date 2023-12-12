@@ -5,9 +5,9 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import { faker } from '@faker-js/faker';
 import { jest } from '@jest/globals';
 
-import PhotoInfo from '../../models/PhotoInfo.js';
-import CategoryCount from '../../models/CategoryCount.js';
-import User from '../../models/User.js';
+import photoInfo from '../../models/PhotoInfo.js';
+import categoryCount from '../../models/CategoryCount.js';
+import userModel from '../../models/User.js';
 import { closeDB } from '../../DB/db-connection.js';
 
 const getRandomCategory = () => {
@@ -68,11 +68,11 @@ describe('PhotoInfo Model', () => {
         await client.connect();
         db = client.db('testDB');
 
-        PhotoInfo.injectDB(db);
-        CategoryCount.injectDB(db);
-        User.injectDB(db);
+        photoInfo.injectDB(db);
+        categoryCount.injectDB(db);
+        userModel.injectDB(db);
 
-        newUser = await User.create(
+        newUser = await userModel.create(
             faker.internet.userName(),
             faker.internet.email(),
             faker.internet.password(),
@@ -83,7 +83,7 @@ describe('PhotoInfo Model', () => {
     });
 
     afterAll(async () => {
-        await User.delete(newUser._id);
+        await userModel.delete(newUser._id);
         await closeDB();
         await client.close();
         await mongoServer.stop();
@@ -94,14 +94,14 @@ describe('PhotoInfo Model', () => {
     });
 
     describe('insertOne', () => {
-        const sut = PhotoInfo.insertOne;
+        const sut = photoInfo.insertOne;
         const category = getRandomCategory();
         let newPhotoCategoryCount = 0;
 
         it('should not return null', async () => {
             const actual = await sut(category, {
                 _id: newUser._id,
-                username: newUser.userName,
+                username: newUser.username,
             });
             newPhotoCategoryCount++;
             expect(actual).not.toBeNull();
@@ -110,27 +110,27 @@ describe('PhotoInfo Model', () => {
         it('should return the same category that was inserted', async () => {
             const actual = await sut(category, {
                 _id: newUser._id,
-                username: newUser.userName,
+                username: newUser.username,
             });
             newPhotoCategoryCount++;
             expect(actual.category).toEqual(category);
         });
 
         it("should have a categoryUpload value that is equal to the CategoryCount document's value", async () => {
-            const actual = await CategoryCount.findByUserId(newUser._id);
+            const actual = await categoryCount.findByUserId(newUser._id);
             const expected = newPhotoCategoryCount;
             expect(actual.pictureData[category]).toEqual(expected);
         });
 
         it("should have a totalUploads value that is equal to the CategoryCount document's value", async () => {
-            const actual = await CategoryCount.findByUserId(newUser._id);
+            const actual = await categoryCount.findByUserId(newUser._id);
             const expected = newPhotoCategoryCount;
             expect(actual.totalUploads).toEqual(expected);
         });
 
         it('should throw an error if an invalid userId is entered', async () => {
             await expect(
-                PhotoInfo.insertOne(category, {
+                photoInfo.insertOne(category, {
                     _id: 22,
                     username: 'error',
                 }),
@@ -159,18 +159,18 @@ describe('PhotoInfo Model', () => {
     });
 
     describe('getAllUsersPhotoInfo', () => {
-        const sut = PhotoInfo.getAllUsersPhotoInfo;
+        const sut = photoInfo.getAllUsersPhotoInfo;
         const newUserPhotoArrayLength = 2;
 
         it('should return an array', async () => {
-            let actual = await sut(newUser._id);
+            let actual = await sut(newUser.username);
             expect(actual).toBeInstanceOf(Array);
-            actual = await PhotoInfo.getAllUsersPhotoInfo(22);
+            actual = await photoInfo.getAllUsersPhotoInfo(22);
             expect(actual).toBeInstanceOf(Array);
         });
 
         it('should return the correct length', async () => {
-            const actual = await sut(newUser._id);
+            const actual = await sut(newUser.username);
             expect(actual).toHaveLength(newUserPhotoArrayLength);
         });
 
@@ -202,16 +202,17 @@ describe('PhotoInfo Model', () => {
             }
         });
     });
+
     describe('deleteSingleUsersInfo', () => {
-        const sut = PhotoInfo.deleteSingleUsersInfo;
+        const sut = photoInfo.deleteSingleUsersInfo;
         it('should delete all documents in collection for provided userId', async () => {
-            const actualBeforeDelete = await PhotoInfo.getAllUsersPhotoInfo(
-                newUser._id,
+            const actualBeforeDelete = await photoInfo.getAllUsersPhotoInfo(
+                newUser.username,
             );
             expect(actualBeforeDelete.length).toBeGreaterThan(0);
             // Delete documents
             await sut(newUser._id);
-            const actualAfterDelete = await PhotoInfo.getAllUsersPhotoInfo(
+            const actualAfterDelete = await photoInfo.getAllUsersPhotoInfo(
                 newUser._id,
             );
             expect(actualAfterDelete).toHaveLength(0);
