@@ -5,7 +5,6 @@ import '../../css/Profile.css';
 import ProfileStatistics from './ProfileStatistics';
 
 export default function Profile({ user }) {
-  console.log('user data: ', user);
   return (
     <div className="profile-container">
       <div className="profile-header">

@@ -3,9 +3,9 @@ import Cookies from 'js-cookie';
 import loginAuth from './cookies';
 import URLpath from './URLpath';
 
-export async function fetchLogin(path, body) {
+export async function fetchLogin(body) {
   try {
-    const res = await fetch(URLpath(path), {
+    const res = await fetch(URLpath('login'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
