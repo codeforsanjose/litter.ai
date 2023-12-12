@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from '../../utils/UserContext';
-import { fetchLogin, fetchLogOut } from '../../utils/fetchUserData';
+import { fetchLogOut } from '../../utils/fetchUserData';
 
-export default function Login({ setUser, user }) {
+export default function Login({ user }) {
   const userContext = useContext(UserContext);
-  console.log('userContext: ', userContext);
+  // console.log('userContext: ', userContext);
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
@@ -17,12 +17,6 @@ export default function Login({ setUser, user }) {
     } catch (err) {
       console.error(err);
     }
-    // try {
-    //   const userData = await fetchLogin(loginData);
-    //   await setUser(userData);
-    // } catch (err) {
-    //   console.error(err);
-    // }
   };
 
   const handleChange = (e) => {
