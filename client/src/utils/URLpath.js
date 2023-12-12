@@ -1,5 +1,5 @@
 export default function URLpath(endpoint, extension) {
   return extension
-    ? `http://localhost:3001/${endpoint}/${extension}`
-    : `http://localhost:3001/${endpoint}`;
+    ? `http://52.26.157.53/litterai/${endpoint}/${extension}`
+    : `http://52.26.157.53/litterai/${endpoint}`;
 }

@@ -21,7 +21,7 @@ export default function App() {
 
   useEffect(() => {
     const user = Cookies.get('userData');
-    setUserData(JSON.parse(user));
+    if (user) { setUserData(JSON.parse(user)); }
   }, []);
 
   return (
@@ -31,7 +31,7 @@ export default function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/capture" element={<CameraCapture />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
-          {userData && <Route path="/profile" element={<Profile user={userData} />} />}
+          <Route path="/profile" element={<Profile user={userData} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login user={userData} />} />
           <Route path="/success" element={<SuccessfulSubmission type={categoryData.plastic} />} />

@@ -27,6 +27,7 @@ export default function Leaderboard() {
     const link = URLpath('leaderboard');
     const path = dropdownSelection === 'total' ? link : `${link}/${dropdownSelection}`;
 
+    // Authenticates user and grabs user's leaderboard data
     const fetchData = async () => {
       const authToken = Cookies.get('authToken');
       const response = await fetchLeaderboardData(path, authToken);
@@ -34,7 +35,6 @@ export default function Leaderboard() {
       setUserRank(response.userRank);
       setUserItemCount(response.userItemCount);
     };
-
     fetchData();
   }, [dropdownSelection]);
 

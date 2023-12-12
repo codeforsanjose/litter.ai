@@ -57,6 +57,10 @@
   border-color: var(--main-green);
 }
 
+.profile-container .profile-password button:hover {
+  cursor: pointer;
+}
+
 .profile-container .profile-buttons {
   max-width: 100%;
   display: flex;

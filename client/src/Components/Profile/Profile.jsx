@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
-import { fetchProfileData } from '../../utils/fetchUserData';
+import { fetchProfileData, fetchLogOut } from '../../utils/fetchUserData';
 import '../../css/Profile.css';
 import ProfileStatistics from './ProfileStatistics';
-// import { userPictureData } from '../../MockData/mockUserData';
 
 export default function Profile({ user }) {
   const [userLeaderboardData, setUserLeaderboardData] = useState(null);
+  console.log('user: ', user);
 
+  // Authenticates user and fetches user's waste statistics
   useEffect(() => {
-    const token = Cookies.get('authToken');
-    if (user && token) {
+    if (user) {
+      const token = Cookies.get('authToken');
       const fetchData = async () => {
         const userData = await fetchProfileData(user.username, token);
         setUserLeaderboardData(userData);
@@ -22,24 +23,29 @@ export default function Profile({ user }) {
 
   return (
     <div className="profile-container">
-      <div className="profile-header">
-        <h1>{user.username}</h1>
-        <h3>{user.email}</h3>
-        <div className="profile-background" />
-      </div>
-      <div className="profile-password">
-        <h2>User Status</h2>
-        <button type="button">Log out</button>
-      </div>
-      <div className="profile-statistics">
-        <h2>My Waste Statistics</h2>
-        { userLeaderboardData
-          && <ProfileStatistics user={userLeaderboardData.pictureData} />}
-      </div>
-      <div className="profile-buttons">
-        <Link to="/capture"><button type="button">Capture Picture</button></Link>
-        <Link to="/"><button className="button-home" type="button">Home</button></Link>
-      </div>
+      { user ? (
+        <>
+          <div className="profile-header">
+            <h1>{user.username}</h1>
+            <h3>{user.email}</h3>
+            <div className="profile-background" />
+          </div>
+          <div className="profile-password">
+            <h2>User Status</h2>
+            <button type="button" onClick={() => fetchLogOut()}>Log out</button>
+          </div>
+          <div className="profile-statistics">
+            <h2>My Waste Statistics</h2>
+            { userLeaderboardData
+              && <ProfileStatistics user={userLeaderboardData.pictureData} />}
+          </div>
+          <div className="profile-buttons">
+            <Link to="/capture"><button type="button">Capture Picture</button></Link>
+            <Link to="/"><button className="button-home" type="button">Home</button></Link>
+          </div>
+        </>
+      )
+        : <div>You need to log in</div>}
     </div>
   );
 }
