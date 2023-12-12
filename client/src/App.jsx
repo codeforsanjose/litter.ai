@@ -17,7 +17,7 @@ import Register from './components/Register/Register';
 import Login from './components/Register/Login';
 
 export default function App() {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const user = Cookies.get('userData');
@@ -31,7 +31,7 @@ export default function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/capture" element={<CameraCapture />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/profile" element={<Profile user={userData} />} />
+          {userData && <Route path="/profile" element={<Profile user={userData} />} />}
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login user={userData} />} />
           <Route path="/success" element={<SuccessfulSubmission type={categoryData.plastic} />} />

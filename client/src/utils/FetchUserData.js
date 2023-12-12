@@ -46,7 +46,7 @@ export async function fetchLeaderboardData(path, token) {
 
 export async function fetchProfileData(user, token) {
   try {
-    const res = await fetch(URLpath('photo', 'user'), {
+    const res = await fetch(URLpath('photo', user), {
       headers: { Authorization: `Bearer ${token}` },
     });
     const response = await res.json();
