@@ -18,7 +18,7 @@ export const postPhotoBodySchema = Joi.object({
 });
 
 export const getUserPhotoCountParamSchema = Joi.object({
-    userId: Joi.string().length(24).required(),
+    username: Joi.string().required(),
 });
 
 export default postPhotoBodySchema;
