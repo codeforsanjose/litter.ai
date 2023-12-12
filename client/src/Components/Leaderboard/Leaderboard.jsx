@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import Dropdown from './Dropdown';
 import URLpath from '../../utils/URLpath';
+import { capitalizeWord } from '../../utils/capitalizeFirstLetter';
 import { fetchLeaderboardData } from '../../utils/fetchUserData';
 import '../../css/Leaderboard.css';
 
@@ -45,7 +46,7 @@ export default function Leaderboard() {
           {userRank}
         </h3>
         <h3>
-          {dropdownSelection}
+          {capitalizeWord(dropdownSelection)}
           :&nbsp;
           {userItemCount}
         </h3>

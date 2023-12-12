@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { fetchProfileData } from '../../utils/fetchUserData';
 import '../../css/Profile.css';
 import ProfileStatistics from './ProfileStatistics';
+import { userPictureData } from '../../MockData/mockUserData';
 
 export default function Profile({ user }) {
   const [userLeaderboardData, setUserLeaderboardData] = useState({});
@@ -34,6 +35,7 @@ export default function Profile({ user }) {
       <div className="profile-statistics">
         <h2>My Waste Statistics</h2>
         {/* <ProfileStatistics user={userLeaderboardData.pictureData} /> */}
+        <ProfileStatistics user={userPictureData[0].pictureData} />
       </div>
       <div className="profile-buttons">
         <Link to="/capture"><button type="button">Capture Picture</button></Link>

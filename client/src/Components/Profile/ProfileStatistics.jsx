@@ -8,6 +8,7 @@ import { LiaDrumSteelpanSolid } from 'react-icons/lia';
 import { LuTrash } from 'react-icons/lu';
 import { AiOutlineQuestion } from 'react-icons/ai';
 import { CiGlass } from 'react-icons/ci';
+import { capitalizeList } from '../../utils/capitalizeFirstLetter';
 
 export default function ProfileStatistics({ user }) {
   const [userStatistics, setUserStatistics] = useState([]);
@@ -37,9 +38,7 @@ export default function ProfileStatistics({ user }) {
 
   // Capitalizes the first letter and sorts the list in descending order
   useEffect(() => {
-    const list = Object.keys(user).map(
-      (key) => [key.charAt(0).toUpperCase() + key.slice(1), user[key]],
-    );
+    const list = capitalizeList(user);
     list.sort((a, b) => b[1] - a[1]);
     setUserStatistics(list);
   }, [user]);
