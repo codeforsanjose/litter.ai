@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {
@@ -11,7 +12,7 @@ import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from '../LandingPage';
 import Leaderboard from '../Leaderboard/Leaderboard';
 import CameraCapture from '../CameraCapture';
-import SuccessfulSubmission from '../SuccessfulSubmission';
+import SuccessfulSubmission from '../SuccessfulSubmission/SuccessfulSubmission';
 import categoryData from '../../MockData/mockCategoryData';
 import {
   mockTotalUploads,
@@ -21,7 +22,11 @@ import {
 
 describe('Home page', () => {
   test('Landing page matches the current snapshot', () => {
-    const tree = renderer.create(<LandingPage />).JSON();
+    const tree = renderer.create(
+      <MemoryRouter>
+        <LandingPage />
+      </MemoryRouter>,
+    );
     expect(tree).toMatchSnapshot();
   });
 });
@@ -74,7 +79,7 @@ describe('Leaderboard component', () => {
     fireEvent.click(screen.getByText('Metal'));
     // Checks if a specific user is in the document
     await waitFor(() => {
-      expect(screen.getByText('lucious_senger10')).toBeInTheDocument()
+      expect(screen.getByText('lucious_senger10')).toBeInTheDocument();
     });
     // Change category and data to plastic
     fireEvent.mouseDown(screen.getByText('Metal'));
@@ -147,5 +152,25 @@ describe('Successful submission page', () => {
     history.push('/capture');
     // Checks if page navigated to the /capture endpoint
     await waitFor(() => { expect(history.location.pathname).toBe('/capture'); });
+  });
+
+  test('Clicking on Learn More opens up a modal with more information', () => {
+    render(
+      <MemoryRouter>
+        <SuccessfulSubmission type={categoryData.plastic} />
+      </MemoryRouter>,
+    );
+    // Checks if the modal is already open
+    expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
+    // Opens the modal
+    fireEvent.click(screen.getByTestId('modal-learn-more'));
+
+    // Checks if modal is now visible
+    expect(screen.getByTestId('modal')).toBeInTheDocument();
+    expect(screen.getByTestId('modal-got-it-button')).toBeInTheDocument();
+
+    // Clicks on Got it to close the modal
+    fireEvent.click(screen.getByTestId('modal-got-it-button'));
+    expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
   });
 });
