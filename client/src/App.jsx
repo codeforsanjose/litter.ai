@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './css/App.css';
+import Cookies from 'js-cookie';
 import {
   BrowserRouter as
   Router,
@@ -17,6 +18,13 @@ import Login from './components/Register/Login';
 import UserContextProvider from './utils/UserContextProvider';
 
 export default function App() {
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    const user = Cookies.get('userData');
+    setUserData(JSON.parse(user));
+  }, []);
+
   return (
     <div className="App">
       <UserContextProvider>
@@ -25,9 +33,9 @@ export default function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/capture" element={<CameraCapture />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile user={userData} />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login user={userData} />} />
             <Route path="/success" element={<SuccessfulSubmission type={categoryData.plastic} />} />
           </Routes>
         </Router>

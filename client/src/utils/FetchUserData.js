@@ -1,12 +1,9 @@
 /* eslint-disable consistent-return */
-import { useContext } from 'react';
 import Cookies from 'js-cookie';
 import loginAuth from './loginAuth';
 import URLpath from './URLpath';
-import UserContext from './UserContext';
 
 export async function fetchLogin(body) {
-  const userContext = useContext(UserContext);
   try {
     const res = await fetch(URLpath('login'), {
       method: 'POST',
@@ -14,7 +11,8 @@ export async function fetchLogin(body) {
       body: JSON.stringify(body),
     });
     const response = await res.json();
-    loginAuth(response.token);
+    Cookies.set('authToken', response.token, { expires: 7 });
+    Cookies.set('userData', JSON.stringify(response.user), { expires: 7 });
     return response;
   } catch (err) {
     console.error(err);
@@ -23,7 +21,7 @@ export async function fetchLogin(body) {
 
 export async function fetchLogOut() {
   try {
-    const token = loginAuth(userContext.token);
+    const token = loginAuth();
     await fetch(URLpath('logout'), {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
@@ -34,9 +32,8 @@ export async function fetchLogOut() {
   }
 }
 
-export async function fetchLeaderboardData(path) {
+export async function fetchLeaderboardData(path, token) {
   try {
-    const token = loginAuth();
     const res = await fetch(path, {
       headers: { Authorization: `Bearer ${token}` },
     });

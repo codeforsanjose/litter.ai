@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { fetchLogin, fetchLogOut } from './fetchUserData';
+import { fetchLogin } from './fetchUserData';
 import userContext from './UserContext';
 
 export default function UserContextProvider({ children }) {

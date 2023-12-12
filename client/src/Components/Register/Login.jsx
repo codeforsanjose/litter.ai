@@ -5,7 +5,6 @@ import { fetchLogOut } from '../../utils/fetchUserData';
 
 export default function Login({ user }) {
   const userContext = useContext(UserContext);
-  // console.log('userContext: ', userContext);
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
@@ -25,6 +24,7 @@ export default function Login({ user }) {
   };
 
   const handleCheck = () => {
+    console.log('userContext: ', userContext);
     console.log('user: ', user);
   };
 
