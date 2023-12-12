@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { fileURLToPath } from 'url';
 import Joi from 'joi';
 import logError from '../Errors/log-error.js';
-import BlacklistToken from '../models/BlacklistToken.js';
+import blackListToken from '../models/BlacklistToken.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -42,7 +42,7 @@ const isAuth = async (req, res, next) => {
     }
 
     const authToken = authHeader.split(' ')[1];
-    const isBlacklisted = await BlacklistToken.getToken(authToken);
+    const isBlacklisted = await blackListToken.getToken(authToken);
 
     try {
         if (isBlacklisted) {

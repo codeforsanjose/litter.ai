@@ -6,9 +6,9 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import { faker } from '@faker-js/faker';
 import { jest } from '@jest/globals';
 
-import User from '../../models/User.js';
-import PhotoInfo from '../../models/PhotoInfo.js';
-import CategoryCount from '../../models/CategoryCount.js';
+import userModel from '../../models/User.js';
+import photoInfo from '../../models/PhotoInfo.js';
+import categoryCount from '../../models/CategoryCount.js';
 import { closeDB } from '../../DB/db-connection.js';
 
 const mocks = {
@@ -111,9 +111,9 @@ describe('User Model', () => {
         await client.connect();
         db = client.db('testDB');
 
-        PhotoInfo.injectDB(db);
-        CategoryCount.injectDB(db);
-        User.injectDB(db);
+        photoInfo.injectDB(db);
+        categoryCount.injectDB(db);
+        userModel.injectDB(db);
     });
 
     afterAll(async () => {
@@ -127,7 +127,7 @@ describe('User Model', () => {
     });
 
     describe('create', () => {
-        const sut = User.create;
+        const sut = userModel.create;
         const users = [
             {
                 displayUsername: faker.internet.userName(),
@@ -293,7 +293,7 @@ describe('User Model', () => {
             const createdUserPassword = faker.internet.password();
             createdUsers = await Promise.all(
                 dummyUsers.map(async (dummyUser) => {
-                    const createdUser = await User.create(
+                    const createdUser = await userModel.create(
                         dummyUser.displayUsername,
                         dummyUser.email,
                         createdUserPassword,
@@ -311,7 +311,7 @@ describe('User Model', () => {
             );
         });
         describe('findByEmail', () => {
-            const sut = User.findByEmail;
+            const sut = userModel.findByEmail;
             it('should find a user by email', async () => {
                 for (const user of createdUsers) {
                     const actual = await sut(user.email);
@@ -345,7 +345,7 @@ describe('User Model', () => {
         });
 
         describe('findById', () => {
-            const sut = User.findById;
+            const sut = userModel.findById;
             it('should find a user by id as an ObjectId', async () => {
                 for (const user of createdUsers) {
                     const actual = await sut(user._id);
@@ -387,7 +387,7 @@ describe('User Model', () => {
         });
 
         describe('findByUsername', () => {
-            const sut = User.findByUsername;
+            const sut = userModel.findByUsername;
             it('should find a user by username', async () => {
                 for (const user of createdUsers) {
                     const actual = await sut(user.username);
@@ -437,14 +437,14 @@ describe('User Model', () => {
         });
     });
     describe('delete', () => {
-        const sut = User.delete;
-        const { getAllUsersPhotoInfo } = PhotoInfo;
-        const findUserByEmail = User.findByEmail;
-        const findUserCategoryDocument = CategoryCount.findByUserId;
+        const sut = userModel.delete;
+        const { getAllUsersPhotoInfo } = photoInfo;
+        const findUserByEmail = userModel.findByEmail;
+        const findUserCategoryDocument = categoryCount.findByUserId;
         let userForDeleteTest;
         beforeAll(async () => {
             const userForDeletePassword = faker.internet.password();
-            userForDeleteTest = await User.create(
+            userForDeleteTest = await userModel.create(
                 faker.internet.userName(),
                 faker.internet.email(),
                 userForDeletePassword,
@@ -459,11 +459,11 @@ describe('User Model', () => {
             };
 
             await Promise.all([
-                PhotoInfo.insertOne('trash', {
+                photoInfo.insertOne('trash', {
                     _id: userForDeleteTest._id,
                     username: userForDeleteTest.username,
                 }),
-                PhotoInfo.insertOne('plastic', {
+                photoInfo.insertOne('plastic', {
                     _id: userForDeleteTest._id,
                     username: userForDeleteTest.username,
                 }),
@@ -472,13 +472,13 @@ describe('User Model', () => {
 
         it("should delete the selected user's data from all collections", async () => {
             let actual = await findUserByEmail(userForDeleteTest.email);
-            let actualUserPhotos = await getAllUsersPhotoInfo(actual._id);
+            let actualUserPhotos = await getAllUsersPhotoInfo(actual.username);
             expect({ ...actual, _id: actual._id.toHexString() }).toEqual(
                 userForDeleteTest,
             );
             expect(actualUserPhotos).toHaveLength(2);
             actual = await sut(actual._id);
-            actualUserPhotos = await PhotoInfo.getAllUsersPhotoInfo(
+            actualUserPhotos = await photoInfo.getAllUsersPhotoInfo(
                 userForDeleteTest._id,
             );
 
