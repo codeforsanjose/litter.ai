@@ -45,7 +45,8 @@ export default function Leaderboard() {
           {userRank}
         </h3>
         <h3>
-          Total:&nbsp;
+          {dropdownSelection}
+          :&nbsp;
           {userItemCount}
         </h3>
       </div>

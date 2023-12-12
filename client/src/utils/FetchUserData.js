@@ -43,3 +43,15 @@ export async function fetchLeaderboardData(path, token) {
     console.error(err);
   }
 }
+
+export async function fetchProfileData(user, token) {
+  try {
+    const res = await fetch(URLpath('photo', 'user'), {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const response = await res.json();
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+}

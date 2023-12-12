@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
-import { userPictureData } from '../../MockData/mockUserData';
+import { fetchProfileData } from '../../utils/fetchUserData';
 import '../../css/Profile.css';
 import ProfileStatistics from './ProfileStatistics';
 
 export default function Profile({ user }) {
+  const [userLeaderboardData, setUserLeaderboardData] = useState({});
+
+  useEffect(() => {
+    const token = Cookies.get('authToken');
+    if (user) {
+      const fetchData = async () => {
+        const userData = await fetchProfileData(user.username, token);
+        console.log('userData: ', userData);
+        setUserLeaderboardData(userData);
+      };
+      fetchData();
+    }
+  }, [user]);
+
   return (
     <div className="profile-container">
       <div className="profile-header">
@@ -18,7 +33,7 @@ export default function Profile({ user }) {
       </div>
       <div className="profile-statistics">
         <h2>My Waste Statistics</h2>
-        <ProfileStatistics user={userPictureData[0].pictureData} />
+        {/* <ProfileStatistics user={userLeaderboardData.pictureData} /> */}
       </div>
       <div className="profile-buttons">
         <Link to="/capture"><button type="button">Capture Picture</button></Link>
