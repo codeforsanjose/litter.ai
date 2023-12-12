@@ -1,10 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import UserContext from '../../utils/UserContext';
-import { fetchLogOut } from '../../utils/fetchUserData';
+import { fetchLogin, fetchLogOut } from '../../utils/fetchUserData';
 
 export default function Login({ user }) {
-  const userContext = useContext(UserContext);
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
@@ -12,7 +10,7 @@ export default function Login({ user }) {
 
   const handleLogin = async () => {
     try {
-      await userContext.login(loginData);
+      await fetchLogin(loginData);
     } catch (err) {
       console.error(err);
     }
@@ -24,7 +22,6 @@ export default function Login({ user }) {
   };
 
   const handleCheck = () => {
-    console.log('userContext: ', userContext);
     console.log('user: ', user);
   };
 
