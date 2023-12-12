@@ -10,7 +10,7 @@ export default function Login({ setUser, user }) {
 
   const handleLogin = async () => {
     try {
-      const userData = await fetchLogin('login', loginData);
+      const userData = await fetchLogin(loginData);
       await setUser(userData);
     } catch (err) {
       console.error(err);
