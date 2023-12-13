@@ -29,8 +29,8 @@ export default function Leaderboard() {
 
     // Authenticates user and grabs user's leaderboard data
     const fetchData = async () => {
-      const authToken = Cookies.get('authToken');
-      const response = await fetchLeaderboardData(path, authToken);
+      const token = Cookies.get('authToken');
+      const response = await fetchLeaderboardData(path, token);
       setLeaderboardData(response.leaderboard);
       setUserRank(response.userRank);
       setUserItemCount(response.userItemCount);

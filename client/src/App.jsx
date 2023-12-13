@@ -20,8 +20,8 @@ export default function App() {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const user = Cookies.get('userData');
-    if (user) { setUserData(JSON.parse(user)); }
+    const username = Cookies.get('username');
+    if (username) { setUserData(username); }
   }, []);
 
   return (

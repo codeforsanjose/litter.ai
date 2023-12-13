@@ -12,7 +12,7 @@ export async function fetchLogin(body) {
     });
     const response = await res.json();
     Cookies.set('authToken', response.token, { expires: 7 });
-    Cookies.set('userData', JSON.stringify(response.user), { expires: 7 });
+    Cookies.set('username', response.user.username, { expires: 7 });
     return response;
   } catch (err) {
     console.error(err);
@@ -26,8 +26,7 @@ export async function fetchLogOut() {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
     });
-    Cookies.remove('authToken');
-    Cookies.remove('userData');
+    Cookies.remove('auth');
   } catch (err) {
     console.error(err);
   }

@@ -7,14 +7,13 @@ import ProfileStatistics from './ProfileStatistics';
 
 export default function Profile({ user }) {
   const [userLeaderboardData, setUserLeaderboardData] = useState(null);
-  console.log('user: ', user);
 
   // Authenticates user and fetches user's waste statistics
   useEffect(() => {
     if (user) {
       const token = Cookies.get('authToken');
       const fetchData = async () => {
-        const userData = await fetchProfileData(user.username, token);
+        const userData = await fetchProfileData(user, token);
         setUserLeaderboardData(userData);
       };
       fetchData();
@@ -26,8 +25,7 @@ export default function Profile({ user }) {
       { user ? (
         <>
           <div className="profile-header">
-            <h1>{user.username}</h1>
-            <h3>{user.email}</h3>
+            <h1>{user}</h1>
             <div className="profile-background" />
           </div>
           <div className="profile-password">

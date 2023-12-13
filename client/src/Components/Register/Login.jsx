@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import { fetchLogin, fetchLogOut } from '../../utils/fetchUserData';
 
@@ -23,6 +24,10 @@ export default function Login({ user }) {
 
   const handleCheck = () => {
     console.log('user: ', user);
+    const token = Cookies.get('authToken');
+    const userData = Cookies.get('username');
+    console.log('token: ', token);
+    console.log('userData: ', userData);
   };
 
   return (
