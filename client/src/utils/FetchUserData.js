@@ -26,7 +26,8 @@ export async function fetchLogOut() {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
     });
-    Cookies.remove('auth');
+    await Cookies.remove('authToken');
+    await Cookies.remove('username');
   } catch (err) {
     console.error(err);
   }

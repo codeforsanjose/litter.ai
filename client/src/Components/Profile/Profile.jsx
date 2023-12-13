@@ -5,8 +5,14 @@ import { fetchProfileData, fetchLogOut } from '../../utils/fetchUserData';
 import '../../css/Profile.css';
 import ProfileStatistics from './ProfileStatistics';
 
-export default function Profile({ user }) {
+export default function Profile({ user, setUser }) {
   const [userLeaderboardData, setUserLeaderboardData] = useState(null);
+
+  const handleLogout = async () => {
+    await fetchLogOut();
+    await setUser(null);
+    window.location.reload();
+  };
 
   // Authenticates user and fetches user's waste statistics
   useEffect(() => {
@@ -30,7 +36,7 @@ export default function Profile({ user }) {
           </div>
           <div className="profile-password">
             <h2>User Status</h2>
-            <button type="button" onClick={() => fetchLogOut()}>Log out</button>
+            <button type="button" onClick={handleLogout}>Log out</button>
           </div>
           <div className="profile-statistics">
             <h2>My Waste Statistics</h2>

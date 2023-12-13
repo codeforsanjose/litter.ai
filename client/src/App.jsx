@@ -17,12 +17,13 @@ import Register from './components/Register/Register';
 import Login from './components/Register/Login';
 
 export default function App() {
-  const [userData, setUserData] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const username = Cookies.get('username');
-    if (username) { setUserData(username); }
-  }, []);
+    console.log('username: ', username);
+    if (username) { setUser(username); }
+  }, [user]);
 
   return (
     <div className="App">
@@ -31,9 +32,9 @@ export default function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/capture" element={<CameraCapture />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/profile" element={<Profile user={userData} />} />
+          <Route path="/profile" element={<Profile user={user} setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login user={userData} />} />
+          <Route path="/login" element={<Login user={user} setUser={setUser} />} />
           <Route path="/success" element={<SuccessfulSubmission type={categoryData.plastic} />} />
         </Routes>
       </Router>
