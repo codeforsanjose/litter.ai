@@ -11,7 +11,7 @@ export default function Profile({ user, setUser }) {
   const handleLogout = async () => {
     await fetchLogOut();
     await setUser(null);
-    window.location.reload();
+    // window.location.reload();
   };
 
   // Authenticates user and fetches user's waste statistics
@@ -29,12 +29,11 @@ export default function Profile({ user, setUser }) {
   return (
     <div className="profile-container">
       { user ? (
-        <>
-          <div className="profile-header">
+        <div className="profile-login-wrapper">
+          <div className="profile-login-header">
             <h1>{user}</h1>
-            <div className="profile-background" />
           </div>
-          <div className="profile-password">
+          <div className="profile-logout-button">
             <h2>User Status</h2>
             <button type="button" onClick={handleLogout}>Log out</button>
           </div>
@@ -47,21 +46,20 @@ export default function Profile({ user, setUser }) {
             <Link to="/capture"><button type="button">Capture Picture</button></Link>
             <Link to="/"><button className="button-home" type="button">Home</button></Link>
           </div>
-        </>
+        </div>
       )
         : (
-          <>
-            <div className="profile-logout">
+          <div className="profile-logout-wrapper">
+            <div className="profile-logout-header">
               <h1>Join us!</h1>
               <h3>Keep track of your sorting statistics</h3>
-              <div className="profile-background" />
             </div>
             <div className="profile-buttons">
               <Link to="/login"><button type="button">Log In</button></Link>
               <Link to="/register"><button type="button">Sign Up</button></Link>
               <Link to="/"><button className="button-home" type="button">Home</button></Link>
             </div>
-          </>
+          </div>
         )}
     </div>
   );
