@@ -49,7 +49,20 @@ export default function Profile({ user, setUser }) {
           </div>
         </>
       )
-        : <div>You need to log in</div>}
+        : (
+          <>
+            <div className="profile-logout">
+              <h1>Join us!</h1>
+              <h3>Keep track of your sorting statistics</h3>
+              <div className="profile-background" />
+            </div>
+            <div className="profile-buttons">
+              <Link to="/login"><button type="button">Log In</button></Link>
+              <Link to="/register"><button type="button">Sign Up</button></Link>
+              <Link to="/"><button className="button-home" type="button">Home</button></Link>
+            </div>
+          </>
+        )}
     </div>
   );
 }
