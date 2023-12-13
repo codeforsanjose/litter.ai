@@ -11,7 +11,6 @@ export default function Profile({ user, setUser }) {
   const handleLogout = async () => {
     await fetchLogOut();
     await setUser(null);
-    // window.location.reload();
   };
 
   // Authenticates user and fetches user's waste statistics
@@ -50,13 +49,14 @@ export default function Profile({ user, setUser }) {
       )
         : (
           <div className="profile-logout-wrapper">
+            <div className="profile-logout-bg" />
             <div className="profile-logout-header">
               <h1>Join us!</h1>
               <h3>Keep track of your sorting statistics</h3>
             </div>
             <div className="profile-buttons">
               <Link to="/login"><button type="button">Log In</button></Link>
-              <Link to="/register"><button type="button">Sign Up</button></Link>
+              <Link to="/register"><button type="button" className="button-signup">Sign Up</button></Link>
               <Link to="/"><button className="button-home" type="button">Home</button></Link>
             </div>
           </div>
