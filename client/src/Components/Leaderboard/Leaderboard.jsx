@@ -40,6 +40,7 @@ export default function Leaderboard() {
 
   return (
     <div className="lb-container">
+      { userRank && (
       <div className="lb-user-stats">
         <h3>
           Your rank:&nbsp;
@@ -51,6 +52,7 @@ export default function Leaderboard() {
           {userItemCount}
         </h3>
       </div>
+      )}
       <table className="lb-table">
         <thead>
           <tr className="lb-header">

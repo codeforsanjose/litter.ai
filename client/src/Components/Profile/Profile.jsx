@@ -47,6 +47,7 @@ export default function Profile({ user, setUser }) {
           </div>
         </div>
       )
+      // Screen if a user is not logged in
         : (
           <div className="profile-logout-wrapper">
             <div className="profile-logout-bg" />

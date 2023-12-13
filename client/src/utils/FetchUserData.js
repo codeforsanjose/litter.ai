@@ -34,10 +34,14 @@ export async function fetchLogOut() {
 }
 
 export async function fetchLeaderboardData(path, token) {
-  try {
-    const res = await fetch(path, {
+  let headers = {};
+  if (token) {
+    headers = {
       headers: { Authorization: `Bearer ${token}` },
-    });
+    };
+  }
+  try {
+    const res = await fetch(path, headers);
     const response = await res.json();
     return response;
   } catch (err) {
