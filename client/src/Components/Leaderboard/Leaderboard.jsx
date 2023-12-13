@@ -40,11 +40,12 @@ export default function Leaderboard() {
 
   return (
     <div className="lb-container">
+      <h1>Leaderboard</h1>
       { userRank && (
       <div className="lb-user-stats">
         <h3>
           Your rank:&nbsp;
-          {userRank}
+          {userRank > 0 ? userRank : 'No photos'}
         </h3>
         <h3>
           {capitalizeWord(dropdownSelection)}
@@ -59,7 +60,10 @@ export default function Leaderboard() {
             <th scope="col">Rank</th>
             <th scope="col">Name</th>
             <th scope="col">
-              <Dropdown setCategory={setDropdownSelection} aria-label="Dropdown" />
+              <Dropdown
+                setCategory={setDropdownSelection}
+                aria-label="Dropdown"
+              />
             </th>
           </tr>
         </thead>

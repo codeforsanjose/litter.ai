@@ -21,7 +21,6 @@ export default function App() {
 
   useEffect(() => {
     const username = Cookies.get('username');
-    console.log('username: ', username);
     if (username) { setUser(username); }
   }, [user]);
 

@@ -12,7 +12,7 @@ export async function fetchLogin(body) {
     });
     const response = await res.json();
     Cookies.set('authToken', response.token, { expires: 7 });
-    Cookies.set('username', response.user.username, { expires: 7 });
+    Cookies.set('username', response.user.displayUsername, { expires: 7 });
     return response;
   } catch (err) {
     console.error(err);

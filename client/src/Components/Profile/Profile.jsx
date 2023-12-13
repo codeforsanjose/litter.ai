@@ -18,7 +18,7 @@ export default function Profile({ user, setUser }) {
     if (user) {
       const token = Cookies.get('authToken');
       const fetchData = async () => {
-        const userData = await fetchProfileData(user, token);
+        const userData = await fetchProfileData(user.toLowerCase(), token);
         setUserLeaderboardData(userData);
       };
       fetchData();
