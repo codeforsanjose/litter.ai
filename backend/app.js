@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import cookieParser from 'cookie-parser';
 import express from 'express';
 import morgan from 'morgan';
 import { fileURLToPath } from 'url';
@@ -28,6 +29,7 @@ const startServer = async () => {
         app.use(morgan('dev'));
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
+        app.use(cookieParser());
 
         app.use((req, res, next) => {
             if (!REFRESH_SECRET || !MONGO_URI || !ACCESS_SECRET) {
