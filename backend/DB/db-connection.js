@@ -16,7 +16,6 @@ export const mongoConnect = async () => {
     if (process.env.NODE_ENV === 'test') {
         _mongoServer = await MongoMemoryServer.create();
         const uri = _mongoServer.getUri();
-        console.log(uri);
         _client = new MongoClient(uri);
         _db = _client.db('testDB');
     } else {

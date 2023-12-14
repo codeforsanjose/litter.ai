@@ -155,13 +155,11 @@ const userModel = {
 
     updateStatus: async ({ _id, status }) => {
         const userId = sanitizeId(_id);
-        console.log(userId, _id);
         try {
             const db = await getDb();
-            const result = await db
+            await db
                 .collection(collName)
                 .findOneAndUpdate({ _id: userId }, { $set: { status } });
-            console.log(result);
         } catch (error) {
             throw await errorHelpers.transformDatabaseError(
                 error,
