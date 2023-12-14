@@ -63,3 +63,62 @@
     transform: rotate(360deg);
   }
 }
+
+/* Buttons */
+
+.lower-buttons {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.lower-buttons button {
+  width: 85vw;
+  max-width: 653px;
+  height: 6vh;
+  margin: 0.3rem 0;
+  border: none;
+  border-radius: 10rem;
+  font-size: 1.2rem;
+}
+
+.lower-buttons button:hover {
+  cursor: pointer;
+  background-color: var(--main-green);
+  color: var(--white);
+	box-shadow: 0.25em 0.25em .75em -.5em var(--shadow-color);
+  font-weight: bold;
+}
+
+.lower-buttons
+.button-home {
+  background-color: var(--white);
+}
+
+/* Phones */
+@media only screen and (max-width: 600px) {
+  .main-container {
+    grid-column-start: 1;
+  }
+}
+
+/* Portrait tablets and large phones */
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+  .main-container {
+    grid-column-start: 2;
+  }
+}
+
+/* Small laptops and desktops */
+@media only screen and (min-width: 993px) {
+  .main-container {
+    grid-area: 1 / 2 / span 10 / span 1;
+  }
+
+  .lower-buttons button {
+    width: 30vw;
+  }
+}

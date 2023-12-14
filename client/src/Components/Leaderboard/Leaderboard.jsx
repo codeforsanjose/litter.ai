@@ -40,7 +40,7 @@ export default function Leaderboard() {
   }, [dropdownSelection]);
 
   return (
-    <div className="lb-container">
+    <div className="lb-container main-container">
       <h1>Leaderboard</h1>
       { userRank && (
       <div className="lb-user-stats">
@@ -72,7 +72,7 @@ export default function Leaderboard() {
           {leaderboardData.map((user, index) => (renderTable(user, index)))}
         </tbody>
       </table>
-      <div className="profile-buttons">
+      <div className="lb-buttons lower-buttons">
         <Link to="/capture">
           <button type="button">
             Capture Picture

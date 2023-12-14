@@ -15,6 +15,7 @@ import Profile from './components/Profile/Profile';
 import SuccessfulSubmission from './components/SuccessfulSubmission/SuccessfulSubmission';
 import Register from './components/Register/Register';
 import Login from './components/Register/Login';
+import PageNotFound from './components/PageNotFound';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login user={user} setUser={setUser} />} />
           <Route path="/success" element={<SuccessfulSubmission type={categoryData.plastic} />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>
     </div>

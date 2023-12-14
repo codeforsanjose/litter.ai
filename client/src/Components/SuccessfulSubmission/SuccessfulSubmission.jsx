@@ -16,7 +16,7 @@ export default function SuccessfulSubmission({ type }) {
     ))
   );
   return (
-    <div className="category-container">
+    <div className="category-container main-container">
       <div className="category-wrapper">
         <h4>{type.category}</h4>
         {category === 'Recycle' && <FaRecycle className="category-icon" />}
@@ -24,7 +24,7 @@ export default function SuccessfulSubmission({ type }) {
         {category === 'Compost' && <PiPlantBold className="category-icon" />}
         <h1>{type.name}</h1>
         <div className="category-short-desc">{separateString(type.description)}</div>
-        <div className="category-buttons">
+        <div className="category-buttons lower-buttons">
           <button
             type="button"
             data-testid="modal-learn-more"
@@ -32,8 +32,16 @@ export default function SuccessfulSubmission({ type }) {
           >
             Learn More
           </button>
-          <Link to="/capture"><button type="button">Capture another photo</button></Link>
-          <Link to="/"><button className="button-home" type="button">Home</button></Link>
+          <Link to="/capture">
+            <button type="button">
+              Capture another photo
+            </button>
+          </Link>
+          <Link to="/">
+            <button className="button-home" type="button">
+              Home
+            </button>
+          </Link>
         </div>
       </div>
       {modalOpen && (

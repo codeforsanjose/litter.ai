@@ -26,7 +26,7 @@ export default function Profile({ user, setUser }) {
   }, [user]);
 
   return (
-    <div className="profile-container">
+    <div className="profile-container main-container">
       { user ? (
         <div className="profile-login-wrapper">
           <div className="profile-login-header">
@@ -41,7 +41,7 @@ export default function Profile({ user, setUser }) {
             { userLeaderboardData
               && <ProfileStatistics user={userLeaderboardData.pictureData} />}
           </div>
-          <div className="profile-buttons">
+          <div className="profile-buttons lower-buttons">
             <Link to="/capture"><button type="button">Capture Picture</button></Link>
             <Link to="/"><button className="button-home" type="button">Home</button></Link>
           </div>
@@ -56,7 +56,7 @@ export default function Profile({ user, setUser }) {
                 <h1>Join us!</h1>
                 <h3>Keep track of your sorting statistics</h3>
               </div>
-              <div className="profile-buttons">
+              <div className="profile-buttons lower-buttons">
                 <Link to="/login">
                   <button type="button">
                     Log In

@@ -47,46 +47,6 @@
 }
 
 .category-container
-.category-wrapper
-.category-buttons {
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.category-container
-.category-wrapper
-.category-buttons button {
-  width: 30vw;
-  max-width: 653px;
-  height: 6vh;
-  margin: 0.3rem 0;
-  border: none;
-  border-radius: 10rem;
-  font-size: 1.2rem;
-}
-
-.category-container
-.category-wrapper
-.category-buttons button:hover {
-  cursor: pointer;
-  background-color: var(--main-green);
-  color: var(--white);
-	box-shadow: 0.25em 0.25em .75em -.5em var(--shadow-color);
-  font-weight: bold;
-}
-
-.category-container
-.category-wrapper
-.category-buttons
-.button-home {
-  background-color: var(--white);
-}
-
-.category-container
 .category-modal {
   width: 35vw;
   max-width: 100%;
@@ -196,10 +156,6 @@
 
 /* Phones */
 @media only screen and (max-width: 600px) {
-  .category-container {
-    grid-column-start: 1;
-  }
-
   .category-container
   .category-modal {
     width: 80vw;
@@ -231,7 +187,7 @@
 
   .category-container
   .category-wrapper
-  .category-buttons {
+  .category-buttons button {
     width: 85vw;
   }
 
@@ -247,10 +203,6 @@
 
 /* Portrait tablets and large phones */
 @media only screen and (min-width: 601px) and (max-width: 992px) {
-  .category-container {
-    grid-column-start: 2;
-  }
-
   .category-container
   .category-modal {
     width: 80vw;
@@ -315,7 +267,5 @@
 
 /* Small laptops and desktops */
 @media only screen and (min-width: 993px) {
-  .category-container {
-    grid-area: 1 / 2 / span 10 / span 1;
-  }
+
 }
