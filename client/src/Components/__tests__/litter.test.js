@@ -210,6 +210,7 @@ describe('Profile component with user logged in', () => {
     ...jest.requireActual('../../utils/fetchUserData'),
     fetchProfileData: jest.fn(),
   }));
+
   const mockSetState = jest.fn();
 
   test('Profile matches the current snapshot', () => {
@@ -231,8 +232,8 @@ describe('Profile component with user logged in', () => {
   });
 
   test('Statistics should reflect the user\'s data', async () => {
-    await fetchUserData.fetchProfileData.mockResolvedValue(userPictureData[0]);
-    React.useState.mockReturnValue(['Briana30', mockSetState]);
+    // fetchUserData.fetchProfileData.mockResolvedValue(userPictureData[0]);
+    // React.useState.mockReturnValue(['Briana30', mockSetState]);
     render(
       <MemoryRouter>
         <Profile user="Briana30" setUser={mockSetState} />
