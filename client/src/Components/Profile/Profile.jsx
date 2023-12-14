@@ -42,8 +42,16 @@ export default function Profile({ user, setUser }) {
               && <ProfileStatistics user={userStatisticData.pictureData} />}
           </div>
           <div className="profile-buttons lower-buttons">
-            <Link to="/capture"><button type="button">Capture Picture</button></Link>
-            <Link to="/"><button className="button-home" type="button">Home</button></Link>
+            <Link to="/capture">
+              <button type="button">
+                Capture Picture
+              </button>
+            </Link>
+            <Link to="/">
+              <button className="button-home" type="button">
+                Home
+              </button>
+            </Link>
           </div>
         </div>
       )

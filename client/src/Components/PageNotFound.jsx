@@ -5,13 +5,15 @@ import '../css/PageNotFound.css';
 
 export default function PageNotFound() {
   return (
-    <div className="PNF-container">
-      <MdOutlineWrongLocation />
-      <h1>404</h1>
-      <h3>Your litter can be recycled somewhere else.</h3>
-      <div className="profile-buttons">
+    <div className="PNF-container main-container">
+      <div className="PNF-404">
+        <MdOutlineWrongLocation className="PNF-icon" />
+        <h1>4&nbsp;&nbsp;&nbsp;&nbsp;4</h1>
+      </div>
+      <h3>Your litter will have to be recycled elsewhere.</h3>
+      <div className="profile-buttons lower-buttons">
         <Link to="/">
-          <button className="button-home" type="button">
+          <button type="button">
             Home
           </button>
         </Link>
