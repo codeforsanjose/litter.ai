@@ -2,7 +2,7 @@
 
 import { MongoClient } from 'mongodb';
 
-const MONGO_URI = process.env.MONOGO_URI || 'mongodb://localhost:27017';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017';
 const dbName = 'litterai-api';
 
 let _db;
@@ -19,7 +19,7 @@ export const mongoConnect = async () => {
 };
 
 export const getDb = async () => {
-    if (_db) {
+    if (_db && _client) {
         return _db;
     }
     try {
