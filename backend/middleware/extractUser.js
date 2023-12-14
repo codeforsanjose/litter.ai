@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import Joi from 'joi';
 
-const { JWT_SECRET } = process.env;
+const { ACCESS_SECRET } = process.env;
 
 /**
  * @param {import('express').Request} req
@@ -27,7 +27,7 @@ const extractUser = async (req, res, next) => {
     const authToken = authHeader.split(' ')[1];
     let decodedToken;
     try {
-        decodedToken = jwt.verify(authToken, JWT_SECRET);
+        decodedToken = jwt.verify(authToken, ACCESS_SECRET);
     } catch (err) {
         console.log(err);
         return res.status(401).send({ message: 'Unauthorized' });

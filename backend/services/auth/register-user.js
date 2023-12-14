@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import userModel from '../../models/User.js';
 
-const { JWT_SECRET } = process.env;
+const { REFRESH_SECRET } = process.env;
 
 const registerUserService = async (body) => {
     const { username, email, password, firstName, lastName, zipCode } = body;
@@ -38,7 +38,7 @@ const registerUserService = async (body) => {
                 username: result.username,
                 email: result.email,
             },
-            JWT_SECRET,
+            REFRESH_SECRET,
         );
     } catch (error) {
         error.statusCode = 500;

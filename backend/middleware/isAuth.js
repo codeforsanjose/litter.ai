@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
  * @type {import('mongodb').Collection}
  */
 
-const { JWT_SECRET } = process.env;
+const { ACCESS_SECRET } = process.env;
 /**
  * @param {import('express').Request} req
  * @param {import('express').Response} res
@@ -60,7 +60,7 @@ const isAuth = async (req, res, next) => {
 
     let decodedToken;
     try {
-        decodedToken = jwt.verify(authToken, JWT_SECRET);
+        decodedToken = jwt.verify(authToken, ACCESS_SECRET);
     } catch (err) {
         console.log(err);
         return res.status(401).send({

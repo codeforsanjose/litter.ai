@@ -5,7 +5,7 @@
 ```
 SERVER_PORT=<number>
 MONGO_URI=<MongoDB URI>  // example:'mongodb://localhost:27017'
-JWT_SECRET=<string>
+REFRESH_SECRET=<string>
 
 ```
 
