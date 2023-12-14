@@ -85,14 +85,6 @@ const userModel = {
             throw error;
         }
 
-        if (
-            (await userModel.findByEmail(email)) ||
-            (await userModel.findByUsername(displayUsername.toLowerCase()))
-        ) {
-            const error = new Error('Username or Email already in use');
-            error.statusCode = 409;
-            throw error;
-        }
         // Sanitize data
         const trimmedFirstName = firstName.trim();
         const trimmedLastName = lastName.trim();
@@ -113,6 +105,7 @@ const userModel = {
                 1,
             )}`,
             zipCode: trimmedZipCode,
+            status: 'pending',
         };
 
         try {
