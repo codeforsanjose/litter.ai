@@ -6,7 +6,7 @@ import '../../css/Profile.css';
 import ProfileStatistics from './ProfileStatistics';
 
 export default function Profile({ user, setUser }) {
-  const [userLeaderboardData, setUserLeaderboardData] = useState(null);
+  const [userStatisticData, setUserStatisticData] = useState(null);
 
   const handleLogout = async () => {
     await fetchLogOut();
@@ -19,7 +19,7 @@ export default function Profile({ user, setUser }) {
       const token = Cookies.get('authToken');
       const fetchData = async () => {
         const userData = await fetchProfileData(user.toLowerCase(), token);
-        setUserLeaderboardData(userData);
+        setUserStatisticData(userData);
       };
       fetchData();
     }
@@ -38,8 +38,8 @@ export default function Profile({ user, setUser }) {
           </div>
           <div className="profile-statistics">
             <h2>My Waste Statistics</h2>
-            { userLeaderboardData
-              && <ProfileStatistics user={userLeaderboardData.pictureData} />}
+            { userStatisticData
+              && <ProfileStatistics user={userStatisticData.pictureData} />}
           </div>
           <div className="profile-buttons lower-buttons">
             <Link to="/capture"><button type="button">Capture Picture</button></Link>
