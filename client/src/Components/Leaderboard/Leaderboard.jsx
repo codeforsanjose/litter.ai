@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
 import Dropdown from './Dropdown';
 import URLpath from '../../utils/URLpath';
 import { capitalizeWord } from '../../utils/capitalizeFirstLetter';
@@ -71,6 +72,18 @@ export default function Leaderboard() {
           {leaderboardData.map((user, index) => (renderTable(user, index)))}
         </tbody>
       </table>
+      <div className="profile-buttons">
+        <Link to="/capture">
+          <button type="button">
+            Capture Picture
+          </button>
+        </Link>
+        <Link to="/">
+          <button className="button-home" type="button">
+            Home
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
