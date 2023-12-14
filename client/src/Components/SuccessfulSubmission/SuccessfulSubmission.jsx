@@ -19,7 +19,7 @@ export default function SuccessfulSubmission({ type }) {
     <div className="category-container main-container">
       <div className="category-wrapper">
         <h4>{type.category}</h4>
-        {category === 'Recycle' && <FaRecycle className="category-icon" />}
+        {category === 'Recycle' && <FaRecycle className="category-icon" data-testid="recycle-icon" />}
         {category === 'Trash' && <FaRegTrashAlt className="category-icon" />}
         {category === 'Compost' && <PiPlantBold className="category-icon" />}
         <h1>{type.name}</h1>

@@ -45,12 +45,20 @@ describe('Leaderboard component', () => {
 
   // Creates a snapshot
   test('Leaderboard matches the current snapshot', () => {
-    const tree = renderer.create(<Leaderboard />).toJSON();
+    const tree = renderer.create(
+      <MemoryRouter>
+        <Leaderboard />
+      </MemoryRouter>,
+    ).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('Changes category from total to compost when clicking on the dropdown', () => {
-    render(<Leaderboard />);
+    render(
+      <MemoryRouter>
+        <Leaderboard />
+      </MemoryRouter>,
+    );
     // Clicks on dropdown
     fireEvent.mouseDown(screen.getByText('Total'));
     // Changes dropdown to 'Compost'
@@ -60,7 +68,11 @@ describe('Leaderboard component', () => {
   });
 
   test('Dropdown option text and background changes color when hovered', () => {
-    render(<Leaderboard />);
+    render(
+      <MemoryRouter>
+        <Leaderboard />
+      </MemoryRouter>,
+    );
     // Clicks on dropdown
     fireEvent.mouseDown(screen.getByText('Total'));
     // Hover over new category
@@ -72,7 +84,11 @@ describe('Leaderboard component', () => {
   });
 
   test('New data is rendered when a dropdown category is changed', async () => {
-    render(<Leaderboard />);
+    render(
+      <MemoryRouter>
+        <Leaderboard />
+      </MemoryRouter>,
+    );
     // Change category and data to metal
     mockCall(mockMetalUploads);
     fireEvent.mouseDown(screen.getByText('Total'));
