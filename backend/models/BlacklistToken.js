@@ -1,19 +1,16 @@
 import { fileURLToPath } from 'url';
 
-import { getBlacklistCollection } from '../DB/collections.js';
 import errorHelpers from './helpers/errorHelpers.js';
+import { getDb } from '../DB/db-connection.js';
 
 const __filename = fileURLToPath(import.meta.url);
-/**
- * @type {import('mongodb').Collection}
- */
 
-const blacklistCollection = getBlacklistCollection;
-
+const collName = 'blacklistTokens';
 const blackListToken = {
     addTokenToList: async (token, expires) => {
         try {
-            await blacklistCollection.insertOne({
+            const db = await getDb();
+            await db.collection(collName).insertOne({
                 token,
                 expires: Date.now(expires * 1000),
             });
@@ -28,10 +25,10 @@ const blackListToken = {
 
     getToken: async (token) => {
         try {
-            return await blacklistCollection.findOne(
-                { token },
-                { projection: { token: 1 } },
-            );
+            const db = await getDb();
+            return await db
+                .collection(collName)
+                .findOne({ token }, { projection: { token: 1 } });
         } catch (error) {
             throw await errorHelpers.transformDatabaseError(
                 error,
@@ -43,10 +40,11 @@ const blackListToken = {
 
     getAllTokens: async () => {
         try {
-            const cursor = blacklistCollection.find(
-                {},
-                { projection: { $token: 1 } },
-            );
+            const db = await getDb();
+
+            const cursor = db
+                .collection(collName)
+                .find({}, { projection: { $token: 1 } });
             const result = await cursor.toArray();
             return result;
         } catch (error) {

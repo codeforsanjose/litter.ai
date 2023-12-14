@@ -1,7 +1,6 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-plusplus */
-import { MongoClient, Collection } from 'mongodb';
-import { MongoMemoryServer } from 'mongodb-memory-server';
+import { Collection } from 'mongodb';
 import { faker } from '@faker-js/faker';
 import { jest } from '@jest/globals';
 
@@ -55,23 +54,9 @@ const mocks = {
 };
 
 describe('PhotoInfo Model', () => {
-    let mongoServer;
-    let client;
-    let db;
     let newUser;
 
     beforeAll(async () => {
-        mongoServer = await MongoMemoryServer.create();
-        const uri = mongoServer.getUri();
-
-        client = new MongoClient(uri);
-        await client.connect();
-        db = client.db('testDB');
-
-        photoInfo.injectDB(db);
-        categoryCount.injectDB(db);
-        userModel.injectDB(db);
-
         newUser = await userModel.create(
             faker.internet.userName(),
             faker.internet.email(),
@@ -83,10 +68,7 @@ describe('PhotoInfo Model', () => {
     });
 
     afterAll(async () => {
-        await userModel.delete(newUser._id);
         await closeDB();
-        await client.close();
-        await mongoServer.stop();
     });
 
     afterEach(() => {

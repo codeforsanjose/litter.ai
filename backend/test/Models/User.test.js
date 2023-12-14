@@ -1,8 +1,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
-import { MongoClient, ObjectId, Collection } from 'mongodb';
-import { MongoMemoryServer } from 'mongodb-memory-server';
+import { ObjectId, Collection } from 'mongodb';
 import { faker } from '@faker-js/faker';
 import { jest } from '@jest/globals';
 
@@ -100,26 +99,8 @@ const dummyUsers = [
 ];
 
 describe('User Model', () => {
-    let mongoServer;
-    let client;
-    let db;
-
-    beforeAll(async () => {
-        mongoServer = await MongoMemoryServer.create();
-        const uri = mongoServer.getUri();
-        client = new MongoClient(uri);
-        await client.connect();
-        db = client.db('testDB');
-
-        photoInfo.injectDB(db);
-        categoryCount.injectDB(db);
-        userModel.injectDB(db);
-    });
-
     afterAll(async () => {
         await closeDB();
-        await client.close();
-        await mongoServer.stop();
     });
 
     afterEach(() => {
@@ -136,6 +117,7 @@ describe('User Model', () => {
                 firstName: faker.person.firstName(),
                 lastName: faker.person.lastName(),
                 zipCode: faker.location.zipCode('#####'),
+                status: 'pending',
             },
             {
                 displayUsername: faker.internet.userName(),
@@ -144,6 +126,7 @@ describe('User Model', () => {
                 firstName: faker.person.firstName(),
                 lastName: faker.person.lastName(),
                 zipCode: faker.location.zipCode('#####'),
+                status: 'pending',
             },
             {
                 displayUsername: faker.internet.userName(),
@@ -152,6 +135,7 @@ describe('User Model', () => {
                 firstName: faker.person.firstName(),
                 lastName: faker.person.lastName(),
                 zipCode: faker.location.zipCode('#####'),
+                status: 'pending',
             },
             {
                 displayUsername: faker.internet.userName(),
@@ -160,6 +144,7 @@ describe('User Model', () => {
                 firstName: faker.person.firstName(),
                 lastName: faker.person.lastName(),
                 zipCode: faker.location.zipCode('#####'),
+                status: 'pending',
             },
         ];
 
@@ -171,6 +156,7 @@ describe('User Model', () => {
                 user.firstName,
                 user.lastName,
                 user.zipCode,
+                user.status,
             );
 
             const expected = {
@@ -181,6 +167,7 @@ describe('User Model', () => {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 zipCode: user.zipCode,
+                status: user.pending,
             };
             expect(actual).not.toBeNull();
             expect(actual).not.toHaveProperty('password');

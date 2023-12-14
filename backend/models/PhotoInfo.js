@@ -1,23 +1,14 @@
 import { fileURLToPath } from 'url';
-import { ObjectId } from 'mongodb';
-import { getUploadInfoCollection } from '../DB/collections.js';
+
+import sanitizeId from './helpers/utility.js';
 import categoryCount from './CategoryCount.js';
 import errorHelpers from './helpers/errorHelpers.js';
+import { getDb } from '../DB/db-connection.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
-/**
- * @type {import('mongodb').Collection}
- */
-let photoInfoCollection = getUploadInfoCollection;
-
+const collName = 'uploadsinfo';
 const photoInfo = {
-    injectDB: (db) => {
-        if (process.env.NODE_ENV === 'test') {
-            photoInfoCollection = db.collection('uploadsinfo');
-        }
-    },
-
     /**
      * @typedef {Object} User
      * @property {string} username
@@ -30,14 +21,12 @@ const photoInfo = {
      * @param {User} user
      */
     insertOne: async (categoryString, user) => {
-        if (typeof user._id === 'string') {
-            // eslint-disable-next-line no-param-reassign
-            user._id = new ObjectId(user._id);
-        }
+        const userObjId = sanitizeId(user._id);
         try {
+            const db = await getDb();
             // Insert new photoInfo document
-            await photoInfoCollection.insertOne({
-                userId: user._id,
+            await db.collection(collName).insertOne({
+                userId: userObjId,
                 username: user.username,
                 category: categoryString,
                 createdAt: Date.now(),
@@ -75,7 +64,10 @@ const photoInfo = {
 
     getAllUsersPhotoInfo: async (username) => {
         try {
-            const results = await photoInfoCollection
+            const db = await getDb();
+
+            const results = await db
+                .collection(collName)
                 .find({ username })
                 .toArray();
             return results || [];
@@ -86,13 +78,13 @@ const photoInfo = {
     },
 
     deleteSingleUsersInfo: async (userId) => {
-        let userObjectId;
-        if (typeof userId === 'string') {
-            userObjectId = new ObjectId(userId);
-        }
+        const userObjId = sanitizeId(userId);
+
         try {
-            const result = await photoInfoCollection.deleteMany({
-                userId: userObjectId || userId,
+            const db = await getDb();
+
+            const result = await db.collection(collName).deleteMany({
+                userId: userObjId,
             });
             return result.acknowledged;
         } catch (error) {

@@ -1,30 +1,22 @@
 import { fileURLToPath } from 'url';
-import { ObjectId } from 'mongodb';
 
-import { getUserCollection } from '../DB/collections.js';
 import categoryCount from './CategoryCount.js';
 import errorHelpers from './helpers/errorHelpers.js';
 import photoInfo from './PhotoInfo.js';
+import { getDb } from '../DB/db-connection.js';
+import sanitizeId from './helpers/utility.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
-/**
- * @type {import('mongodb').Collection}
- */
-
-let usersCollection = getUserCollection;
-
+const collName = 'users';
 const userModel = {
-    injectDB: (db) => {
-        if (process.env.NODE_ENV === 'test') {
-            usersCollection = db.collection('users');
-        }
-    },
-
     findByEmail: async (email) => {
         const sanitizedEmail = email.toLowerCase().trim();
         try {
-            return await usersCollection.findOne({ email: sanitizedEmail });
+            const db = await getDb();
+            return await db
+                .collection(collName)
+                .findOne({ email: sanitizedEmail });
         } catch (error) {
             throw await errorHelpers.transformDatabaseError(
                 error,
@@ -35,12 +27,10 @@ const userModel = {
     },
 
     findById: async (_id) => {
-        let userId = _id;
+        const userId = sanitizeId(_id);
         try {
-            if (typeof _id === 'string') {
-                userId = new ObjectId(_id);
-            }
-            return await usersCollection.findOne({ _id: userId });
+            const db = await getDb();
+            return await db.collection(collName).findOne({ _id: userId });
         } catch (error) {
             throw await errorHelpers.transformDatabaseError(
                 error,
@@ -52,7 +42,8 @@ const userModel = {
 
     findByUsername: async (username) => {
         try {
-            return await usersCollection.findOne({
+            const db = await getDb();
+            return await db.collection(collName).findOne({
                 username: username.toLowerCase().trim(),
             });
         } catch (error) {
@@ -106,10 +97,12 @@ const userModel = {
             )}`,
             zipCode: trimmedZipCode,
             status: 'pending',
+            verificationToken: '',
         };
 
         try {
-            const userDoc = await usersCollection.insertOne(payload);
+            const db = await getDb();
+            const userDoc = await db.collection(collName).insertOne(payload);
             // Create a category count document within CategoryCount Collection
             await categoryCount.create(
                 userDoc.insertedId,
@@ -137,21 +130,19 @@ const userModel = {
     },
 
     delete: async (_id) => {
-        let idObject;
-        if (typeof _id === 'string') {
-            idObject = new ObjectId(_id);
-        }
+        const userId = sanitizeId(_id);
         try {
-            const user = await usersCollection.deleteOne({
-                _id: idObject || _id,
+            const db = await getDb();
+            const user = await db.collection(collName).deleteOne({
+                _id: userId,
             });
 
             if (user.deletedCount === 0) {
                 return false;
             }
 
-            await photoInfo.deleteSingleUsersInfo(_id);
-            await categoryCount.deleteUserInfo(_id);
+            await photoInfo.deleteSingleUsersInfo(userId);
+            await categoryCount.deleteUserInfo(userId);
             return user.acknowledged;
         } catch (error) {
             throw await errorHelpers.transformDatabaseError(
