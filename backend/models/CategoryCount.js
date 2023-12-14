@@ -144,7 +144,7 @@ const categoryCount = {
 
             if (result.loggedInUser) {
                 responseData = {
-                    category,
+                    ...responseData,
                     username: result.loggedInUser.username,
                     userRank: result.loggedInUser.rank,
                     userItemCount: result.loggedInUser.itemCount,
