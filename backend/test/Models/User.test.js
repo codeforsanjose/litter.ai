@@ -527,4 +527,46 @@ describe('User Model', () => {
             }
         });
     });
+    describe('updateStatus', () => {
+        let userForUpdate;
+        const userForUpdatePass = faker.internet.password();
+        const sut = userModel.updateStatus;
+        beforeAll(async () => {
+            userForUpdate = await userModel.create(
+                faker.internet.userName(),
+                faker.internet.email(),
+                userForUpdatePass,
+                faker.person.firstName(),
+                faker.person.lastName(),
+                faker.location.zipCode('#####'),
+            );
+        });
+
+        it('should update the status field of a user documents', async () => {
+            const actualBefore = await userModel.findById(userForUpdate._id);
+            expect(actualBefore.status).toEqual('pending');
+            const actualStatus = 'verified';
+            await sut({ _id: userForUpdate._id, status: actualStatus });
+            const actual = await userModel.findById(userForUpdate._id);
+            expect(actual).toHaveProperty('status', actualStatus);
+        });
+
+        it('should throw an error if one occurs while querying the database', async () => {
+            mocks.throwError.findOneAndUpdate();
+            let didNotThrow = false;
+            try {
+                await sut(new ObjectId());
+                didNotThrow = true;
+            } catch (error) {
+                expect(error.message).toContain('Simulated Error');
+                expect(error.statusCode).toBe(500);
+            }
+
+            if (didNotThrow) {
+                throw new Error(
+                    'Expected function to throw an Error, but it did not throw',
+                );
+            }
+        });
+    });
 });
