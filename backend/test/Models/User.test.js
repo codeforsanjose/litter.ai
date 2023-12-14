@@ -156,7 +156,6 @@ describe('User Model', () => {
                 user.firstName,
                 user.lastName,
                 user.zipCode,
-                user.status,
             );
 
             const expected = {
@@ -555,7 +554,7 @@ describe('User Model', () => {
             mocks.throwError.findOneAndUpdate();
             let didNotThrow = false;
             try {
-                await sut(new ObjectId());
+                await sut({ _id: new ObjectId(), status: 'verified' });
                 didNotThrow = true;
             } catch (error) {
                 expect(error.message).toContain('Simulated Error');
