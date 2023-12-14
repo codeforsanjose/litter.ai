@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'url';
 
-import sanitizeId from './helpers/utility.js';
+import sanitizeId from './helpers/sanitizeId.js';
 import categoryCount from './CategoryCount.js';
 import errorHelpers from './helpers/errorHelpers.js';
 import { getDb } from '../DB/db-connection.js';

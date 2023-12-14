@@ -1,21 +1,17 @@
 import { fileURLToPath } from 'url';
-import { ObjectId } from 'mongodb';
 import errorHelpers from './helpers/errorHelpers.js';
 import { getDb } from '../DB/db-connection.js';
-import sanitizeId from './helpers/utility.js';
+import sanitizeId from './helpers/sanitizeId.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
 const collName = 'categoryCounts';
 const categoryCount = {
     create: async (userId, username, displayUsername, email) => {
-        if (typeof userId === 'string') {
-            // eslint-disable-next-line no-param-reassign
-            userId = new ObjectId(userId);
-        }
+        const userObjId = sanitizeId(userId);
         try {
             const payload = {
-                userId,
+                userId: userObjId,
                 email,
                 username,
                 displayUsername,

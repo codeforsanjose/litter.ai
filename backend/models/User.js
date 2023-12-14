@@ -4,7 +4,7 @@ import categoryCount from './CategoryCount.js';
 import errorHelpers from './helpers/errorHelpers.js';
 import photoInfo from './PhotoInfo.js';
 import { getDb } from '../DB/db-connection.js';
-import sanitizeId from './helpers/utility.js';
+import sanitizeId from './helpers/sanitizeId.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
