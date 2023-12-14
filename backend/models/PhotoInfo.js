@@ -12,12 +12,11 @@ const photoInfo = {
     /**
      * @typedef {Object} User
      * @property {string} username
-     * @property {string} email
-     * @property {string} _id
+     * @property {string | import('mongodb').ObjectId} _id
      */
 
     /**
-     * @param {string} category
+     * @param {string} categoryString
      * @param {User} user
      */
     insertOne: async (categoryString, user) => {
@@ -47,11 +46,11 @@ const photoInfo = {
         );
         // Respond with 404 error if user's category document not found
         if (!categoryDocument) {
-            const error = new Error(
-                "Unable to locate user's category count document",
+            throw await errorHelpers.transformDatabaseError(
+                new Error("Unable to locate user's category count document"),
+                __filename,
+                'insertOne',
             );
-            error.statusCode = 404;
-            throw error;
         }
 
         return {

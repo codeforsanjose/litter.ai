@@ -1,6 +1,6 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-plusplus */
-import { Collection } from 'mongodb';
+import { Collection, ObjectId } from 'mongodb';
 import { faker } from '@faker-js/faker';
 import { jest } from '@jest/globals';
 
@@ -44,12 +44,39 @@ const mocks = {
                     throw new Error('Simulated Error');
                 }),
 
+        deleteOne: () =>
+            jest
+                .spyOn(Collection.prototype, 'deleteOne')
+                .mockImplementation(() => {
+                    throw new Error('Simulated Error');
+                }),
+
         deleteMany: () =>
             jest
                 .spyOn(Collection.prototype, 'deleteMany')
                 .mockImplementation(() => {
                     throw new Error('Simulated Error');
                 }),
+
+        findOneAndUpdate: () =>
+            jest
+                .spyOn(Collection.prototype, 'findOneAndUpdate')
+                .mockImplementation(() => {
+                    throw new Error('Simulated Error');
+                }),
+
+        aggregate: () =>
+            jest
+                .spyOn(Collection.prototype, 'aggregate')
+                .mockImplementation(() => {
+                    throw new Error('Simulated Error');
+                }),
+    },
+    null: {
+        findOneAndUpdate: () =>
+            jest
+                .spyOn(Collection.prototype, 'findOneAndUpdate')
+                .mockResolvedValue(false),
     },
 };
 
@@ -111,13 +138,30 @@ describe('PhotoInfo Model', () => {
         });
 
         it('should throw an error if an invalid userId is entered', async () => {
-            await expect(
-                photoInfo.insertOne(category, {
-                    _id: 22,
-                    username: 'error',
-                }),
-            ).rejects.toThrow("Unable to locate user's category");
+            mocks.null.findOneAndUpdate();
+            let didNotThrow = false;
+
+            try {
+                await sut(category, {
+                    _id: newUser._id,
+                    username: newUser.userName,
+                });
+                didNotThrow = true;
+            } catch (error) {
+                console.log(error);
+                expect(error.message).toContain(
+                    "Unable to locate user's category count document",
+                );
+                expect(error.statusCode).toBe(500);
+            }
+
+            if (didNotThrow) {
+                throw new Error(
+                    'Expected function to throw an Error, but it did not throw',
+                );
+            }
         });
+
         it('should throw an error if one occurs while querying the database', async () => {
             mocks.throwError.insertOne();
             let didNotThrow = false;
