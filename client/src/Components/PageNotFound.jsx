@@ -11,7 +11,7 @@ export default function PageNotFound() {
         <h1>4&nbsp;&nbsp;&nbsp;&nbsp;4</h1>
       </div>
       <h3>Your litter will have to be recycled elsewhere.</h3>
-      <div className="profile-buttons lower-buttons">
+      <div className="PNF-buttons lower-buttons">
         <Link to="/">
           <button type="button">
             Home
