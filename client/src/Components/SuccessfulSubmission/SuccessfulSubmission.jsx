@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import { PiPlantBold } from 'react-icons/pi';
 import { FaRecycle, FaRegTrashAlt } from 'react-icons/fa';
-import Modal from './SubmissionModal';
+import SubmissionModal from './SubmissionModal';
 import '../../css/SuccessfulSubmission.css';
 
 export default function SuccessfulSubmission({ type }) {
@@ -47,10 +47,11 @@ export default function SuccessfulSubmission({ type }) {
       {modalOpen && (
         <>
           <div className="category-modal">
-            <Modal
+            <SubmissionModal
               modalOpen={modalOpen}
               setModalOpen={setModalOpen}
               separateString={separateString}
+              type={type}
             />
           </div>
           <div
