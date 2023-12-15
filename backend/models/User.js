@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { fileURLToPath } from 'url';
 
-import categoryCount from './CategoryCount.js';
+import catCountModel from './CategoryCount.js';
 import errorHelpers from './helpers/errorHelpers.js';
 import photoInfo from './PhotoInfo.js';
 import { getDb } from '../DB/db-connection.js';
@@ -104,7 +105,7 @@ const userModel = {
             const db = await getDb();
             const userDoc = await db.collection(collName).insertOne(payload);
             // Create a category count document within CategoryCount Collection
-            await categoryCount.create(
+            await catCountModel.create(
                 userDoc.insertedId,
                 lowerCaseUsername,
                 trimmedDisplayname,
@@ -142,7 +143,7 @@ const userModel = {
             }
 
             await photoInfo.deleteSingleUsersInfo(userId);
-            await categoryCount.deleteUserInfo(userId);
+            await catCountModel.deleteUserInfo(userId);
             return user.acknowledged;
         } catch (error) {
             throw await errorHelpers.transformDatabaseError(

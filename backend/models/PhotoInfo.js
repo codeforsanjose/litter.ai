@@ -1,14 +1,14 @@
 import { fileURLToPath } from 'url';
 
 import sanitizeId from './helpers/sanitizeId.js';
-import categoryCount from './CategoryCount.js';
+import catCountModel from './CategoryCount.js';
 import errorHelpers from './helpers/errorHelpers.js';
 import { getDb } from '../DB/db-connection.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
 const collName = 'uploadsinfo';
-const photoInfo = {
+const photoInfoModel = {
     /**
      * @typedef {Object} User
      * @property {string} username
@@ -39,7 +39,7 @@ const photoInfo = {
         }
         // Update user's category count collection
 
-        const categoryDocument = await categoryCount.incrementCategoryByUserId(
+        const categoryDocument = await catCountModel.incrementCategoryByUserId(
             categoryString,
             user._id,
             1,
@@ -93,4 +93,4 @@ const photoInfo = {
     },
 };
 
-export default photoInfo;
+export default photoInfoModel;

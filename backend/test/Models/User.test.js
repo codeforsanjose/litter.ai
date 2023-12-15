@@ -6,8 +6,8 @@ import { faker } from '@faker-js/faker';
 import { jest } from '@jest/globals';
 
 import userModel from '../../models/User.js';
-import photoInfo from '../../models/PhotoInfo.js';
-import categoryCount from '../../models/CategoryCount.js';
+import photoInfoModel from '../../models/PhotoInfo.js';
+import catCountModel from '../../models/CategoryCount.js';
 import { closeDB } from '../../DB/db-connection.js';
 
 const mocks = {
@@ -450,9 +450,9 @@ describe('User Model', () => {
     });
     describe('delete', () => {
         const sut = userModel.delete;
-        const { getAllUsersPhotoInfo } = photoInfo;
+        const { getAllUsersPhotoInfo } = photoInfoModel;
         const findUserByEmail = userModel.findByEmail;
-        const findUserCategoryDocument = categoryCount.findByUserId;
+        const findUserCategoryDocument = catCountModel.findByUserId;
         let userForDeleteTest;
         beforeAll(async () => {
             const userForDeletePassword = faker.internet.password();
@@ -471,11 +471,11 @@ describe('User Model', () => {
             };
 
             await Promise.all([
-                photoInfo.insertOne('trash', {
+                photoInfoModel.insertOne('trash', {
                     _id: userForDeleteTest._id,
                     username: userForDeleteTest.username,
                 }),
-                photoInfo.insertOne('plastic', {
+                photoInfoModel.insertOne('plastic', {
                     _id: userForDeleteTest._id,
                     username: userForDeleteTest.username,
                 }),
@@ -492,7 +492,7 @@ describe('User Model', () => {
             });
             expect(actualUserPhotos).toHaveLength(2);
             actual = await sut(actual._id);
-            actualUserPhotos = await photoInfo.getAllUsersPhotoInfo(
+            actualUserPhotos = await photoInfoModel.getAllUsersPhotoInfo(
                 userForDeleteTest._id,
             );
 

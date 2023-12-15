@@ -3,7 +3,7 @@ import { Collection, ObjectId } from 'mongodb';
 import { faker } from '@faker-js/faker';
 import { jest } from '@jest/globals';
 
-import categoryCount from '../../models/CategoryCount.js';
+import catCountModel from '../../models/CategoryCount.js';
 import { closeDB, getDb } from '../../DB/db-connection.js';
 
 const categories = [
@@ -71,7 +71,7 @@ const mocks = {
     },
 };
 
-describe('CategoryCount Model', () => {
+describe('catCountModel', () => {
     /**
      * @type {import("mongodb").Db}
      */
@@ -128,7 +128,7 @@ describe('CategoryCount Model', () => {
     });
 
     describe('create', () => {
-        const sut = categoryCount.create;
+        const sut = catCountModel.create;
         it('should create a category document', async () => {
             const coll = db.collection(collName.catCount);
             const actualBefore = await coll.countDocuments();
@@ -198,12 +198,12 @@ describe('CategoryCount Model', () => {
     });
 
     describe('incrementCategoryByUserId', () => {
-        const sut = categoryCount.incrementCategoryByUserId;
+        const sut = catCountModel.incrementCategoryByUserId;
         // beforeAll(async () => {});
 
         beforeEach(async () => {
             if (continueAddingNewUsers) {
-                await categoryCount.create(
+                await catCountModel.create(
                     newUser._id,
                     newUser.username,
                     newUser.displayUsername,
@@ -237,7 +237,7 @@ describe('CategoryCount Model', () => {
                     const category = getRandomCategory();
                     const incVal = i + 1;
                     await sut(category, user._id, incVal);
-                    const actual = await categoryCount.findByUserId(user._id);
+                    const actual = await catCountModel.findByUserId(user._id);
                     expect(actual.totalUploads).toBe(incVal);
                     expect(actual.pictureData[category]).toBe(incVal);
                 }),
@@ -282,7 +282,7 @@ describe('CategoryCount Model', () => {
     });
 
     describe('getLeaderboardByCategory', () => {
-        const sut = categoryCount.getLeaderboardByCategory;
+        const sut = catCountModel.getLeaderboardByCategory;
 
         beforeAll(async () => {
             Promise.all(
@@ -290,7 +290,7 @@ describe('CategoryCount Model', () => {
                     const tasks = [];
                     for (let i = 0; i < 100; i += 1) {
                         tasks.push(
-                            categoryCount.incrementCategoryByUserId(
+                            catCountModel.incrementCategoryByUserId(
                                 getRandomCategory(),
                                 user._id,
                                 1,
@@ -393,7 +393,7 @@ describe('CategoryCount Model', () => {
     });
 
     describe('getLeaderboardByTotal', () => {
-        const sut = categoryCount.getLeaderboardByTotal;
+        const sut = catCountModel.getLeaderboardByTotal;
 
         it('should return a leaderboard with the correct information if a user is logged in with no submissions', async () => {
             const usernames = users.map((user) => user.displayUsername);
@@ -474,7 +474,7 @@ describe('CategoryCount Model', () => {
     });
 
     describe('findByUserId', () => {
-        const sut = categoryCount.findByUserId;
+        const sut = catCountModel.findByUserId;
 
         it('should find and return an object with the correct properties', async () => {
             const user = users[0];
@@ -521,7 +521,7 @@ describe('CategoryCount Model', () => {
     });
 
     describe('findByUsername', () => {
-        const sut = categoryCount.findByUsername;
+        const sut = catCountModel.findByUsername;
 
         it('should find and return an object with the correct properties', async () => {
             const user = users[0];
@@ -567,15 +567,15 @@ describe('CategoryCount Model', () => {
     });
 
     describe('deleteUserInfo', () => {
-        const sut = categoryCount.deleteUserInfo;
+        const sut = catCountModel.deleteUserInfo;
 
         it("should delete a user's document successfully", async () => {
             const user = users[0];
-            let userDoc = await categoryCount.findByUserId(user._id);
+            let userDoc = await catCountModel.findByUserId(user._id);
             expect(userDoc).not.toBeNull();
             const actual = await sut(user._id);
             expect(actual).toBe(true);
-            userDoc = await categoryCount.findByUserId(user._id);
+            userDoc = await catCountModel.findByUserId(user._id);
             expect(userDoc).toBeNull();
         });
 

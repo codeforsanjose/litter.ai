@@ -246,8 +246,8 @@ describe('RefreshToken Model', () => {
         });
 
         it('should throw an error if querying the user collection for the user associated with token', async () => {
-            jest.spyOn(userModel, 'findById').mockResolvedValue(null);
             let didNotThrow = false;
+            jest.spyOn(userModel, 'findById').mockResolvedValue(null);
             const token = faker.string.alphanumeric(32);
             try {
                 await refreshTokenModel.addToken({
@@ -256,6 +256,7 @@ describe('RefreshToken Model', () => {
                     createdAt: new Date(),
                     expiresAt: new Date(),
                 });
+                await sut({ token });
                 didNotThrow = true;
             } catch (error) {
                 expect(error.message).toContain(

@@ -1,11 +1,11 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-plusplus */
-import { Collection, ObjectId } from 'mongodb';
+import { Collection } from 'mongodb';
 import { faker } from '@faker-js/faker';
 import { jest } from '@jest/globals';
 
-import photoInfo from '../../models/PhotoInfo.js';
-import categoryCount from '../../models/CategoryCount.js';
+import photoInfoModel from '../../models/PhotoInfo.js';
+import catCountModel from '../../models/CategoryCount.js';
 import userModel from '../../models/User.js';
 import { closeDB } from '../../DB/db-connection.js';
 
@@ -103,7 +103,7 @@ describe('PhotoInfo Model', () => {
     });
 
     describe('insertOne', () => {
-        const sut = photoInfo.insertOne;
+        const sut = photoInfoModel.insertOne;
         const category = getRandomCategory();
         let newPhotoCategoryCount = 0;
 
@@ -126,13 +126,13 @@ describe('PhotoInfo Model', () => {
         });
 
         it("should have a categoryUpload value that is equal to the CategoryCount document's value", async () => {
-            const actual = await categoryCount.findByUserId(newUser._id);
+            const actual = await catCountModel.findByUserId(newUser._id);
             const expected = newPhotoCategoryCount;
             expect(actual.pictureData[category]).toEqual(expected);
         });
 
         it("should have a totalUploads value that is equal to the CategoryCount document's value", async () => {
-            const actual = await categoryCount.findByUserId(newUser._id);
+            const actual = await catCountModel.findByUserId(newUser._id);
             const expected = newPhotoCategoryCount;
             expect(actual.totalUploads).toEqual(expected);
         });
@@ -148,7 +148,6 @@ describe('PhotoInfo Model', () => {
                 });
                 didNotThrow = true;
             } catch (error) {
-                console.log(error);
                 expect(error.message).toContain(
                     "Unable to locate user's category count document",
                 );
@@ -185,13 +184,13 @@ describe('PhotoInfo Model', () => {
     });
 
     describe('getAllUsersPhotoInfo', () => {
-        const sut = photoInfo.getAllUsersPhotoInfo;
+        const sut = photoInfoModel.getAllUsersPhotoInfo;
         const newUserPhotoArrayLength = 2;
 
         it('should return an array', async () => {
             let actual = await sut(newUser.username);
             expect(actual).toBeInstanceOf(Array);
-            actual = await photoInfo.getAllUsersPhotoInfo(22);
+            actual = await photoInfoModel.getAllUsersPhotoInfo(22);
             expect(actual).toBeInstanceOf(Array);
         });
 
@@ -230,15 +229,14 @@ describe('PhotoInfo Model', () => {
     });
 
     describe('deleteSingleUsersInfo', () => {
-        const sut = photoInfo.deleteSingleUsersInfo;
+        const sut = photoInfoModel.deleteSingleUsersInfo;
         it('should delete all documents in collection for provided userId', async () => {
-            const actualBeforeDelete = await photoInfo.getAllUsersPhotoInfo(
-                newUser.username,
-            );
+            const actualBeforeDelete =
+                await photoInfoModel.getAllUsersPhotoInfo(newUser.username);
             expect(actualBeforeDelete.length).toBeGreaterThan(0);
             // Delete documents
             await sut(newUser._id);
-            const actualAfterDelete = await photoInfo.getAllUsersPhotoInfo(
+            const actualAfterDelete = await photoInfoModel.getAllUsersPhotoInfo(
                 newUser._id,
             );
             expect(actualAfterDelete).toHaveLength(0);

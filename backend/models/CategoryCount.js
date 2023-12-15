@@ -6,7 +6,7 @@ import sanitizeId from './helpers/sanitizeId.js';
 const __filename = fileURLToPath(import.meta.url);
 
 const collName = 'categoryCounts';
-const categoryCount = {
+const catCountModel = {
     create: async (userId, username, displayUsername, email) => {
         const userObjId = sanitizeId(userId);
         try {
@@ -413,4 +413,4 @@ const categoryCount = {
     },
 };
 
-export default categoryCount;
+export default catCountModel;
