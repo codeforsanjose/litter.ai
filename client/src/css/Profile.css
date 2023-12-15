@@ -77,72 +77,6 @@
   font-size: 0.9rem;
 }
 
-/* Profile Statistics */
-
-.profile-container
-.profile-statistics {
-  height: 40%;
-  width: 80%;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  overflow-y: scroll;
-}
-
-.profile-container
-.profile-statistics::-webkit-scrollbar {
-  width: 0;
-  background: transparent;
-}
-
-.profile-container
-.profile-stats-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.profile-container
-.profile-stats-row
-.profile-stats-left {
-  display: flex;
-  align-items: center;
-}
-
-.profile-container
-.profile-stats-row
-.profile-stats-left
-.profile-stats-icon-bg {
-  width: 2rem;
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--lb-gray);
-  border-radius: 100rem;
-}
-
-.profile-container
-.profile-stats-row
-.profile-stats-left
-.profile-stats-icon-bg
-.profile-stats-icon {
-  font-size: 1rem;
-}
-
-.profile-container
-.profile-stats-row
-.profile-stats-left h4 {
-  margin-left: 0.5rem;
-  font-size: 0.8rem;
-}
-
-.profile-container
-.profile-stats-row p {
-  margin-right: 0.5rem;
-  font-size: 0.8rem;
-  font-weight: bold;
-}
-
 /* User not logged in */
 
 .profile-container
@@ -271,6 +205,71 @@ button:hover {
   background-color: var(--main-green);
   color: var(--white);
 	box-shadow: 0.25em 0.25em .75em -.5em var(--shadow-color);
+  font-weight: bold;
+}
+
+/* Profile Statistics */
+
+.profile-container
+.profile-statistics {
+  height: 40%;
+  width: 80%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+}
+
+.profile-container
+.profile-statistics::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.profile-stats-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-stats-row
+.profile-stats-left {
+  display: flex;
+  align-items: center;
+}
+
+.profile-stats-row
+.profile-stats-left h4 {
+  text-transform: capitalize;
+}
+
+.profile-stats-row
+.profile-stats-left
+.profile-stats-icon-bg {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--lb-gray);
+  border-radius: 100rem;
+}
+
+.profile-stats-row
+.profile-stats-left
+.profile-stats-icon-bg
+.profile-stats-icon {
+  font-size: 1rem;
+}
+
+.profile-stats-row
+.profile-stats-left h4 {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.profile-stats-row p {
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
   font-weight: bold;
 }
 

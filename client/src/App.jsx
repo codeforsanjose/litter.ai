@@ -13,8 +13,8 @@ import CameraCapture from './components/CameraCapture';
 import Leaderboard from './components/Leaderboard/Leaderboard';
 import Profile from './components/Profile/Profile';
 import SuccessfulSubmission from './components/SuccessfulSubmission/SuccessfulSubmission';
-import Register from './components/Register/Register';
-import Login from './components/Register/Login';
+import Register from './components/Register';
+import Login from './components/Login';
 import PageNotFound from './components/PageNotFound';
 
 export default function App() {
