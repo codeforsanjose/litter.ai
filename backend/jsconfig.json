@@ -1,7 +1,9 @@
 {
     "compilerOptions": {
         "module": "ESNext",
-        "target": "ESNext"
+        "target": "ESNext",
+        "checkJs": true,
+        "moduleResolution": "bundler"
     },
     "include": ["**/*.js", "**/*.mjs"],
     "exclude": ["node_modules"]
