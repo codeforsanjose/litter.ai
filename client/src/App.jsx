@@ -35,7 +35,7 @@ export default function App() {
           <Route path="/profile" element={<Profile user={user} setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login user={user} setUser={setUser} />} />
-          <Route path="/success" element={<SuccessfulSubmission type={categoryData.paper} />} />
+          <Route path="/success" element={<SuccessfulSubmission type={categoryData.glass} />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>
