@@ -3,7 +3,6 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
-import cors from 'cors';
 
 import { getDb, mongoConnect } from './DB/db-connection.js';
 import routes from './routes/index.js';
