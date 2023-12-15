@@ -13,4 +13,6 @@ authRoutes.get('/validate-token', isAuth, (req, res) => {
     res.json({ status: 'success', message: 'Token is valid.' });
 });
 
+authRoutes.get('/refresh-token', controllers.auth.getRefreshToken);
+
 export default authRoutes;
