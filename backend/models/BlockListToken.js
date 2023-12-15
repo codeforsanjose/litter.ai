@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'url';
 
-import { getBlacklistCollection } from '../DB/collections.js';
+import { getBlockListCollection } from '../DB/collections.js';
 import errorHelpers from './helpers/errorHelpers.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -8,12 +8,12 @@ const __filename = fileURLToPath(import.meta.url);
  * @type {import('mongodb').Collection}
  */
 
-const blacklistCollection = getBlacklistCollection;
+const blockListCollection = getBlockListCollection;
 
-const blackListToken = {
+const blockListModel = {
     addTokenToList: async (token, expires) => {
         try {
-            await blacklistCollection.insertOne({
+            await blockListCollection.insertOne({
                 token,
                 expires: Date.now(expires * 1000),
             });
@@ -28,7 +28,7 @@ const blackListToken = {
 
     getToken: async (token) => {
         try {
-            return await blacklistCollection.findOne(
+            return await blockListCollection.findOne(
                 { token },
                 { projection: { token: 1 } },
             );
@@ -43,7 +43,7 @@ const blackListToken = {
 
     getAllTokens: async () => {
         try {
-            const cursor = blacklistCollection.find(
+            const cursor = blockListCollection.find(
                 {},
                 { projection: { $token: 1 } },
             );
@@ -58,4 +58,4 @@ const blackListToken = {
         }
     },
 };
-export default blackListToken;
+export default blockListModel;
