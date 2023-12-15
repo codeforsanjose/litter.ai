@@ -1,16 +1,10 @@
 /* eslint-disable consistent-return */
 import Cookies from 'js-cookie';
-import loginAuth from './loginAuth';
-import URLpath from './URLpath';
+import fetchData from './fetch';
 
 export async function fetchLogin(body) {
   try {
-    const res = await fetch(URLpath('login'), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    });
-    const response = await res.json();
+    const response = await fetchData('login', 'POST', body);
     Cookies.set('authToken', response.token, { expires: 7 });
     Cookies.set('username', response.user.displayUsername, { expires: 7 });
     return response;
@@ -21,11 +15,7 @@ export async function fetchLogin(body) {
 
 export async function fetchLogOut() {
   try {
-    const token = loginAuth();
-    await fetch(URLpath('logout'), {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    await fetchData('logout', 'POST');
     await Cookies.remove('authToken');
     await Cookies.remove('username');
   } catch (err) {
@@ -33,28 +23,18 @@ export async function fetchLogOut() {
   }
 }
 
-export async function fetchLeaderboardData(path, token) {
-  let headers = {};
-  if (token) {
-    headers = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-  }
+export async function fetchLeaderboardData(path) {
   try {
-    const res = await fetch(path, headers);
-    const response = await res.json();
+    const response = await fetchData(path, 'GET');
     return response;
   } catch (err) {
     console.error(err);
   }
 }
 
-export async function fetchProfileData(user, token) {
+export async function fetchProfileData(user) {
   try {
-    const res = await fetch(URLpath('photo', user), {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const response = await res.json();
+    const response = await fetchData(`photo/${user}`, 'GET');
     return response;
   } catch (err) {
     console.error(err);

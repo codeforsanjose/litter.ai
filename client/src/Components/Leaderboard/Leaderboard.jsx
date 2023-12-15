@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import Dropdown from './Dropdown';
-import URLpath from '../../utils/URLpath';
 import { capitalizeWord } from '../../utils/capitalizeFirstLetter';
 import { fetchLeaderboardData } from '../../utils/fetchUserData';
 import '../../css/Leaderboard.css';
@@ -25,13 +23,11 @@ export default function Leaderboard() {
   // Sorts users by total uploads
   useEffect(() => {
     // Data for the total uploads is a different link than the categories
-    const link = URLpath('leaderboard');
-    const path = dropdownSelection === 'total' ? link : `${link}/${dropdownSelection}`;
+    const path = dropdownSelection === 'total' ? 'leaderboard' : `leaderboard/${dropdownSelection}`;
 
     // Authenticates user and grabs user's leaderboard data
     const fetchData = async () => {
-      const token = Cookies.get('authToken');
-      const response = await fetchLeaderboardData(path, token);
+      const response = await fetchLeaderboardData(path);
       setLeaderboardData(response.leaderboard);
       setUserRank(response.userRank);
       setUserItemCount(response.userItemCount);
