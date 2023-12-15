@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Dropdown from './Dropdown';
-import { capitalizeWord } from '../../utils/capitalizeFirstLetter';
 import { fetchLeaderboardData } from '../../utils/fetchUserData';
 import '../../css/Leaderboard.css';
 
@@ -45,7 +44,7 @@ export default function Leaderboard() {
           {userRank > 0 ? userRank : 'No photos'}
         </h3>
         <h3>
-          {capitalizeWord(dropdownSelection)}
+          {dropdownSelection}
           :&nbsp;
           {userItemCount}
         </h3>

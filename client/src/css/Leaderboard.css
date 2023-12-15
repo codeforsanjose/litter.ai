@@ -19,6 +19,7 @@
   border: 0.2rem var(--main-green) solid;
   border-radius: 5rem;
   margin-bottom: 2rem;
+  text-transform: capitalize;
 }
 
 .lb-container

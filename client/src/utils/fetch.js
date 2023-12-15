@@ -10,7 +10,7 @@ export default async function fetchData(path, method, body) {
       'Content-Type': 'application/json',
     },
   };
-  // If user is not logged in, leaderboard won't query for the user's stats
+  // Leaderboard queries for the user's stats if they are logged in
   if (token) {
     properties = {
       ...properties,
