@@ -92,10 +92,8 @@ const authController = {
      * @param {import('express').NextFunction} next
      */
     postLogout: async (req, res, next) => {
+        const token = req.cookies.refreshToken;
         try {
-            const authHeader = req.get('Authorization');
-            const token = authHeader.split(' ')[1];
-
             await logoutUserService(token);
             return res.status(200).send({ message: 'Logged out user' });
         } catch (error) {
