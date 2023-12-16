@@ -272,4 +272,83 @@ describe('RefreshToken Model', () => {
             }
         });
     });
+
+    describe('removeExpDocs', () => {
+        const sut = refreshTokenModel.removeExpDocs;
+
+        const addToken = async ({ exp }) => {
+            await refreshTokenModel.addToken({
+                token: 'someToken',
+                userId: new ObjectId(),
+                expiresAt: exp ? faker.date.past() : faker.date.future(),
+                createdAt: new Date(),
+            });
+        };
+
+        beforeEach(async () => {
+            await db.collection(collName.refresh).deleteMany({});
+        });
+
+        it('should remove a doc which expiredAt value is less than now', async () => {
+            const coll = db.collection(collName.refresh);
+            await addToken({ exp: true });
+            let actual = await coll.countDocuments();
+            expect(actual).toBe(1);
+            await sut();
+            actual = await coll.countDocuments();
+            expect(actual).toBe(0);
+        });
+
+        it('should remove multiple docs whith expiredAt values is less than now', async () => {
+            const coll = db.collection(collName.refresh);
+            await addToken({ exp: true });
+            await addToken({ exp: true });
+            let actual = await coll.countDocuments();
+            expect(actual).toBe(2);
+            await sut();
+            actual = await coll.countDocuments();
+            expect(actual).toBe(0);
+        });
+
+        it('should not remove a doc which expiredAt value is greater than now', async () => {
+            const coll = db.collection(collName.refresh);
+            await addToken({ exp: false });
+            let actual = await coll.countDocuments();
+            expect(actual).toBe(1);
+            await sut();
+            actual = await coll.countDocuments();
+            expect(actual).toBe(1);
+        });
+
+        it('should remove only docs which have expired at values less than now', async () => {
+            const coll = db.collection(collName.refresh);
+            await addToken({ exp: true });
+            await addToken({ exp: true });
+            await addToken({ exp: false });
+            await addToken({ exp: false });
+            let actual = await coll.countDocuments();
+            expect(actual).toBe(4);
+            await sut();
+            actual = await coll.countDocuments();
+            expect(actual).toBe(2);
+        });
+
+        it('should throw an error if one occurs while querying the refreshToken collection', async () => {
+            mocks.throwError.deleteMany();
+            let didNotThrow = false;
+            try {
+                await sut();
+                didNotThrow = true;
+            } catch (error) {
+                expect(error.message).toContain('Simulated Error');
+                expect(error.statusCode).toBe(500);
+            }
+
+            if (didNotThrow) {
+                throw new Error(
+                    'Expected function to throw an Error, but it did not throw',
+                );
+            }
+        });
+    });
 });
