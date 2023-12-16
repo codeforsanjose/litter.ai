@@ -1,10 +1,8 @@
-// Remember to check the blacklist
-
 import jwt from 'jsonwebtoken';
 import { fileURLToPath } from 'url';
 import Joi from 'joi';
 import logError from '../Errors/log-error.js';
-import BlacklistToken from '../models/BlacklistToken.js';
+import blockListModel from '../models/BlockListToken.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -42,10 +40,10 @@ const isAuth = async (req, res, next) => {
     }
 
     const authToken = authHeader.split(' ')[1];
-    const isBlacklisted = await BlacklistToken.getToken(authToken);
+    const isBlocked = await blockListModel.getToken(authToken);
 
     try {
-        if (isBlacklisted) {
+        if (isBlocked) {
             return res
                 .status(401)
                 .send({ status: 'error', message: 'Invalid Token' });

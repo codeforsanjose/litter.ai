@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import User from '../../models/User.js';
+import userModel from '../../models/User.js';
 
 const { JWT_SECRET } = process.env;
 
@@ -9,8 +9,8 @@ const registerUserService = async (body) => {
 
     // Check if username or email in use
     if (
-        (await User.findByEmail(email)) ||
-        (await User.findByUsername(username))
+        (await userModel.findByEmail(email)) ||
+        (await userModel.findByUsername(username))
     ) {
         const error = new Error('Username or Email already in use');
         error.statusCode = 409;
@@ -20,7 +20,7 @@ const registerUserService = async (body) => {
     const hashedPass = await bcrypt.hash(password, 10);
 
     // Create user
-    const result = await User.create(
+    const result = await userModel.create(
         username,
         email,
         hashedPass,

@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import BlacklistToken from '../../models/BlacklistToken.js';
+import blockListModel from '../../models/BlockListToken.js';
 
 const logoutUserService = async (token) => {
     const decodedToken = jwt.decode(token);
@@ -10,7 +10,7 @@ const logoutUserService = async (token) => {
         throw error;
     }
 
-    const result = await BlacklistToken.addTokenToList(token, decodedToken.exp);
+    const result = await blockListModel.addTokenToList(token, decodedToken.exp);
     return result;
 };
 

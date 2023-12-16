@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import User from '../../models/User.js';
+import userModel from '../../models/User.js';
 
 const { JWT_SECRET } = process.env;
 
@@ -10,7 +10,7 @@ const loginUserService = async (body) => {
     email = email.toLowerCase().trim();
 
     // Validate user credentials
-    const result = await User.findByEmail(email);
+    const result = await userModel.findByEmail(email);
     if (!result) {
         const error = new Error('Incorrect Email or Password');
         error.statusCode = 401;

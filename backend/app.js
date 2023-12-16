@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import morgan from 'morgan';
 import { fileURLToPath } from 'url';
+import cors from 'cors';
 
 import { getDb, mongoConnect } from './DB/db-connection.js';
 import routes from './routes/index.js';
@@ -22,6 +23,7 @@ const startServer = async () => {
         await mongoConnect();
         const db = await getDb();
 
+        app.use(cors());
         app.use(morgan('dev'));
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
