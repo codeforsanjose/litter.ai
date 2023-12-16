@@ -1,7 +1,8 @@
 import 'dotenv/config';
-import cookieParser from 'cookie-parser';
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
+import cron from 'node-cron';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
 
@@ -10,6 +11,7 @@ import routes from './routes/index.js';
 import logError from './Errors/log-error.js';
 // import isAuth from './middleware/isAuth.js';
 import errorHandler from './middleware/errorHandler.js';
+import refreshTokenModel from './models/RefreshToken.js';
 
 const app = express();
 
@@ -24,6 +26,23 @@ const startServer = async () => {
     try {
         await mongoConnect();
         const db = await getDb();
+        cron.schedule('0 * * * *', async () => {
+            try {
+                const { acknowledged, deletedCount } =
+                    await refreshTokenModel.removeExpDocs();
+                if (acknowledged) {
+                    console.log(
+                        `${new Date()}: Removed ${deletedCount} expired refreshToken documents.`,
+                    );
+                } else {
+                    console.log(
+                        `${new Date()}: removeExpDocs query was not acknowledged`,
+                    );
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        });
 
         app.use(cors());
         app.use(morgan('dev'));

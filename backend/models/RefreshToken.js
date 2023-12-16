@@ -8,7 +8,7 @@ import sanitizeId from './helpers/sanitizeId.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
-const rtCollectName = 'refreshToken';
+const COLL_NAME = 'refreshToken';
 const refreshTokenModel = {
     addToken: async ({ token, userId, expiresAt, createdAt }) => {
         const userObjId = sanitizeId(userId);
@@ -18,7 +18,7 @@ const refreshTokenModel = {
              * @type {import('mongodb').Db}
              */
             const db = await getDb();
-            await db.collection(rtCollectName).insertOne({
+            await db.collection(COLL_NAME).insertOne({
                 token,
                 userId: userObjId,
                 expiresAt,
@@ -41,7 +41,7 @@ const refreshTokenModel = {
              */
             const db = await getDb();
             const result = await db
-                .collection(rtCollectName)
+                .collection(COLL_NAME)
                 .findOneAndUpdate(
                     { token },
                     { $set: { revoked: true } },
@@ -64,7 +64,7 @@ const refreshTokenModel = {
              */
             const db = await getDb();
             const tokenDocument = await db
-                .collection(rtCollectName)
+                .collection(COLL_NAME)
                 .findOne({ token }, {});
             if (!tokenDocument || tokenDocument.revoked) {
                 return { valid: false, userData: {} };
@@ -83,6 +83,25 @@ const refreshTokenModel = {
                     zipCode: userDoc.zipCode,
                 },
             };
+        } catch (error) {
+            throw await errorHelpers.transformDatabaseError(
+                error,
+                __filename,
+                'refreshTokenModel.addToken',
+            );
+        }
+    },
+
+    removeExpDocs: async () => {
+        try {
+            /**
+             * @type {import('mongodb').Db}
+             */
+            const db = await getDb();
+            const result = await db
+                .collection(COLL_NAME)
+                .deleteMany({ expiresAt: { $lte: new Date() } });
+            return result;
         } catch (error) {
             throw await errorHelpers.transformDatabaseError(
                 error,
