@@ -62,6 +62,7 @@
 
 .modal-container {
   min-height: 70%;
+  height: 60vh;
   background-color: var(--white);
   box-shadow: 0.75em 0.75em 1.75em -0.5em var(--shadow-color);
   display: flex;
@@ -106,14 +107,32 @@
   width: 90%;
 }
 
+.modal-container p {
+  margin: 0.5rem 0;
+}
+
 .modal-container
 .modal-text {
   width: 90%;
   max-width: 90%;
+  height: 100%;
   margin: 0;
   overflow-y: auto;
   padding: 0 0.6rem;
 }
+
+.modal-container
+.modal-text h1 {
+  margin: 0.5rem 0 0 0;
+  font-size: 1.2rem;
+}
+
+.modal-container
+.modal-text ul {
+  margin: 0.2rem 0 0 0;
+  padding-left: 1.5rem;
+}
+
 
 .modal-container
 .modal-text::-webkit-scrollbar-thumb,
@@ -121,14 +140,10 @@
   background-color: transparent;
 }
 
-.modal-container p {
-  margin-top: 0.5rem;
-}
-
 .modal-container
 .modal-got-it-button {
   width: 50%;
-  height: 5vh;
+  height: 7vh;
   border-radius: 10rem;
   border: none;
   color: var(--white);
