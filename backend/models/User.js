@@ -9,6 +9,8 @@ import sanitizeId from './helpers/sanitizeId.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
+const { NODE_ENV } = process.env;
+
 const collName = 'users';
 const userModel = {
     findByEmail: async (email) => {
@@ -97,7 +99,7 @@ const userModel = {
                 1,
             )}`,
             zipCode: trimmedZipCode,
-            status: 'pending',
+            status: NODE_ENV === 'dev' ? 'verified' : 'pending',
             verificationToken: '',
         };
 
