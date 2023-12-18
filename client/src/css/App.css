@@ -87,10 +87,8 @@
 
 .lower-buttons button:hover {
   cursor: pointer;
-  background-color: var(--main-green);
-  color: var(--white);
+  border: solid var(--main-green) 0.1rem;
 	box-shadow: 0.25em 0.25em .75em -.5em var(--shadow-color);
-  font-weight: bold;
 }
 
 .lower-buttons
