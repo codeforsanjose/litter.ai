@@ -3,7 +3,7 @@ import { PiFlowerTulipThin } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 import '../css/Landing.css';
 
-export default function LandingPage() {
+export default function LandingPage({ user }) {
   return (
     <>
       <div className="landing-container main-container">
@@ -19,17 +19,22 @@ export default function LandingPage() {
                 Capture Picture
               </button>
             </Link>
-            <Link to="/register">
-              <button type="button" className="landing-register-button">
-                Sign Up
-              </button>
-            </Link>
-            <div className="landing-login-text">
-              <p>Already have an account?</p>
-              <Link to="/login">
-                Log in
+            { !user
+            && (
+            <>
+              <Link to="/register">
+                <button type="button" className="landing-register-button">
+                  Sign Up
+                </button>
               </Link>
-            </div>
+              <div className="landing-login-text">
+                <p>Already have an account?</p>
+                <Link to="/login">
+                  Log in
+                </Link>
+              </div>
+            </>
+            )}
           </div>
         </div>
       </div>

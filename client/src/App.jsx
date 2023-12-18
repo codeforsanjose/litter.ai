@@ -29,7 +29,7 @@ export default function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage user={user} />} />
           <Route path="/capture" element={<CameraCapture />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/profile" element={<Profile user={user} setUser={setUser} />} />

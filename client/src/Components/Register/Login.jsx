@@ -56,6 +56,7 @@ export default function Login({ user, setUser }) {
         <button type="button" onClick={handleCheck}>Test Login Data</button>
         <button type="button" onClick={async () => { await fetchLogOut(); await setUser(null); }}>Log out</button>
         <Link to="/leaderboard"><button type="button">Leaderboard</button></Link>
+        <Link to="/"><button type="button">Home</button></Link>
         <Link to="/profile"><button type="button">Profile</button></Link>
       </form>
     </div>
