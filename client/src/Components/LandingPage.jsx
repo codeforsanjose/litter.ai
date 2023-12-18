@@ -1,12 +1,12 @@
 import React from 'react';
-import { TbWorldHeart } from 'react-icons/tb';
+import { PiFlowerTulipThin } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 import '../css/Landing.css';
 
 export default function LandingPage() {
   return (
     <div className="landing-container main-container">
-      <TbWorldHeart className="landing-logo" />
+      <PiFlowerTulipThin className="landing-logo" />
       <div className="landing-bottom-section">
         <div className="landing-text">
           <h1>Welcome to LitterSort</h1>
@@ -19,7 +19,7 @@ export default function LandingPage() {
             </button>
           </Link>
           <Link to="/register">
-            <button type="button">
+            <button type="button" className="landing-register-button">
               Sign Up
             </button>
           </Link>

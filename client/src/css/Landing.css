@@ -5,25 +5,48 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  background-color: var(--main-green-half);
 }
 
 .landing-container
 .landing-logo {
-  font-size: 15rem;
-  margin-top: 10rem;
-  color: var(--main-green);
+  font-size: 11rem;
+  margin-top: 8rem;
+  color: var(--white);
 }
 
 .landing-container
 .landing-bottom-section
 .landing-text {
   text-align: center;
+  color: var(--white);
+  margin-bottom: 3rem;
 }
 
 .landing-container
 .landing-bottom-section
 .landing-text h1 {
   font-size: 1.5rem;
+}
+
+.landing-container
+.landing-bottom-section
+.landing-text p {
+  font-weight: 200;
+  font-size: 0.8rem;
+}
+
+.landing-container
+.landing-bg-circle {
+  width: 30%;
+  height: 30%;
+  border-radius: 100rem;
+  background-color: var(--main-green);
+}
+
+.landing-container
+.landing-bottom-section {
+  margin-bottom: 3.5rem;
 }
 
 .landing-container
@@ -37,11 +60,26 @@
 .landing-container
 .landing-bottom-section
 .landing-buttons
+.landing-capture-button:hover {
+  border: solid var(--white) 0.01rem;
+}
+
+.landing-container
+.landing-bottom-section
+.landing-buttons
+.landing-register-button {
+  color: var(--main-green);
+}
+
+.landing-container
+.landing-bottom-section
+.landing-buttons
 .landing-login-text {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
 }
 
 .landing-container
@@ -49,6 +87,9 @@
 .landing-buttons
 .landing-login-text p {
   margin: 1rem 0 0 0;
+  color: var(--white);
+  font-weight: 300;
+  font-size: 0.9rem;
 }
 
 .landing-container
@@ -56,9 +97,8 @@
 .landing-buttons
 .landing-login-text a {
   font-size: 0.8rem;
-  color: var(--main-green);
+  color: var(--lb-gray);
   text-decoration: none;
-  margin-bottom: 1.5rem;
 }
 
 .landing-container
