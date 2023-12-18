@@ -19,22 +19,34 @@ export default function LandingPage({ user }) {
                 Capture Picture
               </button>
             </Link>
-            { !user
-            && (
-            <>
-              <Link to="/register">
-                <button type="button" className="landing-register-button">
-                  Sign Up
-                </button>
-              </Link>
-              <div className="landing-login-text">
-                <p>Already have an account?</p>
-                <Link to="/login">
-                  Log in
+            <Link to="/leaderboard">
+              <button type="button" className="landing-secondary-button">
+                Leaderboard
+              </button>
+            </Link>
+            { user
+              ? (
+                <Link to="/profile">
+                  <button type="button" className="landing-secondary-button">
+                    Profile
+                  </button>
                 </Link>
-              </div>
-            </>
-            )}
+              )
+              : (
+                <>
+                  <Link to="/register">
+                    <button type="button" className="landing-secondary-button">
+                      Sign Up
+                    </button>
+                  </Link>
+                  <div className="landing-login-text">
+                    <p>Already have an account?</p>
+                    <Link to="/login">
+                      Log in
+                    </Link>
+                  </div>
+                </>
+              )}
           </div>
         </div>
       </div>

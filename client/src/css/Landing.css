@@ -60,14 +60,14 @@
 .landing-container
 .landing-bottom-section
 .landing-buttons
-.landing-register-button:hover {
+.landing-secondary-button:hover {
   border: solid var(--white) 0.01rem;
 }
 
 .landing-container
 .landing-bottom-section
 .landing-buttons
-.landing-register-button {
+.landing-secondary-button {
   background-color: var(--main-green-half);;
   color: var(--white);
 }
