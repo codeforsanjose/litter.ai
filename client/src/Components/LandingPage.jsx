@@ -9,8 +9,8 @@ export default function LandingPage() {
       <TbWorldHeart className="landing-logo" />
       <div className="landing-bottom-section">
         <div className="landing-text">
-          <h1>Welcome to Litter.ai</h1>
-          <p>With just a click, sort your garbage and save the world.</p>
+          <h1>Welcome to LitterSort</h1>
+          <p>With just a photo, sort your garbage and save the world.</p>
         </div>
         <div className="landing-buttons lower-buttons">
           <Link to="/capture">
@@ -23,12 +23,12 @@ export default function LandingPage() {
               Sign Up
             </button>
           </Link>
-          <p>Already have an account?</p>
-          <Link to="/login">
-            <a href="/login">
+          <div className="landing-login-text">
+            <p>Already have an account?</p>
+            <Link to="/login">
               Log in
-            </a>
-          </Link>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

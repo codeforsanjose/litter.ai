@@ -31,6 +31,41 @@
 .landing-buttons
 .landing-capture-button {
   background-color: var(--main-green-half);
+  color: var(--white);
+}
+
+.landing-container
+.landing-bottom-section
+.landing-buttons
+.landing-login-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing-container
+.landing-bottom-section
+.landing-buttons
+.landing-login-text p {
+  margin: 1rem 0 0 0;
+}
+
+.landing-container
+.landing-bottom-section
+.landing-buttons
+.landing-login-text a {
+  font-size: 0.8rem;
+  color: var(--main-green);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+}
+
+.landing-container
+.landing-bottom-section
+.landing-buttons
+.landing-login-text a:hover {
+  color: var(--sec-green);
 }
 
 /* Phones */
