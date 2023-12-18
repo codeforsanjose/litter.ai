@@ -1,3 +1,13 @@
+.landing-full-bg {
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  max-height: 100%;
+  background-color: var(--main-green-half);
+  z-index: -1;
+  grid-area: 1 / 1 / span 2 / span 10;
+}
+
 .landing-container {
   height: 100vh;
   width: 100%;
@@ -5,7 +15,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--main-green-half);
 }
 
 .landing-container
