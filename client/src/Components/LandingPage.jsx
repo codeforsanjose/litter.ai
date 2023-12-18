@@ -7,18 +7,22 @@ export default function LandingPage({ user }) {
   return (
     <>
       <div className="landing-container main-container">
-        <PiFlowerTulipThin className="landing-logo" />
-        <div className="landing-bottom-section">
+        <div className="landing-top-section">
+          <PiFlowerTulipThin className="landing-logo" />
           <div className="landing-text">
             <h1>Welcome to LitterSort</h1>
             <p>With just a photo, sort your garbage and save the world.</p>
           </div>
-          <div className="landing-buttons lower-buttons">
+          <div className="landing-top-buttons lower-buttons">
             <Link to="/capture">
               <button type="button" className="landing-capture-button">
                 Capture Picture
               </button>
             </Link>
+          </div>
+        </div>
+        <div className="landing-bottom-section">
+          <div className="landing-bottom-buttons lower-buttons">
             <Link to="/leaderboard">
               <button type="button" className="landing-secondary-button">
                 Leaderboard

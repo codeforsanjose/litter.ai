@@ -9,64 +9,71 @@
 }
 
 .landing-container
+.landing-top-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12rem;
+}
+
+.landing-container
+.landing-top-section
 .landing-logo {
   font-size: 11rem;
-  margin-top: 8rem;
   color: var(--white);
 }
 
 .landing-container
-.landing-bottom-section
+.landing-top-section
 .landing-text {
   text-align: center;
   color: var(--white);
-  margin-bottom: 3rem;
+  margin-top: 1rem;
 }
 
 .landing-container
-.landing-bottom-section
+.landing-top-section
 .landing-text h1 {
   font-size: 1.5rem;
 }
 
 .landing-container
-.landing-bottom-section
+.landing-top-section
 .landing-text p {
   font-weight: 200;
   font-size: 0.8rem;
 }
 
 .landing-container
-.landing-bg-circle {
-  width: 30%;
-  height: 30%;
-  border-radius: 100rem;
-  background-color: var(--main-green);
+.landing-top-section
+.landing-capture-button {
+  width: 40vw;
 }
 
 .landing-container
-.landing-bottom-section {
-  margin-bottom: 7.5rem;
-}
-
-.landing-container
-.landing-bottom-section
-.landing-buttons
+.landing-top-section
+.landing-bottom-buttons
 .landing-capture-button {
   background-color: var(--white);
   color: var(--main-green);
 }
 
 .landing-container
+.landing-bottom-section {
+  margin-bottom: 2.5rem;
+}
+
+.landing-container
 .landing-bottom-section
-.landing-buttons
+.landing-bottom-buttons
 .landing-secondary-button:hover {
   border: solid var(--white) 0.01rem;
 }
 
 .landing-container
 .landing-bottom-section
-.landing-buttons
+.landing-bottom-buttons
 .landing-secondary-button {
   background-color: var(--main-green-half);;
   color: var(--white);
@@ -74,7 +81,7 @@
 
 .landing-container
 .landing-bottom-section
-.landing-buttons
+.landing-bottom-buttons
 .landing-login-text {
   display: flex;
   flex-direction: column;
@@ -85,7 +92,7 @@
 
 .landing-container
 .landing-bottom-section
-.landing-buttons
+.landing-bottom-buttons
 .landing-login-text p {
   margin: 1rem 0 0 0;
   color: var(--white);
@@ -95,7 +102,7 @@
 
 .landing-container
 .landing-bottom-section
-.landing-buttons
+.landing-bottom-buttons
 .landing-login-text a {
   font-size: 0.8rem;
   color: var(--lb-gray);
@@ -104,7 +111,7 @@
 
 .landing-container
 .landing-bottom-section
-.landing-buttons
+.landing-bottom-buttons
 .landing-login-text a:hover {
   color: var(--sec-green);
 }
@@ -127,10 +134,18 @@
 
 /* Portrait tablets and large phones */
 @media only screen and (min-width: 601px) and (max-width: 992px) {
-
+  .landing-container
+  .landing-top-section
+  .landing-capture-button {
+    width: 25vw;
+  }
 }
 
 /* Small laptops and desktops */
 @media only screen and (min-width: 993px) {
-
+  .landing-container
+  .landing-top-section
+  .landing-capture-button {
+    width: 13vw;
+  }
 }
