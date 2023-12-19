@@ -27,8 +27,8 @@ export default function CameraCapture() {
       {image
         ? (
           <>
-            <div className="capture-image-preview">
-              <img alt="" src={image.imagePreview} />
+            <div className="capture-image-wrapper">
+              <img alt="" src={image.imagePreview} className="capture-image" />
             </div>
             <button type="button" onClick={handlePhotoSubmit}>Submit photo</button>
           </>
