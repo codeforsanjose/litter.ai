@@ -57,7 +57,8 @@ export default function Leaderboard() {
             <th scope="col">Name</th>
             <th scope="col">
               <Dropdown
-                setCategory={setDropdownSelection}
+                setLBCategory={setDropdownSelection}
+                defaultValue={null}
                 aria-label="Dropdown"
               />
             </th>

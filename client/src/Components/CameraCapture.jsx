@@ -7,6 +7,7 @@ import '../css/Capture.css';
 export default function CameraCapture() {
   const [image, setImage] = useState(null);
   const [imageSubmitted, setImageSubmitted] = useState(true);
+  const [imageCategory, setImageCategory] = useState('glass');
   const captureRef = useRef(null);
 
   const removePhoto = () => {
@@ -48,8 +49,13 @@ export default function CameraCapture() {
               ? (
                 <div>
                   <h1>Help us classify</h1>
-                  <p>Is this a BLANK</p>
-                  <Dropdown />
+                  <p>
+                    Is this
+                  </p>
+                  <Dropdown
+                    setImageCategory={setImageCategory}
+                    imageCategory={imageCategory}
+                  />
                 </div>
               )
               : (
