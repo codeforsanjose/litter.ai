@@ -7,6 +7,10 @@ export default function CameraCapture() {
   const [image, setImage] = useState(null);
   const captureRef = useRef(null);
 
+  const removePhoto = () => {
+    setImage(null);
+  };
+
   const openCamera = () => {
     captureRef.current.click();
   };
@@ -28,9 +32,23 @@ export default function CameraCapture() {
         ? (
           <>
             <div className="capture-image-wrapper">
+              <button
+                type="button"
+                className="image-x-button"
+                onClick={removePhoto}
+              >
+                &#x2715;
+              </button>
               <img alt="" src={image.imagePreview} className="capture-image" />
             </div>
-            <button type="button" onClick={handlePhotoSubmit}>Submit photo</button>
+            <div className="capture-submit-button lower-buttons">
+              <button
+                type="button"
+                onClick={handlePhotoSubmit}
+              >
+                Submit photo
+              </button>
+            </div>
           </>
         )
         : (

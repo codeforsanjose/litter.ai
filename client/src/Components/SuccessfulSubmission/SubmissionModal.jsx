@@ -15,7 +15,7 @@ export default function SubmissionModal({
           className="modal-x-button"
           onClick={() => { setModalOpen(!modalOpen); }}
         >
-          X
+          &#x2715;
         </button>
       </div>
       <hr />
