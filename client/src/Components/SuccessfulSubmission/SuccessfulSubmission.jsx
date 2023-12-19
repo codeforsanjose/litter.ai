@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import { PiPlantBold } from 'react-icons/pi';
 import { FaRecycle, FaRegTrashAlt } from 'react-icons/fa';
 import SubmissionModal from './SubmissionModal';
+import categoryData from '../../MockData/mockCategoryData';
 import '../../css/SuccessfulSubmission.css';
 
-export default function SuccessfulSubmission({ type }) {
+export default function SuccessfulSubmission() {
+  const { cat } = useParams();
+  const [type] = useState(categoryData[cat]);
   const [category] = useState(type.category);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -15,6 +18,7 @@ export default function SuccessfulSubmission({ type }) {
       <p key={uuid()}>{line}</p>
     ))
   );
+
   return (
     <div className="category-container main-container">
       <div className="category-wrapper">
