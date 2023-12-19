@@ -10,12 +10,12 @@ export default function CameraCapture() {
   const [imageCategory, setImageCategory] = useState('glass');
   const captureRef = useRef(null);
 
-  const removePhoto = () => {
-    setImage(null);
-  };
-
   const openCamera = () => {
     captureRef.current.click();
+  };
+
+  const removePhoto = () => {
+    setImage(null);
   };
 
   const handleImage = (e) => {
@@ -25,6 +25,7 @@ export default function CameraCapture() {
       imageFile: e.target.files[0],
     });
   };
+
   const handlePhotoSubmit = () => {
     console.log('Image Data: ', image);
     setImageSubmitted(true);
@@ -47,15 +48,23 @@ export default function CameraCapture() {
             </div>
             {imageSubmitted
               ? (
-                <div>
+                <div className="capture-classify">
                   <h1>Help us classify</h1>
+                  <div className="capture-dropdown">
+                    <Dropdown
+                      setImageCategory={setImageCategory}
+                      imageCategory={imageCategory}
+                    />
+                  </div>
                   <p>
-                    Is this
+                    Is this the accurate? If it is not,
+                    please select the correct category from the dropdown.
                   </p>
-                  <Dropdown
-                    setImageCategory={setImageCategory}
-                    imageCategory={imageCategory}
-                  />
+                  <Link to="/success" state={{ type: imageCategory }}>
+                    <button type="button">
+                      Confirm
+                    </button>
+                  </Link>
                 </div>
               )
               : (
