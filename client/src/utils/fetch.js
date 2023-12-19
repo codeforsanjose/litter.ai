@@ -11,14 +11,7 @@ export default async function fetchData(path, method, body) {
     },
   };
   // Leaderboard queries for the user's stats if they are logged in
-  if (token) {
-    properties = {
-      ...properties,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-  }
+  if (token) { properties.headers.Authorization = `Bearer ${token}`; }
   // Body is the email and password for logging in
   if (body) { properties = { ...properties, body: JSON.stringify(body) }; }
 
