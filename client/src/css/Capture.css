@@ -7,6 +7,16 @@
   justify-content: space-between;
 }
 
+/* Image uploaded */
+
+.capture-container
+.capture-image-preview {
+  width: 100%;
+  height: 50dvh;
+}
+
+/* No image uploaded */
+
 .capture-container
 .capture-top-section {
   display: flex;
