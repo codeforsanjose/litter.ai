@@ -48,6 +48,7 @@
 .landing-container
 .landing-top-section
 .landing-capture-button {
+  color: var(--black);
   width: 40dvw;
 }
 

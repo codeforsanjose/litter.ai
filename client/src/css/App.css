@@ -2,6 +2,7 @@
   --main-green: #076B49;
   --main-green-half: #076b49c9;
   --sec-green: #74CC67;
+  --black: #000;
   --white: #FFF;
   --gray: #ededed;
   --lb-gray: #E0E9E6;
@@ -83,6 +84,7 @@
   border: none;
   border-radius: 10rem;
   font-size: 1rem;
+  color: var(--black);
 }
 
 .lower-buttons button:hover {
