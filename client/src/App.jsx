@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 import categoryData from './MockData/mockCategoryData';
 import LandingPage from './components/LandingPage';
-import CameraCapture from './components/CameraCapture';
+import CameraCapture from './components/CameraCapture/CameraCapture';
 import Leaderboard from './components/Leaderboard/Leaderboard';
 import Profile from './components/Profile/Profile';
 import SuccessfulSubmission from './components/SuccessfulSubmission/SuccessfulSubmission';
