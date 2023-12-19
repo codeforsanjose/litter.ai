@@ -60,7 +60,7 @@ export default function CameraCapture() {
                     Is this the accurate? If it is not,
                     please select the correct category from the dropdown.
                   </p>
-                  <Link to="/success" state={{ type: imageCategory }}>
+                  <Link to={`/success/${imageCategory}`}>
                     <button type="button">
                       Confirm
                     </button>
