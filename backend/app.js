@@ -1,8 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
 import morgan from 'morgan';
-import { fileURLToPath } from 'url';
 import cors from 'cors';
+import { fileURLToPath } from 'url';
 
 import { getDb, mongoConnect } from './DB/db-connection.js';
 import routes from './routes/index.js';
@@ -16,7 +16,7 @@ const { JWT_SECRET, MONGO_URI, SERVER_PORT, NODE_ENV } = process.env;
 
 const __filename = fileURLToPath(import.meta.url);
 
-const PORT = SERVER_PORT || 3000;
+const PORT = SERVER_PORT || 3001;
 
 const startServer = async () => {
     try {
@@ -25,6 +25,7 @@ const startServer = async () => {
 
         app.use(cors());
         app.use(morgan('dev'));
+        app.use(cors());
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
 

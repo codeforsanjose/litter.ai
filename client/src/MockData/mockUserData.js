@@ -1,20 +1,20 @@
 export const userPictureData = [
   {
-    _id: 1,
-    userID: 1,
-    username: 'Reese Ikler',
+    _id: '653c27770ea9a2e7ee210348',
+    userID: '653c27770ea9a2e7ee210347',
+    username: 'briana30',
     pictureData: {
-      paper: 1,
-      cardboard: 34,
-      compost: 5,
-      metal: 3,
-      glass: 2,
-      plastic: 6,
-      trash: 4,
-      other: 3,
-      unknown: 9,
+      paper: 1976,
+      cardboard: 1914,
+      compost: 1996,
+      metal: 1814,
+      glass: 1909,
+      plastic: 1922,
+      trash: 1916,
+      other: 1848,
+      unknown: 0,
     },
-    totalUploads: 67
+    totalUploads: 15295,
   },
   {
     _id: 2,
@@ -31,7 +31,7 @@ export const userPictureData = [
       other: 3,
       unknown: 1,
     },
-    totalUploads: 52
+    totalUploads: 52,
   },
   {
     _id: 3,
@@ -48,7 +48,7 @@ export const userPictureData = [
       other: 9,
       unknown: 3,
     },
-    totalUploads: 65
+    totalUploads: 65,
   },
   {
     _id: 4,
@@ -65,7 +65,7 @@ export const userPictureData = [
       other: 31,
       unknown: 4,
     },
-    totalUploads: 185
+    totalUploads: 185,
   },
   {
     _id: 5,
@@ -82,7 +82,7 @@ export const userPictureData = [
       other: 0,
       unknown: 2,
     },
-    totalUploads: 47
+    totalUploads: 47,
   },
   {
     _id: 6,
@@ -99,7 +99,7 @@ export const userPictureData = [
       other: 2,
       unknown: 0,
     },
-    totalUploads: 9
+    totalUploads: 9,
   },
   {
     _id: 7,
@@ -116,7 +116,7 @@ export const userPictureData = [
       other: 2,
       unknown: 3,
     },
-    totalUploads: 36
+    totalUploads: 36,
   },
   {
     _id: 8,
@@ -133,7 +133,7 @@ export const userPictureData = [
       other: 101,
       unknown: 132,
     },
-    totalUploads: 979
+    totalUploads: 979,
   },
   {
     _id: 9,
@@ -150,7 +150,7 @@ export const userPictureData = [
       other: 80,
       unknown: 22,
     },
-    totalUploads: 578
+    totalUploads: 578,
   },
   {
     _id: 10,
@@ -167,7 +167,7 @@ export const userPictureData = [
       other: 81,
       unknown: 58,
     },
-    totalUploads: 432
+    totalUploads: 432,
   },
   {
     _id: 11,
@@ -184,7 +184,7 @@ export const userPictureData = [
       other: 10,
       unknown: 3,
     },
-    totalUploads: 71
+    totalUploads: 71,
   },
   {
     _id: 12,
@@ -201,16 +201,16 @@ export const userPictureData = [
       other: 10,
       unknown: 12,
     },
-    totalUploads: 129
+    totalUploads: 129,
   },
-]
+];
 
 export const userData = [
   {
     _id: 1,
-    email: 'email@email.com',
+    email: 'reesespeaches@email.com',
     password: 'password',
-    username: 'Reese Ikler',
+    username: 'reeseoroni',
     firstName: 'Reese',
     lastName: 'Ikler',
   },
@@ -301,5 +301,5 @@ export const userData = [
     username: 'Litterton Steele',
     firstName: 'Litterton',
     lastName: 'Steele',
-  }
-]
+  },
+];

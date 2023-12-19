@@ -1,14 +1,16 @@
 .lb-container {
-  height: 80vh;
+  height: 90vh;
   width: 42rem;
   max-width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 10%;
 }
 
-.lb-container .lb-user-stats {
+.lb-container
+.lb-user-stats {
   width: 80%;
   height: 5vh;
   display: flex;
@@ -17,9 +19,11 @@
   border: 0.2rem var(--main-green) solid;
   border-radius: 5rem;
   margin-bottom: 2rem;
+  text-transform: capitalize;
 }
 
-.lb-container .lb-table {
+.lb-container
+.lb-table {
   width: 95%;
   height: 60vh;
   border: 0.15rem var(--main-green) solid;
@@ -27,63 +31,88 @@
   text-align: center;
 }
 
-.lb-container .lb-table tr:nth-of-type(even) {
+.lb-container
+.lb-table tr:nth-of-type(even) {
   background: var(--lb-gray);
 }
 
-.lb-container .lb-table th + th {
+.lb-container
+.lb-table th + th {
   border-left: 0.1rem var(--white)solid;
 }
 
-.lb-container .lb-table td + td {
+.lb-container
+.lb-table td + td {
   border-left: 0.1rem var(--main-green)solid;
 }
 
-.lb-container .lb-table .lb-header {
+.lb-container
+.lb-table
+.lb-header {
   background: var(--main-green);
   color: var(--white);
 }
 
-.lb-container .lb-table .lb-header th:nth-child(1) {
+.lb-container
+.lb-table
+.lb-header th:nth-child(1) {
   width: 15%;
 }
 
-.lb-container .lb-table .lb-header th:nth-child(2) {
+.lb-container
+.lb-table
+.lb-header th:nth-child(2) {
   height: 2.5rem;
   width: 20rem;
   text-align: left;
   padding-left: 1rem;
 }
 
-.lb-container .lb-table .lb-header th:nth-child(3) {
+.lb-container
+.lb-table
+.lb-header th:nth-child(3) {
   width: 25%;
 }
 
-.lb-container .lb-name {
+.lb-container
+.lb-name {
   text-align: left;
   padding-left: 1rem;
 }
 
-@media only screen and (max-width: 767px) {
-  .lb-container {
-    grid-area: 5 / 1 / span 1 / span 1;
-  }
+.lb-container
+.lb-buttons {
+  margin-top: 10%;
+}
 
-  .lb-container .lb-table .lb-header {
+@media only screen and (max-width: 600px)  {
+  .lb-container
+  .lb-table
+  .lb-header {
     font-size: 0.7rem;
   }
 
-  .lb-container .lb-table .lb-header th:nth-child(3) {
+  .lb-container
+  .lb-table
+  .lb-header th:nth-child(3) {
     width: 30%;
   }
 
-  .lb-container .lb-table tbody {
+  .lb-container
+  .lb-table tbody {
     font-size: 0.8rem;
+  }
+
+  .lb-container
+  .profile-buttons button {
+  width: 85vw;
   }
 }
 
-@media only screen and (min-width: 768px) {
-  .lb-container {
-    grid-area: 5 / 2 / span 1 / span 1;
-  }
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+
+}
+
+@media only screen and (min-width: 993px) {
+
 }
