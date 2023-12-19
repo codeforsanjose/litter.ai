@@ -1,0 +1,44 @@
+.capture-container {
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.capture-container
+.capture-top-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15rem;
+}
+
+.capture-container
+.capture-top-section
+.capture-camera-icon {
+  font-size: 5rem;
+  color: var(--main-green);
+}
+
+.capture-container
+.capture-top-section
+.capture-camera-icon:hover {
+  cursor: pointer;
+  font-size: 5.2rem;
+}
+
+.capture-container
+.capture-top-section h1 {
+  font-size: 1.2rem;
+  margin: 2rem 0 0 0;
+}
+
+.capture-container
+.capture-top-section p {
+  width: 60%;
+  text-align: center;
+  font-size: 0.8rem;
+  margin: 0.5rem 0 0 0;
+}
