@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { IoCameraOutline } from 'react-icons/io5';
-import Dropdown from './Capture-Dropdown';
-import '../../css/Capture.css';
+import Dropdown from './Dropdown';
+import '../css/Capture.css';
 
 export default function CameraCapture() {
   const [image, setImage] = useState(null);

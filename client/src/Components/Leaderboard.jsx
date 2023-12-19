@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Dropdown from './Dropdown';
-import { fetchLeaderboardData } from '../../utils/fetchUserData';
-import '../../css/Leaderboard.css';
+import { fetchLeaderboardData } from '../utils/fetchUserData';
+import '../css/Leaderboard.css';
 
 export default function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = useState([]);
