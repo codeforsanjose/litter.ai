@@ -21,9 +21,9 @@
 }
 
 .App {
-  width: 100vw;
+  width: 100dvw;
   max-width: 100%;
-  height: 100vh;
+  height: 100dvh;
   display: grid;
   grid-template-rows: repeat(10, 1fr);
   justify-items: center;
@@ -42,7 +42,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,9 +76,9 @@
 }
 
 .lower-buttons button {
-  width: 85vw;
+  width: 85dvw;
   max-width: 653px;
-  height: 6vh;
+  height: 6dvh;
   margin: 0.3rem 0;
   border: none;
   border-radius: 10rem;
@@ -117,6 +117,6 @@
   }
 
   .lower-buttons button {
-    width: 30vw;
+    width: 30dvw;
   }
 }
