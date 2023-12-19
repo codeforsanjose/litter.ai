@@ -23,6 +23,7 @@ const startServer = async () => {
         await mongoConnect();
         const db = await getDb();
 
+        app.use(cors());
         app.use(morgan('dev'));
         app.use(cors());
         app.use(express.json());

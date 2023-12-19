@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
-import { fetchLogin, fetchLogOut } from '../../utils/fetchUserData';
+import { fetchLogin, fetchLogOut } from '../utils/fetchUserData';
 
 export default function Login({ user, setUser }) {
   const [loginData, setLoginData] = useState({

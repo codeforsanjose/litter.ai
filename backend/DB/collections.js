@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 let userCollection;
 let uploadCollection;
 let categoryCountCollection;
-let blacklistCollection;
+let blockListCollection;
 
 const getCollection = async (collectionName, collection) => {
     if (collection) {
@@ -40,7 +40,7 @@ export const getCatCountCollection = await getCollection(
     'categoryCounts',
     categoryCountCollection,
 );
-export const getBlacklistCollection = await getCollection(
-    'blacklistTokens',
-    blacklistCollection,
+export const getBlockListCollection = await getCollection(
+    'blockListTokens',
+    blockListCollection,
 );

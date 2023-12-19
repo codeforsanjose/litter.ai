@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import { fetchProfileData, fetchLogOut } from '../../utils/fetchUserData';
 import '../../css/Profile.css';
@@ -16,9 +15,8 @@ export default function Profile({ user, setUser }) {
   // Authenticates user and fetches user's waste statistics
   useEffect(() => {
     if (user) {
-      const token = Cookies.get('authToken');
       const fetchData = async () => {
-        const userData = await fetchProfileData(user.toLowerCase(), token);
+        const userData = await fetchProfileData(user.toLowerCase());
         setUserStatisticData(userData);
       };
       fetchData();
