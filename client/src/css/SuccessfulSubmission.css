@@ -98,6 +98,7 @@
   background: none;
   font-size: 1rem;
   font-weight: bold;
+  color: var(--black);
 }
 
 .modal-container

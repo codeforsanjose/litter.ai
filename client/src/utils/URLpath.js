@@ -1,6 +1,7 @@
 export default function URLpath(endpoint, extension) {
-  const link = 'http://localhost:3001';
+  const deployed = 'http://52.26.157.53/litterai';
+  // const local = 'http://localhost:3001';
   return extension
-    ? `${link}/${endpoint}/${extension}`
-    : `${link}/${endpoint}`;
+    ? `${deployed}/${endpoint}/${extension}`
+    : `${deployed}/${endpoint}`;
 }

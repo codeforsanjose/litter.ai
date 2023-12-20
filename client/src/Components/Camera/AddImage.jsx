@@ -35,7 +35,7 @@ export default function AddImage({ setImage }) {
         <div className="capture-icon-bg" />
         <h1>Take a photo of the item</h1>
         <p>
-          <span>Click on the camera to open up your device&#x27;s camera.</span>
+          <span>Click on the icon to open up your device&#x27;s camera.</span>
           <br />
           <span>Please take the photo in portrait mode for best results.</span>
         </p>
