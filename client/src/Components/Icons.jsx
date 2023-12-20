@@ -11,7 +11,7 @@ import { CiGlass } from 'react-icons/ci';
 export default function Icons({ name, classname }) {
   return (
     <>
-      {name === 'plastic' && <TbBottle className={classname} />}
+      {name === 'plastic' && <TbBottle className={classname} data-testid="plastic-icon" />}
       {name === 'paper' && <IoMdPaper className={classname} />}
       {name === 'cardboard' && <BsBoxSeam className={classname} />}
       {name === 'compost' && <PiPlant className={classname} />}

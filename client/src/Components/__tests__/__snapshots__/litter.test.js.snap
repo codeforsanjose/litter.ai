@@ -1,240 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Home page Landing page matches the current snapshot 1`] = `
-<div>
-  <h1>
-    Welcome to Litter.ai
-  </h1>
-  <p>
-    With just a click, sort your garbage and save the world
-  </p>
-  <div
-    style={
-      Object {
-        "bottom": "20px",
-        "left": "50%",
-        "position": "fixed",
-        "transform": "translateX(-50%)",
-        "width": "200px",
-      }
-    }
-  >
-    <button
-      type="button"
-    >
-      Learn More
-    </button>
-    <a
-      href="/capture"
-      onClick={[Function]}
-    >
-      <button
-        type="button"
-      >
-        Capture Image
-      </button>
-    </a>
-  </div>
-</div>
-`;
-
-exports[`Leaderboard component Leaderboard matches the current snapshot 1`] = `
-<div
-  className="lb-container main-container"
->
-  <h1>
-    Leaderboard
-  </h1>
-  <table
-    className="lb-table"
-  >
-    <thead>
-      <tr
-        className="lb-header"
-      >
-        <th
-          scope="col"
-        >
-          Rank
-        </th>
-        <th
-          scope="col"
-        >
-          Name
-        </th>
-        <th
-          scope="col"
-        >
-          <div
-            className=" css-b62m3t-container"
-            onKeyDown={[Function]}
-          >
-            <span
-              className="css-1f43avz-a11yText-A11yText"
-              id="react-select-2-live-region"
-            />
-            <span
-              aria-atomic="false"
-              aria-live="polite"
-              aria-relevant="additions text"
-              className="css-1f43avz-a11yText-A11yText"
-              role="log"
-            />
-            <div
-              className=" css-jc6pza-control"
-              onMouseDown={[Function]}
-              onTouchEnd={[Function]}
-            >
-              <div
-                className=" css-1fdsijx-ValueContainer"
-              >
-                <div
-                  className=" css-ayhps2-singleValue"
-                >
-                  Total
-                </div>
-                <input
-                  aria-activedescendant=""
-                  aria-autocomplete="list"
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-readonly={true}
-                  className="css-mohuvp-dummyInput-DummyInput"
-                  disabled={false}
-                  id="react-select-2-input"
-                  inputMode="none"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  role="combobox"
-                  tabIndex={0}
-                  value=""
-                />
-              </div>
-              <div
-                className=" css-1hb7zxy-IndicatorsContainer"
-              >
-                <span
-                  className=" css-1u9des2-indicatorSeparator"
-                />
-                <div
-                  aria-hidden="true"
-                  className=" css-1s7cnte-indicatorContainer"
-                  onMouseDown={[Function]}
-                  onTouchEnd={[Function]}
-                >
-                  <svg
-                    aria-hidden="true"
-                    className="css-tj5bde-Svg"
-                    focusable="false"
-                    height={20}
-                    viewBox="0 0 20 20"
-                    width={20}
-                  >
-                    <path
-                      d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </th>
-      </tr>
-    </thead>
-    <tbody />
-  </table>
-  <div
-    className="lb-buttons lower-buttons"
-  >
-    <a
-      href="/capture"
-      onClick={[Function]}
-    >
-      <button
-        type="button"
-      >
-        Capture Picture
-      </button>
-    </a>
-    <a
-      href="/"
-      onClick={[Function]}
-    >
-      <button
-        className="button-home"
-        type="button"
-      >
-        Home
-      </button>
-    </a>
-  </div>
-</div>
-`;
-
-exports[`Profile component with user logged in Profile matches the current snapshot 1`] = `
-<div
-  className="profile-container main-container"
->
-  <div
-    className="profile-login-wrapper"
-  >
-    <div
-      className="profile-login-header"
-    >
-      <h1>
-        Briana30
-      </h1>
-    </div>
-    <div
-      className="profile-logout-button"
-    >
-      <h2>
-        User Status
-      </h2>
-      <button
-        onClick={[Function]}
-        type="button"
-      >
-        Log out
-      </button>
-    </div>
-    <div
-      className="profile-statistics"
-    >
-      <h2>
-        My Waste Statistics
-      </h2>
-    </div>
-    <div
-      className="profile-buttons lower-buttons"
-    >
-      <a
-        href="/capture"
-        onClick={[Function]}
-      >
-        <button
-          type="button"
-        >
-          Capture Picture
-        </button>
-      </a>
-      <a
-        href="/"
-        onClick={[Function]}
-      >
-        <button
-          className="button-home"
-          type="button"
-        >
-          Home
-        </button>
-      </a>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Successful submission page Successful submission page matches the current snapshot 1`] = `
 <div
   className="category-container main-container"
@@ -247,26 +12,39 @@ exports[`Successful submission page Successful submission page matches the curre
     </h4>
     <svg
       className="category-icon"
-      data-testid="recycle-icon"
-      fill="currentColor"
+      data-testid="plastic-icon"
+      fill="none"
       height="1em"
       stroke="currentColor"
-      strokeWidth="0"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
       style={
         Object {
           "color": undefined,
         }
       }
-      viewBox="0 0 512 512"
+      viewBox="0 0 24 24"
       width="1em"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M184.561 261.903c3.232 13.997-12.123 24.635-24.068 17.168l-40.736-25.455-50.867 81.402C55.606 356.273 70.96 384 96.012 384H148c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12H96.115c-75.334 0-121.302-83.048-81.408-146.88l50.822-81.388-40.725-25.448c-12.081-7.547-8.966-25.961 4.879-29.158l110.237-25.45c8.611-1.988 17.201 3.381 19.189 11.99l25.452 110.237zm98.561-182.915l41.289 66.076-40.74 25.457c-12.051 7.528-9 25.953 4.879 29.158l110.237 25.45c8.672 1.999 17.215-3.438 19.189-11.99l25.45-110.237c3.197-13.844-11.99-24.719-24.068-17.168l-40.687 25.424-41.263-66.082c-37.521-60.033-125.209-60.171-162.816 0l-17.963 28.766c-3.51 5.62-1.8 13.021 3.82 16.533l33.919 21.195c5.62 3.512 13.024 1.803 16.536-3.817l17.961-28.743c12.712-20.341 41.973-19.676 54.257-.022zM497.288 301.12l-27.515-44.065c-3.511-5.623-10.916-7.334-16.538-3.821l-33.861 21.159c-5.62 3.512-7.33 10.915-3.818 16.536l27.564 44.112c13.257 21.211-2.057 48.96-27.136 48.96H320V336.02c0-14.213-17.242-21.383-27.313-11.313l-80 79.981c-6.249 6.248-6.249 16.379 0 22.627l80 79.989C302.689 517.308 320 510.3 320 495.989V448h95.88c75.274 0 121.335-82.997 81.408-146.88z"
+        d="M0 0h24v24H0z"
+        fill="none"
+        stroke="none"
+      />
+      <path
+        d="M10 5h4v-2a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v2z"
+      />
+      <path
+        d="M14 3.5c0 1.626 .507 3.212 1.45 4.537l.05 .07a8.093 8.093 0 0 1 1.5 4.694v6.199a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2v-6.2c0 -1.682 .524 -3.322 1.5 -4.693l.05 -.07a7.823 7.823 0 0 0 1.45 -4.537"
+      />
+      <path
+        d="M7 14.803a2.4 2.4 0 0 0 1 -.803a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 1 -.805"
       />
     </svg>
     <h1>
-      Plastic
+      plastic
     </h1>
     <div
       className="category-short-desc"
