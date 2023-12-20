@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
@@ -26,7 +27,7 @@ export default function SuccessfulSubmission() {
   }, [category, navigate]);
 
   return (
-    <div>
+    <>
       {type
       && (
       <div className="category-container main-container">
@@ -75,6 +76,6 @@ export default function SuccessfulSubmission() {
         )}
       </div>
       )}
-    </div>
+    </>
   );
 }

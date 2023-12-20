@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Dropdown from './Dropdown';
@@ -35,51 +36,55 @@ export default function Leaderboard() {
   }, [dropdownSelection]);
 
   return (
-    <div className="lb-container main-container">
-      <h1>Leaderboard</h1>
-      { userRank && (
-      <div className="lb-user-stats">
-        <h3>
-          Your rank:&nbsp;
-          {userRank > 0 ? userRank : 'No photos'}
-        </h3>
-        <h3>
-          {dropdownSelection}
-          :&nbsp;
-          {userItemCount}
-        </h3>
-      </div>
+    <>
+      { leaderboardData.length > 0 && (
+        <div className="lb-container main-container">
+          <h1>Leaderboard</h1>
+          { userRank && (
+          <div className="lb-user-stats">
+            <h3>
+              Your rank:&nbsp;
+              {userRank > 0 ? userRank : 'No photos'}
+            </h3>
+            <h3>
+              {dropdownSelection}
+              :&nbsp;
+              {userItemCount}
+            </h3>
+          </div>
+          )}
+          <table className="lb-table">
+            <thead>
+              <tr className="lb-header">
+                <th scope="col">Rank</th>
+                <th scope="col">Name</th>
+                <th scope="col">
+                  <Dropdown
+                    setLBCategory={setDropdownSelection}
+                    defaultValue={null}
+                    aria-label="Dropdown"
+                  />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaderboardData.map((user, index) => (renderTable(user, index)))}
+            </tbody>
+          </table>
+          <div className="lb-buttons lower-buttons">
+            <Link to="/capture">
+              <button type="button">
+                Capture Picture
+              </button>
+            </Link>
+            <Link to="/">
+              <button className="button-home" type="button">
+                Home
+              </button>
+            </Link>
+          </div>
+        </div>
       )}
-      <table className="lb-table">
-        <thead>
-          <tr className="lb-header">
-            <th scope="col">Rank</th>
-            <th scope="col">Name</th>
-            <th scope="col">
-              <Dropdown
-                setLBCategory={setDropdownSelection}
-                defaultValue={null}
-                aria-label="Dropdown"
-              />
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {leaderboardData.map((user, index) => (renderTable(user, index)))}
-        </tbody>
-      </table>
-      <div className="lb-buttons lower-buttons">
-        <Link to="/capture">
-          <button type="button">
-            Capture Picture
-          </button>
-        </Link>
-        <Link to="/">
-          <button className="button-home" type="button">
-            Home
-          </button>
-        </Link>
-      </div>
-    </div>
+    </>
   );
 }
