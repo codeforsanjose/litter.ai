@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './css/App.css';
 import Cookies from 'js-cookie';
 import {
+  Navigate,
   BrowserRouter as
   Router,
   Routes,
@@ -35,7 +36,8 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login user={user} setUser={setUser} />} />
           <Route path="/success/:category" element={<SuccessfulSubmission />} />
-          <Route path="*" element={<PageNotFound />} />
+          <Route path="/404" element={<PageNotFound />} />
+          <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>
       </Router>
     </div>
