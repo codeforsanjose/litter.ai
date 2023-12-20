@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
-import { PiPlantBold } from 'react-icons/pi';
-import { FaRecycle, FaRegTrashAlt } from 'react-icons/fa';
 import SubmissionModal from './SubmissionModal';
+import Icons from '../Icons';
 import categoryData from '../../MockData/mockCategoryData';
 import '../../css/SuccessfulSubmission.css';
 
 export default function SuccessfulSubmission() {
   const { category } = useParams();
   const [type] = useState(categoryData[category]);
-  const [categoryName] = useState(type.category);
+  const [categoryName] = useState(type.name);
   const [modalOpen, setModalOpen] = useState(false);
 
   const separateString = (text) => (
@@ -19,13 +18,13 @@ export default function SuccessfulSubmission() {
     ))
   );
 
+  console.log('categoryName: ', categoryName);
+
   return (
     <div className="category-container main-container">
       <div className="category-wrapper">
         <h4>{type.category}</h4>
-        {categoryName === 'Recycle' && <FaRecycle className="category-icon" data-testid="recycle-icon" />}
-        {categoryName === 'Trash' && <FaRegTrashAlt className="category-icon" />}
-        {categoryName === 'Compost' && <PiPlantBold className="category-icon" />}
+        <Icons name={categoryName} classname="category-icon" />
         <h1>{type.name}</h1>
         <div className="category-short-desc">{separateString(type.description)}</div>
         <div className="category-buttons lower-buttons">

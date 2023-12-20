@@ -26,6 +26,11 @@
 }
 
 .category-container
+.category-wrapper h1 {
+  text-transform: capitalize;
+}
+
+.category-container
 .category-wrapper
 .category-icon {
   font-size: 10rem;
