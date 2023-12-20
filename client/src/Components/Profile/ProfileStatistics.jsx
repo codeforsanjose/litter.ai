@@ -17,15 +17,15 @@ export default function ProfileStatistics({ user }) {
       <div className="profile-stats-row">
         <div className="profile-stats-left">
           <div className="profile-stats-icon-bg">
-            {category[0] === 'Plastic' && <TbBottle className="profile-stats-icon" />}
-            {category[0] === 'Paper' && <IoMdPaper className="profile-stats-icon" />}
-            {category[0] === 'Cardboard' && <BsBoxSeam className="profile-stats-icon" />}
-            {category[0] === 'Compost' && <PiPlant className="profile-stats-icon" />}
-            {category[0] === 'Metal' && <LiaDrumSteelpanSolid className="profile-stats-icon" />}
-            {category[0] === 'Glass' && <CiGlass className="profile-stats-icon" />}
-            {category[0] === 'Trash' && <LuTrash className="profile-stats-icon" />}
-            {category[0] === 'Other' && <PiDeviceMobileCameraThin className="profile-stats-icon" />}
-            {category[0] === 'Unknown' && <AiOutlineQuestion className="profile-stats-icon" />}
+            {category[0] === 'plastic' && <TbBottle className="profile-stats-icon" />}
+            {category[0] === 'paper' && <IoMdPaper className="profile-stats-icon" />}
+            {category[0] === 'cardboard' && <BsBoxSeam className="profile-stats-icon" />}
+            {category[0] === 'compost' && <PiPlant className="profile-stats-icon" />}
+            {category[0] === 'metal' && <LiaDrumSteelpanSolid className="profile-stats-icon" />}
+            {category[0] === 'glass' && <CiGlass className="profile-stats-icon" />}
+            {category[0] === 'trash' && <LuTrash className="profile-stats-icon" />}
+            {category[0] === 'other' && <PiDeviceMobileCameraThin className="profile-stats-icon" />}
+            {category[0] === 'unknown' && <AiOutlineQuestion className="profile-stats-icon" />}
           </div>
           <h4>{category[0]}</h4>
         </div>

@@ -27,7 +27,6 @@ export default function CameraCapture() {
   };
 
   const handlePhotoSubmit = () => {
-    console.log('Image Data: ', image);
     setImageSubmitted(true);
   };
 
@@ -59,7 +58,10 @@ export default function CameraCapture() {
                     />
                   </div>
                   <p>
-                    Is this accurate? If it is not,
+                    Is this&nbsp;
+                    {imageCategory}
+                    ?
+                    If it is not,
                     please select the correct category from the dropdown.
                   </p>
                   <div className="capture-confirm-button lower-buttons">
