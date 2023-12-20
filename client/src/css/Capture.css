@@ -25,7 +25,7 @@
 .capture-image-preview {
   width: 100%;
   height: auto;
-  max-height: 65dvh;
+  max-height: 50dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,6 +76,40 @@
   width: 30dvw;
 }
 
+
+.capture-container
+.capture-image-wrapper
+.capture-classify {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.capture-container
+.capture-image-wrapper
+.capture-classify
+.capture-dropdown {
+  width: 40%;
+  height: auto;
+  max-height: 20%;
+}
+
+.capture-container
+.capture-image-wrapper
+.capture-classify p {
+  width: 70%;
+  height: auto;
+  max-height: 20%;
+}
+
+.capture-container
+.capture-image-wrapper
+.capture-classify
+.capture-confirm-button button {
+  width: 40dvw;
+}
+
 /* No image uploaded */
 
 .capture-container
@@ -83,19 +117,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 15rem;
+  margin-top: 17rem;
 }
 
 .capture-container
 .capture-top-section
-.capture-camera-icon {
-  font-size: 5rem;
+.capture-icon {
+  font-size: 6rem;
   color: var(--main-green);
 }
 
 .capture-container
 .capture-top-section
-.capture-camera-icon:hover {
+.capture-icon:hover {
   cursor: pointer;
 }
 
@@ -130,6 +164,13 @@
 @media only screen and (min-width: 993px) {
   .capture-container
   .capture-submit-button button {
+    width: 15dvw;
+  }
+
+  .capture-container
+  .capture-image-wrapper
+  .capture-classify
+  .capture-confirm-button button {
     width: 15dvw;
   }
 }

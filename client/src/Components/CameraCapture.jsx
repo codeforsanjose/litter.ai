@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { IoCameraOutline } from 'react-icons/io5';
+import { CiCirclePlus } from 'react-icons/ci';
 import Dropdown from './Dropdown';
 import '../css/Capture.css';
 
 export default function CameraCapture() {
   const [image, setImage] = useState(null);
-  const [imageSubmitted, setImageSubmitted] = useState(true);
+  const [imageSubmitted, setImageSubmitted] = useState(false);
   const [imageCategory, setImageCategory] = useState('glass');
   const captureRef = useRef(null);
 
@@ -33,6 +33,7 @@ export default function CameraCapture() {
 
   return (
     <div className="capture-container main-container">
+      {/* Image has been uploaded; preview the image */}
       {image
         ? (
           <div className="capture-image-wrapper">
@@ -46,6 +47,7 @@ export default function CameraCapture() {
               </button>
               <img alt="" src={image.imagePreview} className="capture-image" />
             </div>
+            {/* Image has been uploaded and submitted to the AI */}
             {imageSubmitted
               ? (
                 <div className="capture-classify">
@@ -57,14 +59,16 @@ export default function CameraCapture() {
                     />
                   </div>
                   <p>
-                    Is this the accurate? If it is not,
+                    Is this accurate? If it is not,
                     please select the correct category from the dropdown.
                   </p>
-                  <Link to={`/success/${imageCategory}`}>
-                    <button type="button">
-                      Confirm
-                    </button>
-                  </Link>
+                  <div className="capture-confirm-button lower-buttons">
+                    <Link to={`/success/${imageCategory}`}>
+                      <button type="button">
+                        Confirm
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               )
               : (
@@ -79,10 +83,11 @@ export default function CameraCapture() {
               )}
           </div>
         )
+        /* Image has not been uploaded, opens device's camera or gives option to upload an image */
         : (
           <>
             <div className="capture-top-section">
-              <IoCameraOutline onClick={openCamera} className="capture-camera-icon" />
+              <CiCirclePlus onClick={openCamera} className="capture-icon" />
               <input
                 type="file"
                 accept="image/*"
@@ -92,7 +97,7 @@ export default function CameraCapture() {
                 onChange={handleImage}
                 style={{ display: 'none' }}
               />
-              <div className="capture-camera-bg" />
+              <div className="capture-icon-bg" />
               <h1>Take a photo of the item</h1>
               <p>
                 <span>Click on the camera to open up your device&#x27;s camera.</span>

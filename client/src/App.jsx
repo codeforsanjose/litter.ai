@@ -7,7 +7,6 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import categoryData from './MockData/mockCategoryData';
 import LandingPage from './components/LandingPage';
 import CameraCapture from './components/CameraCapture';
 import Leaderboard from './components/Leaderboard';
@@ -35,7 +34,7 @@ export default function App() {
           <Route path="/profile" element={<Profile user={user} setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login user={user} setUser={setUser} />} />
-          <Route path="/success/:cat" element={<SuccessfulSubmission type={categoryData.plastic} />} />
+          <Route path="/success/:category" element={<SuccessfulSubmission />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>

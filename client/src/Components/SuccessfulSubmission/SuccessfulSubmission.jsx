@@ -8,9 +8,9 @@ import categoryData from '../../MockData/mockCategoryData';
 import '../../css/SuccessfulSubmission.css';
 
 export default function SuccessfulSubmission() {
-  const { cat } = useParams();
-  const [type] = useState(categoryData[cat]);
-  const [category] = useState(type.category);
+  const { category } = useParams();
+  const [type] = useState(categoryData[category]);
+  const [categoryName] = useState(type.category);
   const [modalOpen, setModalOpen] = useState(false);
 
   const separateString = (text) => (
@@ -23,9 +23,9 @@ export default function SuccessfulSubmission() {
     <div className="category-container main-container">
       <div className="category-wrapper">
         <h4>{type.category}</h4>
-        {category === 'Recycle' && <FaRecycle className="category-icon" data-testid="recycle-icon" />}
-        {category === 'Trash' && <FaRegTrashAlt className="category-icon" />}
-        {category === 'Compost' && <PiPlantBold className="category-icon" />}
+        {categoryName === 'Recycle' && <FaRecycle className="category-icon" data-testid="recycle-icon" />}
+        {categoryName === 'Trash' && <FaRegTrashAlt className="category-icon" />}
+        {categoryName === 'Compost' && <PiPlantBold className="category-icon" />}
         <h1>{type.name}</h1>
         <div className="category-short-desc">{separateString(type.description)}</div>
         <div className="category-buttons lower-buttons">
