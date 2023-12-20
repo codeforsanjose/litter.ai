@@ -66,8 +66,8 @@
 /******** Modal ********/
 
 .modal-container {
-  min-height: 70%;
-  height: 60dvh;
+  min-height: 20dvh;
+  max-height: 60dvh;
   background-color: var(--white);
   box-shadow: 0.75em 0.75em 1.75em -0.5em var(--shadow-color);
   display: flex;
@@ -89,6 +89,7 @@
 .modal-container
 .modal-container-top h2 {
   margin: 2rem 0 0 0;
+  text-transform: capitalize;
 }
 
 .modal-container
@@ -118,7 +119,7 @@
 
 .modal-container
 .modal-text {
-  width: 90%;
+  width: 85%;
   max-width: 90%;
   height: 100%;
   margin: 0;
@@ -136,6 +137,11 @@
 .modal-text ul {
   margin: 0.2rem 0 0 0;
   padding-left: 1.5rem;
+}
+
+.modal-container
+.modal-text li {
+  font-size: 1.3rem;
 }
 
 
@@ -219,10 +225,15 @@
   .modal-got-it-button {
     height: 8dvh;
   }
+
+  .modal-container
+  .modal-text li {
+    font-size: 0.9rem;
+  }
 }
 
 /* Portrait tablets and large phones */
-@media only screen and (min-width: 601px) and (max-width: 992px) {
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
   .category-container
   .category-modal {
     width: 80dvw;
@@ -250,10 +261,6 @@
   .category-wrapper
   .category-icon {
     font-size: 14rem;
-  }
-
-  .modal-container {
-    height: 50dvh;
   }
 
   .modal-container p {
@@ -286,6 +293,6 @@
 }
 
 /* Small laptops and desktops */
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 1025px) {
 
 }

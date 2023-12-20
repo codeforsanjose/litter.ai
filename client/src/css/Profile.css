@@ -286,14 +286,14 @@ button:hover {
 }
 
 /* Portrait tablets and large phones */
-@media only screen and (min-width: 601px) and (max-width: 992px) {
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
   .profile-container {
     grid-column-start: 2;
   }
 }
 
 /* Small laptops and desktops */
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 1025px) {
   .profile-container {
     grid-area: 1 / 2 / span 10 / span 1;
   }

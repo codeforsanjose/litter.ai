@@ -18,8 +18,6 @@ export default function SuccessfulSubmission() {
     ))
   );
 
-  console.log('categoryName: ', categoryName);
-
   return (
     <div className="category-container main-container">
       <div className="category-wrapper">

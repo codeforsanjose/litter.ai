@@ -134,7 +134,7 @@
 }
 
 /* Portrait tablets and large phones */
-@media only screen and (min-width: 601px) and (max-width: 992px) {
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
   .landing-container
   .landing-top-section
   .landing-capture-button {
@@ -143,7 +143,7 @@
 }
 
 /* Small laptops and desktops */
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 1025px) {
   .landing-container
   .landing-top-section
   .landing-capture-button {
