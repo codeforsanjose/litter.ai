@@ -8,7 +8,7 @@ import {
   Route,
 } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
-import CameraCapture from './components/CameraCapture';
+import CameraCapture from './components/Camera/CameraCapture';
 import Leaderboard from './components/Leaderboard';
 import Profile from './components/Profile/Profile';
 import SuccessfulSubmission from './components/SuccessfulSubmission/SuccessfulSubmission';
