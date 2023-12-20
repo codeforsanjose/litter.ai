@@ -9,7 +9,7 @@ import '../../css/SuccessfulSubmission.css';
 export default function SuccessfulSubmission() {
   const { category } = useParams();
   const navigate = useNavigate();
-  const [type, setType] = useState(null);
+  const [type] = useState(categoryData[category]);
   const [categoryName] = useState(category);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -20,12 +20,10 @@ export default function SuccessfulSubmission() {
   );
 
   useEffect(() => {
-    if (categoryData[category]) {
-      setType(categoryData[category]);
-    } else {
+    if (!categoryData[category]) {
       navigate('/404', { replace: true });
     }
-  }, [type, category, navigate]);
+  }, [category, navigate]);
 
   return (
     <div>
