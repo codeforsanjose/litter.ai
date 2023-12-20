@@ -153,69 +153,74 @@ describe('Successful submission page', () => {
     expect(screen.getByTestId('plastic-icon')).toBeInTheDocument();
   });
 
-  // test('Navigates to the home page when "Home" is clicked', async () => {
-  //   const history = createMemoryHistory({ initialEntries: ['/success/plastic'] });
-  //   render(
-  //     <MemoryRouter history={history} initialEntries={['/success/plastic']}>
-  //       <Routes>
-  //         <Route
-  //           path="/success"
-  //           element={<SuccessfulSubmission type={categoryData.plastic} />}
-  //         />
-  //         <Route path="/" element={<LandingPage />} />
-  //       </Routes>
-  //     </MemoryRouter>,
-  //   );
-  //   // Initial endpoint is /success
-  //   await waitFor(() => { expect(history.location.pathname).toBe('/success'); });
-  //   // Clicks button to navigate to new end point, then pushes endpoint into the history
-  //   fireEvent.click(screen.getByRole('button', { name: 'Home' }));
-  //   // Page currently navigates to /capture but doesn't update the endpoint in the history
-  //   history.push('/');
-  //   // Checks if page navigated to the landing page and the welcome header is displayed
-  //   await waitFor(() => { expect(history.location.pathname).toBe('/'); });
-  //   await waitFor(() => { expect(screen.getByText('Welcome to Litter.ai')).toBeInTheDocument(); });
-  // });
+  test('Navigates to the home page when "Home" is clicked', async () => {
+    const history = createMemoryHistory({ initialEntries: ['/success/plastic'] });
+    render(
+      <Router history={history} initialEntries={['/success/plastic']}>
+        <Routes>
+          <Route
+            path="/success/:category"
+            element={<SuccessfulSubmission />}
+          />
+          <Route path="/" element={<LandingPage />} />
+        </Routes>
+      </Router>,
+    );
+    // Initial endpoint is /success
+    await waitFor(() => { expect(history.location.pathname).toBe('/success/plastic'); });
+    // Clicks button to navigate to new end point, then pushes endpoint into the history
+    fireEvent.click(screen.getByRole('button', { name: 'Home' }));
+    // Page currently navigates to /capture but doesn't update the endpoint in the history
+    history.push('/');
+    // Checks if page navigated to the landing page and the welcome header is displayed
+    await waitFor(() => { expect(history.location.pathname).toBe('/'); });
+    await waitFor(() => { expect(screen.getByText('Welcome to LitterSort')).toBeInTheDocument(); });
+  });
 
-  // test('Navigates to the capture page when "Capture another photo" is clicked', async () => {
-  //   const history = createMemoryHistory({ initialEntries: ['/success'] });
-  //   render(
-  //     <MemoryRouter history={history} initialEntries={['/success']}>
-  //       <Routes>
-  //         <Route path="/success" element={<SuccessfulSubmission type={categoryData.plastic} />} />
-  //         <Route path="/capture" element={<CameraCapture />} />
-  //       </Routes>
-  //     </MemoryRouter>,
-  //   );
-  //   // Initial endpoint is /success
-  //   await waitFor(() => { expect(history.location.pathname).toBe('/success'); });
-  //   // Clicks button to navigate to new end point, then pushes endpoint into the history
-  //   fireEvent.click(screen.getByRole('button', { name: 'Capture another photo' }));
-  //   // Page currently navigates to /capture but doesn't update the endpoint in the history
-  //   history.push('/capture');
-  //   // Checks if page navigated to the /capture endpoint
-  //   await waitFor(() => { expect(history.location.pathname).toBe('/capture'); });
-  // });
+  test('Navigates to the capture page when "Capture another photo" is clicked', async () => {
+    const history = createMemoryHistory({ initialEntries: ['/success/plastic'] });
+    render(
+      <Router history={history} initialEntries={['/success/plastic']}>
+        <Routes>
+          <Route path="/success/:category" element={<SuccessfulSubmission />} />
+          <Route path="/capture" element={<CameraCapture />} />
+        </Routes>
+      </Router>,
+    );
+    // Initial endpoint is /success
+    await waitFor(() => { expect(history.location.pathname).toBe('/success/plastic'); });
+    // Clicks button to navigate to new end point, then pushes endpoint into the history
+    fireEvent.click(screen.getByRole('button', { name: 'Capture another photo' }));
+    // Page currently navigates to /capture but doesn't update the endpoint in the history
+    history.push('/capture');
+    // Checks if page navigated to the /capture endpoint
+    await waitFor(() => { expect(history.location.pathname).toBe('/capture'); });
+  });
 
-  // test('Clicking on Learn More opens up a modal with more information', () => {
-  //   render(
-  //     <MemoryRouter>
-  //       <SuccessfulSubmission />
-  //     </MemoryRouter>,
-  //   );
-  //   // Checks if the modal is already open
-  //   expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
-  //   // Opens the modal
-  //   fireEvent.click(screen.getByTestId('modal-learn-more'));
+  test('Clicking on Learn More opens up a modal with more information', () => {
+    render(
+      <Router initialEntries={['/success/plastic']}>
+        <Routes>
+          <Route
+            path="/success/:category"
+            element={<SuccessfulSubmission />}
+          />
+        </Routes>
+      </Router>,
+    );
+    // Checks if the modal is already open
+    expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
+    // Opens the modal
+    fireEvent.click(screen.getByTestId('modal-learn-more'));
 
-  //   // Checks if modal is now visible
-  //   expect(screen.getByTestId('modal')).toBeInTheDocument();
-  //   expect(screen.getByTestId('modal-got-it-button')).toBeInTheDocument();
+    // Checks if modal is now visible
+    expect(screen.getByTestId('modal')).toBeInTheDocument();
+    expect(screen.getByTestId('modal-got-it-button')).toBeInTheDocument();
 
-  //   // Clicks on Got it to close the modal
-  //   fireEvent.click(screen.getByTestId('modal-got-it-button'));
-  //   expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
-  // });
+    // Clicks on Got it to close the modal
+    fireEvent.click(screen.getByTestId('modal-got-it-button'));
+    expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
+  });
 });
 
 // describe('Profile component with user logged in', () => {
