@@ -9,21 +9,13 @@ export default function ImageUploaded({
   const [imageSubmitted, setImageSubmitted] = useState(false);
   const [imageCategory, setImageCategory] = useState('glass');
 
-  const removePhoto = () => {
-    setImage(null);
-  };
-
-  const handlePhotoSubmit = () => {
-    setImageSubmitted(true);
-  };
-
   return (
     <div className="capture-image-wrapper">
       <div className="capture-image-preview">
         <button
           type="button"
           className="image-x-button"
-          onClick={removePhoto}
+          onClick={() => { setImage(null); }}
         >
           &#x2715;
         </button>
@@ -56,11 +48,11 @@ export default function ImageUploaded({
             </div>
           </div>
         )
-        : (
+        : ( // Image preview before sending to the AI
           <div className="capture-submit-button lower-buttons">
             <button
               type="button"
-              onClick={handlePhotoSubmit}
+              onClick={() => { setImageSubmitted(true); }}
             >
               Submit
             </button>
