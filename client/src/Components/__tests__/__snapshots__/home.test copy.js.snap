@@ -104,8 +104,6 @@ Array [
 ]
 `;
 
-exports[`Leaderboard component Leaderboard matches the current snapshot 1`] = `null`;
-
 exports[`Successful submission page Successful submission page matches the current snapshot 1`] = `
 <div
   className="category-container main-container"
