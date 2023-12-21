@@ -48,14 +48,14 @@ describe('Leaderboard component', () => {
   afterEach(() => { jest.restoreAllMocks(); });
 
   // Creates a snapshot
-  // test('Leaderboard matches the current snapshot', () => {
-  //   const tree = renderer.create(
-  //     <Router>
-  //       <Leaderboard />
-  //     </Router>,
-  //   ).toJSON();
-  //   expect(tree).toMatchSnapshot();
-  // });
+  test('Leaderboard matches the current snapshot', () => {
+    const tree = renderer.create(
+      <Router>
+        <Leaderboard />
+      </Router>,
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 
   test('Changes category from total to compost when clicking on the dropdown', async () => {
     await act(() => render(
@@ -87,28 +87,28 @@ describe('Leaderboard component', () => {
     expect(mouseOverCardboard.backgroundColor).toBe('rgb(116, 204, 103)');
   });
 
-//   test('New data is rendered when a dropdown category is changed', async () => {
-//     render(
-//       <Router>
-//         <Leaderboard />
-//       </Router>,
-//     );
-//     // Change category and data to metal
-//     mockCall(mockMetalUploads);
-//     fireEvent.mouseDown(screen.getByText('Total'));
-//     fireEvent.click(screen.getByText('Metal'));
-//     // Checks if a specific user is in the document
-//     await waitFor(() => {
-//       expect(screen.getByText('lucious_senger10')).toBeInTheDocument();
-//     });
-//     // Change category and data to plastic
-//     fireEvent.mouseDown(screen.getByText('Metal'));
-//     act(() => { mockCall(mockPlasticUploads); });
-//     fireEvent.click(screen.getByText('Plastic'));
-//     // Checks if top metal user is no longer there and if a top plastic user is now visible
-//     await waitFor(() => { expect(screen.queryByText('lucious_senger10')).not.toBeInTheDocument(); });
-//     await waitFor(() => { expect(screen.getByText('alejandra31')).toBeInTheDocument(); });
-//   });
+  test('New data is rendered when a dropdown category is changed', async () => {
+    await act(() => render(
+      <Router>
+        <Leaderboard />
+      </Router>,
+    ));
+    // Change category and data to metal
+    mockCall(mockMetalUploads);
+    fireEvent.mouseDown(screen.getByText('Total'));
+    act(() => fireEvent.click(screen.getByText('Metal')));
+    // Checks if a specific user is in the document
+    await waitFor(() => {
+      expect(screen.getByText('lucious_senger10')).toBeInTheDocument();
+    });
+    // Change category and data to plastic
+    fireEvent.mouseDown(screen.getByText('Metal'));
+    act(() => { mockCall(mockPlasticUploads); });
+    act(() => fireEvent.click(screen.getByText('Plastic')));
+    // Checks if top metal user is no longer there and if a top plastic user is now visible
+    await waitFor(() => { expect(screen.queryByText('lucious_senger10')).not.toBeInTheDocument(); });
+    await waitFor(() => { expect(screen.getByText('alejandra31')).toBeInTheDocument(); });
+  });
 });
 
 // describe('Successful submission page', () => {
