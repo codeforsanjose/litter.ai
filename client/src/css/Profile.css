@@ -8,7 +8,7 @@
 
 .profile-container
 .profile-login-wrapper {
-  height: 100vh;
+  height: 100dvh;
   max-height: 100%;
   width: 100%;
   display: flex;
@@ -82,7 +82,7 @@
 .profile-container
 .profile-logout-wrapper {
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -101,7 +101,7 @@
 .profile-logout-top
 .profile-logout-bg {
   width: 100%;
-  height: 30vh;
+  height: 30dvh;
   border-radius: 0 0 1rem 10rem;
   background-color: var(--main-green);
 }
@@ -171,7 +171,7 @@
 .button-home {
   width: 100%;
   max-width: 653px;
-  height: 6vh;
+  height: 6dvh;
   margin: 1rem 0;
   border: none;
   border-radius: 10rem;
@@ -286,14 +286,14 @@ button:hover {
 }
 
 /* Portrait tablets and large phones */
-@media only screen and (min-width: 601px) and (max-width: 992px) {
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
   .profile-container {
     grid-column-start: 2;
   }
 }
 
 /* Small laptops and desktops */
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 1025px) {
   .profile-container {
     grid-area: 1 / 2 / span 10 / span 1;
   }
