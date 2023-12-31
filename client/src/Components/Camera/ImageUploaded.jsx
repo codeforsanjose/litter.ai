@@ -7,7 +7,20 @@ export default function ImageUploaded({
   setImage,
 }) {
   const [imageSubmitted, setImageSubmitted] = useState(false);
-  const [imageCategory, setImageCategory] = useState('glass');
+  const [imageCategory, setImageCategory] = useState('');
+  const [imageConfidence, setImageConfidence] = useState(0);
+  const submitImageToAI = async () => {
+    const formData = new FormData();
+    formData.append('image', image.imageFile);
+    const res = await fetch('https://451e-2601-646-c600-3560-edc4-e61a-28ee-2108.ngrok-free.app/upload', {
+      method: 'POST',
+      body: formData,
+    });
+    const response = await res.json();
+    setImageCategory(response.class);
+    setImageConfidence(Math.trunc(response.confidence * 100));
+    setImageSubmitted(true);
+  };
 
   return (
     <div className="capture-image-wrapper">
@@ -33,9 +46,11 @@ export default function ImageUploaded({
               />
             </div>
             <p>
-              Is this&nbsp;
-              {imageCategory}
-              ?
+              We are&nbsp;
+              <strong>{imageConfidence}</strong>
+              % confident that this is&nbsp;
+              <strong>{imageCategory}</strong>
+              .
               If it is not,
               please select the correct category from the dropdown.
             </p>
@@ -52,7 +67,7 @@ export default function ImageUploaded({
           <div className="capture-submit-button lower-buttons">
             <button
               type="button"
-              onClick={() => { setImageSubmitted(true); }}
+              onClick={submitImageToAI}
             >
               Submit
             </button>

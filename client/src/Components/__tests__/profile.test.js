@@ -11,8 +11,20 @@ import {
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Profile from '../Profile/Profile';
+import LandingPage from '../LandingPage';
 import * as fetchUserData from '../../utils/fetchUserData';
 import { userPictureData } from '../../MockData/mockUserData';
+
+
+describe('Home component', () => {
+  const landingPage = <Router><LandingPage /></Router>;
+  test('Logo and introduction text loads on the screen', () => {
+    render(landingPage);
+    expect(screen.getByTestId('home-logo')).toBeInTheDocument();
+    expect(screen.getByText('Welcome to LitterSort')).toBeInTheDocument();
+    expect(screen.getByText('With just a photo, sort your garbage and save the world.')).toBeInTheDocument();
+  });
+});
 
 // describe('Profile component with user logged in', () => {
 //   jest.mock('js-cookie');

@@ -19,10 +19,7 @@ describe('Successful submission page', () => {
     const tree = renderer.create(
       <Router initialEntries={['/success/plastic']}>
         <Routes>
-          <Route
-            path="/success/:category"
-            element={<SuccessfulSubmission />}
-          />
+          <Route path="/success/:category" element={<SuccessfulSubmission />} />
         </Routes>
       </Router>,
     );
@@ -33,10 +30,7 @@ describe('Successful submission page', () => {
     render(
       <Router initialEntries={['/success/plastic']}>
         <Routes>
-          <Route
-            path="/success/:category"
-            element={<SuccessfulSubmission />}
-          />
+          <Route path="/success/:category" element={<SuccessfulSubmission />} />
         </Routes>
       </Router>,
     );
@@ -50,10 +44,7 @@ describe('Successful submission page', () => {
     render(
       <Router history={history} initialEntries={['/success/plastic']}>
         <Routes>
-          <Route
-            path="/success/:category"
-            element={<SuccessfulSubmission />}
-          />
+          <Route path="/success/:category" element={<SuccessfulSubmission />} />
           <Route path="/" element={<LandingPage />} />
         </Routes>
       </Router>,
@@ -62,7 +53,7 @@ describe('Successful submission page', () => {
     await waitFor(() => { expect(history.location.pathname).toBe('/success/plastic'); });
     // Clicks button to navigate to new end point, then pushes endpoint into the history
     fireEvent.click(screen.getByRole('button', { name: 'Home' }));
-    // Page currently navigates to /capture but doesn't update the endpoint in the history
+    // Page currently navigates to home but doesn't update the endpoint in the history
     history.push('/');
     // Checks if page navigated to the landing page and the welcome header is displayed
     await waitFor(() => { expect(history.location.pathname).toBe('/'); });
@@ -93,10 +84,7 @@ describe('Successful submission page', () => {
     render(
       <Router initialEntries={['/success/plastic']}>
         <Routes>
-          <Route
-            path="/success/:category"
-            element={<SuccessfulSubmission />}
-          />
+          <Route path="/success/:category" element={<SuccessfulSubmission />} />
         </Routes>
       </Router>,
     );

@@ -29,6 +29,7 @@ export async function fetchLeaderboardData(path) {
     return response;
   } catch (err) {
     console.error(err);
+    fetchLogOut();
   }
 }
 
@@ -38,5 +39,6 @@ export async function fetchProfileData(user) {
     return response;
   } catch (err) {
     console.error(err);
+    fetchLogOut();
   }
 }
