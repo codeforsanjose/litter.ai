@@ -3,8 +3,8 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import cron from 'node-cron';
-import { fileURLToPath } from 'url';
 import cors from 'cors';
+import { fileURLToPath } from 'url';
 
 import { getDb, mongoConnect } from './DB/db-connection.js';
 import routes from './routes/index.js';
@@ -20,7 +20,7 @@ const { REFRESH_SECRET, ACCESS_SECRET, MONGO_URI, SERVER_PORT, NODE_ENV } =
 
 const __filename = fileURLToPath(import.meta.url);
 
-const PORT = SERVER_PORT || 3000;
+const PORT = SERVER_PORT || 3001;
 
 const startServer = async () => {
     try {
@@ -46,6 +46,7 @@ const startServer = async () => {
 
         app.use(cors());
         app.use(morgan('dev'));
+        app.use(cors());
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
         app.use(cookieParser());

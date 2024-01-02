@@ -3,17 +3,23 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {
   render,
+  act,
   screen,
   fireEvent,
   waitFor,
 } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import LandingPage from '../LandingPage';
 import Leaderboard from '../Leaderboard/Leaderboard';
 import CameraCapture from '../CameraCapture';
 import SuccessfulSubmission from '../SuccessfulSubmission/SuccessfulSubmission';
+import Profile from '../Profile/Profile';
+import ProfileStatistics from '../Profile/ProfileStatistics';
 import categoryData from '../../MockData/mockCategoryData';
+import * as fetchUserData from '../../utils/fetchUserData';
+import { userPictureData } from '../../MockData/mockUserData';
 import {
   mockTotalUploads,
   mockPlasticUploads,
@@ -45,12 +51,20 @@ describe('Leaderboard component', () => {
 
   // Creates a snapshot
   test('Leaderboard matches the current snapshot', () => {
-    const tree = renderer.create(<Leaderboard />).toJSON();
+    const tree = renderer.create(
+      <MemoryRouter>
+        <Leaderboard />
+      </MemoryRouter>,
+    ).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('Changes category from total to compost when clicking on the dropdown', () => {
-    render(<Leaderboard />);
+    render(
+      <MemoryRouter>
+        <Leaderboard />
+      </MemoryRouter>,
+    );
     // Clicks on dropdown
     fireEvent.mouseDown(screen.getByText('Total'));
     // Changes dropdown to 'Compost'
@@ -60,7 +74,11 @@ describe('Leaderboard component', () => {
   });
 
   test('Dropdown option text and background changes color when hovered', () => {
-    render(<Leaderboard />);
+    render(
+      <MemoryRouter>
+        <Leaderboard />
+      </MemoryRouter>,
+    );
     // Clicks on dropdown
     fireEvent.mouseDown(screen.getByText('Total'));
     // Hover over new category
@@ -72,7 +90,11 @@ describe('Leaderboard component', () => {
   });
 
   test('New data is rendered when a dropdown category is changed', async () => {
-    render(<Leaderboard />);
+    render(
+      <MemoryRouter>
+        <Leaderboard />
+      </MemoryRouter>,
+    );
     // Change category and data to metal
     mockCall(mockMetalUploads);
     fireEvent.mouseDown(screen.getByText('Total'));
@@ -83,7 +105,7 @@ describe('Leaderboard component', () => {
     });
     // Change category and data to plastic
     fireEvent.mouseDown(screen.getByText('Metal'));
-    mockCall(mockPlasticUploads);
+    act(() => { mockCall(mockPlasticUploads); });
     fireEvent.click(screen.getByText('Plastic'));
     // Checks if top metal user is no longer there and if a top plastic user is now visible
     await waitFor(() => { expect(screen.queryByText('lucious_senger10')).not.toBeInTheDocument(); });
@@ -118,7 +140,10 @@ describe('Successful submission page', () => {
     render(
       <MemoryRouter history={history} initialEntries={['/success']}>
         <Routes>
-          <Route path="/success" element={<SuccessfulSubmission type={categoryData.plastic} />} />
+          <Route
+            path="/success"
+            element={<SuccessfulSubmission type={categoryData.plastic} />}
+          />
           <Route path="/" element={<LandingPage />} />
         </Routes>
       </MemoryRouter>,
@@ -172,5 +197,48 @@ describe('Successful submission page', () => {
     // Clicks on Got it to close the modal
     fireEvent.click(screen.getByTestId('modal-got-it-button'));
     expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
+  });
+});
+
+describe('Profile component with user logged in', () => {
+  jest.mock('js-cookie');
+  jest.mock('react', () => ({
+    ...jest.requireActual('react'),
+    useState: jest.fn(),
+  }));
+  jest.mock('../../utils/fetchUserData', () => ({
+    ...jest.requireActual('../../utils/fetchUserData'),
+    fetchProfileData: jest.fn(),
+  }));
+
+  const mockSetState = jest.fn();
+
+  test('Profile matches the current snapshot', () => {
+    const tree = renderer.create(
+      <MemoryRouter>
+        <Profile user="Briana30" setUser={mockSetState} />
+      </MemoryRouter>,
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('Username should appear at the top of the screen', async () => {
+    render(
+      <MemoryRouter>
+        <Profile user="Briana30" setUser={mockSetState} />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText('Briana30')).toBeInTheDocument();
+  });
+
+  test('Statistics should reflect the user\'s data', async () => {
+    // fetchUserData.fetchProfileData.mockResolvedValue(userPictureData[0]);
+    // React.useState.mockReturnValue(['Briana30', mockSetState]);
+    render(
+      <MemoryRouter>
+        <Profile user="Briana30" setUser={mockSetState} />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText('Briana30')).toBeInTheDocument();
   });
 });
