@@ -90,9 +90,13 @@ export default function Login({ user, setUser }) {
         <button
           type="button"
           onClick={handleLogin}
+          className="login-button"
         >
           Login
         </button>
+        <Link to="/register">
+          <button type="button">Register</button>
+        </Link>
         <button
           type="button"
           onClick={handleCheck}

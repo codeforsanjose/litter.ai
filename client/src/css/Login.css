@@ -64,3 +64,8 @@
   width: 50vw;
   max-width: 200px;
 }
+
+.login-button {
+  background-color: var(--main-green);
+  color: white;
+}
