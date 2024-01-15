@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 
-const options = [
-  { value: 'total', label: 'Total' },
+const captureOptions = [
   { value: 'paper', label: 'Paper' },
+  { value: 'plastic', label: 'Plastic' },
+  { value: 'compost', label: 'Compost' },
   { value: 'metal', label: 'Metal' },
   { value: 'cardboard', label: 'Cardboard' },
   { value: 'trash', label: 'Trash' },
   { value: 'glass', label: 'Glass' },
+  { value: 'other', label: 'Other' },
+  { value: 'unknown', label: 'Unknown' },
+];
+
+const lbOptions = [
+  { value: 'total', label: 'Total' },
+  { value: 'paper', label: 'Paper' },
   { value: 'plastic', label: 'Plastic' },
   { value: 'compost', label: 'Compost' },
+  { value: 'metal', label: 'Metal' },
+  { value: 'cardboard', label: 'Cardboard' },
+  { value: 'trash', label: 'Trash' },
+  { value: 'glass', label: 'Glass' },
   { value: 'other', label: 'Other' },
   { value: 'unknown', label: 'Unknown' },
 ];
@@ -56,18 +68,45 @@ const reactSelectStyles = {
   }),
 };
 
-export default function Dropdown({ setCategory }) {
+export default function Dropdown({
+  setLBCategory,
+  setImageCategory,
+  imageCategory,
+}) {
+  const [defaultValue, setDefaultValue] = useState(null);
+  const [options, setOptions] = useState(lbOptions);
+
   const handleChange = (option) => {
-    setCategory(option.value);
+    if (imageCategory) {
+      setImageCategory(option.value);
+    } else {
+      setLBCategory(option.value);
+    }
   };
 
+  useEffect(() => {
+    const index = captureOptions.map((item) => item.value).indexOf(imageCategory);
+    if (index > -1) {
+      setOptions(captureOptions);
+      setDefaultValue(captureOptions[index]);
+    } else {
+      setOptions(lbOptions);
+      setDefaultValue(lbOptions[0]);
+    }
+  }, [imageCategory]);
+
   return (
-    <Select
-      options={options}
-      defaultValue={options[0]}
-      onChange={handleChange}
-      isSearchable={false}
-      styles={reactSelectStyles}
-    />
+    <div>
+      { defaultValue
+        && (
+          <Select
+            options={options}
+            defaultValue={defaultValue}
+            onChange={handleChange}
+            isSearchable={false}
+            styles={reactSelectStyles}
+          />
+        )}
+    </div>
   );
 }

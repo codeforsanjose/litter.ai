@@ -82,9 +82,6 @@ export default function Login({ user, setUser }) {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <div className="forgot-password">
-          <small>Forgot Password?</small>
-        </div>
       </form>
       <div className="lower-buttons login-buttons">
         <button

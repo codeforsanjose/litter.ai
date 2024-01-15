@@ -1,43 +1,31 @@
 import { fileURLToPath } from 'url';
-import { ObjectId } from 'mongodb';
-import { getUploadInfoCollection } from '../DB/collections.js';
-import categoryCount from './CategoryCount.js';
+
+import sanitizeId from './helpers/sanitizeId.js';
+import catCountModel from './CategoryCount.js';
 import errorHelpers from './helpers/errorHelpers.js';
+import { getDb } from '../DB/db-connection.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
-/**
- * @type {import('mongodb').Collection}
- */
-let photoInfoCollection = getUploadInfoCollection;
-
-const photoInfo = {
-    injectDB: (db) => {
-        if (process.env.NODE_ENV === 'test') {
-            photoInfoCollection = db.collection('uploadsinfo');
-        }
-    },
-
+const collName = 'uploadsinfo';
+const photoInfoModel = {
     /**
      * @typedef {Object} User
      * @property {string} username
-     * @property {string} email
-     * @property {string} _id
+     * @property {string | import('mongodb').ObjectId} _id
      */
 
     /**
-     * @param {string} category
+     * @param {string} categoryString
      * @param {User} user
      */
     insertOne: async (categoryString, user) => {
-        if (typeof user._id === 'string') {
-            // eslint-disable-next-line no-param-reassign
-            user._id = new ObjectId(user._id);
-        }
+        const userObjId = sanitizeId(user._id);
         try {
+            const db = await getDb();
             // Insert new photoInfo document
-            await photoInfoCollection.insertOne({
-                userId: user._id,
+            await db.collection(collName).insertOne({
+                userId: userObjId,
                 username: user.username,
                 category: categoryString,
                 createdAt: Date.now(),
@@ -51,18 +39,18 @@ const photoInfo = {
         }
         // Update user's category count collection
 
-        const categoryDocument = await categoryCount.incrementCategoryByUserId(
+        const categoryDocument = await catCountModel.incrementCategoryByUserId(
             categoryString,
             user._id,
             1,
         );
         // Respond with 404 error if user's category document not found
         if (!categoryDocument) {
-            const error = new Error(
-                "Unable to locate user's category count document",
+            throw await errorHelpers.transformDatabaseError(
+                new Error("Unable to locate user's category count document"),
+                __filename,
+                'insertOne',
             );
-            error.statusCode = 404;
-            throw error;
         }
 
         return {
@@ -75,7 +63,10 @@ const photoInfo = {
 
     getAllUsersPhotoInfo: async (username) => {
         try {
-            const results = await photoInfoCollection
+            const db = await getDb();
+
+            const results = await db
+                .collection(collName)
                 .find({ username })
                 .toArray();
             return results || [];
@@ -86,13 +77,13 @@ const photoInfo = {
     },
 
     deleteSingleUsersInfo: async (userId) => {
-        let userObjectId;
-        if (typeof userId === 'string') {
-            userObjectId = new ObjectId(userId);
-        }
+        const userObjId = sanitizeId(userId);
+
         try {
-            const result = await photoInfoCollection.deleteMany({
-                userId: userObjectId || userId,
+            const db = await getDb();
+
+            const result = await db.collection(collName).deleteMany({
+                userId: userObjId,
             });
             return result.acknowledged;
         } catch (error) {
@@ -102,4 +93,4 @@ const photoInfo = {
     },
 };
 
-export default photoInfo;
+export default photoInfoModel;

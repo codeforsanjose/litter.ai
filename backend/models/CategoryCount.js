@@ -1,33 +1,17 @@
 import { fileURLToPath } from 'url';
-import { ObjectId } from 'mongodb';
-import { getCatCountCollection, getUserCollection } from '../DB/collections.js';
 import errorHelpers from './helpers/errorHelpers.js';
+import { getDb } from '../DB/db-connection.js';
+import sanitizeId from './helpers/sanitizeId.js';
 
 const __filename = fileURLToPath(import.meta.url);
-/**
- * @type {import('mongodb').Collection}
- */
-let catCountCollection =
-    process.env.NODE_ENV !== 'test' && getCatCountCollection;
 
-let userCollection = process.env.NODE_ENV !== 'test' && getUserCollection;
-
-const categoryCount = {
-    injectDB: (db) => {
-        if (process.env.NODE_ENV === 'test') {
-            catCountCollection = db.collection('categoryCounts');
-            userCollection = db.collection('users');
-        }
-    },
-
+const collName = 'categoryCounts';
+const catCountModel = {
     create: async (userId, username, displayUsername, email) => {
-        if (typeof userId === 'string') {
-            // eslint-disable-next-line no-param-reassign
-            userId = new ObjectId(userId);
-        }
+        const userObjId = sanitizeId(userId);
         try {
             const payload = {
-                userId,
+                userId: userObjId,
                 email,
                 username,
                 displayUsername,
@@ -44,7 +28,8 @@ const categoryCount = {
                 },
                 totalUploads: 0,
             };
-            const result = await catCountCollection.insertOne(payload);
+            const db = await getDb();
+            const result = await db.collection(collName).insertOne(payload);
 
             return result;
         } catch (error) {
@@ -63,13 +48,11 @@ const categoryCount = {
         userId = null,
     }) => {
         let includeLoggedInUserPipeline = false;
+        let userObjectId;
+
         if (userId) {
             includeLoggedInUserPipeline = true;
-        }
-
-        let userObjectId;
-        if (typeof userId === 'string') {
-            userObjectId = new ObjectId(userId);
+            userObjectId = sanitizeId(userId);
         }
 
         const startIndex = (page - 1) * perPage;
@@ -143,7 +126,9 @@ const categoryCount = {
         ];
 
         try {
-            const [result] = await catCountCollection
+            const db = await getDb();
+            const [result] = await db
+                .collection(collName)
                 .aggregate(pipeline)
                 .toArray();
 
@@ -159,7 +144,7 @@ const categoryCount = {
 
             if (result.loggedInUser) {
                 responseData = {
-                    category,
+                    ...responseData,
                     username: result.loggedInUser.username,
                     userRank: result.loggedInUser.rank,
                     userItemCount: result.loggedInUser.itemCount,
@@ -167,7 +152,7 @@ const categoryCount = {
                 };
                 // if there isnt a loggedInUser property, the user has no photos for that category
             } else if (userId) {
-                const userInfo = await userCollection.findOne({
+                const userInfo = await db.collection('users').findOne({
                     _id: userObjectId,
                 });
 
@@ -200,14 +185,12 @@ const categoryCount = {
 
     getLeaderboardByTotal: async ({ page, perPage, userId = null }) => {
         let includeLoggedInUserPipeline = false;
+        let userObjectId;
         if (userId) {
             includeLoggedInUserPipeline = true;
+            userObjectId = sanitizeId(userId);
         }
 
-        let userObjectId;
-        if (typeof userId === 'string') {
-            userObjectId = new ObjectId(userId);
-        }
         const startIndex = (page - 1) * perPage;
 
         const sharedPipelineStages = [
@@ -277,7 +260,9 @@ const categoryCount = {
         ];
 
         try {
-            const [result] = await catCountCollection
+            const db = await getDb();
+            const [result] = await db
+                .collection(collName)
                 .aggregate(pipeline)
                 .toArray();
 
@@ -301,7 +286,7 @@ const categoryCount = {
                 };
                 // if there isnt a loggedInUser property, the user has no photos for that category
             } else if (userId) {
-                const userInfo = await userCollection.findOne({
+                const userInfo = await db.collection('users').findOne({
                     _id: userObjectId,
                 });
                 responseData = {
@@ -332,12 +317,10 @@ const categoryCount = {
     },
 
     findByUserId: async (_id) => {
-        let userId = _id;
-        if (typeof userId === 'string') {
-            userId = new ObjectId(userId);
-        }
+        const userId = sanitizeId(_id);
         try {
-            const categoryCountDocument = await catCountCollection.findOne(
+            const db = await getDb();
+            const categoryCountDocument = await db.collection(collName).findOne(
                 { userId },
                 {
                     projection: {
@@ -361,7 +344,8 @@ const categoryCount = {
 
     findByUsername: async (username) => {
         try {
-            const categoryCountDocument = await catCountCollection.findOne(
+            const db = await getDb();
+            const categoryCountDocument = await db.collection(collName).findOne(
                 { username },
                 {
                     projection: {
@@ -388,21 +372,22 @@ const categoryCount = {
         userId,
         incrementAmount,
     ) => {
-        if (typeof userId === 'string') {
-            // eslint-disable-next-line no-param-reassign
-            userId = new ObjectId(userId);
-        }
+        const userObjId = sanitizeId(userId);
+
         try {
-            const categoryDocument = await catCountCollection.findOneAndUpdate(
-                { userId },
-                {
-                    $inc: {
-                        totalUploads: incrementAmount,
-                        [`pictureData.${categoryString}`]: incrementAmount,
+            const db = await getDb();
+            const categoryDocument = await db
+                .collection(collName)
+                .findOneAndUpdate(
+                    { userId: userObjId },
+                    {
+                        $inc: {
+                            totalUploads: incrementAmount,
+                            [`pictureData.${categoryString}`]: incrementAmount,
+                        },
                     },
-                },
-                { returnDocument: 'after' },
-            );
+                    { returnDocument: 'after' },
+                );
             return categoryDocument;
         } catch (error) {
             throw await errorHelpers.transformDatabaseError(
@@ -414,13 +399,11 @@ const categoryCount = {
     },
 
     deleteUserInfo: async (userId) => {
-        let userObjectId;
-        if (typeof userId === 'string') {
-            userObjectId = new ObjectId(userId);
-        }
+        const userObjId = sanitizeId(userId);
         try {
-            const result = await catCountCollection.deleteOne({
-                userId: userObjectId || userId,
+            const db = await getDb();
+            const result = await db.collection(collName).deleteOne({
+                userId: userObjId,
             });
             return result.acknowledged;
         } catch (error) {
@@ -430,4 +413,4 @@ const categoryCount = {
     },
 };
 
-export default categoryCount;
+export default catCountModel;

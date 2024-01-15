@@ -1,0 +1,152 @@
+.landing-container {
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+}
+
+.landing-container
+.landing-top-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10rem 0 2rem 0;
+}
+
+.landing-container
+.landing-top-section
+.landing-logo {
+  font-size: 11rem;
+  color: var(--white);
+}
+
+.landing-container
+.landing-top-section
+.landing-text {
+  text-align: center;
+  color: var(--white);
+  margin-top: 1rem;
+}
+
+.landing-container
+.landing-top-section
+.landing-text h1 {
+  font-size: 1.5rem;
+}
+
+.landing-container
+.landing-top-section
+.landing-text p {
+  font-weight: 200;
+  font-size: 0.8rem;
+}
+
+.landing-container
+.landing-top-section
+.landing-capture-button {
+  color: var(--black);
+  width: 40dvw;
+}
+
+.landing-container
+.landing-top-section
+.landing-bottom-buttons
+.landing-capture-button {
+  background-color: var(--white);
+  color: var(--main-green);
+}
+
+.landing-container
+.landing-bottom-section {
+  margin-bottom: 2.5rem;
+}
+
+.landing-container
+.landing-bottom-section
+.landing-bottom-buttons
+.landing-secondary-button:hover {
+  border: solid var(--white) 0.01rem;
+}
+
+.landing-container
+.landing-bottom-section
+.landing-bottom-buttons
+.landing-secondary-button {
+  background-color: var(--main-green-half);;
+  color: var(--white);
+}
+
+.landing-container
+.landing-bottom-section
+.landing-bottom-buttons
+.landing-login-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.landing-container
+.landing-bottom-section
+.landing-bottom-buttons
+.landing-login-text p {
+  margin: 1rem 0 0 0;
+  color: var(--white);
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+.landing-container
+.landing-bottom-section
+.landing-bottom-buttons
+.landing-login-text a {
+  font-size: 0.8rem;
+  color: var(--lb-gray);
+  text-decoration: none;
+}
+
+.landing-container
+.landing-bottom-section
+.landing-bottom-buttons
+.landing-login-text a:hover {
+  color: var(--sec-green);
+}
+
+.landing-full-bg {
+  width: 100dvw;
+  max-width: 100%;
+  height: 100dvh;
+  max-height: 100%;
+  background-color: var(--main-green-half);
+  z-index: -1;
+  grid-area: 1 / 1 / span 2 / span 10;
+}
+
+
+/* Phones */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Portrait tablets and large phones */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .landing-container
+  .landing-top-section
+  .landing-capture-button {
+    width: 25dvw;
+  }
+}
+
+/* Small laptops and desktops */
+@media only screen and (min-width: 1025px) {
+  .landing-container
+  .landing-top-section
+  .landing-capture-button {
+    width: 13dvw;
+  }
+}

@@ -4,8 +4,8 @@ import {
     getUserPhotoCountParamSchema,
     postPhotoBodySchema,
 } from './photo-info-req-schemas.js';
-import categoryCount from '../../models/CategoryCount.js';
-import photoInfo from '../../models/PhotoInfo.js';
+import catCountModel from '../../models/CategoryCount.js';
+import photoInfoModel from '../../models/PhotoInfo.js';
 import logError from '../../Errors/log-error.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -26,7 +26,7 @@ const photoInfoController = {
             }
 
             const userCategoryCountDoc =
-                await categoryCount.findByUsername(username);
+                await catCountModel.findByUsername(username);
 
             if (!userCategoryCountDoc) {
                 return res.status(404).send({ message: 'User not found.' });
@@ -55,7 +55,7 @@ const photoInfoController = {
                 return res.status(401).send({ message: 'Invalid email.' });
             }
 
-            const result = await photoInfo.insertOne(category, req.user);
+            const result = await photoInfoModel.insertOne(category, req.user);
 
             return res.status(201).send(result);
         } catch (error) {
