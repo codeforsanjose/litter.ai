@@ -7,7 +7,7 @@
 }
 
 .login-header-text {
-  margin: 4rem 0 0 1rem;
+  margin: 5rem 0 0 1rem;
 }
 
 .login-header-text h3, .login-header-text p {
@@ -65,7 +65,23 @@
   max-width: 200px;
 }
 
-.login-button {
+#login-button {
   background-color: var(--main-green);
   color: white;
+  font-weight: bold;
+}
+
+.sign-up {
+  margin: 1rem;
+  text-align: center;
+}
+
+.sign-up p {
+  margin: 0.25rem;
+}
+
+.register-button {
+  display: block;
+  color: var(--main-green);
+  text-decoration: none;
 }

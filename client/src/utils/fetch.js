@@ -4,7 +4,7 @@ import URLpath from './URLpath';
 
 export default async function fetchData(path, method, body) {
   const token = Cookies.get('authToken');
-  let properties = {
+  const properties = {
     method,
     headers: {
       'Content-Type': 'application/json',
@@ -13,7 +13,7 @@ export default async function fetchData(path, method, body) {
   // Leaderboard queries for the user's stats if they are logged in
   if (token) { properties.headers.Authorization = `Bearer ${token}`; }
   // Body is the email and password for logging in
-  if (body) { properties = { ...properties, body: JSON.stringify(body) }; }
+  if (body) { properties.body = JSON.stringify(body); }
 
   try {
     const res = await fetch(URLpath(path), properties);

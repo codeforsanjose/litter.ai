@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
-import Cookies from 'js-cookie';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaAngleLeft, FaRegEnvelope } from 'react-icons/fa6';
 import { FiLock } from 'react-icons/fi';
-import { fetchLogin, fetchLogOut } from '../utils/fetchUserData';
+import { fetchLogin } from '../utils/fetchUserData';
 import '../css/Login.css';
 
-export default function Login({ user, setUser }) {
+export default function Login({ setUser }) {
   const [loginData, setLoginData] = useState({
-    email: 'bertram.hermiston@gmail.com',
+    email: 'barton50@yahoo.com',
     password: 'password',
   });
 
   const [invalidLogin, setInvalidLogin] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       const response = await fetchLogin(loginData);
       setUser(response.user.displayUsername);
       setInvalidLogin(false);
+      navigate('/');
     } catch (err) {
       setInvalidLogin(true);
       console.error(err);
@@ -28,14 +29,6 @@ export default function Login({ user, setUser }) {
   const handleChange = (e) => {
     e.preventDefault();
     setLoginData({ ...loginData, [e.target.id]: e.target.value });
-  };
-
-  const handleCheck = () => {
-    const token = Cookies.get('authToken');
-    const userData = Cookies.get('username');
-    console.log('user: ', user);
-    console.log('token: ', token);
-    console.log('userCookie: ', userData);
   };
 
   return (
@@ -87,39 +80,19 @@ export default function Login({ user, setUser }) {
         <button
           type="button"
           onClick={handleLogin}
-          className="login-button"
+          id="login-button"
         >
           Login
         </button>
-        <Link to="/register">
-          <button type="button">Register</button>
-        </Link>
-        <button
-          type="button"
-          onClick={handleCheck}
-        >
-          Test Login Data
-        </button>
-        <button
-          type="button"
-          onClick={async () => {
-            await fetchLogOut();
-            await setUser(null);
-          }}
-        >
-          Log out
-        </button>
-        <Link to="/leaderboard">
-          <button type="button">Leaderboard</button>
-        </Link>
-        <Link to="/profile">
-          <button type="button">Profile</button>
-        </Link>
-        <Link to="/">
-          <button className="button-home" type="button">
-            Home
-          </button>
-        </Link>
+        <div className="sign-up">
+          <small>Don&apos;t have an account?</small>
+          <Link
+            to="/register"
+            className="register-button"
+          >
+            <small>Sign Up</small>
+          </Link>
+        </div>
       </div>
     </div>
   );
