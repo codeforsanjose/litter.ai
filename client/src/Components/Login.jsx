@@ -74,6 +74,7 @@ export default function Login({ setUser }) {
             id="password"
             aria-label="Password"
             placeholder="Password"
+            minLength="4"
             value={loginData.password}
             onChange={(e) => handleChange(e)}
           />

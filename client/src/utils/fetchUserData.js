@@ -46,9 +46,13 @@ export async function fetchProfileData(user) {
 export async function fetchRegister(body) {
   try {
     const response = await fetchData('register', 'POST', body);
-    if (response.token) {
-      Cookies.set('authToken', response.token, { expires: 7 });
-      Cookies.set('username', response.user.displayUsername, { expires: 7 });
+    if (response.status === 'pending') {
+      const loginBody = {
+        email: body.email,
+        password: body.password,
+      };
+      const loginResponse = await fetchLogin(loginBody);
+      return loginResponse;
     }
     return response;
   } catch (err) {

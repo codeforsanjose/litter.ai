@@ -28,7 +28,7 @@
   margin: 3rem auto;
 }
 
-.invalid-login-signup {
+.invalid-login-signup, .matching-password {
   color: rgb(255, 0, 0);
   text-align: center;
   margin: 0.5rem;

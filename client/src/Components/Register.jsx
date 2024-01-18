@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import Cookies from 'js-cookie';
 import { GrLocation } from 'react-icons/gr';
 import { FaRegUser } from 'react-icons/fa';
 import { FaAngleLeft, FaRegEnvelope } from 'react-icons/fa6';
 import { FiLock } from 'react-icons/fi';
 import { PiUserListBold } from 'react-icons/pi';
 import { Link, useNavigate } from 'react-router-dom';
-import { fetchRegister, fetchLogOut } from '../utils/fetchUserData';
+import { fetchRegister } from '../utils/fetchUserData';
 import '../css/LoginSignUp.css';
 
-export default function Register({ user, setUser }) {
+export default function Register({ setUser }) {
   const [registerData, setRegisterData] = useState({
     firstName: '',
     lastName: '',
@@ -19,16 +18,19 @@ export default function Register({ user, setUser }) {
     confirmPassword: '',
     zipCode: '',
   });
+  const [passwordMatch, setPasswordMatch] = useState(true);
 
   const navigate = useNavigate();
 
   const handleRegister = async () => {
-    try {
-      const response = await fetchRegister(registerData);
-      setUser(response.user.displayUsername);
-      navigate('/');
-    } catch (err) {
-      console.error(err);
+    if (passwordMatch) {
+      try {
+        const response = await fetchRegister(registerData);
+        setUser(response.user.displayUsername);
+        navigate('/');
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
@@ -37,12 +39,13 @@ export default function Register({ user, setUser }) {
     setRegisterData({ ...registerData, [e.target.id]: e.target.value });
   };
 
-  const handleCheck = () => {
-    const token = Cookies.get('authToken');
-    const userData = Cookies.get('username');
-    console.log('user: ', user);
-    console.log('token: ', token);
-    console.log('userCookie: ', userData);
+  const handlePasswordMatch = () => {
+    const [pass, confPass] = [registerData.password, registerData.confirmPassword];
+    if (confPass.length && pass !== confPass) {
+      setPasswordMatch(false);
+    } else if (pass === confPass) {
+      setPasswordMatch(true);
+    }
   };
 
   const goBack = () => {
@@ -66,7 +69,7 @@ export default function Register({ user, setUser }) {
           <PiUserListBold className="login-signup-icon" />
           <input
             type="text"
-            id="first-name"
+            id="firstName"
             aria-label="First Name"
             placeholder="First Name"
             value={registerData.firstName}
@@ -79,7 +82,7 @@ export default function Register({ user, setUser }) {
           <PiUserListBold className="login-signup-icon" />
           <input
             type="text"
-            id="last-name"
+            id="lastName"
             aria-label="Last Name"
             placeholder="Last Name"
             value={registerData.lastName}
@@ -96,6 +99,19 @@ export default function Register({ user, setUser }) {
             aria-label="Email"
             placeholder="Email"
             value={registerData.email}
+            onChange={(e) => handleChange(e)}
+            required
+          />
+        </div>
+        <br className="login-signup-form-break" />
+        <div className="login-signup-zipCode">
+          <GrLocation className="login-signup-icon" />
+          <input
+            type="zipCode"
+            id="zipCode"
+            aria-label="Zip Code"
+            placeholder="Zip Code"
+            value={registerData.zipCode}
             onChange={(e) => handleChange(e)}
             required
           />
@@ -123,6 +139,7 @@ export default function Register({ user, setUser }) {
             placeholder="Password"
             value={registerData.password}
             onChange={(e) => handleChange(e)}
+            onKeyUp={handlePasswordMatch}
             required
           />
         </div>
@@ -131,27 +148,21 @@ export default function Register({ user, setUser }) {
           <FiLock className="login-signup-icon" />
           <input
             type="password"
-            id="confirm-password"
+            id="confirmPassword"
             aria-label="Confirm Password"
-            placeholder="ConfirmPassword"
+            placeholder="Confirm Password"
             value={registerData.confirmPassword}
             onChange={(e) => handleChange(e)}
+            onKeyUp={handlePasswordMatch}
             required
           />
         </div>
-        <br className="login-signup-form-break" />
-        <div className="login-signup-zipCode">
-          <GrLocation className="login-signup-icon" />
-          <input
-            type="zipCode"
-            id="zipCode"
-            aria-label="Zip Code"
-            placeholder="Zip Code"
-            value={registerData.zipCode}
-            onChange={(e) => handleChange(e)}
-            required
-          />
-        </div>
+        {!passwordMatch
+          && (
+            <div className="matching-password">
+              <small>Passwords do not match</small>
+            </div>
+          )}
       </form>
 
       <div className="lower-buttons login-signup-buttons">
@@ -162,27 +173,6 @@ export default function Register({ user, setUser }) {
         >
           Register
         </button>
-        <button
-          type="button"
-          onClick={handleCheck}
-        >
-          Test Login Data
-        </button>
-        <button
-          type="button"
-          onClick={async () => {
-            await fetchLogOut();
-            await setUser(null);
-          }}
-        >
-          Log out
-        </button>
-        <Link to="/leaderboard">
-          <button type="button">Leaderboard</button>
-        </Link>
-        <Link to="/profile">
-          <button type="button">Profile</button>
-        </Link>
         <Link to="/">
           <button className="button-home" type="button">
             Home
