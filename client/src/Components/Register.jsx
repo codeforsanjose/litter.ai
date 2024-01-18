@@ -18,12 +18,13 @@ export default function Register({ setUser }) {
     confirmPassword: '',
     zipCode: '',
   });
+  const [validPassword, setValidPassword] = useState(false);
   const [passwordMatch, setPasswordMatch] = useState(true);
 
   const navigate = useNavigate();
 
   const handleRegister = async () => {
-    if (passwordMatch) {
+    if (passwordMatch && validPassword) {
       try {
         const response = await fetchRegister(registerData);
         setUser(response.user.displayUsername);
@@ -39,12 +40,21 @@ export default function Register({ setUser }) {
     setRegisterData({ ...registerData, [e.target.id]: e.target.value });
   };
 
-  const handlePasswordMatch = () => {
+  const handlePasswordCheck = () => {
     const [pass, confPass] = [registerData.password, registerData.confirmPassword];
+
+    // If passwords don't match, user will be notified.
     if (confPass.length && pass !== confPass) {
       setPasswordMatch(false);
     } else if (pass === confPass) {
       setPasswordMatch(true);
+    }
+
+    // If password is shorter than 6 characters, user will be notified.
+    if (pass.length && pass.length >= 6) {
+      setValidPassword(true);
+    } else if (pass.length && pass.length < 6) {
+      setValidPassword(false);
     }
   };
 
@@ -137,12 +147,19 @@ export default function Register({ setUser }) {
             id="password"
             aria-label="Password"
             placeholder="Password"
+            minLength="6"
             value={registerData.password}
             onChange={(e) => handleChange(e)}
-            onKeyUp={handlePasswordMatch}
+            onKeyUp={handlePasswordCheck}
             required
           />
         </div>
+        {(registerData.password.length > 0 && !validPassword)
+          && (
+            <div className="valid-password">
+              <small>Password must be a minimum of 6 characters</small>
+            </div>
+          )}
         <br className="login-signup-form-break" />
         <div className="login-signup-confirm-password">
           <FiLock className="login-signup-icon" />
@@ -153,7 +170,7 @@ export default function Register({ setUser }) {
             placeholder="Confirm Password"
             value={registerData.confirmPassword}
             onChange={(e) => handleChange(e)}
-            onKeyUp={handlePasswordMatch}
+            onKeyUp={handlePasswordCheck}
             required
           />
         </div>
