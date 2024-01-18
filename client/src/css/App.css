@@ -80,7 +80,7 @@
 .lower-buttons button {
   width: 85dvw;
   max-width: 653px;
-  height: 6dvh;
+  height: 3rem;
   margin: 0.3rem 0;
   border: none;
   border-radius: 10rem;
@@ -109,7 +109,7 @@
   font-size: 1.2rem;
 }
 
-.back-button button:hover {
+.back-button:hover {
   cursor: pointer;
   background-color: var(--main-green);
   color: var(--white);

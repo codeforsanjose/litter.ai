@@ -1,4 +1,4 @@
-.login-container {
+.login-signup-container {
   display: grid;
   grid-template-areas: 1fr 150px 1fr;
   box-sizing: border-box;
@@ -6,51 +6,56 @@
   padding: 2rem;
 }
 
-.login-header-text {
-  margin: 5rem 0 0 1rem;
+.login-signup-header {
+  width: 100%;
+  margin: 0 auto;
 }
 
-.login-header-text h3, .login-header-text p {
+  .login-signup-header-text {
+  margin-top: 5rem;
+}
+
+.login-signup-header-text h3, .login-signup-header-text p {
   margin: 0.5rem 0;
 }
 
-.login-header-text p {
+.login-signup-header-text p {
   color: gray;
 }
 
-.login-form {
+.login-signup-form {
   width: 100%;
   margin: 3rem auto;
 }
 
-.invalid-login {
+.invalid-login-signup {
   color: rgb(255, 0, 0);
   text-align: center;
   margin: 0.5rem;
 }
 
-.login-email, .login-password {
+.login-signup-first-name, .login-signup-last-name, .login-signup-username, .login-signup-email, .login-signup-password, .login-signup-confirm-password, .login-signup-zipCode {
   display: flex;
   width: 75%;
-  max-width: 300px;
+  max-width: 350px;
   margin: 0 auto;
   padding: 5px;
   border-bottom: 1px solid gray;
 }
 
-.login-icon {
+.login-signup-icon {
   color: gray;
   font-weight: bold;
 }
 
-.login-email input, .login-password input {
+.login-signup-first-name input, .login-signup-last-name input, .login-signup-username input, .login-signup-email input, .login-signup-password input, .login-signup-confirm-password input, .login-signup-zipCode input {
   width: 100%;
   margin-left: 0.75rem;
   border-style: hidden;
   outline: none;
 }
 
-.login-form-break {
+.login-signup-form-break {
   height: 1rem;
 }
 
@@ -60,12 +65,12 @@
   margin: 0.25rem;
 }
 
-.login-buttons button{
-  width: 50vw;
+.login-signup-buttons button{
+  width: 50dvw;
   max-width: 200px;
 }
 
-#login-button {
+#login-signup-button {
   background-color: var(--main-green);
   color: white;
   font-weight: bold;

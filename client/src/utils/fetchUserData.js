@@ -42,3 +42,16 @@ export async function fetchProfileData(user) {
     console.error(err);
   }
 }
+
+export async function fetchRegister(body) {
+  try {
+    const response = await fetchData('register', 'POST', body);
+    if (response.token) {
+      Cookies.set('authToken', response.token, { expires: 7 });
+      Cookies.set('username', response.user.displayUsername, { expires: 7 });
+    }
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+}

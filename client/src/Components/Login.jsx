@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaAngleLeft, FaRegEnvelope } from 'react-icons/fa6';
 import { FiLock } from 'react-icons/fi';
 import { fetchLogin } from '../utils/fetchUserData';
-import '../css/Login.css';
+import '../css/LoginSignUp.css';
 
 export default function Login({ setUser }) {
   const [loginData, setLoginData] = useState({
@@ -31,31 +31,34 @@ export default function Login({ setUser }) {
     setLoginData({ ...loginData, [e.target.id]: e.target.value });
   };
 
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
-    <div className="login-container main-container">
-      <div className="login-header">
-        <Link to="/" className="back-button">
-          <button className="back-button" type="button" aria-label="Back">
-            <FaAngleLeft />
-          </button>
-        </Link>
-        <div className="login-header-text">
+    <div className="login-signup-container main-container">
+      <div className="login-signup-header">
+        <button className="back-button" type="button" aria-label="Back" onClick={goBack}>
+          <FaAngleLeft />
+        </button>
+        <div className="login-signup-header-text">
           <h3>Sign In</h3>
           <p>Enter your credentials to continue</p>
         </div>
       </div>
-      <form className="login-form">
+
+      <form className="login-signup-form">
         {invalidLogin
           ? (
-            <div className="invalid-login">
+            <div className="invalid-login-signup">
               <small>Incorrect username and/or password</small>
             </div>
           )
-          : <br className="invalid-login" />}
-        <div className="login-email">
-          <FaRegEnvelope className="login-icon" />
+          : <br className="invalid-login-signup" />}
+        <div className="login-signup-email">
+          <FaRegEnvelope className="login-signup-icon" />
           <input
-            type="text"
+            type="email"
             id="email"
             aria-label="Email"
             placeholder="Email"
@@ -63,9 +66,9 @@ export default function Login({ setUser }) {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <br className="login-form-break" />
-        <div className="login-password">
-          <FiLock className="login-icon" />
+        <br className="login-signup-form-break" />
+        <div className="login-signup-password">
+          <FiLock className="login-signup-icon" />
           <input
             type="password"
             id="password"
@@ -76,11 +79,12 @@ export default function Login({ setUser }) {
           />
         </div>
       </form>
-      <div className="lower-buttons login-buttons">
+
+      <div className="lower-buttons login-signup-buttons">
         <button
           type="button"
           onClick={handleLogin}
-          id="login-button"
+          id="login-signup-button"
         >
           Login
         </button>
