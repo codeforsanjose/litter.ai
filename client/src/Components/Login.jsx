@@ -7,8 +7,8 @@ import '../css/LoginSignUp.css';
 
 export default function Login({ setUser }) {
   const [loginData, setLoginData] = useState({
-    email: 'barton50@yahoo.com',
-    password: 'password',
+    email: '',
+    password: '',
   });
 
   const [invalidLogin, setInvalidLogin] = useState(false);
