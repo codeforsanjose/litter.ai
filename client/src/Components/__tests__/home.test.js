@@ -3,12 +3,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {
   render,
-  act,
   screen,
   fireEvent,
-  waitFor,
 } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from '../LandingPage';
 import CameraCapture from '../Camera/CameraCapture';
