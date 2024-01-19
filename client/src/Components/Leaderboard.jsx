@@ -53,7 +53,7 @@ export default function Leaderboard() {
             </h3>
           </div>
           )}
-          <table className="lb-table">
+          <table className="lb-table" data-testid="lb-table">
             <thead>
               <tr className="lb-header">
                 <th scope="col">Rank</th>
