@@ -65,12 +65,16 @@
   margin: 0.25rem;
 }
 
+.login-signup-buttons {
+  margin-top: 4rem;
+}
+
 .login-signup-buttons button{
   width: 50dvw;
   max-width: 200px;
 }
 
-#login-signup-button {
+.login-signup-button {
   background-color: var(--main-green);
   color: white;
   font-weight: bold;
