@@ -9,6 +9,8 @@ export default function ImageUploaded({
   const [imageSubmitted, setImageSubmitted] = useState(false);
   const [imageCategory, setImageCategory] = useState('');
   const [imageConfidence, setImageConfidence] = useState(0);
+
+  // Submit image to AI and returns predicted category and confidence level
   const submitImageToAI = async () => {
     const formData = new FormData();
     formData.append('image', image.imageFile);
