@@ -101,4 +101,26 @@ describe('Successful submission page', () => {
     fireEvent.click(screen.getByTestId('modal-got-it-button'));
     expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
   });
+
+  test('Clicking on X closes the modal', () => {
+    render(
+      <Router initialEntries={['/success/plastic']}>
+        <Routes>
+          <Route path="/success/:category" element={<SuccessfulSubmission />} />
+        </Routes>
+      </Router>,
+    );
+    // Checks if the modal is already open
+    expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
+    // Opens the modal
+    fireEvent.click(screen.getByTestId('modal-learn-more'));
+
+    // Checks if modal is now visible
+    expect(screen.getByTestId('modal')).toBeInTheDocument();
+    expect(screen.getByTestId('modal-got-it-button')).toBeInTheDocument();
+
+    // Clicks on Got it to close the modal
+    fireEvent.click(screen.getByTestId('modal-x-button'));
+    expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
+  });
 });
