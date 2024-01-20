@@ -69,8 +69,8 @@ export default function SuccessfulSubmission() {
             <div
               className="modal-background"
               role="presentation"
+              data-testid="modal-background"
               onClick={() => { setModalOpen(!modalOpen); }}
-              onKeyDown={() => { setModalOpen(!modalOpen); }}
             />
           </>
         )}
