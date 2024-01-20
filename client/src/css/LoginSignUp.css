@@ -1,0 +1,96 @@
+.login-signup-container {
+  display: grid;
+  grid-template-areas: 1fr 150px 1fr;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2rem;
+}
+
+.login-signup-header {
+  width: 100%;
+  margin: 0 auto;
+}
+
+  .login-signup-header-text {
+  margin-top: 5rem;
+}
+
+.login-signup-header-text h3, .login-signup-header-text p {
+  margin: 0.5rem 0;
+}
+
+.login-signup-header-text p {
+  color: gray;
+}
+
+.login-signup-form {
+  width: 100%;
+  margin: 3rem auto;
+}
+
+.invalid-login-signup, .matching-password, .valid-password {
+  color: rgb(255, 0, 0);
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.login-signup-first-name, .login-signup-last-name, .login-signup-username, .login-signup-email, .login-signup-password, .login-signup-confirm-password, .login-signup-zipCode {
+  display: flex;
+  width: 75%;
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 5px;
+  border-bottom: 1px solid gray;
+}
+
+.login-signup-icon {
+  color: gray;
+  font-weight: bold;
+}
+
+.login-signup-first-name input, .login-signup-last-name input, .login-signup-username input, .login-signup-email input, .login-signup-password input, .login-signup-confirm-password input, .login-signup-zipCode input {
+  width: 100%;
+  margin-left: 0.75rem;
+  border-style: hidden;
+  outline: none;
+}
+
+.login-signup-form-break {
+  height: 1rem;
+}
+
+.forgot-password {
+  color: var(--main-green);
+  text-align: center;
+  margin: 0.25rem;
+}
+
+.login-signup-buttons {
+  margin-top: 4rem;
+}
+
+.login-signup-buttons button{
+  width: 50dvw;
+  max-width: 200px;
+}
+
+.login-signup-button {
+  background-color: var(--main-green);
+  color: white;
+  font-weight: bold;
+}
+
+.sign-up {
+  margin: 1rem;
+  text-align: center;
+}
+
+.sign-up p {
+  margin: 0.25rem;
+}
+
+.register-button {
+  display: block;
+  color: var(--main-green);
+  text-decoration: none;
+}

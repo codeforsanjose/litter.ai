@@ -33,8 +33,8 @@ export default function App() {
           <Route path="/capture" element={<CameraCapture />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/profile" element={<Profile user={user} setUser={setUser} />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login user={user} setUser={setUser} />} />
+          <Route path="/register" element={<Register setUser={setUser} />} />
+          <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/success/:category" element={<SuccessfulSubmission />} />
           <Route path="/404" element={<PageNotFound />} />
           <Route path="*" element={<Navigate to="/404" replace />} />
