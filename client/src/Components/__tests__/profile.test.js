@@ -15,7 +15,6 @@ import LandingPage from '../LandingPage';
 import * as fetchUserData from '../../utils/fetchUserData';
 import { userPictureData } from '../../MockData/mockUserData';
 
-
 describe('Home component', () => {
   const landingPage = <Router><LandingPage /></Router>;
   test('Logo and introduction text loads on the screen', () => {
