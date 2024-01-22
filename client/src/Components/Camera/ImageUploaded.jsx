@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Dropdown from '../Dropdown';
+import { fetchImageToAI } from '../../utils/fetchUserData';
 
 export default function ImageUploaded({
   image,
@@ -12,13 +13,7 @@ export default function ImageUploaded({
 
   // Submit image to AI and returns predicted category and confidence level
   const submitImageToAI = async () => {
-    const formData = new FormData();
-    formData.append('image', image.imageFile);
-    const res = await fetch('https://451e-2601-646-c600-3560-edc4-e61a-28ee-2108.ngrok-free.app/upload', {
-      method: 'POST',
-      body: formData,
-    });
-    const response = await res.json();
+    const response = await fetchImageToAI(image.imageFile);
     setImageCategory(response.class);
     setImageConfidence(Math.trunc(response.confidence * 100));
     setImageSubmitted(true);
@@ -30,6 +25,7 @@ export default function ImageUploaded({
         <button
           type="button"
           className="image-x-button"
+          aria-label="image-x-button"
           onClick={() => { setImage(null); }}
         >
           &#x2715;
@@ -45,12 +41,16 @@ export default function ImageUploaded({
               <Dropdown
                 setImageCategory={setImageCategory}
                 imageCategory={imageCategory}
+                aria-label="image-dropdown"
               />
             </div>
             <p>
               We are&nbsp;
-              <strong>{imageConfidence}</strong>
-              % confident that this is&nbsp;
+              <strong>
+                {imageConfidence}
+                %&nbsp;
+              </strong>
+              confident that this is&nbsp;
               <strong>{imageCategory}</strong>
               .
               If it is not,
