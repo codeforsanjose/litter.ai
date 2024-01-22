@@ -34,7 +34,7 @@ export default function ImageUploaded({
         >
           &#x2715;
         </button>
-        <img alt="" src={image.imagePreview} className="capture-image" />
+        <img alt="" src={image.imagePreview} className="capture-image" data-testid="image-preview" />
       </div>
       {/* Image has been uploaded and submitted to the AI */}
       {imageSubmitted

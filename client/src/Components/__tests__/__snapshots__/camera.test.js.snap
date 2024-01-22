@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddImage component AddImage matches the current snapshot 1`] = `
+Array [
+  <div
+    className="capture-top-section"
+  >
+    <svg
+      className="capture-icon"
+      fill="currentColor"
+      height="1em"
+      onClick={[Function]}
+      stroke="currentColor"
+      strokeWidth="0"
+      style={
+        Object {
+          "color": undefined,
+        }
+      }
+      viewBox="0 0 24 24"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g
+        id="Circle_Plus"
+      >
+        <g>
+          <path
+            d="M15,12.5H12.5V15a.5.5,0,0,1-1,0V12.5H9a.5.5,0,0,1,0-1h2.5V9a.5.5,0,0,1,1,0v2.5H15A.5.5,0,0,1,15,12.5Z"
+          />
+          <path
+            d="M12,21.932A9.934,9.934,0,1,1,21.932,12,9.944,9.944,0,0,1,12,21.932ZM12,3.065A8.934,8.934,0,1,0,20.932,12,8.944,8.944,0,0,0,12,3.065Z"
+          />
+        </g>
+      </g>
+    </svg>
+    <input
+      accept="image/*"
+      capture="environment"
+      data-testid="camera-plus"
+      id="cameraFileInput"
+      onChange={[Function]}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+      type="file"
+    />
+    <div
+      className="capture-icon-bg"
+    />
+    <h1>
+      Take a photo of the item
+    </h1>
+    <p>
+      <span>
+        Click on the icon to open up your device's camera.
+      </span>
+      <br />
+      <span>
+        Please take the photo in portrait mode for best results.
+      </span>
+    </p>
+  </div>,
+  <div
+    className="capture-buttons lower-buttons"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        className="button-home"
+        type="button"
+      >
+        Home
+      </button>
+    </a>
+  </div>,
+]
+`;

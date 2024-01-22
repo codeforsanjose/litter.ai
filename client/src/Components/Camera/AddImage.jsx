@@ -23,6 +23,7 @@ export default function AddImage({ setImage }) {
       { /* Image has not been uploaded, opens device's camera or gives option to upload an image */}
       <div className="capture-top-section">
         <CiCirclePlus onClick={openCamera} className="capture-icon" />
+        {/* <label htmlFor="cameraFileInput">camera</label> */}
         <input
           type="file"
           accept="image/*"
@@ -31,6 +32,7 @@ export default function AddImage({ setImage }) {
           capture="environment"
           onChange={handleImage}
           style={{ display: 'none' }}
+          data-testid="camera-plus"
         />
         <div className="capture-icon-bg" />
         <h1>Take a photo of the item</h1>
