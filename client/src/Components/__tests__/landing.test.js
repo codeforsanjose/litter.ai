@@ -15,6 +15,7 @@ import Login from '../Login';
 
 describe('Home component', () => {
   const landingPage = <Router><LandingPage /></Router>;
+  const user = 'Briana30';
 
   test('Landing page matches the current snapshot', () => {
     const tree = renderer.create(landingPage);
@@ -32,7 +33,7 @@ describe('Home component', () => {
     render(
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage user={user} />} />
           <Route path="/capture" element={<CameraCapture />} />
         </Routes>
       </Router>,
@@ -47,7 +48,7 @@ describe('Home component', () => {
     render(
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage user={user} />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
         </Routes>
       </Router>,
