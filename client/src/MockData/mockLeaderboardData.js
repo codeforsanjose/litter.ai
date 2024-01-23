@@ -59,8 +59,8 @@ export const mockTotalUploads = {
 
 export const mockMetalUploads = {
   category: 'metal',
-  userRank: 3,
-  userItemCount: 23423,
+  userRank: -1,
+  userItemCount: null,
   totalEntries: 24,
   leaderboard: [
     {

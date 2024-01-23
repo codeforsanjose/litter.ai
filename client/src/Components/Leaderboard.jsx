@@ -30,9 +30,6 @@ export default function Leaderboard() {
       await setLeaderboardData(response.leaderboard);
       await setUserRank(response.userRank);
       await setUserItemCount(response.userItemCount);
-      // console.log('lb: ', leaderboardData);
-      // console.log('user rank: ', userRank);
-      // console.log('user item: ', userItemCount);
     };
     fetchData();
   }, [dropdownSelection]);

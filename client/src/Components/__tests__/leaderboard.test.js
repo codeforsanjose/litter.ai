@@ -26,16 +26,13 @@ describe('Leaderboard component', () => {
   };
 
   // Start each test with total top 10 API call; reset mock after each test
-  beforeEach(
-    () => {
-      mockCall(mockTotalUploads);
-    },
-  );
+  beforeEach(() => { mockCall(mockTotalUploads); });
   afterEach(() => { jest.restoreAllMocks(); });
 
   // Creates a snapshot
   test('Leaderboard matches the current snapshot', async () => {
     const tree = await act(async () => renderer.create(leaderboard));
+    // Update tree because it renders nulls on initial load
     await act(() => tree.update(leaderboard));
     expect(tree.toJSON()).toMatchSnapshot();
   });
@@ -65,13 +62,13 @@ describe('Leaderboard component', () => {
   test('New data is rendered when a dropdown category is changed', async () => {
     await act(() => render(leaderboard));
     // Change category and data to metal
-    mockCall(mockMetalUploads);
+    await act(() => { mockCall(mockMetalUploads); });
+
     fireEvent.mouseDown(screen.getByText('Total'));
     act(() => fireEvent.click(screen.getByText('Metal')));
+    await waitFor(() => { expect(screen.getByText(/No Photos/i)).toBeInTheDocument(); });
     // Checks if a specific user is in the document
-    await waitFor(() => {
-      expect(screen.getByText('lucious_senger10')).toBeInTheDocument();
-    });
+    await waitFor(() => { expect(screen.getByText('lucious_senger10')).toBeInTheDocument(); });
     // Change category and data to plastic
     fireEvent.mouseDown(screen.getByText('Metal'));
     act(() => { mockCall(mockPlasticUploads); });
