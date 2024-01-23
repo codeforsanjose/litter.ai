@@ -7,6 +7,7 @@ Array [
   >
     <svg
       className="capture-icon"
+      data-testid="camera-plus"
       fill="currentColor"
       height="1em"
       onClick={[Function]}
@@ -37,7 +38,7 @@ Array [
     <input
       accept="image/*"
       capture="environment"
-      data-testid="camera-plus"
+      data-testid="camera-input"
       id="cameraFileInput"
       onChange={[Function]}
       style={

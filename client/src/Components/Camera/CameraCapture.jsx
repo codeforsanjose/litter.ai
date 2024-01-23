@@ -11,7 +11,6 @@ export default function CameraCapture() {
       {image
         ? <ImageUploaded image={image} setImage={setImage} />
         : <AddImage setImage={setImage} />}
-      <script src="ImageCapture.js" />
     </div>
   );
 }
