@@ -14,7 +14,7 @@ export default function Icons({ name, classname }) {
       {name === 'plastic' && <TbBottle className={classname} data-testid="plastic-icon" />}
       {name === 'paper' && <IoMdPaper className={classname} />}
       {name === 'cardboard' && <BsBoxSeam className={classname} />}
-      {name === 'compost' && <PiPlant className={classname} />}
+      {name === 'compost' && <PiPlant className={classname} data-testid="compost-icon" />}
       {name === 'metal' && <LiaDrumSteelpanSolid className={classname} />}
       {name === 'glass' && <CiGlass className={classname} />}
       {(name === 'trash' || name === 'landfill') && <LuTrash className={classname} />}
