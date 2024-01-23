@@ -2,6 +2,7 @@ export const mockTotalUploads = {
   totalEntries: 24,
   userRank: 3,
   userItemCount: 23423,
+  username: 'Briana30',
   leaderboard: [
     {
       username: 'briana30',

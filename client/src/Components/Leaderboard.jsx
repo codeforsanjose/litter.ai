@@ -19,7 +19,6 @@ export default function Leaderboard() {
       <td>{user.itemCount}</td>
     </tr>
   );
-
   // Sorts users by total uploads
   useEffect(() => {
     // Data for the total uploads is a different link than the categories
@@ -28,9 +27,12 @@ export default function Leaderboard() {
     // Authenticates user and grabs user's leaderboard data
     const fetchData = async () => {
       const response = await fetchLeaderboardData(path);
-      setLeaderboardData(response.leaderboard);
-      setUserRank(response.userRank);
-      setUserItemCount(response.userItemCount);
+      await setLeaderboardData(response.leaderboard);
+      await setUserRank(response.userRank);
+      await setUserItemCount(response.userItemCount);
+      // console.log('lb: ', leaderboardData);
+      // console.log('user rank: ', userRank);
+      // console.log('user item: ', userItemCount);
     };
     fetchData();
   }, [dropdownSelection]);

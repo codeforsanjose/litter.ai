@@ -22,17 +22,22 @@ describe('Leaderboard component', () => {
   const leaderboard = <Router><Leaderboard /></Router>;
   // Function to simulate an API call
   const mockCall = async (data) => {
-    await jest.spyOn(fetchUserData, 'fetchLeaderboardData').mockResolvedValue(data);
+    jest.spyOn(fetchUserData, 'fetchLeaderboardData').mockResolvedValue(data);
   };
 
   // Start each test with total top 10 API call; reset mock after each test
-  beforeEach(() => { mockCall(mockTotalUploads); });
+  beforeEach(
+    () => {
+      mockCall(mockTotalUploads);
+    },
+  );
   afterEach(() => { jest.restoreAllMocks(); });
 
   // Creates a snapshot
-  test('Leaderboard matches the current snapshot', () => {
-    const tree = renderer.create(leaderboard).toJSON();
-    expect(tree).toMatchSnapshot();
+  test('Leaderboard matches the current snapshot', async () => {
+    const tree = await act(async () => renderer.create(leaderboard));
+    await act(() => tree.update(leaderboard));
+    expect(tree.toJSON()).toMatchSnapshot();
   });
 
   test('Changes category from total to compost when clicking on the dropdown', async () => {
