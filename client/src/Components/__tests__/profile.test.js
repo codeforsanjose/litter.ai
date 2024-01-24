@@ -15,8 +15,9 @@ import ProfileStatistics from '../Profile/ProfileStatistics';
 import * as fetchUserData from '../../utils/fetchUserData';
 import { userPictureData } from '../../MockData/mockUserData';
 
+const mockSetState = jest.fn();
+
 describe('Profile component with user logged in', () => {
-  const mockSetState = jest.fn();
   const profile = (
     <Router>
       <Profile user="Briana30" setUser={mockSetState} />
@@ -49,12 +50,28 @@ describe('Profile component with user logged in', () => {
   test('Clicking on "Log out" button should remove the user\'s data', async () => {
     jest.spyOn(fetchUserData, 'fetchLogOut');
     await act(() => render(profile));
-    await act(() => fireEvent.click(screen.getByRole('button', { name: /Log out/i })));
+    await act(() => fireEvent.click(screen.getByRole('button', { name: /log out/i })));
     await waitFor(() => { expect(mockSetState).toHaveBeenCalled(); });
   });
 
   test('Statistics should reflect the user\'s data', async () => {
     await act(() => render(statistics));
     expect(screen.getByTestId(/paper-icon/i)).toBeInTheDocument();
+  });
+});
+
+describe('Profile when user is not logged in', () => {
+  const profile = (
+    <Router>
+      <Profile setUser={mockSetState} />
+    </Router>
+  );
+
+  test('Page prompts user to sign up or log in when a user is not logged in', () => {
+    render(profile);
+    expect(screen.getByText(/join us!/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /log in/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /sign up/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /home/i })).toBeInTheDocument();
   });
 });
