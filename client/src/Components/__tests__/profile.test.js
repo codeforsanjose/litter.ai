@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import renderer from 'react-test-renderer';
@@ -8,62 +9,52 @@ import {
   fireEvent,
   waitFor,
 } from '@testing-library/react';
-import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import { MemoryRouter as Router } from 'react-router-dom';
 import Profile from '../Profile/Profile';
-import LandingPage from '../LandingPage';
+import ProfileStatistics from '../Profile/ProfileStatistics';
 import * as fetchUserData from '../../utils/fetchUserData';
 import { userPictureData } from '../../MockData/mockUserData';
 
-describe('Home component', () => {
-  const landingPage = <Router><LandingPage /></Router>;
-  test('Logo and introduction text loads on the screen', () => {
-    render(landingPage);
-    expect(screen.getByTestId('home-logo')).toBeInTheDocument();
-    expect(screen.getByText('Welcome to LitterSort')).toBeInTheDocument();
-    expect(screen.getByText('With just a photo, sort your garbage and save the world.')).toBeInTheDocument();
+describe('Profile component with user logged in', () => {
+  const mockSetState = jest.fn();
+  const profile = (
+    <Router>
+      <Profile user="Briana30" setUser={mockSetState} />
+    </Router>
+  );
+  const statistics = (
+    <Router>
+      <ProfileStatistics user={userPictureData[0].pictureData} />
+    </Router>
+  );
+  // Function to simulate an API call
+  const mockCall = async (data) => {
+    jest.spyOn(fetchUserData, 'fetchProfileData').mockResolvedValue(data);
+  };
+
+  beforeEach(async () => { await act(() => { mockCall(userPictureData); }); });
+  afterEach(() => { jest.restoreAllMocks(); });
+
+  test('Profile matches the current snapshot', async () => {
+    // Snapshot currently doesn't wait for child component to render
+    const tree = await act(async () => renderer.create(profile));
+    expect(tree.toJSON()).toMatchSnapshot();
+  });
+
+  test('Username should appear at the top of the screen', async () => {
+    await act(() => render(profile));
+    expect(screen.getByText('Briana30')).toBeInTheDocument();
+  });
+
+  test('Clicking on "Log out" button should remove the user\'s data', async () => {
+    jest.spyOn(fetchUserData, 'fetchLogOut');
+    await act(() => render(profile));
+    await act(() => fireEvent.click(screen.getByRole('button', { name: /Log out/i })));
+    await waitFor(() => { expect(mockSetState).toHaveBeenCalled(); });
+  });
+
+  test('Statistics should reflect the user\'s data', async () => {
+    await act(() => render(statistics));
+    expect(screen.getByTestId(/paper-icon/i)).toBeInTheDocument();
   });
 });
-
-// describe('Profile component with user logged in', () => {
-//   jest.mock('js-cookie');
-//   jest.mock('react', () => ({
-//     ...jest.requireActual('react'),
-//     useState: jest.fn(),
-//   }));
-//   jest.mock('../../utils/fetchUserData', () => ({
-//     ...jest.requireActual('../../utils/fetchUserData'),
-//     fetchProfileData: jest.fn(),
-//   }));
-
-//   const mockSetState = jest.fn();
-
-//   test('Profile matches the current snapshot', () => {
-//     const tree = renderer.create(
-//       <Router>
-//         <Profile user="Briana30" setUser={mockSetState} />
-//       </Router>,
-//     ).toJSON();
-//     expect(tree).toMatchSnapshot();
-//   });
-
-//   test('Username should appear at the top of the screen', async () => {
-//     render(
-//       <Router>
-//         <Profile user="Briana30" setUser={mockSetState} />
-//       </Router>,
-//     );
-//     expect(screen.getByText('Briana30')).toBeInTheDocument();
-//   });
-
-//   test('Statistics should reflect the user\'s data', async () => {
-//     fetchUserData.fetchProfileData.mockResolvedValue(userPictureData[0]);
-//     React.useState.mockReturnValue(['Briana30', mockSetState]);
-//     render(
-//       <Router>
-//         <Profile user="Briana30" setUser={mockSetState} />
-//       </Router>,
-//     );
-//     expect(screen.getByText('Briana30')).toBeInTheDocument();
-//   });
-// });

@@ -25,11 +25,10 @@ describe('Leaderboard component', () => {
     jest.spyOn(fetchUserData, 'fetchLeaderboardData').mockResolvedValue(data);
   };
 
-  // Start each test with total top 10 API call; reset mock after each test
+  // Start each test with total top 10 API call
   beforeEach(() => { mockCall(mockTotalUploads); });
   afterEach(() => { jest.restoreAllMocks(); });
 
-  // Creates a snapshot
   test('Leaderboard matches the current snapshot', async () => {
     const tree = await act(async () => renderer.create(leaderboard));
     // Update tree because it renders nulls on initial load

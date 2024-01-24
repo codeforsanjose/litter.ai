@@ -3,6 +3,7 @@ export const userPictureData = [
     _id: '653c27770ea9a2e7ee210348',
     userID: '653c27770ea9a2e7ee210347',
     username: 'briana30',
+    displayUsername: 'Briana30',
     pictureData: {
       paper: 1976,
       cardboard: 1914,
