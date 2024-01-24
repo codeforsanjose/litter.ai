@@ -7,22 +7,10 @@ import {
   fireEvent,
 } from '@testing-library/react';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import Cookies from 'js-cookie';
-import App from '../../App';
 import PageNotFound from '../PageNotFound';
 import LandingPage from '../LandingPage';
 
-// describe('App component', () => {
-//   Cookies.get = jest.fn().mockImplementation(() => 'sampleUsername');
-//   jest.mock('js-cookie', () => jest.fn());
-//   jest.mock('js-cookie', () => ({ get: () => 'sampleUsername' }));
-//   const app = <Router><App /></Router>;
-//   test('Grabs username from cookies and sets it as state', () => {
-//     render(app);
-//     const checkCookie = Cookies.get();
-//     expect(checkCookie).toBeTruthy();
-//   });
-// });
+/* Test file for misc one off files */
 
 describe('Page Not Found component', () => {
   const PNFpage = <Router><PageNotFound /></Router>;

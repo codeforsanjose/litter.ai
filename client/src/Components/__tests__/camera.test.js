@@ -98,4 +98,19 @@ describe('ImageUploaded component', () => {
     await act(() => fireEvent.click(screen.getByRole('button', { name: /Confirm/i })));
     expect(screen.getByTestId(/compost-icon/i)).toBeInTheDocument();
   });
+
+  test('Changes category from compost to metal when clicking on the dropdown', async () => {
+    render(
+      <Router>
+        <ImageUploaded image={mockFile} setImage={setImageMock} />
+      </Router>,
+    );
+    await act(() => fireEvent.click(screen.getByRole('button', { name: /Submit/i })));
+    // Clicks on dropdown, role is named 'combobox' from the library
+    fireEvent.mouseDown(screen.getByRole('combobox'));
+    // Changes dropdown to 'Metal'
+    await act(() => fireEvent.click(screen.getByText(/metal/i)));
+    // Checking if 'Metal' *capitalized* is now the header on the dropdown;
+    expect(screen.getByText('Metal')).toBeInTheDocument();
+  });
 });
