@@ -1,6 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
+import cron from 'node-cron';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
 
@@ -9,10 +11,12 @@ import routes from './routes/index.js';
 import logError from './Errors/log-error.js';
 // import isAuth from './middleware/isAuth.js';
 import errorHandler from './middleware/errorHandler.js';
+import refreshTokenModel from './models/RefreshToken.js';
 
 const app = express();
 
-const { JWT_SECRET, MONGO_URI, SERVER_PORT, NODE_ENV } = process.env;
+const { REFRESH_SECRET, ACCESS_SECRET, MONGO_URI, SERVER_PORT, NODE_ENV } =
+    process.env;
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -22,15 +26,35 @@ const startServer = async () => {
     try {
         await mongoConnect();
         const db = await getDb();
+        cron.schedule('0 * * * *', async () => {
+            try {
+                const { acknowledged, deletedCount } =
+                    await refreshTokenModel.removeExpDocs();
+                if (acknowledged) {
+                    console.log(
+                        `${new Date()}: Removed ${deletedCount} expired refreshToken documents.`,
+                    );
+                } else {
+                    console.log(
+                        `${new Date()}: removeExpDocs query was not acknowledged`,
+                    );
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        });
 
         app.use(cors());
         app.use(morgan('dev'));
-        app.use(cors());
+        app.use(
+            cors({ origin: 'http://localhost:3000', credentials: true }),
+        );
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
+        app.use(cookieParser());
 
         app.use((req, res, next) => {
-            if (!JWT_SECRET || !MONGO_URI) {
+            if (!REFRESH_SECRET || !MONGO_URI || !ACCESS_SECRET) {
                 return res.status(500).send({
                     message: 'Internal Service Error',
                     error: 'Server missing Database Connection String or Secret',

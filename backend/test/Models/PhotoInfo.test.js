@@ -1,12 +1,11 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-plusplus */
-import { MongoClient, Collection } from 'mongodb';
-import { MongoMemoryServer } from 'mongodb-memory-server';
+import { Collection } from 'mongodb';
 import { faker } from '@faker-js/faker';
 import { jest } from '@jest/globals';
 
-import photoInfo from '../../models/PhotoInfo.js';
-import categoryCount from '../../models/CategoryCount.js';
+import photoInfoModel from '../../models/PhotoInfo.js';
+import catCountModel from '../../models/CategoryCount.js';
 import userModel from '../../models/User.js';
 import { closeDB } from '../../DB/db-connection.js';
 
@@ -45,33 +44,46 @@ const mocks = {
                     throw new Error('Simulated Error');
                 }),
 
+        deleteOne: () =>
+            jest
+                .spyOn(Collection.prototype, 'deleteOne')
+                .mockImplementation(() => {
+                    throw new Error('Simulated Error');
+                }),
+
         deleteMany: () =>
             jest
                 .spyOn(Collection.prototype, 'deleteMany')
                 .mockImplementation(() => {
                     throw new Error('Simulated Error');
                 }),
+
+        findOneAndUpdate: () =>
+            jest
+                .spyOn(Collection.prototype, 'findOneAndUpdate')
+                .mockImplementation(() => {
+                    throw new Error('Simulated Error');
+                }),
+
+        aggregate: () =>
+            jest
+                .spyOn(Collection.prototype, 'aggregate')
+                .mockImplementation(() => {
+                    throw new Error('Simulated Error');
+                }),
+    },
+    null: {
+        findOneAndUpdate: () =>
+            jest
+                .spyOn(Collection.prototype, 'findOneAndUpdate')
+                .mockResolvedValue(false),
     },
 };
 
 describe('PhotoInfo Model', () => {
-    let mongoServer;
-    let client;
-    let db;
     let newUser;
 
     beforeAll(async () => {
-        mongoServer = await MongoMemoryServer.create();
-        const uri = mongoServer.getUri();
-
-        client = new MongoClient(uri);
-        await client.connect();
-        db = client.db('testDB');
-
-        photoInfo.injectDB(db);
-        categoryCount.injectDB(db);
-        userModel.injectDB(db);
-
         newUser = await userModel.create(
             faker.internet.userName(),
             faker.internet.email(),
@@ -83,10 +95,7 @@ describe('PhotoInfo Model', () => {
     });
 
     afterAll(async () => {
-        await userModel.delete(newUser._id);
         await closeDB();
-        await client.close();
-        await mongoServer.stop();
     });
 
     afterEach(() => {
@@ -94,7 +103,7 @@ describe('PhotoInfo Model', () => {
     });
 
     describe('insertOne', () => {
-        const sut = photoInfo.insertOne;
+        const sut = photoInfoModel.insertOne;
         const category = getRandomCategory();
         let newPhotoCategoryCount = 0;
 
@@ -117,25 +126,41 @@ describe('PhotoInfo Model', () => {
         });
 
         it("should have a categoryUpload value that is equal to the CategoryCount document's value", async () => {
-            const actual = await categoryCount.findByUserId(newUser._id);
+            const actual = await catCountModel.findByUserId(newUser._id);
             const expected = newPhotoCategoryCount;
             expect(actual.pictureData[category]).toEqual(expected);
         });
 
         it("should have a totalUploads value that is equal to the CategoryCount document's value", async () => {
-            const actual = await categoryCount.findByUserId(newUser._id);
+            const actual = await catCountModel.findByUserId(newUser._id);
             const expected = newPhotoCategoryCount;
             expect(actual.totalUploads).toEqual(expected);
         });
 
         it('should throw an error if an invalid userId is entered', async () => {
-            await expect(
-                photoInfo.insertOne(category, {
-                    _id: 22,
-                    username: 'error',
-                }),
-            ).rejects.toThrow("Unable to locate user's category");
+            mocks.null.findOneAndUpdate();
+            let didNotThrow = false;
+
+            try {
+                await sut(category, {
+                    _id: newUser._id,
+                    username: newUser.userName,
+                });
+                didNotThrow = true;
+            } catch (error) {
+                expect(error.message).toContain(
+                    "Unable to locate user's category count document",
+                );
+                expect(error.statusCode).toBe(500);
+            }
+
+            if (didNotThrow) {
+                throw new Error(
+                    'Expected function to throw an Error, but it did not throw',
+                );
+            }
         });
+
         it('should throw an error if one occurs while querying the database', async () => {
             mocks.throwError.insertOne();
             let didNotThrow = false;
@@ -159,13 +184,13 @@ describe('PhotoInfo Model', () => {
     });
 
     describe('getAllUsersPhotoInfo', () => {
-        const sut = photoInfo.getAllUsersPhotoInfo;
+        const sut = photoInfoModel.getAllUsersPhotoInfo;
         const newUserPhotoArrayLength = 2;
 
         it('should return an array', async () => {
             let actual = await sut(newUser.username);
             expect(actual).toBeInstanceOf(Array);
-            actual = await photoInfo.getAllUsersPhotoInfo(22);
+            actual = await photoInfoModel.getAllUsersPhotoInfo(22);
             expect(actual).toBeInstanceOf(Array);
         });
 
@@ -204,15 +229,14 @@ describe('PhotoInfo Model', () => {
     });
 
     describe('deleteSingleUsersInfo', () => {
-        const sut = photoInfo.deleteSingleUsersInfo;
+        const sut = photoInfoModel.deleteSingleUsersInfo;
         it('should delete all documents in collection for provided userId', async () => {
-            const actualBeforeDelete = await photoInfo.getAllUsersPhotoInfo(
-                newUser.username,
-            );
+            const actualBeforeDelete =
+                await photoInfoModel.getAllUsersPhotoInfo(newUser.username);
             expect(actualBeforeDelete.length).toBeGreaterThan(0);
             // Delete documents
             await sut(newUser._id);
-            const actualAfterDelete = await photoInfo.getAllUsersPhotoInfo(
+            const actualAfterDelete = await photoInfoModel.getAllUsersPhotoInfo(
                 newUser._id,
             );
             expect(actualAfterDelete).toHaveLength(0);

@@ -1,8 +1,10 @@
+// @ts-nocheck
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import userModel from '../../models/User.js';
+import refreshTokenModel from '../../models/RefreshToken.js';
 
-const { JWT_SECRET } = process.env;
+const { REFRESH_SECRET, ACCESS_SECRET } = process.env;
 
 const loginUserService = async (body) => {
     let { email } = body;
@@ -11,7 +13,7 @@ const loginUserService = async (body) => {
 
     // Validate user credentials
     const result = await userModel.findByEmail(email);
-    if (!result) {
+    if (!result || result.status === 'pending') {
         const error = new Error('Incorrect Email or Password');
         error.statusCode = 401;
         throw error;
@@ -24,34 +26,65 @@ const loginUserService = async (body) => {
         throw error;
     }
 
-    // Sign token
-    let token;
+    // Sign tokens
+    let accessToken = '';
+    let refreshToken = '';
+
     try {
-        token = jwt.sign(
+        accessToken = jwt.sign(
             {
                 _id: result._id,
                 username: result.username,
                 email: result.email,
+                zipCode: result.zipCode,
             },
-            JWT_SECRET,
+            ACCESS_SECRET,
+            { expiresIn: '15m' },
         );
     } catch (error) {
         error.statusCode = 500;
-        error.message = `Internal Service Error: ${error.message}`;
+        error.message = `Error creating Access Token: ${error.message}`;
+        throw error;
+    }
+
+    try {
+        refreshToken = jwt.sign(
+            {
+                _id: result._id,
+            },
+            REFRESH_SECRET,
+            { expiresIn: '30d' },
+        );
+
+        const decoded = jwt.decode(refreshToken);
+        const createdAt = new Date(decoded.iat * 1000);
+        const expiresAt = new Date(decoded.exp * 1000);
+        await refreshTokenModel.addToken({
+            token: refreshToken,
+            userId: result._id,
+            createdAt,
+            expiresAt,
+        });
+    } catch (error) {
+        error.statusCode = 500;
+        error.message = `Error creating Refresh Token: ${error.message}`;
         throw error;
     }
 
     return {
-        user: {
-            _id: result._id,
-            username: result.username,
-            displayUsername: result.displayUsername,
-            email: result.email,
-            firstName: result.firstName,
-            lastName: result.lastName,
-            zipCode: result.zipCode,
+        response: {
+            user: {
+                _id: result._id,
+                username: result.username,
+                displayUsername: result.displayUsername,
+                email: result.email,
+                firstName: result.firstName,
+                lastName: result.lastName,
+                zipCode: result.zipCode,
+            },
+            token: accessToken,
         },
-        token,
+        refreshToken,
     };
 };
 

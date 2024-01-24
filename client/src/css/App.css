@@ -80,12 +80,11 @@
 .lower-buttons button {
   width: 85dvw;
   max-width: 653px;
-  height: 6dvh;
+  height: 3rem;
   margin: 0.3rem 0;
   border: none;
   border-radius: 10rem;
   font-size: 1rem;
-  color: var(--black);
 }
 
 .lower-buttons button:hover {
@@ -97,6 +96,22 @@
 .lower-buttons
 .button-home {
   background-color: var(--white);
+}
+
+.back-button {
+  width: 3rem;
+  height: 3rem;
+  margin: 0.3rem 0;
+  padding-top: 0.2rem;
+  border: none;
+  border-radius: 10rem;
+  font-size: 1.2rem;
+}
+
+.back-button:hover {
+  cursor: pointer;
+  background-color: var(--main-green);
+  color: var(--white);
 }
 
 /* Phones */

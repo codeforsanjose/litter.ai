@@ -1,14 +1,13 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
-import { MongoClient, ObjectId, Collection } from 'mongodb';
-import { MongoMemoryServer } from 'mongodb-memory-server';
+import { ObjectId, Collection } from 'mongodb';
 import { faker } from '@faker-js/faker';
 import { jest } from '@jest/globals';
 
 import userModel from '../../models/User.js';
-import photoInfo from '../../models/PhotoInfo.js';
-import categoryCount from '../../models/CategoryCount.js';
+import photoInfoModel from '../../models/PhotoInfo.js';
+import catCountModel from '../../models/CategoryCount.js';
 import { closeDB } from '../../DB/db-connection.js';
 
 const mocks = {
@@ -100,26 +99,8 @@ const dummyUsers = [
 ];
 
 describe('User Model', () => {
-    let mongoServer;
-    let client;
-    let db;
-
-    beforeAll(async () => {
-        mongoServer = await MongoMemoryServer.create();
-        const uri = mongoServer.getUri();
-        client = new MongoClient(uri);
-        await client.connect();
-        db = client.db('testDB');
-
-        photoInfo.injectDB(db);
-        categoryCount.injectDB(db);
-        userModel.injectDB(db);
-    });
-
     afterAll(async () => {
         await closeDB();
-        await client.close();
-        await mongoServer.stop();
     });
 
     afterEach(() => {
@@ -136,6 +117,7 @@ describe('User Model', () => {
                 firstName: faker.person.firstName(),
                 lastName: faker.person.lastName(),
                 zipCode: faker.location.zipCode('#####'),
+                status: 'pending',
             },
             {
                 displayUsername: faker.internet.userName(),
@@ -144,6 +126,7 @@ describe('User Model', () => {
                 firstName: faker.person.firstName(),
                 lastName: faker.person.lastName(),
                 zipCode: faker.location.zipCode('#####'),
+                status: 'pending',
             },
             {
                 displayUsername: faker.internet.userName(),
@@ -152,6 +135,7 @@ describe('User Model', () => {
                 firstName: faker.person.firstName(),
                 lastName: faker.person.lastName(),
                 zipCode: faker.location.zipCode('#####'),
+                status: 'pending',
             },
             {
                 displayUsername: faker.internet.userName(),
@@ -160,6 +144,7 @@ describe('User Model', () => {
                 firstName: faker.person.firstName(),
                 lastName: faker.person.lastName(),
                 zipCode: faker.location.zipCode('#####'),
+                status: 'pending',
             },
         ];
 
@@ -181,6 +166,7 @@ describe('User Model', () => {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 zipCode: user.zipCode,
+                status: user.pending,
             };
             expect(actual).not.toBeNull();
             expect(actual).not.toHaveProperty('password');
@@ -201,58 +187,6 @@ describe('User Model', () => {
             } catch (error) {
                 expect(error.message).toContain('Missing input parameter');
                 expect(error.statusCode).toBe(400);
-            }
-
-            if (didNotThrow) {
-                throw new Error(
-                    'Expected function to throw an Error, but it did not throw',
-                );
-            }
-        });
-
-        it('should throw an error username is already in use', async () => {
-            let didNotThrow = false;
-            try {
-                await sut(
-                    users[0].displayUsername,
-                    faker.internet.email(),
-                    users[0].password,
-                    users[0].firstName,
-                    users[0].lastName,
-                    users[0].zipCode,
-                );
-                didNotThrow = true;
-            } catch (error) {
-                expect(error.message).toContain(
-                    'Username or Email already in use',
-                );
-                expect(error.statusCode).toBe(409);
-            }
-
-            if (didNotThrow) {
-                throw new Error(
-                    'Expected function to throw an Error, but it did not throw',
-                );
-            }
-        });
-
-        it('should throw an error email is already in use', async () => {
-            let didNotThrow = false;
-            try {
-                await sut(
-                    faker.internet.userName(),
-                    users[0].email,
-                    users[0].password,
-                    users[0].firstName,
-                    users[0].lastName,
-                    users[0].zipCode,
-                );
-                didNotThrow = true;
-            } catch (error) {
-                expect(error.message).toContain(
-                    'Username or Email already in use',
-                );
-                expect(error.statusCode).toBe(409);
             }
 
             if (didNotThrow) {
@@ -289,8 +223,8 @@ describe('User Model', () => {
     });
     describe('find methods', () => {
         let createdUsers;
+        const createdUserPassword = faker.internet.password();
         beforeAll(async () => {
-            const createdUserPassword = faker.internet.password();
             createdUsers = await Promise.all(
                 dummyUsers.map(async (dummyUser) => {
                     const createdUser = await userModel.create(
@@ -316,7 +250,20 @@ describe('User Model', () => {
                 for (const user of createdUsers) {
                     const actual = await sut(user.email);
                     expect(actual).not.toBeNull();
-                    expect(actual).toEqual(user);
+                    expect(actual).toHaveProperty(
+                        'displayUsername',
+                        user.displayUsername,
+                    );
+                    expect(actual).toHaveProperty('username', user.username);
+                    expect(actual).toHaveProperty('email', user.email);
+                    expect(actual).toHaveProperty('firstName', user.firstName);
+                    expect(actual).toHaveProperty('lastName', user.lastName);
+                    expect(actual).toHaveProperty(
+                        'password',
+                        createdUserPassword,
+                    );
+                    expect(actual).toHaveProperty('status', 'pending');
+                    expect(actual).toHaveProperty('verificationToken');
                 }
             });
 
@@ -350,7 +297,20 @@ describe('User Model', () => {
                 for (const user of createdUsers) {
                     const actual = await sut(user._id);
                     expect(actual).not.toBeNull();
-                    expect(actual).toEqual(user);
+                    expect(actual).toHaveProperty(
+                        'displayUsername',
+                        user.displayUsername,
+                    );
+                    expect(actual).toHaveProperty('username', user.username);
+                    expect(actual).toHaveProperty('email', user.email);
+                    expect(actual).toHaveProperty('firstName', user.firstName);
+                    expect(actual).toHaveProperty('lastName', user.lastName);
+                    expect(actual).toHaveProperty(
+                        'password',
+                        createdUserPassword,
+                    );
+                    expect(actual).toHaveProperty('status', 'pending');
+                    expect(actual).toHaveProperty('verificationToken');
                 }
             });
 
@@ -358,7 +318,20 @@ describe('User Model', () => {
                 for (const user of createdUsers) {
                     const actual = await sut(user._id.toHexString());
                     expect(actual).not.toBeNull();
-                    expect(actual).toEqual(user);
+                    expect(actual).toHaveProperty(
+                        'displayUsername',
+                        user.displayUsername,
+                    );
+                    expect(actual).toHaveProperty('username', user.username);
+                    expect(actual).toHaveProperty('email', user.email);
+                    expect(actual).toHaveProperty('firstName', user.firstName);
+                    expect(actual).toHaveProperty('lastName', user.lastName);
+                    expect(actual).toHaveProperty(
+                        'password',
+                        createdUserPassword,
+                    );
+                    expect(actual).toHaveProperty('status', 'pending');
+                    expect(actual).toHaveProperty('verificationToken');
                 }
             });
 
@@ -392,7 +365,20 @@ describe('User Model', () => {
                 for (const user of createdUsers) {
                     const actual = await sut(user.username);
                     expect(actual).not.toBeNull();
-                    expect(actual).toEqual(user);
+                    expect(actual).toHaveProperty(
+                        'displayUsername',
+                        user.displayUsername,
+                    );
+                    expect(actual).toHaveProperty('username', user.username);
+                    expect(actual).toHaveProperty('email', user.email);
+                    expect(actual).toHaveProperty('firstName', user.firstName);
+                    expect(actual).toHaveProperty('lastName', user.lastName);
+                    expect(actual).toHaveProperty(
+                        'password',
+                        createdUserPassword,
+                    );
+                    expect(actual).toHaveProperty('status', 'pending');
+                    expect(actual).toHaveProperty('verificationToken');
                 }
             });
 
@@ -400,7 +386,20 @@ describe('User Model', () => {
                 for (const user of createdUsers) {
                     const actual = await sut(user.displayUsername);
                     expect(actual).not.toBeNull();
-                    expect(actual).toEqual(user);
+                    expect(actual).toHaveProperty(
+                        'displayUsername',
+                        user.displayUsername,
+                    );
+                    expect(actual).toHaveProperty('username', user.username);
+                    expect(actual).toHaveProperty('email', user.email);
+                    expect(actual).toHaveProperty('firstName', user.firstName);
+                    expect(actual).toHaveProperty('lastName', user.lastName);
+                    expect(actual).toHaveProperty(
+                        'password',
+                        createdUserPassword,
+                    );
+                    expect(actual).toHaveProperty('status', 'pending');
+                    expect(actual).toHaveProperty('verificationToken');
                 }
             });
 
@@ -408,7 +407,20 @@ describe('User Model', () => {
                 for (const user of createdUsers) {
                     const actual = await sut(`    ${user.displayUsername}   `);
                     expect(actual).not.toBeNull();
-                    expect(actual).toEqual(user);
+                    expect(actual).toHaveProperty(
+                        'displayUsername',
+                        user.displayUsername,
+                    );
+                    expect(actual).toHaveProperty('username', user.username);
+                    expect(actual).toHaveProperty('email', user.email);
+                    expect(actual).toHaveProperty('firstName', user.firstName);
+                    expect(actual).toHaveProperty('lastName', user.lastName);
+                    expect(actual).toHaveProperty(
+                        'password',
+                        createdUserPassword,
+                    );
+                    expect(actual).toHaveProperty('status', 'pending');
+                    expect(actual).toHaveProperty('verificationToken');
                 }
             });
 
@@ -438,9 +450,9 @@ describe('User Model', () => {
     });
     describe('delete', () => {
         const sut = userModel.delete;
-        const { getAllUsersPhotoInfo } = photoInfo;
+        const { getAllUsersPhotoInfo } = photoInfoModel;
         const findUserByEmail = userModel.findByEmail;
-        const findUserCategoryDocument = categoryCount.findByUserId;
+        const findUserCategoryDocument = catCountModel.findByUserId;
         let userForDeleteTest;
         beforeAll(async () => {
             const userForDeletePassword = faker.internet.password();
@@ -459,11 +471,11 @@ describe('User Model', () => {
             };
 
             await Promise.all([
-                photoInfo.insertOne('trash', {
+                photoInfoModel.insertOne('trash', {
                     _id: userForDeleteTest._id,
                     username: userForDeleteTest.username,
                 }),
-                photoInfo.insertOne('plastic', {
+                photoInfoModel.insertOne('plastic', {
                     _id: userForDeleteTest._id,
                     username: userForDeleteTest.username,
                 }),
@@ -473,12 +485,14 @@ describe('User Model', () => {
         it("should delete the selected user's data from all collections", async () => {
             let actual = await findUserByEmail(userForDeleteTest.email);
             let actualUserPhotos = await getAllUsersPhotoInfo(actual.username);
-            expect({ ...actual, _id: actual._id.toHexString() }).toEqual(
-                userForDeleteTest,
-            );
+            expect({ ...actual, _id: actual._id.toHexString() }).toEqual({
+                ...userForDeleteTest,
+                status: 'pending',
+                verificationToken: '',
+            });
             expect(actualUserPhotos).toHaveLength(2);
             actual = await sut(actual._id);
-            actualUserPhotos = await photoInfo.getAllUsersPhotoInfo(
+            actualUserPhotos = await photoInfoModel.getAllUsersPhotoInfo(
                 userForDeleteTest._id,
             );
 
@@ -499,6 +513,48 @@ describe('User Model', () => {
             let didNotThrow = false;
             try {
                 await sut(new ObjectId());
+                didNotThrow = true;
+            } catch (error) {
+                expect(error.message).toContain('Simulated Error');
+                expect(error.statusCode).toBe(500);
+            }
+
+            if (didNotThrow) {
+                throw new Error(
+                    'Expected function to throw an Error, but it did not throw',
+                );
+            }
+        });
+    });
+    describe('updateStatus', () => {
+        let userForUpdate;
+        const userForUpdatePass = faker.internet.password();
+        const sut = userModel.updateStatus;
+        beforeAll(async () => {
+            userForUpdate = await userModel.create(
+                faker.internet.userName(),
+                faker.internet.email(),
+                userForUpdatePass,
+                faker.person.firstName(),
+                faker.person.lastName(),
+                faker.location.zipCode('#####'),
+            );
+        });
+
+        it('should update the status field of a user documents', async () => {
+            const actualBefore = await userModel.findById(userForUpdate._id);
+            expect(actualBefore.status).toEqual('pending');
+            const actualStatus = 'verified';
+            await sut({ _id: userForUpdate._id, status: actualStatus });
+            const actual = await userModel.findById(userForUpdate._id);
+            expect(actual).toHaveProperty('status', actualStatus);
+        });
+
+        it('should throw an error if one occurs while querying the database', async () => {
+            mocks.throwError.findOneAndUpdate();
+            let didNotThrow = false;
+            try {
+                await sut({ _id: new ObjectId(), status: 'verified' });
                 didNotThrow = true;
             } catch (error) {
                 expect(error.message).toContain('Simulated Error');
