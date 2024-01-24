@@ -16,6 +16,7 @@ import SuccessfulSubmission from './components/SuccessfulSubmission/SuccessfulSu
 import Register from './components/Register';
 import Login from './components/Login';
 import PageNotFound from './components/PageNotFound';
+import Navbar from './components/Navbar';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -29,6 +30,7 @@ export default function App() {
     <div className="App">
       <Router>
         <Routes>
+          <Route path="/navbar" element={<Navbar />} />
           <Route path="/" element={<LandingPage user={user} />} />
           <Route path="/capture" element={<CameraCapture />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
