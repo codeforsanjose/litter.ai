@@ -4,7 +4,7 @@ import { FaRegUser } from 'react-icons/fa';
 import { FaAngleLeft, FaRegEnvelope } from 'react-icons/fa6';
 import { FiLock } from 'react-icons/fi';
 import { PiUserListBold } from 'react-icons/pi';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { fetchRegister } from '../utils/fetchUserData';
 import '../css/LoginSignUp.css';
 
@@ -195,11 +195,6 @@ export default function Register({ setUser }) {
           >
             Register
           </button>
-          <Link to="/">
-            <button className="button-home" type="button">
-              Home
-            </button>
-          </Link>
         </section>
       </form>
     </main>

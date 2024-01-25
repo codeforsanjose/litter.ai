@@ -3,6 +3,7 @@
   grid-template-areas: 1fr 150px 1fr;
   box-sizing: border-box;
   width: 100%;
+  height: 100%;
   padding: 2rem;
 }
 
@@ -12,7 +13,7 @@
 }
 
   .login-signup-header-text {
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 .login-signup-header-text h3, .login-signup-header-text p {
@@ -63,10 +64,6 @@
   color: var(--main-green);
   text-align: center;
   margin: 0.25rem;
-}
-
-.login-signup-buttons {
-  margin-top: 4rem;
 }
 
 .login-signup-buttons button{
