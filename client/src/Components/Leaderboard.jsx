@@ -37,7 +37,7 @@ export default function Leaderboard() {
     <>
       { leaderboardData.length > 0 && (
         <div className="lb-container main-container">
-          <h1>Leaderboard</h1>
+          <h1 className={userRank && 'lb-header-user'}>Leaderboard</h1>
           { userRank && (
           <div className="lb-user-stats">
             <h3>
