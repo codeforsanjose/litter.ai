@@ -1,6 +1,6 @@
 .lb-container {
   height: 90dvh;
-  width: 42rem;
+  width: 100%;
   max-width: 100dvw;
   display: flex;
   flex-direction: column;
