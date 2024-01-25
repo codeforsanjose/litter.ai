@@ -16,13 +16,6 @@
 
 .landing-container
 .landing-top-section
-.landing-logo {
-  font-size: 11rem;
-  color: var(--white);
-}
-
-.landing-container
-.landing-top-section
 .landing-text {
   text-align: center;
   color: var(--white);
@@ -127,11 +120,21 @@
 
 /* Phones */
 @media only screen and (max-width: 600px) {
-
+  .landing-container
+  .landing-top-section
+  .landing-logo {
+    width: 6rem;
+  }
 }
 
 /* Portrait tablets and large phones */
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .landing-container
+  .landing-top-section
+  .landing-logo {
+    width: 7rem;
+  }
+
   .landing-container
   .landing-top-section
   .landing-capture-button {
@@ -141,6 +144,12 @@
 
 /* Small laptops and desktops */
 @media only screen and (min-width: 1025px) {
+  .landing-container
+  .landing-top-section
+  .landing-logo {
+    width: 8rem;
+  }
+
   .landing-container
   .landing-top-section
   .landing-capture-button {

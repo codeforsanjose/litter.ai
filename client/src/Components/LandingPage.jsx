@@ -1,14 +1,16 @@
 import React from 'react';
-import { PiFlowerTulipThin } from 'react-icons/pi';
+// import { PiFlowerTulipThin } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 import '../css/Landing.css';
+import LogoWhite from '../images/Logo_large_white.png';
 
 export default function LandingPage({ user }) {
   return (
     <>
       <div className="landing-container main-container">
         <div className="landing-top-section">
-          <PiFlowerTulipThin className="landing-logo" data-testid="home-logo" />
+          {/* <PiFlowerTulipThin className="landing-logo" data-testid="home-logo" /> */}
+          <img src={LogoWhite} alt="litterai-logo-white" className="landing-logo" />
           <div className="landing-text">
             <h1>Welcome to LitterSort</h1>
             <p>With just a photo, sort your garbage and save the world.</p>
