@@ -13,7 +13,7 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import Profile from '../Profile/Profile';
 import ProfileStatistics from '../Profile/ProfileStatistics';
 import * as fetchUserData from '../../utils/fetchUserData';
-import { userPictureData } from '../../MockData/mockUserData';
+import { userPictureData } from '../../mockData/mockUserData';
 
 const mockSetState = jest.fn();
 
