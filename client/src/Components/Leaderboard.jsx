@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Dropdown from './Dropdown';
 import { fetchLeaderboardData } from '../utils/fetchUserData';
 import '../css/Leaderboard.css';
@@ -70,18 +69,6 @@ export default function Leaderboard() {
               {leaderboardData.map((user, index) => (renderTable(user, index)))}
             </tbody>
           </table>
-          <div className="lb-buttons lower-buttons">
-            <Link to="/capture">
-              <button type="button">
-                Capture Picture
-              </button>
-            </Link>
-            <Link to="/">
-              <button className="button-home" type="button">
-                Home
-              </button>
-            </Link>
-          </div>
         </div>
       )}
     </>

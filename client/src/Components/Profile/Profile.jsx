@@ -38,18 +38,6 @@ export default function Profile({ user, setUser }) {
             { userStatisticData
               && <ProfileStatistics user={userStatisticData.pictureData} />}
           </div>
-          <div className="profile-buttons lower-buttons">
-            <Link to="/capture">
-              <button type="button">
-                Capture Picture
-              </button>
-            </Link>
-            <Link to="/">
-              <button className="button-home" type="button">
-                Home
-              </button>
-            </Link>
-          </div>
         </div>
       )
       // Screen if a user is not logged in
@@ -73,13 +61,6 @@ export default function Profile({ user, setUser }) {
                   </button>
                 </Link>
               </div>
-            </div>
-            <div className="profile-logout-bottom">
-              <Link to="/">
-                <button className="button-home" type="button">
-                  Home
-                </button>
-              </Link>
             </div>
           </div>
         )}
