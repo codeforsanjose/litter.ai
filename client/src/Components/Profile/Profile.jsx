@@ -29,10 +29,7 @@ export default function Profile({ user, setUser }) {
           <div className="profile-login-header">
             <h1>{user}</h1>
           </div>
-          <div className="profile-logout-button">
-            <h2>User Status</h2>
-            <button type="button" onClick={handleLogout}>Log out</button>
-          </div>
+          <button type="button" onClick={handleLogout}>Log out</button>
           <div className="profile-statistics">
             <h2>My Waste Statistics</h2>
             { userStatisticData
