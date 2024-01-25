@@ -37,7 +37,7 @@ export default function Leaderboard() {
     <>
       { leaderboardData.length > 0 && (
         <div className="lb-container main-container">
-          <h1 className={userRank && 'lb-header-user'}>Leaderboard</h1>
+          <h1>Leaderboard</h1>
           { userRank && (
           <div className="lb-user-stats">
             <h3>
@@ -51,7 +51,7 @@ export default function Leaderboard() {
             </h3>
           </div>
           )}
-          <table className="lb-table" data-testid="lb-table">
+          <table className={`lb-table ${userRank && 'lb-table-user'}`} data-testid="lb-table">
             <thead>
               <tr className="lb-header">
                 <th scope="col">Rank</th>
