@@ -4,7 +4,6 @@
   z-index: 100;
   display: flex;
   align-items: flex-end;
-  grid-area: 10 / 2 / span 1 / span 1;
 }
 
 .navbar-container
@@ -31,4 +30,25 @@
 .navbar-wrapper
 .navbar-camera-icon {
   font-size: 2.3rem;
+}
+
+/* Phones */
+@media only screen and (max-width: 600px) {
+  .navbar-container{
+    grid-area: 10 / 1 / span 1 / span 1;
+  }
+}
+
+/* Portrait tablets and large phones */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .navbar-container{
+    grid-area: 10 / 2 / span 1 / span 1;
+  }
+}
+
+/* Small laptops and desktops */
+@media only screen and (min-width: 1025px) {
+  .navbar-container{
+    grid-area: 10 / 2 / span 1 / span 1;
+  }
 }
