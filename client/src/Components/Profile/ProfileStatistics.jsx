@@ -22,9 +22,11 @@ export default function ProfileStatistics({ user }) {
 
   // Converts data into array sorts the list in descending order
   useEffect(() => {
-    const list = Object.keys(user).map((key) => [key, user[key]]);
-    list.sort((a, b) => b[1] - a[1]);
-    setUserStatistics(list);
+    if (user) {
+      const list = Object.keys(user).map((key) => [key, user[key]]);
+      list.sort((a, b) => b[1] - a[1]);
+      setUserStatistics(list);
+    }
   }, [user]);
 
   return (

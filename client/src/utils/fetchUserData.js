@@ -37,6 +37,7 @@ export async function fetchLeaderboardData(path) {
     return response;
   } catch (err) {
     console.error(err);
+    fetchLogOut();
   }
 }
 
@@ -46,6 +47,22 @@ export async function fetchProfileData(user) {
     return response;
   } catch (err) {
     console.error(err);
+    fetchLogOut();
+  }
+}
+
+export async function fetchImageToAI(image) {
+  try {
+    const formData = new FormData();
+    formData.append('image', image);
+    const res = await fetch(process.env.REACT_APP_API_KEY, {
+      method: 'POST',
+      body: formData,
+    });
+    const response = await res.json();
+    return response;
+  } catch (err) {
+    console.log(err);
   }
 }
 

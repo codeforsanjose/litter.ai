@@ -6,7 +6,6 @@ import ProfileStatistics from './ProfileStatistics';
 
 export default function Profile({ user, setUser }) {
   const [userStatisticData, setUserStatisticData] = useState(null);
-
   const handleLogout = async () => {
     await fetchLogOut();
     await setUser(null);

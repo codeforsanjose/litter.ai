@@ -13,6 +13,7 @@ export default function SubmissionModal({
         <button
           type="button"
           className="modal-x-button"
+          data-testid="modal-x-button"
           onClick={() => { setModalOpen(!modalOpen); }}
         >
           &#x2715;
