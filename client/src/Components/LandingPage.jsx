@@ -14,7 +14,7 @@ export default function LandingPage({ user }) {
             <h1>Welcome to LitterSort</h1>
             <p>With just a photo, sort your garbage and save the world.</p>
           </div>
-          <div className="landing-top-buttons lower-buttons">
+          <div className="landing-buttons lower-buttons">
             <Link to="/capture">
               <button type="button" className="landing-capture-button">
                 Capture Picture
@@ -23,7 +23,7 @@ export default function LandingPage({ user }) {
           </div>
         </div>
         <div className="landing-bottom-section">
-          <div className="landing-bottom-buttons lower-buttons">
+          <div className="landing-buttons lower-buttons">
             { !user
               && (
                 <>

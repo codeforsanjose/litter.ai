@@ -2,7 +2,9 @@
   height: 100dvh;
   max-height: 100%;
   width: 100%;
-  position: absolute;
+  display: grid;
+  grid-template-rows: 15% 5fr 3fr 6%;
+  align-items: center;
 }
 
 .landing-container
@@ -11,7 +13,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 8% 0 2rem 0;
+  grid-row: 2 / span 1;
 }
 
 .landing-container
@@ -45,11 +47,12 @@
 .landing-container
 .landing-bottom-section {
   margin-bottom: 2.5rem;
+  grid-row: 3 / span 1;
 }
 
 .landing-container
 .landing-bottom-section
-.landing-bottom-buttons
+.landing-buttons
 .landing-signup-description {
   color: var(--white);
   width: 40dvw;
@@ -60,7 +63,7 @@
 
 .landing-container
 .landing-bottom-section
-.landing-bottom-buttons
+.landing-buttons
 .landing-secondary-button {
   background-color: var(--main-green-half);
   color: var(--white);
@@ -69,14 +72,14 @@
 
 .landing-container
 .landing-bottom-section
-.landing-bottom-buttons
+.landing-buttons
 .landing-secondary-button:hover {
   border: solid var(--white) 0.01rem;
 }
 
 .landing-container
 .landing-bottom-section
-.landing-bottom-buttons
+.landing-buttons
 .landing-login-text {
   display: flex;
   flex-direction: column;
@@ -87,7 +90,7 @@
 
 .landing-container
 .landing-bottom-section
-.landing-bottom-buttons
+.landing-buttons
 .landing-login-text p {
   margin: 1rem 0 0 0;
   color: var(--white);
@@ -97,7 +100,7 @@
 
 .landing-container
 .landing-bottom-section
-.landing-bottom-buttons
+.landing-buttons
 .landing-login-text a {
   font-size: 0.8rem;
   color: var(--lb-gray);
@@ -106,7 +109,7 @@
 
 .landing-container
 .landing-bottom-section
-.landing-bottom-buttons
+.landing-buttons
 .landing-login-text a:hover {
   color: var(--sec-green);
 }
@@ -144,6 +147,12 @@
   .landing-capture-button {
     width: 25dvw;
   }
+  .landing-container
+  .landing-bottom-section
+  .landing-buttons
+  .landing-secondary-button {
+    width: 25dvw;
+  }
 }
 
 /* Small laptops and desktops */
@@ -157,6 +166,13 @@
   .landing-container
   .landing-top-section
   .landing-capture-button {
+    width: 13dvw;
+  }
+
+  .landing-container
+  .landing-bottom-section
+  .landing-buttons
+  .landing-secondary-button {
     width: 13dvw;
   }
 }
