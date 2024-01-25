@@ -9,7 +9,7 @@ export default function LandingPage({ user }) {
     <>
       <div className="landing-container main-container">
         <div className="landing-top-section">
-          <img src={LogoWhite} alt="litterai-logo-white" className="landing-logo" />
+          <img src={LogoWhite} alt="litterai-logo-white" className="landing-logo" data-testid="litterai-logo" />
           <div className="landing-text">
             <h1>Welcome to LitterSort</h1>
             <p>With just a photo, sort your garbage and save the world.</p>

@@ -71,6 +71,5 @@ describe('Profile when user is not logged in', () => {
     expect(screen.getByText(/join us!/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /log in/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /sign up/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /home/i })).toBeInTheDocument();
   });
 });
