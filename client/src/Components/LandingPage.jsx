@@ -23,20 +23,8 @@ export default function LandingPage({ user }) {
         </div>
         <div className="landing-bottom-section">
           <div className="landing-bottom-buttons lower-buttons">
-            <Link to="/leaderboard">
-              <button type="button" className="landing-secondary-button">
-                Leaderboard
-              </button>
-            </Link>
-            { user
-              ? (
-                <Link to="/profile">
-                  <button type="button" className="landing-secondary-button">
-                    Profile
-                  </button>
-                </Link>
-              )
-              : (
+            { !user
+              && (
                 <>
                   <Link to="/register">
                     <button type="button" className="landing-secondary-button">
