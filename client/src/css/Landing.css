@@ -124,7 +124,7 @@
   max-height: 100%;
   background-color: var(--main-green-half);
   z-index: -1;
-  grid-area: 1 / 1 / span 2 / span 10;
+  grid-area: 1 / 1 / span 10 / span 3;
   margin: 0;
 }
 

@@ -20,6 +20,7 @@ import Navbar from './components/Navbar';
 
 export default function App() {
   const [user, setUser] = useState(null);
+  const [activePage, setActivePage] = useState('home');
 
   useEffect(() => {
     const username = Cookies.get('username');
@@ -29,6 +30,7 @@ export default function App() {
   return (
     <div className="App">
       <Router>
+        <Navbar activePage={activePage} setActivePage={setActivePage} />
         <Routes>
           <Route path="/navbar" element={<Navbar />} />
           <Route path="/" element={<LandingPage user={user} />} />
