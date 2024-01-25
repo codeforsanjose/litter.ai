@@ -43,14 +43,6 @@
 }
 
 .landing-container
-.landing-top-section
-.landing-bottom-buttons
-.landing-capture-button {
-  background-color: var(--white);
-  color: var(--main-green);
-}
-
-.landing-container
 .landing-bottom-section {
   margin-bottom: 2.5rem;
 }
@@ -58,16 +50,28 @@
 .landing-container
 .landing-bottom-section
 .landing-bottom-buttons
-.landing-secondary-button:hover {
-  border: solid var(--white) 0.01rem;
+.landing-signup-description {
+  color: var(--white);
+  width: 40dvw;
+  font-size: 0.6rem;
+  text-align: center;
+  font-weight: 200;
 }
 
 .landing-container
 .landing-bottom-section
 .landing-bottom-buttons
 .landing-secondary-button {
-  background-color: var(--main-green-half);;
+  background-color: var(--main-green-half);
   color: var(--white);
+  width: 40dvw;
+}
+
+.landing-container
+.landing-bottom-section
+.landing-bottom-buttons
+.landing-secondary-button:hover {
+  border: solid var(--white) 0.01rem;
 }
 
 .landing-container

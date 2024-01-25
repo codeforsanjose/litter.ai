@@ -9,7 +9,6 @@ export default function LandingPage({ user }) {
     <>
       <div className="landing-container main-container">
         <div className="landing-top-section">
-          {/* <PiFlowerTulipThin className="landing-logo" data-testid="home-logo" /> */}
           <img src={LogoWhite} alt="litterai-logo-white" className="landing-logo" />
           <div className="landing-text">
             <h1>Welcome to LitterSort</h1>
@@ -28,6 +27,7 @@ export default function LandingPage({ user }) {
             { !user
               && (
                 <>
+                  <p className="landing-signup-description">Create an account to track your statistics and compete against others!</p>
                   <Link to="/register">
                     <button type="button" className="landing-secondary-button">
                       Sign Up
