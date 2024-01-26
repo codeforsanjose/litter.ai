@@ -46,12 +46,7 @@ export default function SuccessfulSubmission() {
             </button>
             <Link to="/capture">
               <button type="button">
-                Capture another photo
-              </button>
-            </Link>
-            <Link to="/">
-              <button className="button-home" type="button">
-                Home
+                Capture photo
               </button>
             </Link>
           </div>
