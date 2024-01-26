@@ -44,11 +44,16 @@ const startServer = async () => {
             }
         });
 
-        app.use(cors());
+        // Allow all IP addresses.
+        // Cannot use wildcard '*' while accepting credentials
+        const corsOptions = {
+            origin: function allowAllOrigins(origin, callback) {
+                callback(null, true);
+            },
+            credentials: true,
+        };
+        app.use(cors(corsOptions));
         app.use(morgan('dev'));
-        app.use(
-            cors({ origin: 'http://localhost:3000', credentials: true }),
-        );
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
         app.use(cookieParser());
