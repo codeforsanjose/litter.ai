@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Loading from './Loading';
-import Error from './Error';
 import Dropdown from './Dropdown';
 import { fetchLeaderboardData } from '../utils/fetchUserData';
 import '../css/Leaderboard.css';
@@ -12,6 +12,7 @@ export default function Leaderboard() {
   const [userRank, setUserRank] = useState(null);
   const [userItemCount, setUserItemCount] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   // Creates a data row for each user with their rank, username, and total uploads
   const renderTable = (user, index) => (
@@ -29,12 +30,17 @@ export default function Leaderboard() {
     // Authenticates user and grabs user's leaderboard data
     const fetchData = async () => {
       const response = await fetchLeaderboardData(path);
-      await setLeaderboardData(response.leaderboard);
-      await setUserRank(response.userRank);
-      await setUserItemCount(response.userItemCount);
+      if (response.leaderboard) {
+        await setLeaderboardData(response.leaderboard);
+        await setUserRank(response.userRank);
+        await setUserItemCount(response.userItemCount);
+        await setLoading(false);
+      } else {
+        navigate('/404');
+      }
     };
     fetchData();
-  }, [dropdownSelection]);
+  }, [dropdownSelection, navigate]);
 
   return (
     <>
@@ -44,7 +50,7 @@ export default function Leaderboard() {
           <Loading loading={loading} />
         ) : (
           <div className="lb-container main-container">
-            { leaderboardData ? (
+            { leaderboardData && (
               <>
                 <h1>Leaderboard</h1>
                 { userRank && (
@@ -79,9 +85,7 @@ export default function Leaderboard() {
                   </tbody>
                 </table>
               </>
-            )
-            // Error page if data fails to load
-              : <Error />}
+            )}
           </div>
         )}
     </>

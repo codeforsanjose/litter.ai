@@ -4,8 +4,8 @@ import { TailSpin } from 'react-loader-spinner';
 export default function Loading({ loading }) {
   const loadingStyles = {
     display: 'flex',
-    'justify-content': 'center',
-    'align-items': 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 
   return (
