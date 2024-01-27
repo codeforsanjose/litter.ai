@@ -40,6 +40,7 @@ export default function Leaderboard() {
     <>
       { loading
         ? (
+          // Loading spinner while data is being fetched
           <Loading loading={loading} />
         ) : (
           <div className="lb-container main-container">
@@ -79,6 +80,7 @@ export default function Leaderboard() {
                 </table>
               </>
             )
+            // Error page if data fails to load
               : <Error />}
           </div>
         )}
