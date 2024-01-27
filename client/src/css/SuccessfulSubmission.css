@@ -72,7 +72,7 @@
 .category-modal {
   width: 35dvw;
   max-width: 100%;
-  max-height: 45dvh;
+  max-height: 70dvh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -231,7 +231,7 @@
   }
 
   .modal-container {
-    height: 50dvh;
+    height: 80dvh;
   }
 
   .modal-container
@@ -271,26 +271,6 @@
   .category-modal {
     width: 80dvw;
     max-height: 50dvh;
-  }
-
-  .modal-container p {
-    font-size: 1.5rem;
-  }
-
-  .modal-container
-  .modal-container-top h2 {
-    font-size: 2rem;
-  }
-
-  .modal-container
-  .modal-x-button {
-    font-size: 1.5rem;
-  }
-
-  .modal-container
-  .modal-got-it-button{
-    height: 7dvh;
-    font-size: 1.5rem;
   }
 }
 
