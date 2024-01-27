@@ -77,7 +77,7 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  z-index: 2;
+  z-index: 7;
 }
 
 /******** Modal ********/
@@ -92,7 +92,6 @@
   justify-content: center;
   align-items: center;
   border-radius: 1.5rem;
-  z-index: 2;
 }
 
 .modal-container
@@ -189,6 +188,7 @@
   background-color: #000;
   background-color: #000000a3;
   position: absolute;
+  z-index: 6;
 }
 
 
