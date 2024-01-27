@@ -57,7 +57,7 @@ export async function fetchImageToAI(image) {
   try {
     const formData = new FormData();
     formData.append('image', image);
-    const res = await fetch('https://64ee-2601-646-c600-3560-d419-a27c-984f-1c5.ngrok-free.app/upload', {
+    const res = await fetch(process.env.REACT_APP_API_KEY, {
       method: 'POST',
       body: formData,
     });
