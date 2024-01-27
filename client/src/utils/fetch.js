@@ -2,6 +2,19 @@
 import Cookies from 'js-cookie';
 import URLpath from './URLpath';
 
+async function getAuthToken() {
+  try {
+    const res = await fetch(URLpath('refresh-token'), {
+      method: 'GET',
+      credentials: 'include',
+    });
+    const response = await res.json();
+    Cookies.set('authToken', response.token, { expires: 7 });
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export default async function fetchData(path, method, body) {
   const token = Cookies.get('authToken');
   const properties = {
@@ -18,8 +31,15 @@ export default async function fetchData(path, method, body) {
   try {
     const res = await fetch(URLpath(path), properties);
     const response = await res.json();
+    if (response.errorCode && response.errorCode === 'EXPIRED_TOKEN') {
+      try {
+        await getAuthToken();
+      } catch (err) {
+        console.log(err);
+      }
+    }
     return response;
   } catch (err) {
-    console.error(err);
+    return err;
   }
 }

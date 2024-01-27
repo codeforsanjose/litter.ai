@@ -38,6 +38,8 @@ export async function fetchLeaderboardData(path) {
   } catch (err) {
     console.error(err);
     fetchLogOut();
+    console.log('lb-error', err);
+    return err;
   }
 }
 
@@ -84,7 +86,6 @@ export async function fetchRegister(body) {
       const loginResponse = await fetchLogin(loginBody);
       return loginResponse;
     }
-
     return response;
   } catch (err) {
     console.error(err);
