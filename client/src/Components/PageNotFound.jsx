@@ -1,10 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MdOutlineWrongLocation } from 'react-icons/md';
 import '../css/PageNotFound.css';
 
 export default function PageNotFound() {
-  const navigate = useNavigate();
   return (
     <div className="PNF-container main-container">
       <div className="PNF-404">
@@ -13,9 +12,11 @@ export default function PageNotFound() {
       </div>
       <h3>Your litter will have to be recycled elsewhere.</h3>
       <div className="PNF-buttons lower-buttons">
-        <button type="button" onClick={() => navigate(-1)}>
-          Back
-        </button>
+        <Link to="/">
+          <button type="button">
+            Home
+          </button>
+        </Link>
       </div>
     </div>
   );
