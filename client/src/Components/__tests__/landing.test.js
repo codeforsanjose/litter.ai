@@ -39,7 +39,7 @@ describe('Home component', () => {
     );
 
     expect(screen.getByTestId('litterai-logo')).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: 'Capture Picture' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Capture Picture', hidden: true }));
     expect(screen.getByText('Take a photo of the item')).toBeInTheDocument();
   });
 
@@ -53,8 +53,8 @@ describe('Home component', () => {
       </Router>,
     );
 
-    expect(screen.getByTestId('litterai-logo')).toBeInTheDocument();
-    await fireEvent.click(screen.getByRole('button', { name: 'Sign Up' }));
+    await expect(screen.getByTestId('litterai-logo')).toBeInTheDocument();
+    await fireEvent.click(screen.getByRole('button', { name: 'Sign Up', hidden: true }));
     expect(screen.getByRole('button', { name: /register/i })).toBeInTheDocument();
   });
 
@@ -68,8 +68,8 @@ describe('Home component', () => {
       </Router>,
     );
 
-    expect(screen.getByText('Already have an account?')).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('link', { name: 'Log in' }));
+    await expect(screen.getByText('Already have an account?')).toBeInTheDocument();
+    await fireEvent.click(screen.getByRole('link', { name: /log in/i, hidden: true }));
     expect(screen.getByRole('button', { name: 'Login' })).toBeInTheDocument();
   });
 });

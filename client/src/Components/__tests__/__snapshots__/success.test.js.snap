@@ -73,18 +73,7 @@ exports[`Successful submission page Successful submission page matches the curre
         <button
           type="button"
         >
-          Capture another photo
-        </button>
-      </a>
-      <a
-        href="/"
-        onClick={[Function]}
-      >
-        <button
-          className="button-home"
-          type="button"
-        >
-          Home
+          Capture photo
         </button>
       </a>
     </div>

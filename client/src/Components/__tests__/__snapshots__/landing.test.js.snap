@@ -4,6 +4,11 @@ exports[`Home component Landing page matches the current snapshot 1`] = `
 Array [
   <div
     className="landing-container main-container"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
   >
     <div
       className="landing-top-section"
@@ -12,6 +17,7 @@ Array [
         alt="litterai-logo-white"
         className="landing-logo"
         data-testid="litterai-logo"
+        onLoad={[Function]}
         src="Logo_large_white.png"
       />
       <div
