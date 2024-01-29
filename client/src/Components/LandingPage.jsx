@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/Landing.css';
 import LogoWhite from '../images/Logo_large_white.png';
 
 export default function LandingPage({ user }) {
+  const [logoLoaded, setLogoLoaded] = useState(false);
   return (
     <>
-      <div className="landing-container main-container">
+      <div className="landing-container main-container" style={{ display: !logoLoaded && 'none' }}>
         <div className="landing-top-section">
-          <img src={LogoWhite} alt="litterai-logo-white" className="landing-logo" data-testid="litterai-logo" />
+          <img
+            src={LogoWhite}
+            alt="litterai-logo-white"
+            className="landing-logo"
+            data-testid="litterai-logo"
+            onLoad={() => { setLogoLoaded(true); }}
+          />
           <div className="landing-text">
             <h1>Welcome to LitterSort</h1>
             <p>With just a photo, sort your garbage and save the world.</p>
