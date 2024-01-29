@@ -1,5 +1,4 @@
 import React from 'react';
-// import { PiFlowerTulipThin } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 import '../css/Landing.css';
 import LogoWhite from '../images/Logo_large_white.png';
