@@ -1,11 +1,10 @@
 /* eslint-disable consistent-return */
 import Cookies from 'js-cookie';
 import fetchData from './fetch';
-import URLpath from './URLpath';
 
 export async function fetchLogin(body) {
   try {
-    const response = await fetchData('login', 'POST', body);
+    const response = await fetchData('login', 'POST', body, 'include');
     if (response.token) {
       Cookies.set('authToken', response.token, { expires: 7 });
       Cookies.set('username', response.user.displayUsername, { expires: 7 });
@@ -18,10 +17,8 @@ export async function fetchLogin(body) {
 
 export async function fetchLogOut() {
   try {
-    const res = await fetch(URLpath('logout'), {
-      method: 'POST',
-      credentials: 'include',
-    });
+    const res = await fetchData('logout', 'POST', null, 'include');
+    console.log('resLogOut', res);
     Cookies.remove('authToken');
     Cookies.remove('username');
     const response = await res.json();

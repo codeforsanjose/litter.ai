@@ -15,18 +15,19 @@ async function getAuthToken() {
   }
 }
 
-export default async function fetchData(path, method, body) {
+export default async function fetchData(path, method, body, credentials) {
   const token = Cookies.get('authToken');
   const properties = {
     method,
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
   };
+
   // Leaderboard queries for the user's stats if they are logged in
   if (token) { properties.headers.Authorization = `Bearer ${token}`; }
   // Body is the email and password for logging in
   if (body) { properties.body = JSON.stringify(body); }
+  // Enable refresh tokens to reset the authentication token
+  if (credentials) { properties.credentials = credentials; }
 
   try {
     const res = await fetch(URLpath(path), properties);
