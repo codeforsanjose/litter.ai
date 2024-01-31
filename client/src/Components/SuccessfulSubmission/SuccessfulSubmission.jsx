@@ -4,7 +4,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import SubmissionModal from './SubmissionModal';
 import Icons from '../Icons';
-import categoryData from '../../mockData/mockCategoryData';
+import categoryData from '../../MockData/mockCategoryData';
 import '../../css/SuccessfulSubmission.css';
 
 export default function SuccessfulSubmission() {
