@@ -9,7 +9,6 @@ import { fileURLToPath } from 'url';
 import { getDb, mongoConnect } from './DB/db-connection.js';
 import routes from './routes/index.js';
 import logError from './Errors/log-error.js';
-// import isAuth from './middleware/isAuth.js';
 import errorHandler from './middleware/errorHandler.js';
 import refreshTokenModel from './models/RefreshToken.js';
 
@@ -44,9 +43,18 @@ const startServer = async () => {
             }
         });
 
-        app.use(cors());
+        // Allow all IP addresses. Cannot use wildcard '*' while accepting credentials
+        const corsOptions = {
+            // eslint-disable-next-line object-shorthand, func-names
+            origin: function (origin, callback) {
+                if (!origin) return callback(null, true);
+                return callback(null, origin);
+            },
+            credentials: true, // Allow cookies to be sent
+        };
+
+        app.use(cors(corsOptions));
         app.use(morgan('dev'));
-        app.use(cors());
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
         app.use(cookieParser());
