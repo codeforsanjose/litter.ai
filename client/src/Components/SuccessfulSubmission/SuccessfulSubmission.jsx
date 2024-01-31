@@ -4,7 +4,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import SubmissionModal from './SubmissionModal';
 import Icons from '../Icons';
-import categoryData from '../../MockData/mockCategoryData';
+import categoryData from '../../mockData/mockCategoryData';
 import '../../css/SuccessfulSubmission.css';
 
 export default function SuccessfulSubmission() {
@@ -46,12 +46,7 @@ export default function SuccessfulSubmission() {
             </button>
             <Link to="/capture">
               <button type="button">
-                Capture another photo
-              </button>
-            </Link>
-            <Link to="/">
-              <button className="button-home" type="button">
-                Home
+                Capture photo
               </button>
             </Link>
           </div>
@@ -69,8 +64,8 @@ export default function SuccessfulSubmission() {
             <div
               className="modal-background"
               role="presentation"
+              data-testid="modal-background"
               onClick={() => { setModalOpen(!modalOpen); }}
-              onKeyDown={() => { setModalOpen(!modalOpen); }}
             />
           </>
         )}

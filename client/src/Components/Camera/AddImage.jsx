@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { CiCirclePlus } from 'react-icons/ci';
 
 export default function AddImage({ setImage }) {
@@ -22,7 +21,8 @@ export default function AddImage({ setImage }) {
     <>
       { /* Image has not been uploaded, opens device's camera or gives option to upload an image */}
       <div className="capture-top-section">
-        <CiCirclePlus onClick={openCamera} className="capture-icon" />
+        <CiCirclePlus onClick={openCamera} className="capture-icon" data-testid="camera-plus" />
+        {/* <label htmlFor="cameraFileInput">camera</label> */}
         <input
           type="file"
           accept="image/*"
@@ -31,6 +31,7 @@ export default function AddImage({ setImage }) {
           capture="environment"
           onChange={handleImage}
           style={{ display: 'none' }}
+          data-testid="camera-input"
         />
         <div className="capture-icon-bg" />
         <h1>Take a photo of the item</h1>
@@ -39,13 +40,6 @@ export default function AddImage({ setImage }) {
           <br />
           <span>Please take the photo in portrait mode for best results.</span>
         </p>
-      </div>
-      <div className="capture-buttons lower-buttons">
-        <Link to="/">
-          <button className="button-home" type="button">
-            Home
-          </button>
-        </Link>
       </div>
     </>
   );

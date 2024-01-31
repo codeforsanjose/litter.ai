@@ -1,7 +1,8 @@
 export default function URLpath(endpoint, extension) {
-  const deployed = 'http://52.26.157.53/litterai';
+  const deployed = process.env.REACT_APP_API_KEY;
   // const local = 'http://localhost:3001';
+  const link = deployed;
   return extension
-    ? `${deployed}/${endpoint}/${extension}`
-    : `${deployed}/${endpoint}`;
+    ? `${link}/${endpoint}/${extension}`
+    : `${link}/${endpoint}`;
 }

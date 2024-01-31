@@ -10,25 +10,13 @@
   --shadow-color: hsl(0deg 0% 0% / 26%);
 }
 
-@media only screen and (max-width: 767px) {
-  .App {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .App {
-    grid-template-columns: 2fr 3fr 2fr;
-  }
-}
-
 .App {
   width: 100dvw;
   max-width: 100%;
   height: 100dvh;
+  max-height: 100%;
   display: grid;
   grid-template-rows: repeat(10, 1fr);
-  justify-items: center;
 }
 
 .App-logo {
@@ -85,7 +73,6 @@
   border: none;
   border-radius: 10rem;
   font-size: 1rem;
-  color: var(--black);
 }
 
 .lower-buttons button:hover {
@@ -117,20 +104,30 @@
 
 /* Phones */
 @media only screen and (max-width: 600px) {
+  .App {
+    grid-template-columns: 1fr;
+  }
   .main-container {
-    grid-column-start: 1;
+    grid-area: 1 / 1 / span 10 / span 1;
   }
 }
 
 /* Portrait tablets and large phones */
-@media only screen and (min-width: 601px) and (max-width: 1024px) {
+@media only screen and (min-width: 601px) and (max-width: 1025px) {
+  .App {
+    grid-template-columns: 1fr;
+  }
   .main-container {
-    grid-column-start: 2;
+    grid-area: 1 / 1 / span 10 / span 1;
   }
 }
 
 /* Small laptops and desktops */
 @media only screen and (min-width: 1025px) {
+  .App {
+    grid-template-columns: 2fr 3fr 2fr;
+  }
+
   .main-container {
     grid-area: 1 / 2 / span 10 / span 1;
   }

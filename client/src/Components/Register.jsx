@@ -4,7 +4,7 @@ import { FaRegUser } from 'react-icons/fa';
 import { FaAngleLeft, FaRegEnvelope } from 'react-icons/fa6';
 import { FiLock } from 'react-icons/fi';
 import { PiUserListBold } from 'react-icons/pi';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { fetchRegister } from '../utils/fetchUserData';
 import '../css/LoginSignUp.css';
 
@@ -20,15 +20,17 @@ export default function Register({ setUser }) {
   });
   const [validPassword, setValidPassword] = useState(false);
   const [passwordMatch, setPasswordMatch] = useState(true);
+  const minPassLen = 6;
 
   const navigate = useNavigate();
 
-  const handleRegister = async () => {
+  const handleRegister = async (e) => {
+    e.preventDefault();
     if (passwordMatch && validPassword) {
       try {
         const response = await fetchRegister(registerData);
         setUser(response.user.displayUsername);
-        navigate('/');
+        navigate('/login');
       } catch (err) {
         console.error(err);
       }
@@ -51,9 +53,9 @@ export default function Register({ setUser }) {
     }
 
     // If password is shorter than 6 characters, user will be notified.
-    if (pass.length && pass.length >= 6) {
+    if (pass.length && pass.length >= minPassLen) {
       setValidPassword(true);
-    } else if (pass.length && pass.length < 6) {
+    } else if (pass.length && pass.length < minPassLen) {
       setValidPassword(false);
     }
   };
@@ -63,18 +65,18 @@ export default function Register({ setUser }) {
   };
 
   return (
-    <div className="login-signup-container main-container">
-      <div className="login-signup-header">
+    <main className="login-signup-container main-container">
+      <section className="login-signup-header">
         <button className="back-button" type="button" aria-label="Back" onClick={goBack}>
           <FaAngleLeft />
         </button>
-        <div className="login-signup-header-text">
+        <article className="login-signup-header-text">
           <h3>Create a New Account</h3>
           <p>Join us in making a cleaner world</p>
-        </div>
-      </div>
+        </article>
+      </section>
 
-      <form className="login-signup-form">
+      <form className="login-signup-form" onSubmit={handleRegister}>
         <div className="login-signup-first-name">
           <PiUserListBold className="login-signup-icon" />
           <input
@@ -147,7 +149,7 @@ export default function Register({ setUser }) {
             id="password"
             aria-label="Password"
             placeholder="Password"
-            minLength="6"
+            minLength={minPassLen}
             value={registerData.password}
             onChange={(e) => handleChange(e)}
             onKeyUp={handlePasswordCheck}
@@ -157,7 +159,11 @@ export default function Register({ setUser }) {
         {(registerData.password.length > 0 && !validPassword)
           && (
             <div className="valid-password">
-              <small>Password must be a minimum of 6 characters</small>
+              <small>
+                Password must be a minimum of&nbsp;
+                {minPassLen}
+                &nbsp;characters
+              </small>
             </div>
           )}
         <br className="login-signup-form-break" />
@@ -180,22 +186,17 @@ export default function Register({ setUser }) {
               <small>Passwords do not match</small>
             </div>
           )}
-      </form>
+        <br className="login-signup-form-break" />
 
-      <div className="lower-buttons login-signup-buttons">
-        <button
-          type="button"
-          onClick={handleRegister}
-          id="login-signup-button"
-        >
-          Register
-        </button>
-        <Link to="/">
-          <button className="button-home" type="button">
-            Home
+        <section className="lower-buttons login-signup-buttons">
+          <button
+            type="submit"
+            className="login-signup-button"
+          >
+            Register
           </button>
-        </Link>
-      </div>
-    </div>
+        </section>
+      </form>
+    </main>
   );
 }

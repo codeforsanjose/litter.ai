@@ -105,6 +105,7 @@ export default function Dropdown({
             onChange={handleChange}
             isSearchable={false}
             styles={reactSelectStyles}
+            data-testid="dropdown"
           />
         )}
     </div>
