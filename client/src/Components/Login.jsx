@@ -61,6 +61,7 @@ export default function Login({ setUser }) {
           <input
             type="email"
             id="email"
+            data-testid="emailInput"
             aria-label="Email"
             placeholder="Email"
             value={loginData.email}
@@ -85,6 +86,7 @@ export default function Login({ setUser }) {
           <button
             type="submit"
             className="login-signup-button"
+            aria-label="Login"
           >
             Login
           </button>
@@ -93,6 +95,7 @@ export default function Login({ setUser }) {
             <Link
               to="/register"
               className="register-button"
+              aria-label="Sign Up"
             >
               <small>Sign Up</small>
             </Link>

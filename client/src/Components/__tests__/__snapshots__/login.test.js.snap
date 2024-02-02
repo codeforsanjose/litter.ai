@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login component Login page matches the current snapshot 1`] = `
+<main
+  className="login-signup-container main-container"
+>
+  <section
+    className="login-signup-header"
+  >
+    <button
+      aria-label="Back"
+      className="back-button"
+      onClick={[Function]}
+      type="button"
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 320 512"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+        />
+      </svg>
+    </button>
+    <article
+      className="login-signup-header-text"
+    >
+      <h3>
+        Sign In
+      </h3>
+      <p>
+        Enter your credentials to continue
+      </p>
+    </article>
+  </section>
+  <form
+    className="login-signup-form"
+    onSubmit={[Function]}
+  >
+    <br
+      className="invalid-login-signup"
+    />
+    <div
+      className="login-signup-email"
+    >
+      <svg
+        className="login-signup-icon"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 512 512"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"
+        />
+      </svg>
+      <input
+        aria-label="Email"
+        data-testid="emailInput"
+        id="email"
+        onChange={[Function]}
+        placeholder="Email"
+        type="email"
+        value=""
+      />
+    </div>
+    <br
+      className="login-signup-form-break"
+    />
+    <div
+      className="login-signup-password"
+    >
+      <svg
+        className="login-signup-icon"
+        fill="none"
+        height="1em"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          height="11"
+          rx="2"
+          ry="2"
+          width="18"
+          x="3"
+          y="11"
+        />
+        <path
+          d="M7 11V7a5 5 0 0 1 10 0v4"
+        />
+      </svg>
+      <input
+        aria-label="Password"
+        id="password"
+        onChange={[Function]}
+        placeholder="Password"
+        type="password"
+        value=""
+      />
+    </div>
+    <br
+      className="login-signup-form-break"
+    />
+    <section
+      className="lower-buttons login-signup-buttons"
+    >
+      <button
+        aria-label="Login"
+        className="login-signup-button"
+        type="submit"
+      >
+        Login
+      </button>
+      <div
+        className="sign-up"
+      >
+        <small>
+          Don't have an account?
+        </small>
+        <a
+          aria-label="Sign Up"
+          className="register-button"
+          href="/register"
+          onClick={[Function]}
+        >
+          <small>
+            Sign Up
+          </small>
+        </a>
+      </div>
+    </section>
+  </form>
+</main>
+`;
