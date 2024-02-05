@@ -29,26 +29,11 @@ export default function Profile({ user, setUser }) {
           <div className="profile-login-header">
             <h1>{user}</h1>
           </div>
-          <div className="profile-logout-button">
-            <h2>User Status</h2>
-            <button type="button" onClick={handleLogout}>Log out</button>
-          </div>
+          <button type="button" onClick={handleLogout}>Log out</button>
           <div className="profile-statistics">
             <h2>My Waste Statistics</h2>
             { userStatisticData
               && <ProfileStatistics user={userStatisticData.pictureData} />}
-          </div>
-          <div className="profile-buttons lower-buttons">
-            <Link to="/capture">
-              <button type="button">
-                Capture Picture
-              </button>
-            </Link>
-            <Link to="/">
-              <button className="button-home" type="button">
-                Home
-              </button>
-            </Link>
           </div>
         </div>
       )
@@ -73,13 +58,6 @@ export default function Profile({ user, setUser }) {
                   </button>
                 </Link>
               </div>
-            </div>
-            <div className="profile-logout-bottom">
-              <Link to="/">
-                <button className="button-home" type="button">
-                  Home
-                </button>
-              </Link>
             </div>
           </div>
         )}

@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { CiCirclePlus } from 'react-icons/ci';
 
 export default function AddImage({ setImage }) {
@@ -41,13 +40,6 @@ export default function AddImage({ setImage }) {
           <br />
           <span>Please take the photo in portrait mode for best results.</span>
         </p>
-      </div>
-      <div className="capture-buttons lower-buttons">
-        <Link to="/">
-          <button className="button-home" type="button">
-            Home
-          </button>
-        </Link>
       </div>
     </>
   );

@@ -1,10 +1,9 @@
 .capture-container {
   height: 100dvh;
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
+  grid-template-rows: 30% 25% 1fr 1fr 6%;
 }
 
 
@@ -14,10 +13,11 @@
 .capture-image-wrapper {
   height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  justify-items: center;
   align-items: center;
-  justify-content: center;
+  grid-template-rows: 30% 25% 1fr;
+  grid-row: 1 / span 4;
 }
 
 .capture-container
@@ -25,12 +25,12 @@
 .capture-image-preview {
   width: 100%;
   height: auto;
-  max-height: 50dvh;
+  max-height: 45dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 3rem;
   position: relative;
+  grid-row: 1 / span 2;
 }
 
 .capture-container
@@ -67,7 +67,14 @@
   border: dotted var(--main-green) 0.1rem;
   border-radius: 0.3rem;
   padding: 1rem;
-  object-fit: cover;
+  overflow: hidden;
+  object-fit: contain;
+}
+
+.capture-container
+.capture-image-wrapper
+.capture-submit-button {
+  align-self: self-start;
 }
 
 .capture-container
@@ -84,6 +91,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  grid-row: 3 / span 1;
+  align-self: center;
+}
+
+.capture-container
+.capture-image-wrapper
+.capture-classify h1 {
+  margin-top: 0;
 }
 
 .capture-container
@@ -118,7 +133,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40%;
+  grid-row: 2 / span 1;
 }
 
 .capture-container
@@ -157,7 +172,7 @@
 }
 
 /* Portrait tablets and large phones */
-@media only screen and (min-width: 601px) and (max-width: 1024px) {
+@media only screen and (min-width: 601px) and (max-width: 1025px) {
 
 }
 

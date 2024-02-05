@@ -1,11 +1,10 @@
 /* eslint-disable consistent-return */
 import Cookies from 'js-cookie';
 import fetchData from './fetch';
-import URLpath from './URLpath';
 
 export async function fetchLogin(body) {
   try {
-    const response = await fetchData('login', 'POST', body);
+    const response = await fetchData('login', 'POST', body, 'include');
     if (response.token) {
       Cookies.set('authToken', response.token, { expires: 7 });
       Cookies.set('username', response.user.displayUsername, { expires: 7 });
@@ -18,16 +17,13 @@ export async function fetchLogin(body) {
 
 export async function fetchLogOut() {
   try {
-    const res = await fetch(URLpath('logout'), {
-      method: 'POST',
-      credentials: 'include',
-    });
+    const res = await fetchData('logout', 'POST', null, 'include');
     Cookies.remove('authToken');
     Cookies.remove('username');
     const response = await res.json();
     return response;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -38,6 +34,7 @@ export async function fetchLeaderboardData(path) {
   } catch (err) {
     console.error(err);
     fetchLogOut();
+    return err;
   }
 }
 
@@ -55,14 +52,14 @@ export async function fetchImageToAI(image) {
   try {
     const formData = new FormData();
     formData.append('image', image);
-    const res = await fetch(process.env.REACT_APP_API_KEY, {
+    const res = await fetch(process.env.REACT_APP_AI_KEY, {
       method: 'POST',
       body: formData,
     });
     const response = await res.json();
     return response;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -84,7 +81,6 @@ export async function fetchRegister(body) {
       const loginResponse = await fetchLogin(loginBody);
       return loginResponse;
     }
-
     return response;
   } catch (err) {
     console.error(err);

@@ -9,7 +9,6 @@ import {
 } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import LandingPage from '../LandingPage';
 import CameraCapture from '../Camera/CameraCapture';
 import SuccessfulSubmission from '../SuccessfulSubmission/SuccessfulSubmission';
 import PageNotFound from '../PageNotFound';
@@ -40,28 +39,7 @@ describe('Successful submission page', () => {
     expect(screen.getByTestId('plastic-icon')).toBeInTheDocument();
   });
 
-  test('Navigates to the home page when "Home" is clicked', async () => {
-    const history = createMemoryHistory({ initialEntries: ['/success/plastic'] });
-    render(
-      <Router history={history} initialEntries={['/success/plastic']}>
-        <Routes>
-          <Route path="/success/:category" element={<SuccessfulSubmission />} />
-          <Route path="/" element={<LandingPage />} />
-        </Routes>
-      </Router>,
-    );
-    // Initial endpoint is /success
-    await waitFor(() => { expect(history.location.pathname).toBe('/success/plastic'); });
-    // Clicks button to navigate to new end point, then pushes endpoint into the history
-    fireEvent.click(screen.getByRole('button', { name: 'Home' }));
-    // Page currently navigates to home but doesn't update the endpoint in the history
-    history.push('/');
-    // Checks if page navigated to the landing page and the welcome header is displayed
-    await waitFor(() => { expect(history.location.pathname).toBe('/'); });
-    await waitFor(() => { expect(screen.getByText('Welcome to LitterSort')).toBeInTheDocument(); });
-  });
-
-  test('Navigates to the capture page when "Capture another photo" is clicked', async () => {
+  test('Navigates to the capture page when "Capture photo" is clicked', async () => {
     const history = createMemoryHistory({ initialEntries: ['/success/plastic'] });
     render(
       <Router history={history} initialEntries={['/success/plastic']}>
@@ -74,7 +52,7 @@ describe('Successful submission page', () => {
     // Initial endpoint is /success
     await waitFor(() => { expect(history.location.pathname).toBe('/success/plastic'); });
     // Clicks button to navigate to new end point, then pushes endpoint into the history
-    fireEvent.click(screen.getByRole('button', { name: 'Capture another photo' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Capture photo' }));
     // Page currently navigates to /capture but doesn't update the endpoint in the history
     history.push('/capture');
     // Checks if page navigated to the /capture endpoint

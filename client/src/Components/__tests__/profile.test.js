@@ -13,7 +13,7 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import Profile from '../Profile/Profile';
 import ProfileStatistics from '../Profile/ProfileStatistics';
 import * as fetchUserData from '../../utils/fetchUserData';
-import { userPictureData } from '../../MockData/mockUserData';
+import { userPictureData } from '../../mockData/mockUserData';
 
 const mockSetState = jest.fn();
 
@@ -71,6 +71,5 @@ describe('Profile when user is not logged in', () => {
     expect(screen.getByText(/join us!/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /log in/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /sign up/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /home/i })).toBeInTheDocument();
   });
 });

@@ -21,7 +21,7 @@ exports[`Leaderboard component Leaderboard matches the current snapshot 1`] = `
     </h3>
   </div>
   <table
-    className="lb-table"
+    className="lb-table lb-table-user"
     data-testid="lb-table"
   >
     <thead>
@@ -233,30 +233,5 @@ exports[`Leaderboard component Leaderboard matches the current snapshot 1`] = `
       </tr>
     </tbody>
   </table>
-  <div
-    className="lb-buttons lower-buttons"
-  >
-    <a
-      href="/capture"
-      onClick={[Function]}
-    >
-      <button
-        type="button"
-      >
-        Capture Picture
-      </button>
-    </a>
-    <a
-      href="/"
-      onClick={[Function]}
-    >
-      <button
-        className="button-home"
-        type="button"
-      >
-        Home
-      </button>
-    </a>
-  </div>
 </div>
 `;

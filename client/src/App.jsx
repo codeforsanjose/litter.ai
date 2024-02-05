@@ -8,17 +8,19 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import LandingPage from './components/LandingPage';
-import CameraCapture from './components/Camera/CameraCapture';
-import Leaderboard from './components/Leaderboard';
-import Profile from './components/Profile/Profile';
-import SuccessfulSubmission from './components/SuccessfulSubmission/SuccessfulSubmission';
-import Register from './components/Register';
-import Login from './components/Login';
-import PageNotFound from './components/PageNotFound';
+import LandingPage from './Components/LandingPage';
+import CameraCapture from './Components/Camera/CameraCapture';
+import Leaderboard from './Components/Leaderboard';
+import Profile from './Components/Profile/Profile';
+import SuccessfulSubmission from './Components/SuccessfulSubmission/SuccessfulSubmission';
+import Register from './Components/Register';
+import Login from './Components/Login';
+import PageNotFound from './Components/PageNotFound';
+import Navbar from './Components/Navbar';
 
 export default function App() {
   const [user, setUser] = useState(null);
+  const [activePage, setActivePage] = useState('home');
 
   useEffect(() => {
     const username = Cookies.get('username');
@@ -28,7 +30,9 @@ export default function App() {
   return (
     <div className="App">
       <Router>
+        <Navbar activePage={activePage} setActivePage={setActivePage} />
         <Routes>
+          <Route path="/navbar" element={<Navbar />} />
           <Route path="/" element={<LandingPage user={user} />} />
           <Route path="/capture" element={<CameraCapture />} />
           <Route path="/leaderboard" element={<Leaderboard />} />

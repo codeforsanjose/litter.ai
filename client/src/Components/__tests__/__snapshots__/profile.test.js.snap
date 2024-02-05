@@ -14,50 +14,18 @@ exports[`Profile component with user logged in Profile matches the current snaps
         Briana30
       </h1>
     </div>
-    <div
-      className="profile-logout-button"
+    <button
+      onClick={[Function]}
+      type="button"
     >
-      <h2>
-        User Status
-      </h2>
-      <button
-        onClick={[Function]}
-        type="button"
-      >
-        Log out
-      </button>
-    </div>
+      Log out
+    </button>
     <div
       className="profile-statistics"
     >
       <h2>
         My Waste Statistics
       </h2>
-    </div>
-    <div
-      className="profile-buttons lower-buttons"
-    >
-      <a
-        href="/capture"
-        onClick={[Function]}
-      >
-        <button
-          type="button"
-        >
-          Capture Picture
-        </button>
-      </a>
-      <a
-        href="/"
-        onClick={[Function]}
-      >
-        <button
-          className="button-home"
-          type="button"
-        >
-          Home
-        </button>
-      </a>
     </div>
   </div>
 </div>

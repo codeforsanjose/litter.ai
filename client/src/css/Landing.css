@@ -2,11 +2,9 @@
   height: 100dvh;
   max-height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 15% 5fr 3fr 6%;
   align-items: center;
-  justify-content: space-between;
-  position: absolute;
 }
 
 .landing-container
@@ -15,14 +13,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 8% 0 2rem 0;
-}
-
-.landing-container
-.landing-top-section
-.landing-logo {
-  font-size: 11rem;
-  color: var(--white);
+  grid-row: 2 / span 1;
 }
 
 .landing-container
@@ -54,36 +45,41 @@
 }
 
 .landing-container
-.landing-top-section
-.landing-bottom-buttons
-.landing-capture-button {
-  background-color: var(--white);
-  color: var(--main-green);
-}
-
-.landing-container
 .landing-bottom-section {
   margin-bottom: 2.5rem;
+  grid-row: 3 / span 1;
 }
 
 .landing-container
 .landing-bottom-section
-.landing-bottom-buttons
+.landing-buttons
+.landing-signup-description {
+  color: var(--white);
+  width: 45dvw;
+  font-size: 0.6rem;
+  text-align: center;
+  font-weight: 200;
+}
+
+.landing-container
+.landing-bottom-section
+.landing-buttons
+.landing-secondary-button {
+  background-color: var(--main-green-half);
+  color: var(--white);
+  width: 40dvw;
+}
+
+.landing-container
+.landing-bottom-section
+.landing-buttons
 .landing-secondary-button:hover {
   border: solid var(--white) 0.01rem;
 }
 
 .landing-container
 .landing-bottom-section
-.landing-bottom-buttons
-.landing-secondary-button {
-  background-color: var(--main-green-half);;
-  color: var(--white);
-}
-
-.landing-container
-.landing-bottom-section
-.landing-bottom-buttons
+.landing-buttons
 .landing-login-text {
   display: flex;
   flex-direction: column;
@@ -94,7 +90,7 @@
 
 .landing-container
 .landing-bottom-section
-.landing-bottom-buttons
+.landing-buttons
 .landing-login-text p {
   margin: 1rem 0 0 0;
   color: var(--white);
@@ -104,7 +100,7 @@
 
 .landing-container
 .landing-bottom-section
-.landing-bottom-buttons
+.landing-buttons
 .landing-login-text a {
   font-size: 0.8rem;
   color: var(--lb-gray);
@@ -113,7 +109,7 @@
 
 .landing-container
 .landing-bottom-section
-.landing-bottom-buttons
+.landing-buttons
 .landing-login-text a:hover {
   color: var(--sec-green);
 }
@@ -124,21 +120,37 @@
   max-height: 100%;
   background-color: var(--main-green-half);
   z-index: -1;
-  grid-area: 1 / 1 / span 2 / span 10;
+  grid-area: 1 / 1 / span 10 / span 3;
   margin: 0;
 }
 
 
 /* Phones */
 @media only screen and (max-width: 600px) {
-
+  .landing-container
+  .landing-top-section
+  .landing-logo {
+    width: 6rem;
+  }
 }
 
 /* Portrait tablets and large phones */
-@media only screen and (min-width: 601px) and (max-width: 1024px) {
+@media only screen and (min-width: 601px) and (max-width: 1025px) {
+  .landing-container
+  .landing-top-section
+  .landing-logo {
+    width: 7rem;
+  }
+
   .landing-container
   .landing-top-section
   .landing-capture-button {
+    width: 25dvw;
+  }
+  .landing-container
+  .landing-bottom-section
+  .landing-buttons
+  .landing-secondary-button {
     width: 25dvw;
   }
 }
@@ -147,7 +159,20 @@
 @media only screen and (min-width: 1025px) {
   .landing-container
   .landing-top-section
+  .landing-logo {
+    width: 8rem;
+  }
+
+  .landing-container
+  .landing-top-section
   .landing-capture-button {
+    width: 13dvw;
+  }
+
+  .landing-container
+  .landing-bottom-section
+  .landing-buttons
+  .landing-secondary-button {
     width: 13dvw;
   }
 }

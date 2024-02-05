@@ -2,32 +2,25 @@
   width: 100%;
   height: 100dvh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .category-container
 .category-wrapper {
-  height: 100dvh;
-  width: 100dvw;
-  max-width: 768px;
-  display: flex;
-  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
+  justify-items: center;
+  grid-template-rows: 15% 5% 25% 5% 2fr 2fr 6%;
 }
 
 .category-container
 .category-wrapper h4 {
   font-size: 1.5rem;
-  padding-top: 4rem;
-  margin-bottom: 0;
-}
-
-.category-container
-.category-wrapper h1 {
-  text-transform: capitalize;
+  margin: 0;
+  grid-row: 2 / span 1;
 }
 
 .category-container
@@ -35,12 +28,21 @@
 .category-icon {
   font-size: 10rem;
   color: var(--main-green);
+  grid-row: 3 / span 1;
+}
+
+.category-container
+.category-wrapper h1 {
+  text-transform: capitalize;
+  margin: 0;
+  grid-row: 4 / span 1;
 }
 
 .category-container
 .category-wrapper
 .category-short-desc {
   width: 85%;
+  grid-row: 5 / span 1;
 }
 
 .category-container
@@ -52,15 +54,30 @@
 }
 
 .category-container
+.category-wrapper
+.category-buttons {
+  width: 80%;
+  grid-row: 6 / span 1;
+  align-self: self-start;
+  flex-direction: row;
+}
+
+.category-container
+.category-wrapper
+.category-buttons button {
+  width: 15dvw;
+}
+
+.category-container
 .category-modal {
   width: 35dvw;
   max-width: 100%;
-  max-height: 45dvh;
+  max-height: 70dvh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  z-index: 2;
+  z-index: 7;
 }
 
 /******** Modal ********/
@@ -75,7 +92,6 @@
   justify-content: center;
   align-items: center;
   border-radius: 1.5rem;
-  z-index: 2;
 }
 
 .modal-container
@@ -141,12 +157,6 @@
 }
 
 .modal-container
-.modal-text li {
-  font-size: 1.3rem;
-}
-
-
-.modal-container
 .modal-text::-webkit-scrollbar-thumb,
 .modal-text::-webkit-scrollbar-track {
   background-color: transparent;
@@ -178,17 +188,12 @@
   background-color: #000;
   background-color: #000000a3;
   position: absolute;
+  z-index: 6;
 }
 
 
 /* Phones */
 @media only screen and (max-width: 600px) {
-  .category-container
-  .category-modal {
-    width: 80dvw;
-    max-height: 50dvh;
-  }
-
   .category-container
   .category-wrapper h1 {
     font-size: 2rem;
@@ -215,11 +220,18 @@
   .category-container
   .category-wrapper
   .category-buttons button {
-    width: 85dvw;
+    width: 35dvw;
+    font-size: 0.9rem;
+  }
+
+  .category-container
+  .category-modal {
+    width: 80dvw;
+    max-height: 50dvh;
   }
 
   .modal-container {
-    height: 50dvh;
+    height: 80dvh;
   }
 
   .modal-container
@@ -234,62 +246,31 @@
 }
 
 /* Portrait tablets and large phones */
-@media only screen and (min-width: 601px) and (max-width: 1024px) {
-  .category-container
-  .category-modal {
-    width: 80dvw;
-    max-height: 50dvh;
-  }
-
-  .category-container
-  .category-wrapper h1 {
-    font-size: 3.5rem;
-    margin: 0;
-  }
-
-  .category-container
-  .category-wrapper h4 {
-    font-size: 2.5rem;
-  }
-
+@media only screen and (min-width: 601px) and (max-width: 1025px) {
   .category-container
   .category-wrapper
   .category-short-desc p {
-    font-size: 1.8rem;
+    font-size: 1.1rem;
   }
 
   .category-container
   .category-wrapper
   .category-icon {
-    font-size: 14rem;
-  }
-
-  .modal-container p {
-    font-size: 1.5rem;
-  }
-
-  .modal-container
-  .modal-container-top h2 {
-    font-size: 2rem;
-  }
-
-  .modal-container
-  .modal-x-button {
-    font-size: 1.5rem;
-  }
-
-  .modal-container
-  .modal-got-it-button{
-    height: 7dvh;
-    font-size: 1.5rem;
+    font-size: 9rem;
   }
 
   .category-container
   .category-wrapper
   .category-buttons
   button {
-    font-size: 1.7rem;
-    width: 85dvw;
+    font-size: 1rem;
+    width: 35dvw;
+  }
+
+  .category-container
+  .category-modal {
+    width: 80dvw;
+    max-height: 50dvh;
   }
 }
 
