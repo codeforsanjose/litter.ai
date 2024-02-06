@@ -84,6 +84,7 @@
 .lower-buttons
 .button-home {
   background-color: var(--white);
+  color: var(--black);
 }
 
 .back-button {
