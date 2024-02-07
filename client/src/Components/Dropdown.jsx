@@ -66,6 +66,10 @@ const reactSelectStyles = {
       width: '1.5rem',
     },
   }),
+  menuList: (baseStyles) => ({
+    ...baseStyles,
+    maxHeight: '10rem',
+  }),
 };
 
 export default function Dropdown({
