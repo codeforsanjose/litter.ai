@@ -108,6 +108,7 @@
   width: 40%;
   height: auto;
   max-height: 20%;
+  z-index: 100;
 }
 
 .capture-container
