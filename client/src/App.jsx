@@ -8,15 +8,15 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import LandingPage from './Components/LandingPage';
-import CameraCapture from './Components/Camera/CameraCapture';
-import Leaderboard from './Components/Leaderboard';
-import Profile from './Components/Profile/Profile';
-import SuccessfulSubmission from './Components/SuccessfulSubmission/SuccessfulSubmission';
-import Register from './Components/Register';
-import Login from './Components/Login';
-import PageNotFound from './Components/PageNotFound';
-import Navbar from './Components/Navbar';
+import LandingPage from './components/LandingPage';
+import CameraCapture from './components/Camera/CameraCapture';
+import Leaderboard from './components/Leaderboard';
+import Profile from './components/Profile/Profile';
+import SuccessfulSubmission from './components/SuccessfulSubmission/SuccessfulSubmission';
+import Register from './components/Register';
+import Login from './components/Login';
+import PageNotFound from './components/PageNotFound';
+import Navbar from './components/Navbar';
 
 export default function App() {
   const [user, setUser] = useState(null);

@@ -8,13 +8,14 @@ export default function ImageUploaded({
   setImage,
 }) {
   const [imageSubmitted, setImageSubmitted] = useState(false);
-  const [imageCategory, setImageCategory] = useState('');
+  const [categoryPrediction, setCategoryPrediction] = useState('');
+  const [categoryCorrected, setCategoryCorrected] = useState(null);
   const [imageConfidence, setImageConfidence] = useState(0);
 
   // Submit image to AI and returns predicted category and confidence level
   const submitImageToAI = async () => {
     const response = await fetchImageToAI(image.imageFile);
-    setImageCategory(response.class);
+    setCategoryPrediction(response.class);
     setImageConfidence(Math.trunc(response.confidence * 100));
     setImageSubmitted(true);
   };
@@ -39,8 +40,8 @@ export default function ImageUploaded({
             <h1>Help us classify</h1>
             <div className="capture-dropdown">
               <Dropdown
-                setImageCategory={setImageCategory}
-                imageCategory={imageCategory}
+                setCategoryCorrected={setCategoryCorrected}
+                categoryPrediction={categoryPrediction}
                 aria-label="image-dropdown"
               />
             </div>
@@ -51,13 +52,24 @@ export default function ImageUploaded({
                 %&nbsp;
               </strong>
               confident that this is&nbsp;
-              <strong>{imageCategory}</strong>
+              <strong>{categoryPrediction}</strong>
               .
-              If it is not,
-              please select the correct category from the dropdown.
+              <br />
+              {/* Text changes based on if the AI prediction is not the same the users */}
+              {(
+                categoryCorrected
+                && categoryCorrected !== categoryPrediction)
+                ? (
+                  <span>
+                    You suggest it is&nbsp;
+                    <strong>{categoryCorrected}</strong>
+                    .
+                  </span>
+                )
+                : <span>If it is not, please select the correct category from the dropdown.</span>}
             </p>
             <div className="capture-confirm-button lower-buttons">
-              <Link to={`/success/${imageCategory}`}>
+              <Link to={`/success/${categoryPrediction}`}>
                 <button type="button">
                   Confirm
                 </button>
