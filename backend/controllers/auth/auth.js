@@ -5,7 +5,7 @@ import logoutUserService from '../../services/auth/logout-user.js';
 import registerUserService from '../../services/auth/register-user.js';
 import refreshTokenModel from '../../models/RefreshToken.js';
 
-const { ACCESS_SECRET, REFRESH_SECRET } = process.env;
+const { ACCESS_SECRET, REFRESH_SECRET, NODE_ENV, DOMAIN } = process.env;
 const authController = {
     /**
      * Handle user registration.
@@ -72,13 +72,22 @@ const authController = {
             }
 
             const { response, refreshToken } = await loginUserService(req.body);
-            res.cookie('refreshToken', refreshToken, {
-                httpOnly: true,
-                expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
-                // TODO: uncomment once everything is hosted on same domain
-                // secure: true,        // The cookie is sent over HTTPS only
-                // sameSite: 'lax',  // The cookie is not sent with cross-site requests
-            });
+            if (NODE_ENV === 'dev') {
+                res.cookie('refreshToken', refreshToken, {
+                    httpOnly: true,
+                    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+                    secure: true,
+                    sameSite: 'lax',
+                });
+            } else {
+                res.cookie('refreshToken', refreshToken, {
+                    httpOnly: true,
+                    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+                    secure: true,
+                    sameSite: 'None',
+                    domain: DOMAIN, // Allows cookie to be shared across subdomains
+                });
+            }
             return res.status(200).send(response);
         } catch (error) {
             return next(error);
