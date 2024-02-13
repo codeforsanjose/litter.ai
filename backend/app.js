@@ -14,8 +14,14 @@ import refreshTokenModel from './models/RefreshToken.js';
 
 const app = express();
 
-const { REFRESH_SECRET, ACCESS_SECRET, MONGO_URI, SERVER_PORT, NODE_ENV } =
-    process.env;
+const {
+    REFRESH_SECRET,
+    ACCESS_SECRET,
+    MONGO_URI,
+    SERVER_PORT,
+    NODE_ENV,
+    LOCAL_HTTPS,
+} = process.env;
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -42,18 +48,22 @@ const startServer = async () => {
                 console.log(error);
             }
         });
+        if (NODE_ENV === 'dev') {
+            app.use(
+                cors({ origin: 'https://localhost:3000', credentials: true }),
+            );
+        } else {
+            const corsOptions = {
+                // eslint-disable-next-line object-shorthand, func-names
+                origin: function (origin, callback) {
+                    if (!origin) return callback(null, true);
+                    return callback(null, origin);
+                },
+                credentials: true, // Allow cookies to be sent
+            };
 
-        // Allow all IP addresses. Cannot use wildcard '*' while accepting credentials
-        const corsOptions = {
-            // eslint-disable-next-line object-shorthand, func-names
-            origin: function (origin, callback) {
-                if (!origin) return callback(null, true);
-                return callback(null, origin);
-            },
-            credentials: true, // Allow cookies to be sent
-        };
-
-        app.use(cors(corsOptions));
+            app.use(cors(corsOptions));
+        }
         app.use(morgan('dev'));
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
@@ -76,11 +86,25 @@ const startServer = async () => {
         app.use('/photo', routes.photo);
 
         app.use(errorHandler);
+        if (LOCAL_HTTPS === 'true') {
+            // Import HTTPS and FS modules only in 'dev' mode
+            const https = await import('https');
+            const fs = await import('fs');
 
-        if (NODE_ENV !== 'test') {
+            const httpsOptions = {
+                key: fs.readFileSync('server.key'),
+                cert: fs.readFileSync('server.crt'),
+            };
+
+            https.createServer(httpsOptions, app).listen(PORT, () => {
+                console.log(
+                    `HTTPS Server running in development mode on port: ${PORT}\nConnected to db: ${db.databaseName}`,
+                );
+            });
+        } else if (NODE_ENV !== 'test') {
             app.listen(PORT, () => {
                 console.log(
-                    `Server started on port: ${PORT}\nConnected to db: ${db.databaseName}`,
+                    `HTTP Server started on port: ${PORT}\nConnected to db: ${db.databaseName}`,
                 );
             });
         }
