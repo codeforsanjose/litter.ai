@@ -62,11 +62,35 @@ This API is particularly useful for individuals seeking guidance on responsible 
 
 ```
 SERVER_PORT=<number>
-MONGO_URI=<MongoDB URI>  // example:'mongodb://localhost:27017'
+MONGO_URI=<MongoDB URI>     // example:'mongodb://localhost:27017'
 REFRESH_SECRET=<string>
 ACCESS_SECRET=<string>
+DOMAIN=<string>             // example '.litter.ai'
 
+<!-- DEV ENVIRONMENT VARIABLES -->
+SKIP_VERIFICATION=<string>  // skip verification on register, example "true" or "false"
+NODE_ENV=<string>           // set to "dev" to run in development environment
+HTTPS_LOCAL=<string>        // set to "true" to listen to HTTPS traffic
 ```
+
+## Development Environment
+
+### NODE_ENV
+
+Setting `NODE_ENV` to `'dev'` will start the server in development mode which
+
+-   Logs errors from the errorHandler middleware
+
+### SKIP_VERIFICATION
+
+Setting `SKIP_VERIFICATION` to `'true'` will verify newly registered accounts by default
+
+### HTTPS_LOCAL
+
+Setting `HTTPS_LOCAL` to `'true'` will have the server listen for https traffic
+
+-   Place `server.crt` and `server.key` in the root folder.
+-   Helpful [guide](https://akshitb.medium.com/how-to-run-https-on-localhost-a-step-by-step-guide-c61fde893771) to setting up local HTTPS environment
 
 ## Authentication System
 
