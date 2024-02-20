@@ -9,7 +9,7 @@ import sanitizeId from './helpers/sanitizeId.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
-const { NODE_ENV } = process.env;
+const { SKIP_VERIFICATION } = process.env;
 
 const collName = 'users';
 const userModel = {
@@ -99,7 +99,7 @@ const userModel = {
                 1,
             )}`,
             zipCode: trimmedZipCode,
-            status: NODE_ENV === 'dev' ? 'verified' : 'pending',
+            status: SKIP_VERIFICATION === 'true' ? 'verified' : 'pending',
             verificationToken: '',
         };
 

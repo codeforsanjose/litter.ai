@@ -3,3 +3,8 @@ node_modules
 coverage
 Errors/logs/*.json
 .DS_Store
+
+# SSL certs for local HTTPS development
+server.key
+server.crt
+server.csr
