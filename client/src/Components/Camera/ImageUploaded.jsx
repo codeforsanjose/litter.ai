@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Dropdown from '../Dropdown';
+import Loading from '../Loading';
 import { fetchImageToAI } from '../../utils/fetchUserData';
 
 export default function ImageUploaded({
@@ -11,13 +12,16 @@ export default function ImageUploaded({
   const [categoryPrediction, setCategoryPrediction] = useState('');
   const [categoryCorrected, setCategoryCorrected] = useState(null);
   const [imageConfidence, setImageConfidence] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   // Submit image to AI and returns predicted category and confidence level
   const submitImageToAI = async () => {
+    setLoading(true);
     const response = await fetchImageToAI(image.imageFile);
     setCategoryPrediction(response.class);
     setImageConfidence(Math.trunc(response.confidence * 100));
     setImageSubmitted(true);
+    setLoading(false);
   };
 
   return (
@@ -32,10 +36,28 @@ export default function ImageUploaded({
           &#x2715;
         </button>
         <img alt="" src={image.imagePreview} className="capture-image" data-testid="image-preview" />
+        { loading
+        && (
+          // Loading spinner while data is being fetched
+          <div className="capture-loading">
+            <Loading loading={loading} />
+          </div>
+        )}
       </div>
       {/* Image has been uploaded and submitted to the AI */}
-      {imageSubmitted
+      {!imageSubmitted
         ? (
+          // Image preview before sending to the AI
+          <div className="capture-submit-button lower-buttons">
+            <button
+              type="button"
+              onClick={submitImageToAI}
+            >
+              Submit
+            </button>
+          </div>
+        )
+        : (
           <div className="capture-classify">
             <h1>Classify This Item</h1>
             <div className="capture-dropdown">
@@ -76,16 +98,6 @@ export default function ImageUploaded({
                 </button>
               </Link>
             </div>
-          </div>
-        )
-        : ( // Image preview before sending to the AI
-          <div className="capture-submit-button lower-buttons">
-            <button
-              type="button"
-              onClick={submitImageToAI}
-            >
-              Submit
-            </button>
           </div>
         )}
     </div>
