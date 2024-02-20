@@ -27,14 +27,16 @@ export default function ImageUploaded({
   return (
     <div className="capture-image-wrapper">
       <div className="capture-image-preview">
-        <button
-          type="button"
-          className="image-x-button"
-          aria-label="image-x-button"
-          onClick={() => { setImage(null); }}
-        >
-          &#x2715;
-        </button>
+        <div className="image-x-button-wrapper">
+          <button
+            type="button"
+            className="image-x-button"
+            aria-label="image-x-button"
+            onClick={() => { setImage(null); }}
+          >
+            &#x2715;
+          </button>
+        </div>
         <img alt="" src={image.imagePreview} className="capture-image" data-testid="image-preview" />
         { loading
         && (
@@ -92,7 +94,12 @@ export default function ImageUploaded({
                 : <span>If it is not, please select the correct category from the dropdown.</span>}
             </p>
             <div className="capture-confirm-button lower-buttons">
-              <Link to={`/success/${categoryPrediction}`}>
+              <Link to={
+                categoryCorrected
+                  ? `/success/${categoryCorrected}`
+                  : `/success/${categoryPrediction}`
+                }
+              >
                 <button type="button">
                   Confirm
                 </button>
