@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import Cookies from 'js-cookie';
 import fetchData from './fetch';
+import { aiEndpoint } from './URLpath';
 
 export async function fetchLogin(body) {
   try {
@@ -52,7 +53,7 @@ export async function fetchImageToAI(image) {
   try {
     const formData = new FormData();
     formData.append('image', image);
-    const res = await fetch(process.env.REACT_APP_AI_KEY, {
+    const res = await fetch(`${aiEndpoint}/upload`, {
       method: 'POST',
       body: formData,
     });
