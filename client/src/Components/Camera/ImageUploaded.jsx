@@ -37,7 +37,7 @@ export default function ImageUploaded({
       {imageSubmitted
         ? (
           <div className="capture-classify">
-            <h1>Help us classify</h1>
+            <h1>Classify This Item</h1>
             <div className="capture-dropdown">
               <Dropdown
                 setCategoryCorrected={setCategoryCorrected}
@@ -55,13 +55,14 @@ export default function ImageUploaded({
               <strong>{categoryPrediction}</strong>
               .
               <br />
+              <br />
               {/* Text changes based on if the AI prediction is not the same the users */}
               {(
                 categoryCorrected
                 && categoryCorrected !== categoryPrediction)
                 ? (
                   <span>
-                    You suggest it is&nbsp;
+                    You chose&nbsp;
                     <strong>{categoryCorrected}</strong>
                     .
                   </span>

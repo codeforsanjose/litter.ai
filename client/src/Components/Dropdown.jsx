@@ -50,7 +50,7 @@ const reactSelectStyles = {
         ? '#74CC67' : '#FFF',
     color: state.isSelected ? '#FFF' : '#000',
     '&:hover': {
-      color: '#FFF',
+      color: '#000',
     },
     ':active': {
       ...baseStyles[':active'],
