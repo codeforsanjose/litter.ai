@@ -73,6 +73,8 @@
   border: none;
   border-radius: 10rem;
   font-size: 1rem;
+  color: var(--black);
+  background-color: var(--white);
 }
 
 .lower-buttons button:hover {
