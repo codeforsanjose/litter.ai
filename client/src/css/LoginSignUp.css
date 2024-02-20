@@ -12,6 +12,15 @@
   margin: 0 auto;
 }
 
+.login-signup-container
+.login-signup-header
+.back-button {
+  color: var(--black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
   .login-signup-header-text {
   margin-top: 2rem;
 }
@@ -69,11 +78,11 @@
 .login-signup-buttons button{
   width: 50dvw;
   max-width: 200px;
+  background-color: var(--main-green);
+  color: white;
 }
 
 .login-signup-button {
-  background-color: var(--main-green);
-  color: white;
   font-weight: bold;
 }
 
