@@ -41,6 +41,9 @@
   height: 1rem;
   border: none;
   border-radius: 1rem;;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: var(--dark-gray);
   text-align: center;
   font-size: 0.5rem;
@@ -81,6 +84,7 @@
 .capture-image-wrapper
 .capture-submit-button button {
   width: 30dvw;
+  background-color: var(--gray);
 }
 
 
@@ -125,6 +129,7 @@
 .capture-classify
 .capture-confirm-button button {
   width: 40dvw;
+  background-color: var(--gray);
 }
 
 /* No image uploaded */
