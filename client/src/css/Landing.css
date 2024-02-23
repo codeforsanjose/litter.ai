@@ -55,7 +55,7 @@
 .landing-buttons
 .landing-signup-description {
   color: var(--white);
-  width: 45dvw;
+  width: 100%;
   font-size: 0.6rem;
   text-align: center;
   font-weight: 200;

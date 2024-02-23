@@ -50,7 +50,7 @@ const reactSelectStyles = {
         ? '#74CC67' : '#FFF',
     color: state.isSelected ? '#FFF' : '#000',
     '&:hover': {
-      color: '#FFF',
+      color: '#000',
     },
     ':active': {
       ...baseStyles[':active'],
@@ -66,26 +66,30 @@ const reactSelectStyles = {
       width: '1.5rem',
     },
   }),
+  menuList: (baseStyles) => ({
+    ...baseStyles,
+    maxHeight: '10rem',
+  }),
 };
 
 export default function Dropdown({
   setLBCategory,
-  setImageCategory,
-  imageCategory,
+  setCategoryCorrected,
+  categoryPrediction,
 }) {
   const [defaultValue, setDefaultValue] = useState(null);
   const [options, setOptions] = useState(lbOptions);
 
   const handleChange = (option) => {
-    if (imageCategory) {
-      setImageCategory(option.value);
+    if (categoryPrediction) {
+      setCategoryCorrected(option.value);
     } else {
       setLBCategory(option.value);
     }
   };
 
   useEffect(() => {
-    const index = captureOptions.map((item) => item.value).indexOf(imageCategory);
+    const index = captureOptions.map((item) => item.value).indexOf(categoryPrediction);
     if (index > -1) {
       setOptions(captureOptions);
       setDefaultValue(captureOptions[index]);
@@ -93,7 +97,7 @@ export default function Dropdown({
       setOptions(lbOptions);
       setDefaultValue(lbOptions[0]);
     }
-  }, [imageCategory]);
+  }, [categoryPrediction]);
 
   return (
     <div>

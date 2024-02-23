@@ -3,11 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loading from './Loading';
 import Dropdown from './Dropdown';
+import { mockTotalUploads } from '../mockData/mockLeaderboardData';
 import { fetchLeaderboardData } from '../utils/fetchUserData';
 import '../css/Leaderboard.css';
 
 export default function Leaderboard() {
-  const [leaderboardData, setLeaderboardData] = useState(null);
+  const [leaderboardData, setLeaderboardData] = useState(mockTotalUploads.leaderboard);
   const [dropdownSelection, setDropdownSelection] = useState('total');
   const [userRank, setUserRank] = useState(null);
   const [userItemCount, setUserItemCount] = useState(null);
@@ -18,7 +19,7 @@ export default function Leaderboard() {
   const renderTable = (user, index) => (
     <tr key={index}>
       <td>{index + 1}</td>
-      <td className="lb-name">{user.username}</td>
+      <td className="lb-name">{user.displayUsername}</td>
       <td>{user.itemCount}</td>
     </tr>
   );
@@ -31,7 +32,9 @@ export default function Leaderboard() {
     const fetchData = async () => {
       const response = await fetchLeaderboardData(path);
       if (response.leaderboard) {
-        await setLeaderboardData(response.leaderboard);
+        if (response.leaderboard.length > 0) {
+          await setLeaderboardData(response.leaderboard);
+        }
         await setUserRank(response.userRank);
         await setUserItemCount(response.userItemCount);
         await setLoading(false);

@@ -123,6 +123,7 @@ button:hover {
 .profile-logout-top
 .profile-buttons button {
   width: 100%;
+  background-color: var(--gray);
 }
 
 .profile-container
