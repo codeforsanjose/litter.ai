@@ -40,7 +40,8 @@ const photoInfoController = {
     },
 
     postPhoto: async (req, res, next) => {
-        let { category, email } = req.body;
+        let { category } = req.body;
+        let { email } = req.user;
         category = category.toLowerCase().trim();
         email = email.toLowerCase().trim();
         try {

@@ -14,7 +14,6 @@ export const postPhotoBodySchema = Joi.object({
             'unknown',
         )
         .required(),
-    email: Joi.string().email().required(),
 });
 
 export const getUserPhotoCountParamSchema = Joi.object({
