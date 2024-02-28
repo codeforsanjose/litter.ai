@@ -36,6 +36,7 @@
 .PNF-container
 .PNF-buttons button {
   width: 15dvw;
+  background-color: var(--gray);
 }
 
 /* Phones */
