@@ -64,6 +64,18 @@ export async function fetchImageToAI(image) {
   }
 }
 
+export async function fetchUpdateUserStatistics(category) {
+  const username = Cookies.get('username');
+  const requestBody = { category, username };
+
+  try {
+    const response = await fetchData('photo', 'POST', requestBody);
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export async function fetchRegister(body) {
   try {
     const response = await fetchData('register', 'POST', body);
