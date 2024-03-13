@@ -49,9 +49,10 @@ const startServer = async () => {
             }
         });
         if (NODE_ENV === 'dev') {
-            app.use(
-                cors({ origin: 'https://localhost:3000', credentials: true }),
-            );
+            const httpsOrigin = 'https://localhost:3000';
+            const httpOrigin = 'http://localhost:3000';
+            const origin = LOCAL_HTTPS === 'true' ? httpsOrigin : httpOrigin;
+            app.use(cors({ origin, credentials: true }));
         } else {
             const corsOptions = {
                 // eslint-disable-next-line object-shorthand, func-names

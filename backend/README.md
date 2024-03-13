@@ -236,7 +236,6 @@ JSON Request body should follow
 ```
 {
   "category": <string>,
-  "email": <string>
 }
 ```
 
