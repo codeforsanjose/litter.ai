@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Dropdown from '../Dropdown';
 import Loading from '../Loading';
-import { fetchImageToAI } from '../../utils/fetchUserData';
+import { fetchImageToAI, fetchUpdateUserStatistics } from '../../utils/fetchUserData';
 
 export default function ImageUploaded({
   image,
@@ -22,6 +22,11 @@ export default function ImageUploaded({
     setImageConfidence(Math.trunc(response.confidence * 100));
     setImageSubmitted(true);
     setLoading(false);
+  };
+
+  const recordImageData = async () => {
+    const category = categoryCorrected || categoryPrediction;
+    await fetchUpdateUserStatistics(category);
   };
 
   return (
@@ -100,7 +105,7 @@ export default function ImageUploaded({
                   : `/success/${categoryPrediction}`
                 }
               >
-                <button type="button">
+                <button type="button" onClick={recordImageData}>
                   Confirm
                 </button>
               </Link>
