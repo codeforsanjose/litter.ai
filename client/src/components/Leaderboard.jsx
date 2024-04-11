@@ -32,9 +32,10 @@ export default function Leaderboard() {
     const fetchData = async () => {
       const response = await fetchLeaderboardData(path);
       if (response.leaderboard) {
-        if (response.leaderboard.length > 0) {
-          await setLeaderboardData(response.leaderboard);
+        if (response.leaderboard.length < 10) {
+          response.leaderboard = response.leaderboard.concat(mockTotalUploads.leaderboard);
         }
+        await setLeaderboardData(response.leaderboard);
         await setUserRank(response.userRank);
         await setUserItemCount(response.userItemCount);
         await setLoading(false);
