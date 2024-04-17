@@ -19,6 +19,7 @@ export default function LandingPage({ user }) {
           <div className="landing-text">
             <h1>Welcome to LitterSort</h1>
             <p>With just a photo, sort your garbage and save the world.</p>
+            <p><strong>This is a beta application, still under development.</strong></p>
           </div>
           <div className="landing-buttons lower-buttons">
             <Link to="/capture">

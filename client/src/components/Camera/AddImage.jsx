@@ -39,6 +39,9 @@ export default function AddImage({ setImage }) {
           <span>Click on the icon to open up your device&#x27;s camera.</span>
           <br />
           <span>Please take the photo in portrait mode for best results.</span>
+          <br />
+          <br />
+          <span><strong>This is a beta application, still under development.</strong></span>
         </p>
       </div>
     </>
