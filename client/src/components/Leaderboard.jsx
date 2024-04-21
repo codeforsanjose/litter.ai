@@ -19,7 +19,7 @@ export default function Leaderboard() {
   const renderTable = (user, index) => (
     <tr key={index}>
       <td>{index + 1}</td>
-      <td className="lb-name">{user.displayUsername}</td>
+      <td className="lb-name">{user.displayUsername || user.username}</td>
       <td>{user.itemCount}</td>
     </tr>
   );
